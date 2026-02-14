@@ -6,6 +6,8 @@ public class playerInteraction : MonoBehaviour
     public float range = 3f;
     //what the player is trying to interact with
     interactableObject target;
+
+    public Camera camera;
     
     void Update()
     {
@@ -23,7 +25,8 @@ public class playerInteraction : MonoBehaviour
     {
         //draws a raycast from the camera
         RaycastHit hit;
-        Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+        Ray ray = new Ray(camera.transform.position, camera.transform.forward);
+        Debug.DrawRay(camera.transform.position, camera.transform.forward, Color.red);
         
         //if the ray hits something within range and the collider it hits is an interactable
         if (Physics.Raycast(ray, out hit, range) && hit.collider.CompareTag("Interactable"))
@@ -43,11 +46,13 @@ public class playerInteraction : MonoBehaviour
     void setTarget(interactableObject interactable)
     {
         target = interactable;
+        HUDmanager.instance.enableInteractionText(target.prompt);
     }
     
     //if there's still a target set, get rid of it
     void clearTarget()
     {
+        HUDmanager.instance.disableInteractionText();
         if (target) target = null;
     }
 }
