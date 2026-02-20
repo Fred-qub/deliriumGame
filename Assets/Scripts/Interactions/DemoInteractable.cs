@@ -117,8 +117,11 @@ public class DemoInteractable : MonoBehaviour
     }
 
     // -------------------------------------------------------------------------
-    // New method for the patient POV replay
-    // Call this instead of ExecuteChoice() when replaying from the patient's perspective
+    // New method for the patient POV replay.
+    // Designed to be called instead of ExecuteChoice() when replaying from the patient's perspective.
+    // Currently unused in the patient scene due to each scene having its own independent dialogue setup.
+    // Kept in for future development — if the project moves to a shared ScriptableObject approach,
+    // this becomes the correct hook for driving replay dialogue from DemoInteractable directly.
     // -------------------------------------------------------------------------
 
     public void ExecuteReplay()
