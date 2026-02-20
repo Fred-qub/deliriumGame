@@ -68,16 +68,8 @@ public class DialogueManager : MonoBehaviour
 
     private void Awake()
     {
-        // Standard singleton setup — one instance persists across scenes
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        if (Instance == null) Instance = this;
+            else Destroy(gameObject);
     }
 
     private void Start()
