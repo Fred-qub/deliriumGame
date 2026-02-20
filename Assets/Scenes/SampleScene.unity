@@ -543,6 +543,14 @@ MonoBehaviour:
   objectName: Coat
   isSuccessOption: 1
   requiredObjectName: 
+  doctorLine: 
+  arthurLine: "I thought someone was there. He'd been watching me all night\u2026
+    What's happening to me, doctor?"
+  replayDoctorLine: 
+  arthurMonologue: There was no one there at all. What's happening to me?
+  isHearingAidInteraction: 0
+  doctorLineAfter: 
+  replayDoctorLineAfter: 
 --- !u!4 &161914899 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2174908031836683047, guid: cf10e6663944a77478ace44ab89ad13a,
@@ -735,6 +743,13 @@ MonoBehaviour:
   objectName: Sedative
   isSuccessOption: 0
   requiredObjectName: 
+  doctorLine: 
+  arthurLine: "I don\u2019t know you. Don't dare touch me!"
+  replayDoctorLine: 
+  arthurMonologue: Stop attacking me! Someone help me, please.
+  isHearingAidInteraction: 0
+  doctorLineAfter: 
+  replayDoctorLineAfter: 
 --- !u!1 &295818565 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4723302553562487224, guid: f2c1cfe23345098498631a04224b819d,
@@ -916,6 +931,13 @@ MonoBehaviour:
   objectName: Lights
   isSuccessOption: 0
   requiredObjectName: 
+  doctorLine: 
+  arthurLine: You're hurting me. Please, stop.
+  replayDoctorLine: 
+  arthurMonologue: I can't see anything. They've blinded me!
+  isHearingAidInteraction: 0
+  doctorLineAfter: 
+  replayDoctorLineAfter: 
 --- !u!4 &330119185 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7088300229328454620, guid: c96008f85a07c0a41a402593149abdcc,
@@ -2984,6 +3006,16 @@ MonoBehaviour:
   objectName: HearingAid
   isSuccessOption: 1
   requiredObjectName: 
+  doctorLine: Let's use your hearing aids, Arthur.
+  arthurLine: 
+  replayDoctorLine: Let's use your hearing aids, Arthur.
+  arthurMonologue: That's clearer now, but I'm scared, doctor. I don't know what's
+    real.
+  isHearingAidInteraction: 1
+  doctorLineAfter: Hi Arthur, I'm your doctor. Can you hear me ok now? I'm here to
+    help.
+  replayDoctorLineAfter: Hi Arthur, I'm your doctor. Can you hear me ok now? I'm
+    here to help.
 --- !u!1001 &894810707
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5228,8 +5260,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 18
+  m_fontSize: 36
+  m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5543,6 +5575,15 @@ MonoBehaviour:
   objectName: Verbal
   isSuccessOption: 0
   requiredObjectName: HearingAid
+  doctorLine: "Relax, ok? There's nobody in the corner\u2026 Can't you see I'm your
+    doctor, and I'm here to help?"
+  arthurLine: You're with him. You're one of them!
+  replayDoctorLine: "Relax, ok? There's nobody in the corner\u2026 Can't you see
+    I'm your doctor, and I'm here to help?"
+  arthurMonologue: Get away from me. Leave me alone!
+  isHearingAidInteraction: 0
+  doctorLineAfter: 
+  replayDoctorLineAfter: 
 --- !u!1 &1688683162 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2128368857185381486, guid: bfa5032c8700e1c46a99e5d6ba3d5765,
@@ -6695,8 +6736,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 110, y: -70}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 385.8, y: -98.9}
+  m_SizeDelta: {x: 750, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2114858833
 MonoBehaviour:
@@ -6745,8 +6786,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16
-  m_fontSizeBase: 16
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

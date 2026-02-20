@@ -550,6 +550,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1015672025}
+          m_TargetAssemblyTypeName: ReplayDialogue, Assembly-CSharp
+          m_MethodName: ExecuteReplay
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - actionName: Sedative
     onTrigger:
       m_PersistentCalls:
@@ -558,6 +570,18 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: MoveToTarget, Assembly-CSharp
           m_MethodName: Activate
           m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1015672025}
+          m_TargetAssemblyTypeName: ReplayDialogue, Assembly-CSharp
+          m_MethodName: ExecuteReplay
+          m_Mode: 5
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -606,6 +630,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1015672025}
+          m_TargetAssemblyTypeName: ReplayDialogue, Assembly-CSharp
+          m_MethodName: ExecuteReplay
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - actionName: Coat
     onTrigger:
       m_PersistentCalls:
@@ -622,6 +658,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1015672025}
+          m_TargetAssemblyTypeName: ReplayDialogue, Assembly-CSharp
+          m_MethodName: ExecuteReplay
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - actionName: HearingAid
     onTrigger:
       m_PersistentCalls:
@@ -630,6 +678,18 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: MoveToTarget, Assembly-CSharp
           m_MethodName: Activate
           m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1015672025}
+          m_TargetAssemblyTypeName: ReplayDialogue, Assembly-CSharp
+          m_MethodName: ExecuteReplay
+          m_Mode: 5
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3582,6 +3642,82 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1699210520}
   m_SourcePrefab: {fileID: 100100000, guid: bfa5032c8700e1c46a99e5d6ba3d5765, type: 3}
+--- !u!1 &1015672024
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1015672026}
+  - component: {fileID: 1015672025}
+  m_Layer: 0
+  m_Name: ReplayDialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1015672025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015672024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b34e82190b214be8b5b5d09a19cc7f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openingLine: I don't know who you are. What do you want? Why are you sitting there
+    saying nothing?
+  openingDelay: 2
+  entries:
+  - actionName: Verbal
+    doctorLine: "Relax, ok? There's nobody in the corner\u2026 Can't you see I'm
+      your doctor, and I'm here to help?"
+    arthurMonologue: Get away from me. Leave me alone!
+    isHearingAidInteraction: 0
+    doctorLineAfter: 
+  - actionName: Sedative
+    doctorLine: 
+    arthurMonologue: Stop attacking me! Someone help me, please.
+    isHearingAidInteraction: 0
+    doctorLineAfter: 
+  - actionName: Lights
+    doctorLine: 
+    arthurMonologue: I can't see anything. They've blinded me!
+    isHearingAidInteraction: 0
+    doctorLineAfter: 
+  - actionName: Coat
+    doctorLine: 
+    arthurMonologue: There was no one there at all. What's happening to me?
+    isHearingAidInteraction: 0
+    doctorLineAfter: 
+  - actionName: HearingAid
+    doctorLine: Let's use your hearing aids, Arthur.
+    arthurMonologue: That's clearer now, but I'm scared, doctor. I don't know what's
+      real.
+    isHearingAidInteraction: 1
+    doctorLineAfter: Hi Arthur, I'm your doctor. Can you hear me ok now? I'm here
+      to help.
+--- !u!4 &1015672026
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015672024}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1018192895
 GameObject:
   m_ObjectHideFlags: 0
@@ -6713,3 +6849,4 @@ SceneRoots:
   - {fileID: 626931541}
   - {fileID: 234339075}
   - {fileID: 1329567306}
+  - {fileID: 1015672026}
