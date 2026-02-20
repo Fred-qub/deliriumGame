@@ -2,7 +2,7 @@
 - Project name: deliriumGame
 - Unity version: Unity 6000.1.15f1
 - Active game object:
-  - Name: Player
-  - Tag: Player
+  - Name: LightSwitch
+  - Tag: Interactable
   - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

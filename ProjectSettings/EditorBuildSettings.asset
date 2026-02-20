@@ -8,4 +8,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/SampleScene Ruth test.unity
+    guid: 65d8709a6cecbbe4e9ef31fcf2f0eae6
+  - enabled: 1
+    path: Assets/Scenes/PatientScene.unity
+    guid: 3b5e8be24c6b2dd4a8f1e98dd137856e
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
