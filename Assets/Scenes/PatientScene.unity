@@ -720,8 +720,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ac2c8deae0ed247909d3bb6d5aeffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDelay: 2
-  delayBetweenActions: 3
+  startDelay: 7
+  delayBetweenActions: 4
   actionLibrary:
   - actionName: Verbal
     onTrigger:
