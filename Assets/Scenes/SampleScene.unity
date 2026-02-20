@@ -3286,14 +3286,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fca7092899775466282974a5fdf2c153, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialoguePanel: {fileID: 0}
-  speakerLabel: {fileID: 0}
-  dialogueText: {fileID: 0}
+  dialoguePanel: {fileID: 253202012}
+  speakerLabel: {fileID: 1538618468}
+  dialogueText: {fileID: 2114858833}
   displayDuration: 4
   doctorLineDuration: 3
   monoloagueDuration: 4
-  dialoguePanelRect: {fileID: 0}
-  spokenPosition: {x: 0, y: 80}
+  dialoguePanelRect: {fileID: 253202013}
+  spokenPosition: {x: 0, y: -400}
   monologuePosition: {x: 0, y: 0}
 --- !u!4 &955642537
 Transform:
