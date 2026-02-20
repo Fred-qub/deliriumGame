@@ -19,6 +19,8 @@ public class characterMovement : MonoBehaviour
     
     private float horizontalInput;
     private float verticalInput;
+
+    public GameObject patientNotes;
     
     // Start is called before the first frame update
     void Start()
@@ -30,12 +32,18 @@ public class characterMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        getInputs();
+        if (patientNotes.activeInHierarchy == false) 
+        {
+            getInputs();
 
-        moveDirection = cameraTransform.forward.normalized * verticalInput + cameraTransform.right * horizontalInput;
-        Vector3 moveDirectionButNoY = new Vector3(moveDirection.x, 0, moveDirection.z); 
-        
-        controller.Move(moveDirectionButNoY.normalized * speed * Time.deltaTime);
+            moveDirection = cameraTransform.forward.normalized * verticalInput + cameraTransform.right * horizontalInput;
+            Vector3 moveDirectionButNoY = new Vector3(moveDirection.x, 0, moveDirection.z);
+
+            controller.Move(moveDirectionButNoY.normalized * speed * Time.deltaTime);
+
+
+        }
+            
     }
 
     private void getInputs()
