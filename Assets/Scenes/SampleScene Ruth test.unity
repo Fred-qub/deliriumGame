@@ -10085,7 +10085,7 @@ MonoBehaviour:
   controller: {fileID: 2084625459}
   moveDirection: {x: 0, y: 0, z: 0}
   cameraTransform: {fileID: 711297363}
-  patientNotes: {fileID: 1580878681}
+  patientNotes: {fileID: 0}
 --- !u!143 &2084625459
 CharacterController:
   m_ObjectHideFlags: 0
