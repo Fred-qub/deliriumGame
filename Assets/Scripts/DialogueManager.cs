@@ -5,16 +5,25 @@ using System.Collections;
 
 /// <summary>
 /// Manages all dialogue display in both the doctor POV scene and the patient POV replay.
-/// Attach this to a persistent GameObject in your scene (e.g. a "Managers" object).
+/// Attach this to a GameObject in each scene independently.
 ///
 /// Two display modes:
 ///   SPOKEN     - Speaker label shown, normal text, anchored bottom-centre.
 ///                Used for Arthur's spoken lines and the doctor's lines.
-///                Auto-dismisses after displayDuration, or player can skip with E.
+///                Auto-dismisses after word-count-based duration, or player can press E to skip.
+///                Doctor lines are garbled until hearing aids are fitted.
 ///
 ///   MONOLOGUE  - No speaker label, italic text, anchored centre-screen.
 ///                Used for Arthur's internal thoughts during the patient POV replay.
 ///                Auto-dismisses only — no player input required.
+///
+/// Improvements over v1:
+///   - Doctor lines garbled until hearing aids fitted (checks InteractionMaster)
+///   - Word count based display timing
+///   - Typewriter effect — E skips to full line, second E dismisses
+///   - Fade in/out on dialogue panel via CanvasGroup
+///   - Portrait images per speaker
+///   - Audio hooks for garbled and clear dialogue sounds
 /// </summary>
 public class DialogueManager : MonoBehaviour
 {
@@ -22,45 +31,77 @@ public class DialogueManager : MonoBehaviour
 
     // -------------------------------------------------------------------------
     // Inspector References
-    // Set these up by dragging your UI elements in from the Canvas hierarchy.
     // -------------------------------------------------------------------------
 
     [Header("Shared UI Elements")]
     [Tooltip("The root panel GameObject. We activate/deactivate this to show/hide dialogue.")]
     [SerializeField] private GameObject dialoguePanel;
 
-    [Tooltip("The speaker label, e.g. 'Arthur:' or 'Doctor:'. Hidden during monologue.")]
+    [Tooltip("The speaker label e.g. 'Arthur:' or 'Doctor:'. Hidden during monologue.")]
     [SerializeField] private TMP_Text speakerLabel;
 
     [Tooltip("The main dialogue text body.")]
     [SerializeField] private TMP_Text dialogueText;
 
+    [Tooltip("The CanvasGroup on the dialogue panel, used for fading in and out.")]
+    [SerializeField] private CanvasGroup dialoguePanelCanvasGroup;
+
+    [Tooltip("Portrait image displayed next to the speaker label. Hidden during monologue.")]
+    [SerializeField] private Image portraitImage;
+
+    [Header("Portrait Sprites")]
+    [Tooltip("Portrait sprite for the doctor.")]
+    [SerializeField] private Sprite doctorPortrait;
+
+    [Tooltip("Portrait sprite for Arthur.")]
+    [SerializeField] private Sprite arthurPortrait;
+
+    [Header("Audio")]
+    [Tooltip("AudioSource used to play dialogue sounds. Add an AudioSource component to this GameObject.")]
+    [SerializeField] private AudioSource audioSource;
+
+    [Tooltip("Sound played when garbled doctor dialogue appears.")]
+    [SerializeField] private AudioClip garbledSound;
+
+    [Tooltip("Sound played when clear doctor dialogue appears after hearing aids are fitted.")]
+    [SerializeField] private AudioClip clearSound;
+
     [Header("Timing")]
-    [Tooltip("How long spoken dialogue stays on screen before auto-dismissing (seconds).")]
-    [SerializeField] private float displayDuration = 4f;
+    [Tooltip("Minimum time a line stays on screen regardless of word count (seconds).")]
+    [SerializeField] private float minDisplayDuration = 2f;
 
-    [Tooltip("How long doctor lines stay on screen before auto-advancing to Arthur's line (seconds).")]
-    [SerializeField] private float doctorLineDuration = 3f;
+    [Tooltip("Reading speed used to calculate display duration. 200 words per minute is average adult reading speed.")]
+    [SerializeField] private float wordsPerMinute = 200f;
 
-    [Tooltip("How long monologue lines stay on screen during the POV replay (seconds).")]
-    [SerializeField] private float monoloagueDuration = 4f;
+    [Header("Typewriter")]
+    [Tooltip("How fast characters appear (characters per second).")]
+    [SerializeField] private float typewriterSpeed = 40f;
+
+    [Header("Fading")]
+    [Tooltip("How long the fade in takes (seconds).")]
+    [SerializeField] private float fadeInDuration = 0.2f;
+
+    [Tooltip("How long the fade out takes (seconds).")]
+    [SerializeField] private float fadeOutDuration = 0.3f;
 
     [Header("Positioning")]
     [Tooltip("The RectTransform of the dialogue panel, used to reposition between modes.")]
     [SerializeField] private RectTransform dialoguePanelRect;
 
-    [Tooltip("Anchored position for SPOKEN mode (bottom-centre). E.g. (0, 80).")]
-    [SerializeField] private Vector2 spokenPosition = new Vector2(0f, 80f);
+    [Tooltip("Anchored position for SPOKEN mode (bottom-centre).")]
+    [SerializeField] private Vector2 spokenPosition = new Vector2(0f, -400f);
 
-    [Tooltip("Anchored position for MONOLOGUE mode (centre-screen). E.g. (0, 0).")]
+    [Tooltip("Anchored position for MONOLOGUE mode (centre-screen).")]
     [SerializeField] private Vector2 monologuePosition = new Vector2(0f, 0f);
 
     // -------------------------------------------------------------------------
     // Private State
     // -------------------------------------------------------------------------
 
-    private Coroutine activeCoroutine;  // Tracks the currently running dialogue routine
-    private bool playerSkipped;         // Set to true when player presses E to skip
+    private Coroutine activeCoroutine;
+    private bool playerSkipped;     // First E press — skip typewriter to full line
+    private bool playerDismissed;   // Second E press — dismiss line entirely
+    private bool hearingAidAnimationComplete = false;
 
     // -------------------------------------------------------------------------
     // Unity Lifecycle
@@ -69,42 +110,41 @@ public class DialogueManager : MonoBehaviour
     private void Awake()
     {
         if (Instance == null) Instance = this;
-            else Destroy(gameObject);
+        else Destroy(gameObject);
     }
 
     private void Start()
     {
-        // Make sure the panel is hidden when the scene begins
-        HideDialogue();
+        HideDialogueImmediate();
     }
 
     private void Update()
     {
-        // Player can press E to skip the current spoken line
-        // Note: monologue lines during the POV replay are auto-only and ignore this
         if (Input.GetKeyDown(KeyCode.E))
         {
-            playerSkipped = true;
+            // First press skips typewriter to show full line
+            // Second press dismisses the line
+            if (!playerSkipped) playerSkipped = true;
+            else playerDismissed = true;
         }
     }
 
     // -------------------------------------------------------------------------
     // Public API
-    // These are the methods that DemoInteractable (and the opening scene) will call.
     // -------------------------------------------------------------------------
 
     /// <summary>
-    /// Shows a single Arthur spoken line (normal mode, bottom-centre).
-    /// Auto-dismisses after displayDuration, or player can press E to skip.
+    /// Shows a single Arthur spoken line.
+    /// Auto-dismisses after word-count duration, or player can press E to skip.
     /// </summary>
     public void ShowArthurLine(string line)
     {
-        StartDialogue(ShowSpokenRoutine("Arthur", line));
+        StartDialogue(ShowSpokenRoutine("Arthur", arthurPortrait, line, false));
     }
 
     /// <summary>
-    /// Shows a doctor line, then automatically chains into an Arthur response.
-    /// Used for the Speak and Hearing Aid interactions (clear doctor voice).
+    /// Shows a doctor line then automatically chains into Arthur's response.
+    /// Doctor line is garbled if hearing aids have not been fitted yet.
     /// </summary>
     public void ShowDoctorThenArthur(string doctorLine, string arthurLine)
     {
@@ -113,23 +153,19 @@ public class DialogueManager : MonoBehaviour
 
     /// <summary>
     /// Shows the full hearing aid sequence:
-    ///   1. Garbled doctor line (before hearing aids)
-    ///   2. Fires the onHearingAidFitted callback so the animation can play
-    ///   3. Clear doctor line (after hearing aids)
+    ///   1. Garbled doctor line (always garbled — this is the pre-fitting moment)
+    ///   2. Fires animation callback
+    ///   3. Clear doctor line
     ///   4. Arthur's response
-    ///
-    /// Pass in a System.Action callback that triggers your hearing aid animation.
-    /// When the animation is done, call DialogueManager.Instance.ContinueHearingAidDialogue()
-    /// via an Animation Event to resume the sequence.
     /// </summary>
-    public void ShowHearingAidSequence(string garbledLine, string clearDoctorLine, string arthurLine, System.Action onHearingAidFitted)
+    public void ShowHearingAidSequence(string doctorLineBefore, string doctorLineAfter, string arthurLine, System.Action onHearingAidFitted)
     {
-        StartDialogue(HearingAidSequenceRoutine(garbledLine, clearDoctorLine, arthurLine, onHearingAidFitted));
+        StartDialogue(HearingAidSequenceRoutine(doctorLineBefore, doctorLineAfter, arthurLine, onHearingAidFitted));
     }
 
     /// <summary>
     /// Shows Arthur's internal monologue during the patient POV replay.
-    /// No speaker label. Italic text. Centre-screen position. Auto-dismiss only.
+    /// No speaker label. Italic. Centre-screen. Auto-dismiss only.
     /// </summary>
     public void ShowMonologue(string line)
     {
@@ -137,11 +173,8 @@ public class DialogueManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Shows the hearing aid replay sequence from the patient's POV:
-    ///   1. Garbled doctor line
-    ///   2. Fires callback for animation
-    ///   3. Clear doctor line
-    ///   4. Arthur's internal monologue response
+    /// Shows the hearing aid replay sequence from the patient's POV.
+    /// Garbled doctor line → animation → clear doctor line → Arthur monologue.
     /// </summary>
     public void ShowHearingAidReplaySequence(string garbledLine, string clearDoctorLine, string arthurMonologue, System.Action onHearingAidFitted)
     {
@@ -149,8 +182,8 @@ public class DialogueManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Called by the hearing aid Animation Event once the animation has finished playing.
-    /// Signals the waiting coroutine that it can continue to the next line.
+    /// Called by the hearing aid Animation Event once the animation has finished.
+    /// Signals the waiting coroutine to continue.
     /// </summary>
     public void ContinueHearingAidDialogue()
     {
@@ -158,160 +191,226 @@ public class DialogueManager : MonoBehaviour
     }
 
     // -------------------------------------------------------------------------
-    // Hearing Aid Animation Handshake
-    // The coroutine sets this to false before waiting, the Animation Event sets it true.
+    // Hearing Aid State
     // -------------------------------------------------------------------------
 
-    private bool hearingAidAnimationComplete = false;
+    /// <summary>
+    /// Checks InteractionMaster to see if hearing aids have been fitted.
+    /// If true, all doctor lines are displayed clearly.
+    /// If false, all doctor lines are garbled.
+    /// </summary>
+    private bool HearingAidFitted()
+    {
+        if (InteractionMaster.Instance == null) return false;
+        return InteractionMaster.Instance.HasInteractedWith("HearingAid");
+    }
+
+    /// <summary>
+    /// Processes a doctor line before display.
+    /// Returns garbled text and plays garbled sound if hearing aids not yet fitted.
+    /// Returns clear text and plays clear sound if hearing aids have been fitted.
+    /// </summary>
+    private string ProcessDoctorLine(string line)
+    {
+        if (HearingAidFitted())
+        {
+            // TODO: Assign a real clear-voice audio clip to the clearSound field in the Inspector.
+            // Suggestion: a soft tone or click to mark the improved hearing moment.
+            PlaySound(clearSound);
+            return line;
+        }
+        else
+        {
+            // TODO: Assign a real garbled/muffled audio clip to the garbledSound field in the Inspector.
+            // Suggestion: a muffled or underwater speech effect from Freesound.org.
+            PlaySound(garbledSound);
+            return GarbleText(line);
+        }
+    }
 
     // -------------------------------------------------------------------------
     // Private Coroutines
-    // Each one handles a specific dialogue sequence.
     // -------------------------------------------------------------------------
 
     /// <summary>
-    /// Displays a spoken line with a speaker label at the bottom of the screen.
+    /// Core spoken line routine. Handles fade, portrait, typewriter, and skip/dismiss logic.
+    /// isAutoAdvance: true = no player input, line auto-advances after duration (doctor lines).
+    ///                false = player can skip typewriter with E, dismiss with second E.
     /// </summary>
-    private IEnumerator ShowSpokenRoutine(string speaker, string line)
+    private IEnumerator ShowSpokenRoutine(string speaker, Sprite portrait, string line, bool isAutoAdvance)
     {
-        SetSpokenMode(speaker, line);
+        SetSpokenMode(speaker, portrait, "");
+        yield return StartCoroutine(FadeIn());
 
         playerSkipped = false;
-        float elapsed = 0f;
+        playerDismissed = false;
 
-        while (elapsed < displayDuration && !playerSkipped)
+        yield return StartCoroutine(TypewriterRoutine(line));
+
+        if (isAutoAdvance)
+        {
+            yield return new WaitForSeconds(CalculateDuration(line));
+            yield return StartCoroutine(FadeOut());
+            yield break;
+        }
+
+        // Wait for player to dismiss or auto-dismiss after word-count duration
+        float elapsed = 0f;
+        float duration = CalculateDuration(line);
+
+        while (elapsed < duration && !playerDismissed)
         {
             elapsed += Time.deltaTime;
             yield return null;
         }
 
-        HideDialogue();
+        yield return StartCoroutine(FadeOut());
     }
 
     /// <summary>
-    /// Shows a doctor line that auto-advances, then shows Arthur's response.
+    /// Doctor line (auto-advance) followed by Arthur's response (player can dismiss).
+    /// Doctor line is processed through ProcessDoctorLine — garbled or clear based on hearing aid state.
     /// </summary>
     private IEnumerator ShowDoctorThenArthurRoutine(string doctorLine, string arthurLine)
     {
-        // Doctor speaks first — auto-advances, no skip
-        SetSpokenMode("Doctor", doctorLine);
-
-        yield return new WaitForSeconds(doctorLineDuration);
-
-        // Then Arthur responds — player can skip this one
-        SetSpokenMode("Arthur", arthurLine);
-
-        playerSkipped = false;
-        float elapsed = 0f;
-
-        while (elapsed < displayDuration && !playerSkipped)
-        {
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        HideDialogue();
+        string processedLine = ProcessDoctorLine(doctorLine);
+        yield return StartCoroutine(ShowSpokenRoutine("Doctor", doctorPortrait, processedLine, true));
+        yield return StartCoroutine(ShowSpokenRoutine("Arthur", arthurPortrait, arthurLine, false));
     }
 
     /// <summary>
-    /// Full hearing aid sequence for the DOCTOR POV scene.
-    /// Garbled line → wait for animation → clear line → Arthur responds.
+    /// Full hearing aid sequence for the doctor POV scene.
+    /// The first doctor line is always garbled — this IS the pre-fitting moment,
+    /// so we bypass ProcessDoctorLine and garble directly regardless of interaction order.
+    /// The second line is always clear — hearing aids are now in.
     /// </summary>
-    private IEnumerator HearingAidSequenceRoutine(string garbledLine, string clearDoctorLine, string arthurLine, System.Action onHearingAidFitted)
+    private IEnumerator HearingAidSequenceRoutine(string doctorLineBefore, string doctorLineAfter, string arthurLine, System.Action onHearingAidFitted)
     {
-        // Step 1: Show garbled doctor line (doctor POV — doctor hears themselves clearly,
-        // but we show garbled text to foreshadow what the patient experiences)
-        SetSpokenMode("Doctor", GarbleText(garbledLine));
-        yield return new WaitForSeconds(doctorLineDuration);
+        // Step 1: Always garbled — bypass ProcessDoctorLine
+        PlaySound(garbledSound);
+        yield return StartCoroutine(ShowSpokenRoutine("Doctor", doctorPortrait, GarbleText(doctorLineBefore), true));
 
-        HideDialogue();
-
-        // Step 2: Fire the animation callback
-        // TODO: Trigger hearing aid animation here before continuing dialogue.
-        // The animation should play between the garbled and clear doctor lines
-        // so the POV replay can show the moment Arthur's hearing is restored.
-        // Hook this up via an Animation Event on the clip that calls
-        // DialogueManager.Instance.ContinueHearingAidDialogue() when finished.
+        // Step 2: Fire animation callback
+        // TODO: Trigger hearing aid animation here.
+        // Animation Event on the clip should call:
+        // DialogueManager.Instance.ContinueHearingAidDialogue()
         hearingAidAnimationComplete = false;
         onHearingAidFitted?.Invoke();
 
-        // Step 3: Wait until the animation signals it's done
         while (!hearingAidAnimationComplete)
-        {
             yield return null;
-        }
 
-        // Step 4: Doctor speaks clearly
-        SetSpokenMode("Doctor", clearDoctorLine);
-        yield return new WaitForSeconds(doctorLineDuration);
+        // Step 3: Always clear — hearing aids now in
+        PlaySound(clearSound);
+        yield return StartCoroutine(ShowSpokenRoutine("Doctor", doctorPortrait, doctorLineAfter, true));
 
-        // Step 5: Arthur responds
-        SetSpokenMode("Arthur", arthurLine);
-
-        playerSkipped = false;
-        float elapsed = 0f;
-        while (elapsed < displayDuration && !playerSkipped)
-        {
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        HideDialogue();
+        // Step 4: Arthur responds
+        yield return StartCoroutine(ShowSpokenRoutine("Arthur", arthurPortrait, arthurLine, false));
     }
 
     /// <summary>
-    /// Displays a monologue line during the patient POV replay.
-    /// No speaker, italic, centre-screen, auto-dismiss only.
+    /// Monologue routine for patient POV replay.
+    /// No portrait, italic, centre-screen, auto-dismiss only.
     /// </summary>
     private IEnumerator ShowMonologueRoutine(string line)
     {
-        SetMonologueMode(line);
-        yield return new WaitForSeconds(monoloagueDuration);
-        HideDialogue();
+        SetMonologueMode("");
+        yield return StartCoroutine(FadeIn());
+        yield return StartCoroutine(TypewriterRoutine(line));
+        yield return new WaitForSeconds(CalculateDuration(line));
+        yield return StartCoroutine(FadeOut());
     }
 
     /// <summary>
-    /// Hearing aid sequence for the PATIENT POV replay.
-    /// Garbled doctor line → animation → clear doctor line → Arthur monologue.
+    /// Hearing aid replay sequence for the patient POV scene.
     /// </summary>
     private IEnumerator HearingAidReplaySequenceRoutine(string garbledLine, string clearDoctorLine, string arthurMonologue, System.Action onHearingAidFitted)
     {
-        // Step 1: Garbled doctor line — patient cannot hear properly yet
-        SetSpokenMode("Doctor", GarbleText(garbledLine));
-        yield return new WaitForSeconds(doctorLineDuration);
-
-        HideDialogue();
+        // Step 1: Garbled — patient cannot hear properly yet
+        PlaySound(garbledSound);
+        yield return StartCoroutine(ShowSpokenRoutine("Doctor", doctorPortrait, GarbleText(garbledLine), true));
 
         // Step 2: Fire animation callback
-        // TODO: Trigger hearing aid animation here before continuing dialogue.
-        // Same animation as the doctor POV scene — this is the same moment
-        // replayed from Arthur's perspective.
+        // TODO: Same animation as doctor POV scene, from Arthur's perspective.
         // Animation Event should call DialogueManager.Instance.ContinueHearingAidDialogue()
         hearingAidAnimationComplete = false;
         onHearingAidFitted?.Invoke();
 
         while (!hearingAidAnimationComplete)
+            yield return null;
+
+        // Step 3: Clear — hearing aids now in
+        PlaySound(clearSound);
+        yield return StartCoroutine(ShowSpokenRoutine("Doctor", doctorPortrait, clearDoctorLine, true));
+
+        // Step 4: Arthur's internal monologue
+        yield return StartCoroutine(ShowMonologueRoutine(arthurMonologue));
+    }
+
+    // -------------------------------------------------------------------------
+    // Typewriter
+    // -------------------------------------------------------------------------
+
+    /// <summary>
+    /// Reveals the line character by character at typewriterSpeed.
+    /// Player can press E to skip to the full line immediately.
+    /// </summary>
+    private IEnumerator TypewriterRoutine(string fullLine)
+    {
+        dialogueText.text = "";
+        float delay = 1f / typewriterSpeed;
+
+        for (int i = 0; i < fullLine.Length; i++)
         {
+            if (playerSkipped)
+            {
+                dialogueText.text = fullLine;
+                yield break;
+            }
+
+            dialogueText.text += fullLine[i];
+            yield return new WaitForSeconds(delay);
+        }
+    }
+
+    // -------------------------------------------------------------------------
+    // Fading
+    // -------------------------------------------------------------------------
+
+    private IEnumerator FadeIn()
+    {
+        dialoguePanel.SetActive(true);
+        dialoguePanelCanvasGroup.alpha = 0f;
+        float elapsed = 0f;
+
+        while (elapsed < fadeInDuration)
+        {
+            elapsed += Time.deltaTime;
+            dialoguePanelCanvasGroup.alpha = Mathf.Clamp01(elapsed / fadeInDuration);
             yield return null;
         }
 
-        // Step 3: Doctor's line is now clear — hearing aids are in
-        SetSpokenMode("Doctor", clearDoctorLine);
-        yield return new WaitForSeconds(doctorLineDuration);
+        dialoguePanelCanvasGroup.alpha = 1f;
+    }
 
-        HideDialogue();
+    private IEnumerator FadeOut()
+    {
+        float elapsed = 0f;
 
-        // Step 4: Arthur's internal response as monologue
-        yield return StartCoroutine(ShowMonologueRoutine(arthurMonologue));
+        while (elapsed < fadeOutDuration)
+        {
+            elapsed += Time.deltaTime;
+            dialoguePanelCanvasGroup.alpha = Mathf.Clamp01(1f - (elapsed / fadeOutDuration));
+            yield return null;
+        }
+
+        HideDialogueImmediate();
     }
 
     // -------------------------------------------------------------------------
     // Private Helpers
     // -------------------------------------------------------------------------
 
-    /// <summary>
-    /// Stops any running dialogue coroutine and starts a new one.
-    /// </summary>
     private void StartDialogue(IEnumerator routine)
     {
         if (activeCoroutine != null)
@@ -321,45 +420,68 @@ public class DialogueManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Configures the panel for SPOKEN mode (bottom-centre, speaker label visible).
+    /// Calculates display duration based on word count and reading speed.
+    /// Always respects the minimum display duration.
     /// </summary>
-    private void SetSpokenMode(string speaker, string line)
+    private float CalculateDuration(string line)
     {
-        dialoguePanel.SetActive(true);
+        int wordCount = line.Split(' ').Length;
+        float duration = (wordCount / wordsPerMinute) * 60f;
+        return Mathf.Max(minDisplayDuration, duration);
+    }
+
+    private void SetSpokenMode(string speaker, Sprite portrait, string line)
+    {
         dialoguePanelRect.anchoredPosition = spokenPosition;
 
         speakerLabel.gameObject.SetActive(true);
         speakerLabel.text = speaker + ":";
 
+        if (portraitImage != null)
+        {
+            portraitImage.gameObject.SetActive(portrait != null);
+            if (portrait != null) portraitImage.sprite = portrait;
+        }
+
         dialogueText.fontStyle = FontStyles.Normal;
         dialogueText.text = line;
     }
 
-    /// <summary>
-    /// Configures the panel for MONOLOGUE mode (centre-screen, no speaker, italic).
-    /// </summary>
     private void SetMonologueMode(string line)
     {
-        dialoguePanel.SetActive(true);
         dialoguePanelRect.anchoredPosition = monologuePosition;
 
         speakerLabel.gameObject.SetActive(false);
+
+        if (portraitImage != null)
+            portraitImage.gameObject.SetActive(false);
 
         dialogueText.fontStyle = FontStyles.Italic;
         dialogueText.text = line;
     }
 
-    /// <summary>
-    /// Hides the dialogue panel.
-    /// </summary>
-    private void HideDialogue()
+    private void HideDialogueImmediate()
     {
+        if (dialoguePanelCanvasGroup != null)
+            dialoguePanelCanvasGroup.alpha = 0f;
+
         dialoguePanel.SetActive(false);
     }
 
     /// <summary>
-    /// Substitutes random characters into a string to simulate muffled/garbled hearing.
-    /// Used for the pre-hearing-aid doctor line in the patient POV replay.
+    /// Plays a sound if both AudioSource and clip are assigned.
+    /// Safe to call with a null clip — does nothing, no error thrown.
+    /// This is intentional so audio slots can be left empty as placeholders.
+    /// </summary>
+    private void PlaySound(AudioClip clip)
+    {
+        if (audioSource != null && clip != null)
+            audioSource.PlayOneShot(clip);
+    }
+
+    /// <summary>
+    /// Substitutes random characters to simulate garbled/muffled hearing.
+    /// Spaces and punctuation are preserved so the sentence shape remains readable.
     /// </summary>
     private string GarbleText(string input)
     {
@@ -368,11 +490,8 @@ public class DialogueManager : MonoBehaviour
 
         for (int i = 0; i < chars.Length; i++)
         {
-            // Garble roughly 1 in 4 letters, leaving spaces and punctuation intact
             if (char.IsLetter(chars[i]) && Random.Range(0, 4) == 0)
-            {
                 chars[i] = garbleChars[Random.Range(0, garbleChars.Length)];
-            }
         }
 
         return new string(chars);
