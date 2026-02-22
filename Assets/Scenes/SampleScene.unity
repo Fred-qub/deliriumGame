@@ -769,7 +769,7 @@ MonoBehaviour:
   failureCount: 0
   maxInteractions: 2
   nextSceneName: PatientScene
-  delayBeforeSwitch: 5
+  delayBeforeSwitch: 10
 --- !u!4 &263008117
 Transform:
   m_ObjectHideFlags: 0

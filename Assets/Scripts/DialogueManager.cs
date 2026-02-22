@@ -480,7 +480,10 @@ private void StartDialogue(IEnumerator routine)
         speakerLabel.gameObject.SetActive(false);
 
         if (portraitImage != null)
-            portraitImage.gameObject.SetActive(false);
+        {
+            portraitImage.gameObject.SetActive(arthurPortrait != null);
+            if (arthurPortrait != null) portraitImage.sprite = arthurPortrait;
+        }
 
         dialogueText.fontStyle = FontStyles.Italic;
         dialogueText.text = line;
