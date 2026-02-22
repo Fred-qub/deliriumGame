@@ -434,10 +434,13 @@ public class DialogueManager : MonoBehaviour
     // Private Helpers
     // -------------------------------------------------------------------------
 
-    private void StartDialogue(IEnumerator routine)
+private void StartDialogue(IEnumerator routine)
     {
         if (activeCoroutine != null)
+        {
             StopCoroutine(activeCoroutine);
+            HideDialogueImmediate(); // Reset panel state cleanly before starting new dialogue
+        }
 
         activeCoroutine = StartCoroutine(routine);
     }
