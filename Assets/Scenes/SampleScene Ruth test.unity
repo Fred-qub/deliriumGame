@@ -9426,8 +9426,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 1.5
-  m_fontSizeBase: 1.5
+  m_fontSize: 1
+  m_fontSizeBase: 1
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -9531,7 +9531,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tmpWorldText: {fileID: 1210919500}
-  dateFormat: dd/MM/yyyy
+  dateFormat: dd MMMM yyyy
 --- !u!1 &1218293255
 GameObject:
   m_ObjectHideFlags: 0
@@ -14751,8 +14751,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.8425789, y: 0.8266027, z: 0.86046684}
-  m_Center: {x: -16.04421, y: 0.3935324, z: 0.20453016}
+  m_Size: {x: 1.8425802, y: 0.8266027, z: 0.80258197}
+  m_Center: {x: -16.04421, y: 0.3935324, z: 0.17558774}
 --- !u!1 &1835421008
 GameObject:
   m_ObjectHideFlags: 0
