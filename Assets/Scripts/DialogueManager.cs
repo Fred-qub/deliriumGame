@@ -23,7 +23,8 @@ using System.Collections;
 ///   - Typewriter effect — E skips to full line, second E dismisses
 ///   - Fade in/out on dialogue panel via CanvasGroup
 ///   - Portrait images per speaker
-///   - Audio hooks for garbled and clear dialogue sounds
+///   - Audio hooks for garbled, clear, and Arthur dialogue sounds
+///   - Typewriter sound effect per character
 /// </summary>
 public class DialogueManager : MonoBehaviour
 {
@@ -65,6 +66,15 @@ public class DialogueManager : MonoBehaviour
 
     [Tooltip("Sound played when clear doctor dialogue appears after hearing aids are fitted.")]
     [SerializeField] private AudioClip clearSound;
+
+    [Tooltip("Sound played when Arthur's spoken lines appear.")]
+    [SerializeField] private AudioClip arthurSound;
+
+    [Tooltip("Sound played per character during the typewriter effect. Use a very short clip (0.05-0.1 seconds).")]
+    [SerializeField] private AudioClip typewriterSound;
+
+    [Tooltip("Volume of the typewriter sound — keep this low (0.1 to 0.3) so it doesn't overpower dialogue.")]
+    [SerializeField] [Range(0f, 1f)] private float typewriterVolume = 0.2f;
 
     [Header("Timing")]
     [Tooltip("Minimum time a line stays on screen regardless of word count (seconds).")]
@@ -242,6 +252,11 @@ public class DialogueManager : MonoBehaviour
         SetSpokenMode(speaker, portrait, "");
         yield return StartCoroutine(FadeIn());
 
+        // Play the appropriate character sound when their line appears
+        if (speaker == "Arthur")
+            PlaySound(arthurSound);
+
+
         playerSkipped = false;
         playerDismissed = false;
 
@@ -304,7 +319,9 @@ public class DialogueManager : MonoBehaviour
         PlaySound(clearSound);
         yield return StartCoroutine(ShowSpokenRoutine("Doctor", doctorPortrait, doctorLineAfter, true));
 
-        // Step 4: Arthur responds
+        // Step 4: Arthur responds — only if a line was provided
+        // The hearing aid interaction has no spoken Arthur response in the doctor POV scene
+        if (!string.IsNullOrEmpty(arthurLine))
         yield return StartCoroutine(ShowSpokenRoutine("Arthur", arthurPortrait, arthurLine, false));
     }
 
@@ -369,6 +386,12 @@ public class DialogueManager : MonoBehaviour
             }
 
             dialogueText.text += fullLine[i];
+
+            // Play typewriter tick for letters and numbers only — skip spaces and punctuation
+            // so the sound doesn't fire on every character and become too rapid or uneven
+            if (char.IsLetterOrDigit(fullLine[i]) && typewriterSound != null && audioSource != null)
+                audioSource.PlayOneShot(typewriterSound, typewriterVolume);
+
             yield return new WaitForSeconds(delay);
         }
     }

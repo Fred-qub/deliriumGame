@@ -219,9 +219,21 @@ MonoBehaviour:
   dialoguePanel: {fileID: 405323386}
   speakerLabel: {fileID: 35152323}
   dialogueText: {fileID: 806291005}
-  displayDuration: 4
-  doctorLineDuration: 3
-  monoloagueDuration: 4
+  dialoguePanelCanvasGroup: {fileID: 405323390}
+  portraitImage: {fileID: 0}
+  doctorPortrait: {fileID: 0}
+  arthurPortrait: {fileID: 0}
+  audioSource: {fileID: 0}
+  garbledSound: {fileID: 0}
+  clearSound: {fileID: 0}
+  arthurSound: {fileID: 0}
+  typewriterSound: {fileID: 0}
+  typewriterVolume: 0.2
+  minDisplayDuration: 2
+  wordsPerMinute: 200
+  typewriterSpeed: 40
+  fadeInDuration: 0.2
+  fadeOutDuration: 0.3
   dialoguePanelRect: {fileID: 405323387}
   spokenPosition: {x: 0, y: -400}
   monologuePosition: {x: 0, y: 0}
