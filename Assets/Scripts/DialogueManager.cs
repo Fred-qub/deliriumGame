@@ -511,10 +511,15 @@ public class DialogueManager : MonoBehaviour
         char[] garbleChars = { 'ø', 'µ', '©', 'ß', '§', 'æ', 'ñ', 'ü' };
         char[] chars = input.ToCharArray();
 
+        int letterCount = 0;
         for (int i = 0; i < chars.Length; i++)
         {
-            if (char.IsLetter(chars[i]) && Random.Range(0, 4) == 0)
-                chars[i] = garbleChars[Random.Range(0, garbleChars.Length)];
+            if (char.IsLetter(chars[i]))
+            {
+                letterCount++;
+                if (letterCount % 5 == 0)
+                    chars[i] = garbleChars[Random.Range(0, garbleChars.Length)];
+            }
         }
 
         return new string(chars);
