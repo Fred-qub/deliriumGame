@@ -236,7 +236,7 @@ MonoBehaviour:
   fadeInDuration: 0.2
   fadeOutDuration: 0.3
   dialoguePanelRect: {fileID: 405323387}
-  spokenPosition: {x: 0, y: -400}
+  spokenPosition: {x: 0, y: -200}
   monologuePosition: {x: 0, y: 0}
 --- !u!4 &2580825
 Transform:
