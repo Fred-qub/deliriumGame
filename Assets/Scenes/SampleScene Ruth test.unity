@@ -10285,7 +10285,7 @@ MonoBehaviour:
   isSuccessOption: 1
   requiredObjectName: 
   doctorLine: Let's use your hearing aids, Arthur.
-  arthurLine: 
+  arthurLine: That's clearer now, but I'm scared, doctor. I don't know what's real.
   replayDoctorLine: Let's use your hearing aids, Arthur.
   arthurMonologue: That's clearer now, but I'm scared, doctor. I don't know what's
     real.
