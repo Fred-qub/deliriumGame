@@ -302,8 +302,8 @@ public class DialogueManager : MonoBehaviour
     private IEnumerator HearingAidSequenceRoutine(string doctorLineBefore, string doctorLineAfter, string arthurLine, System.Action onHearingAidFitted)
     {
         // Step 1: Always garbled — bypass ProcessDoctorLine
-        PlaySound(garbledSound);
-        yield return StartCoroutine(ShowSpokenRoutine("Doctor", doctorPortrait, GarbleText(doctorLineBefore), true));
+        PlaySound(clearSound);
+        yield return StartCoroutine(ShowSpokenRoutine("Doctor", doctorPortrait, (doctorLineBefore), true));
 
         // Step 2: Fire animation callback
         // TODO: Trigger hearing aid animation here.
