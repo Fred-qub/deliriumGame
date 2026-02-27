@@ -2598,9 +2598,9 @@ MonoBehaviour:
     m_InputAxisName: Mouse X
     m_InputAxisValue: 0
     m_InvertInput: 0
-    m_MinValue: -180
-    m_MaxValue: 180
-    m_Wrap: 1
+    m_MinValue: 0
+    m_MaxValue: 160
+    m_Wrap: 0
     m_Recentering:
       m_enabled: 0
       m_WaitTime: 1
@@ -5260,7 +5260,7 @@ Transform:
   m_GameObject: {fileID: 711297358}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.74, z: 0}
+  m_LocalPosition: {x: -4.417, y: 0.486, z: 0.78800005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7675,7 +7675,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 2084625463}
+  m_Follow: {fileID: 1445464266}
   m_Lens:
     FieldOfView: 90
     OrthographicSize: 10
@@ -7704,7 +7704,7 @@ Transform:
   m_GameObject: {fileID: 1018192895}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -3.417, y: -0.214, z: 0.688}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7723,7 +7723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44d70cc20219cd84593f67d248eafe36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Offset: {x: 0, y: 0.74, z: 0}
+  m_Offset: {x: -1, y: 0.7, z: 0.1}
   m_ApplyAfter: 0
   m_PreserveComposition: 0
 --- !u!1001 &1022332531
@@ -13158,6 +13158,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 5581741}
   m_SourcePrefab: {fileID: 100100000, guid: d4c0d7159c5a44b4c9e0b1bb6c221fe1, type: 3}
+--- !u!4 &1445464266 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7135790475038435720, guid: d4c0d7159c5a44b4c9e0b1bb6c221fe1,
+    type: 3}
+  m_PrefabInstance: {fileID: 1445464265}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1446142226
 GameObject:
   m_ObjectHideFlags: 0
