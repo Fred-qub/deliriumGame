@@ -548,7 +548,7 @@ MonoBehaviour:
   successCount: 0
   failureCount: 0
   maxInteractions: 2
-  nextSceneName: PatientScene
+  nextSceneName: AnimationTestPatientScene
   delayBeforeSwitch: 10
 --- !u!4 &45846305
 Transform:

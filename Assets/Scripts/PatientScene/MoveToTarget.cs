@@ -13,6 +13,10 @@ public class MoveToTarget : MonoBehaviour
 
     private Vector3 startPosition;
     private Quaternion startRotation;
+    
+    //For now I'm making this script call the animation one to enable/disable walking -Fred
+    [SerializeField]
+    DoctorAnimationStateController doctorAnimationStateController;
 
     public void Activate()
     {
@@ -42,6 +46,9 @@ public class MoveToTarget : MonoBehaviour
                 moveSpeed * Time.deltaTime
             );
             
+            //start walking animation
+            doctorAnimationStateController.startWalking();
+            
             //Rotate to face destination
             transform.rotation = Quaternion.Lerp(transform.rotation, destinationMarker.rotation, moveSpeed * Time.deltaTime);
             
@@ -50,6 +57,9 @@ public class MoveToTarget : MonoBehaviour
         
         //Snap to exact position
         transform.position = destinationMarker.position;
+        
+        //stop walking animation
+        doctorAnimationStateController.stopWalking();
 
         //Wait
         Debug.Log($"{name} reached target. Waiting for {stayDuration} seconds...");
@@ -64,6 +74,9 @@ public class MoveToTarget : MonoBehaviour
                 startPosition, 
                 moveSpeed * Time.deltaTime
             );
+            
+            //start walking animation
+            doctorAnimationStateController.startWalking();
 
             //Rotate back to original facing
             transform.rotation = Quaternion.Lerp(transform.rotation, startRotation, moveSpeed * Time.deltaTime);
@@ -75,5 +88,8 @@ public class MoveToTarget : MonoBehaviour
         transform.position = startPosition;
         transform.rotation = startRotation;
         Debug.Log($"{name} has returned to start.");
+        
+        //stop walking animation
+        doctorAnimationStateController.stopWalking();
     }
 }    
