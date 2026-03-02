@@ -3490,7 +3490,7 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 7
+  m_Intensity: 12
   m_Range: 8.68
   m_SpotAngle: 179
   m_InnerSpotAngle: 150.46117
@@ -8180,7 +8180,7 @@ PrefabInstance:
     - target: {fileID: 3364325395352328148, guid: 3940a4795f91c674fb48d6d4e299297a,
         type: 3}
       propertyPath: m_Intensity
-      value: 1
+      value: 0.24
       objectReference: {fileID: 0}
     - target: {fileID: 3364325395352328171, guid: 3940a4795f91c674fb48d6d4e299297a,
         type: 3}
@@ -15848,7 +15848,7 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 7
+  m_Intensity: 12
   m_Range: 8.68
   m_SpotAngle: 179
   m_InnerSpotAngle: 150.46117
@@ -17343,7 +17343,7 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 7
+  m_Intensity: 12
   m_Range: 8.68
   m_SpotAngle: 179
   m_InnerSpotAngle: 150.46117
@@ -17386,7 +17386,7 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 6279
+  m_ColorTemperature: 13733
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
