@@ -99,6 +99,22 @@ public class InteractionMaster : MonoBehaviour
         //Start the scene change
         StartCoroutine(SwitchSceneRoutine());
     }
+    
+    public string GetFinalResultText()
+    {
+        if (successCount >= 2)
+        {
+            return "RESULT: TOTAL SUCCESS (Patient Calm)";
+        }
+        else if (failureCount >= 2)
+        {
+            return "RESULT: TOTAL FAILURE (Patient Upset)";
+        }
+        else
+        {
+            return "RESULT: MIXED RESULT (Patient Mixed)";
+        }
+    }
 
     System.Collections.IEnumerator SwitchSceneRoutine()
     {
