@@ -831,7 +831,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startDelay: 10
-  delayBetweenActions: 8
+  delayBetweenActions: 25
   actionLibrary:
   - actionName: Verbal
     onTrigger:
