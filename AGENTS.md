@@ -2,7 +2,7 @@
 - Project name: deliriumGame
 - Unity version: Unity 6000.1.15f1
 - Active game object:
-  - Name: temp_Material.072_0
+  - Name: hooded figure Idle
   - Tag: Untagged
   - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
