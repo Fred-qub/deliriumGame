@@ -2341,6 +2341,12 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -703362029895333416, guid: a139db317fc858544872a1b87858dcdd,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: -7394202989295985249, guid: 900288662dc855c4a80233bf3b17d87d,
+        type: 3}
     - target: {fileID: 919132149155446097, guid: a139db317fc858544872a1b87858dcdd,
         type: 3}
       propertyPath: m_Name
@@ -2818,6 +2824,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: hat
       objectReference: {fileID: 0}
+    - target: {fileID: 3368511021502088108, guid: b73a2922e48b3dc49a8e3518c9fca376,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: -7394202989295985249, guid: 900288662dc855c4a80233bf3b17d87d,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5402,7 +5414,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &681051023
 Transform:
   m_ObjectHideFlags: 0
