@@ -530,4 +530,14 @@ private void StartDialogue(IEnumerator routine)
 
         return new string(chars);
     }
+    
+    //Checks if the dialogue pannel is visible so dialogue isn't cut off (used for the SceneReplayer)
+    public bool IsDialogueActive()
+    {
+        if (dialoguePanel != null)
+        {
+            return dialoguePanel.activeInHierarchy;
+        }
+        return false;
+    }
 }

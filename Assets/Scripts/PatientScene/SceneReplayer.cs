@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class SceneReplayer : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class SceneReplayer : MonoBehaviour
     public float startDelay = 2.0f;
     public float delayBetweenActions = 3.0f;
 
+    [Header("Scene Transition")]
+    public string nextSceneName = "EndScreen";
+    
     [Header("The Actions Mapping")]
     
     public List<ReplayAction> actionLibrary; 
@@ -60,7 +64,19 @@ public class SceneReplayer : MonoBehaviour
             // Wait before doing the next action
             yield return new WaitForSeconds(delayBetweenActions);
         }
+        
+        Debug.Log("Replay actions complete. Waiting for dialogue to finish.");
+        
+        // Loads next scene when the Dialogue has finished
+        if (DialogueManager.Instance != null)
+        {
+            yield return new WaitWhile(() => DialogueManager.Instance.IsDialogueActive());
+        }
 
-        Debug.Log("Replay Complete.");
+        // buffer
+        yield return new WaitForSeconds(1.5f); 
+
+        Debug.Log("Dialogue finished. Load next scene.");
+        SceneManager.LoadScene(nextSceneName);
     }
 }

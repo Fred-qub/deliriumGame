@@ -20,5 +20,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PatientScene Ruth.unity
     guid: 447dd60c2ffdb7a4b938627c84c5b9c4
+  - enabled: 1
+    path: Assets/Scenes/EndScreen.unity
+    guid: a1bba561763ec2845b7f562e3d114ada
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
