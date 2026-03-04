@@ -1,13 +1,16 @@
 ﻿using System.Collections.Generic;
+using System.Data;
 using UnityEngine;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class LightManager : MonoBehaviour
 {
+   
     [SerializeField, Header("Managed Objects")] private Light DirectionalLight = null;
     [SerializeField] private LightPreset DayNightPreset, LampPreset;
     private List<Light> SpotLights = new List<Light>();
 
-    [SerializeField, Range(0, 1440), Header("Modifiers"), Tooltip("The game's current time of day")] private float TimeOfDay;
+    [SerializeField, Range(0, 1440), Header("Modifiers"), Tooltip("The game's current time of day")] public float TimeOfDay;
     [SerializeField, Tooltip("Angle to rotate the sun")] private float SunDirection = 170f;
     [SerializeField, Tooltip("How fast time will go")] private float TimeMultiplier = 1;
     [SerializeField] private bool ControlLights = true;
@@ -17,7 +20,7 @@ public class LightManager : MonoBehaviour
     /// <summary>
     /// On project start, if controlLights is true, collect all non-directional lights in the current scene and place in a list
     /// </summary>
-    private void Start()
+    public void Start()
     {
         if (ControlLights)
         {
@@ -38,14 +41,18 @@ public class LightManager : MonoBehaviour
                 }
             }
         }
+        LoadTime();
+      
     }
+ 
 
-    /// <summary>
-    /// This method will not run if there is no preset set
-    /// On each frame, this will calculate the current time of day factoring game time and the time multiplier (1440 is how many minutes exist in a day 24 x 60)
-    /// Then send a time percentage to UpdateLighting, to evaluate according to the set preset, what that time of day should look like
-    /// </summary>
-    private void Update()
+
+/// <summary>
+/// This method will not run if there is no preset set
+/// On each frame, this will calculate the current time of day factoring game time and the time multiplier (1440 is how many minutes exist in a day 24 x 60)
+/// Then send a time percentage to UpdateLighting, to evaluate according to the set preset, what that time of day should look like
+/// </summary>
+private void Update()
     {
         if (DayNightPreset == null)
             return;
@@ -75,7 +82,7 @@ public class LightManager : MonoBehaviour
             }
         }
 
-        //Go through each spot light, ensure it is active, and set it's color accordingly
+        //Go through each spot light, ensure it is active, and set its color accordingly
         foreach (Light lamp in SpotLights)
         {
             if (lamp != null)
@@ -85,6 +92,33 @@ public class LightManager : MonoBehaviour
                     lamp.color = LampPreset.DirectionalColour.Evaluate(timePercent);
                 }
             }
+        }
+    }
+
+    public void LoadTime()
+    {
+        if (PlayerPrefs.HasKey("TimeOfDay"))
+        {
+            TimeOfDay = PlayerPrefs.GetInt("TimeOfDay");
+        }
+        else TimeOfDay = 1000;
+  
+
+        switch (TimeOfDay)
+        {
+            case 540:
+                TimeOfDay = 540; // 9am
+                break;
+
+            case 960:
+                TimeOfDay = 960; // 4pm
+                break;
+
+            case 1380:
+                TimeOfDay = 1380; // 11pm
+                break;
+
+
         }
     }
 }
