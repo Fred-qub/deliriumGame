@@ -21,27 +21,24 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: HumanDummy_Yellow
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
-  m_Parent: {fileID: 2100000, guid: 589a208f7bb22a74097d8dc9c0e224a0, type: 2}
+  m_Shader: {fileID: -6465566751694194690, guid: 5306af5a2eeb4df4e9fadaba4f79b29f,
+    type: 3}
+  m_Parent: {fileID: 2100000, guid: b36b11cc52c29c14fa355603870d9b97, type: 2}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
+  m_ValidKeywords: []
+  m_InvalidKeywords:
   - _ALPHAMODULATE_ON
-  - _ALPHATEST_ON
   - _ENVIRONMENTREFLECTIONS_OFF
   - _RECEIVE_SHADOWS_OFF
   - _SPECULARHIGHLIGHTS_OFF
   - _SURFACE_TYPE_TRANSPARENT
-  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
-  stringTagMap:
-    RenderType: Transparent
+  stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
-  - DepthOnly
-  - SHADOWCASTER
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
@@ -61,6 +58,7 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 1
     - _EnvironmentReflections: 0
+    - _QueueControl: 0
     - _ReceiveShadows: 0
     - _SpecularHighlights: 0
     - _SrcBlend: 2
