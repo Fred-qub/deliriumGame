@@ -18,9 +18,9 @@ public class ShrinkObject : MonoBehaviour
             StartShrinking();
     }
 
-    /// <summary>
+   
     /// Starts shrinking the object to zero scale over time.
-    /// </summary>
+ 
     public void StartShrinking()
     {
         // Prevent multiple coroutines from running at once
@@ -29,7 +29,7 @@ public class ShrinkObject : MonoBehaviour
 
         if (transform.localScale == Vector3.zero)
         {
-            Debug.LogWarning($"{name} is already at zero scale.");
+  
             return;
         }
 
