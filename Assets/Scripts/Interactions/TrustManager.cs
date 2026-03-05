@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class InteractionMaster : MonoBehaviour
 {
     public static InteractionMaster Instance { get; private set; }
+ 
 
     [Header("Game State")]
     // Tracks if specific objects have been used (Name -> True/False)
@@ -68,6 +69,8 @@ public class InteractionMaster : MonoBehaviour
         {
             CalculateFinalResult();
         }
+
+        
     }
     
     public bool HasInteractedWith(string objectName)
