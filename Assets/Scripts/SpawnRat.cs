@@ -7,7 +7,7 @@ public class SpawnRat : MonoBehaviour
     private float spawnPosX = 3; // rats spawn at -3 on x-axis
     private float spawnRangeZ = 4; 
     private float StartDelay = 0f; // delay before rats start to spawn is 0 sec
-    private float SpawnInterval = 0.5f; //rats spawn every 0.5 sec
+    private float SpawnInterval = 1f; //rats spawn every 0.5 sec
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
