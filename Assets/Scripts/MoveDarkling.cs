@@ -1,24 +1,24 @@
 using UnityEngine;
 
-public class MoveRat : MonoBehaviour
+public class MoveDarkling : MonoBehaviour
 {
-    private float xLimit = -5.0f; // beyond this rats are destroyed
+    private float xLimit = -5.0f; // beyond this darklings are destroyed
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.right * Time.deltaTime);
+        transform.Translate(Vector3.forward * Time.deltaTime);
 
-        if (transform.position.x < xLimit) 
-        { 
+        if (transform.position.x < xLimit)
+        {
             Destroy(gameObject);
-        
+
         }
 
 
