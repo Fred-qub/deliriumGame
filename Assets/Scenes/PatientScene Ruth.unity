@@ -1660,8 +1660,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44a1a43e674ffea478c0c8a295c1a714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hallucinationRatChancePercentage: 50
-  hallucinationSnakeChancePercentage: 50
+  auxHallucinationChancePercentage: 50
+  hallucinationTypeChancePercentage: 50
   spawnRat: {fileID: 213158591}
   spawnSnake: {fileID: 213158593}
 --- !u!114 &213158593
@@ -6455,12 +6455,12 @@ PrefabInstance:
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
       propertyPath: actionLibrary.Array.data[0].onTrigger.m_PersistentCalls.m_Calls.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
       propertyPath: actionLibrary.Array.data[1].onTrigger.m_PersistentCalls.m_Calls.Array.size
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
@@ -6830,7 +6830,7 @@ PrefabInstance:
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
       propertyPath: actionLibrary.Array.data[0].onTrigger.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: HallucinationRatLottery
+      value: AuxHallucinationLottery
       objectReference: {fileID: 0}
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
@@ -6865,7 +6865,7 @@ PrefabInstance:
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
       propertyPath: actionLibrary.Array.data[1].onTrigger.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
-      value: HallucinationRatLottery
+      value: AuxHallucinationLottery
       objectReference: {fileID: 0}
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}

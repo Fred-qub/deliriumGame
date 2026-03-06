@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class HallucinationChance : MonoBehaviour
 {
-    public int hallucinationRatChancePercentage; //chance of a rat (or rat alternative) hallucination occurring
-    public int hallucinationSnakeChancePercentage; //chance of a snake hallucination occurring
+    public int auxHallucinationChancePercentage; // chance of an auxially hallucination occuring on a bad choice
+    public int hallucinationTypeChancePercentage; // chance of particular hallucination occurring
     public SpawnRat spawnRat;
     public SpawnSnake spawnSnake;
 
@@ -20,31 +20,36 @@ public class HallucinationChance : MonoBehaviour
 
     }
 
-    public void HallucinationRatLottery()
+    public void AuxHallucinationLottery() 
     {
 
-        if (Random.Range(0f, 100f) < hallucinationRatChancePercentage) // if random number between 0 & 100 is less than the hallucination chance percentage
+        if (Random.Range(0f, 100f) < auxHallucinationChancePercentage) // if random number between 0 & 100 is less than the hallucination chance percentage
+        {
+            Debug.Log("Hallucination occurs");
+            HallucinationTypeLottery(); // the hallucination type is chosen
+
+        }
+
+        else Debug.Log("No Hallucination occurs");
+
+    }
+
+
+
+    public void HallucinationTypeLottery()
+    {
+
+        if (Random.Range(0f, 100f) < hallucinationTypeChancePercentage) // if random number between 0 & 100 is less than the hallucination chance percentage
         {
             Debug.Log("SpawnRat");
-            spawnRat.StartSpawn();
+            spawnRat.StartSpawn();  // rat (or rat alternative) is spawned
 
         }
 
-        else Debug.Log("NoRat");
+        else Debug.Log("Spawn Snake"); 
+        spawnSnake.Newspaper();
+        spawnSnake.Snake(); // otherwise a snake is spawned
     }
 
-    public void HallucinationSnakeLottery()
-    {
-
-        if (Random.Range(0f, 100f) < hallucinationSnakeChancePercentage) // if random number between 0 & 100 is less than the hallucination chance percentage
-        {
-            Debug.Log("SpawnSnake");
-            spawnSnake.Newspaper();
-            spawnSnake.Snake();
-            
-
-        }
-
-        else Debug.Log("NoSnake");
-    }
+  
 }
