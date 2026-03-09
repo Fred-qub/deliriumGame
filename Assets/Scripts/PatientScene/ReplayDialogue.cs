@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 /// <summary>
 /// Holds all dialogue data for the patient POV replay scene.
@@ -64,14 +65,12 @@ public class ReplayDialogue : MonoBehaviour
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
     }
+    public event System.Action OnOpeningLineComplete;
 
     private void Start()
     {
-        // Play Arthur's opening line at the start of the replay
-        // so the player is reoriented into the scene before the interactions replay
-        Invoke(nameof(PlayOpeningLine), openingDelay);
-    }
-
+        StartCoroutine(PlayOpeningThenNotify());
+}
     // -------------------------------------------------------------------------
     // Public API
     // Wire SceneReplayer's onTrigger events to this method, passing the action name.
@@ -117,11 +116,13 @@ public class ReplayDialogue : MonoBehaviour
     // Private Helpers
     // -------------------------------------------------------------------------
 
-    private void PlayOpeningLine()
+    private IEnumerator PlayOpeningThenNotify()
     {
+        yield return new WaitForSeconds(openingDelay);
         DialogueManager.Instance.ShowMonologue(openingLine);
+        yield return new WaitUntil(() => !DialogueManager.Instance.IsDialogueActive());
+        OnOpeningLineComplete?.Invoke();
     }
-
     /// <summary>
     /// Hearing aid animation placeholder.
     /// TODO: Replace with actual animation trigger when animation is ready.
