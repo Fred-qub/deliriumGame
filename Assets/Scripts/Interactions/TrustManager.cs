@@ -79,6 +79,15 @@ public class InteractionMaster : MonoBehaviour
         }
         return false;
     }
+
+    public void ResetState()
+    {
+        interactionHistory.Clear();
+        objectActivationStates.Clear();
+        successCount = 0;
+        failureCount = 0;
+    }
+    
     private void CalculateFinalResult()
     {
         Debug.Log("--- FINAL RESULT ---");
@@ -118,8 +127,18 @@ public class InteractionMaster : MonoBehaviour
 
     System.Collections.IEnumerator SwitchSceneRoutine()
     {
-        Debug.Log($"Switching to {nextSceneName} in {delayBeforeSwitch} seconds...");
-        yield return new WaitForSeconds(delayBeforeSwitch);
+        Debug.Log($"Switching to {nextSceneName} — waiting for dialogue to finish...");
+
+        // Wait for dialogue to start (in case it hasn't yet)
+        yield return new WaitUntil(() => DialogueManager.Instance.IsDialogueActive());
+
+        // Then wait for it to finish
+        yield return new WaitUntil(() => !DialogueManager.Instance.IsDialogueActive());
+
+        // Small buffer so the last line doesn't feel abrupt
+        yield return new WaitForSeconds(1.5f);
+
+        Debug.Log($"Dialogue finished. Loading {nextSceneName}.");
         SceneManager.LoadScene(nextSceneName);
     }
 }

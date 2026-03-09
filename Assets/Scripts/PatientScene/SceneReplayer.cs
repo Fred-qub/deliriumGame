@@ -75,7 +75,7 @@ public class SceneReplayer : MonoBehaviour
         // Save choices for tips scene before loading
         string c1 = history.Count > 0 ? history[0] : "";
         string c2 = history.Count > 1 ? history[1] : "";
-        // TipsSceneManager.SaveChoices(c1, c2); // uncomment when TipsScene is built   
+        TipsSceneManager.SaveChoices(c1, c2);
         SceneManager.LoadScene(nextSceneName);
     }
 }

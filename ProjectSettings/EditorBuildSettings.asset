@@ -8,19 +8,22 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 0c8dfdb9a1eb352418de8220888611c7
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
     path: Assets/Scenes/Clinician Scene Ruth.unity
     guid: 65d8709a6cecbbe4e9ef31fcf2f0eae6
-  - enabled: 0
-    path: Assets/Scenes/PatientScene.unity
-    guid: 3b5e8be24c6b2dd4a8f1e98dd137856e
   - enabled: 1
     path: Assets/Scenes/PatientScene Ruth.unity
     guid: 447dd60c2ffdb7a4b938627c84c5b9c4
   - enabled: 1
+    path: Assets/Scenes/TipsScene.unity
+    guid: 0d42bf5c8a9344343b71fe1856579489
+  - enabled: 0
+    path: Assets/Scenes/SampleScene.unity
+    guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 0
+    path: Assets/Scenes/PatientScene.unity
+    guid: 3b5e8be24c6b2dd4a8f1e98dd137856e
+  - enabled: 0
     path: Assets/Scenes/EndScreen.unity
     guid: a1bba561763ec2845b7f562e3d114ada
   m_configObjects: {}
