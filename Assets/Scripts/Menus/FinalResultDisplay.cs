@@ -6,6 +6,9 @@ public class FinalResultDisplay : MonoBehaviour
     private void Start()
     {
         
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        
         TextMeshProUGUI txt = GetComponent<TextMeshProUGUI>();
 
         if (txt == null)
