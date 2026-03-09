@@ -19,21 +19,27 @@ public class SceneReplayer : MonoBehaviour
 
     [Header("Scene Transition")]
     public string nextSceneName = "EndScreen";
-    
+
     [Header("The Actions Mapping")]
     
     public List<ReplayAction> actionLibrary; 
 
     private void Start()
     {
+        if (ReplayDialogue.Instance != null)
+            ReplayDialogue.Instance.OnOpeningLineComplete += StartReplay;
+        else
+            StartCoroutine(PlayBackHistory());
+    }
+
+    private void StartReplay()
+    {
+        ReplayDialogue.Instance.OnOpeningLineComplete -= StartReplay;
         StartCoroutine(PlayBackHistory());
     }
 
     IEnumerator PlayBackHistory()
     {
-        // Wait a moment for the scene
-        yield return new WaitForSeconds(startDelay);
-
         // Get the history from the Master script
         if (InteractionMaster.Instance == null)
         {
@@ -61,22 +67,16 @@ public class SceneReplayer : MonoBehaviour
                 Debug.LogWarning($"Could not find a replay definition for: {actionName}");
             }
 
-            // Wait before doing the next action
-            yield return new WaitForSeconds(delayBetweenActions);
-        }
-        
-        Debug.Log("Replay actions complete. Waiting for dialogue to finish.");
-        
-        // Loads next scene when the Dialogue has finished
-        if (DialogueManager.Instance != null)
-        {
-            yield return new WaitWhile(() => DialogueManager.Instance.IsDialogueActive());
+            // Wait for dialogue to start, then wait for it to finish
+            yield return new WaitUntil(() => DialogueManager.Instance.IsDialogueActive);
+            yield return new WaitUntil(() => !DialogueManager.Instance.IsDialogueActive);
         }
 
-        // buffer
-        yield return new WaitForSeconds(1.5f); 
+        Debug.Log("Replay Complete. Switching scenes.");
+        //Switching Scenes
+        yield return new WaitForSeconds(1.5f);
 
-        Debug.Log("Dialogue finished. Load next scene.");
         SceneManager.LoadScene(nextSceneName);
     }
 }
+
