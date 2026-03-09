@@ -16,7 +16,7 @@
                     <ui:Label class="header-title" text="Session " />
                     <ui:Label class="header-title-accent" text="Review" />
                 </ui:VisualElement>
-                <ui:Label name="header-sub" class="header-sub" text="Arthur — 78 years old, post-operative hip replacement, Day 2" />
+                <ui:Label name="header-sub" class="header-sub" text="Arthur — 78 years old, post-operative cataract surgery, Day 2" />
             </ui:VisualElement>
 
             <!-- Score Bar -->
