@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class InteractionMaster : MonoBehaviour
 {
     public static InteractionMaster Instance { get; private set; }
+ 
 
     [Header("Game State")]
     // Tracks if specific objects have been used (Name -> True/False)
@@ -68,6 +69,8 @@ public class InteractionMaster : MonoBehaviour
         {
             CalculateFinalResult();
         }
+
+        
     }
     
     public bool HasInteractedWith(string objectName)
@@ -98,6 +101,22 @@ public class InteractionMaster : MonoBehaviour
         
         //Start the scene change
         StartCoroutine(SwitchSceneRoutine());
+    }
+    
+    public string GetFinalResultText()
+    {
+        if (successCount >= 2)
+        {
+            return "RESULT: TOTAL SUCCESS (Patient Calm)";
+        }
+        else if (failureCount >= 2)
+        {
+            return "RESULT: TOTAL FAILURE (Patient Upset)";
+        }
+        else
+        {
+            return "RESULT: MIXED RESULT (Patient Mixed)";
+        }
     }
 
     System.Collections.IEnumerator SwitchSceneRoutine()

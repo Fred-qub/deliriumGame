@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7098531433753089871
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7656113986013519994}
+  - component: {fileID: 4224466730367405167}
+  m_Layer: 0
+  m_Name: ReplayDialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7656113986013519994
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7098531433753089871}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4224466730367405167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7098531433753089871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b34e82190b214be8b5b5d09a19cc7f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  openingLine: I don't know who you are. What do you want? Why are you sitting there
+    saying nothing?
+  openingDelay: 2
+  entries:
+  - actionName: Verbal
+    doctorLine: "Relax, ok? There's nobody in the corner\u2026 Can't you see I'm
+      your doctor, and I'm here to help?"
+    arthurMonologue: Get away from me. Leave me alone!
+    isHearingAidInteraction: 0
+    doctorLineAfter: 
+  - actionName: Sedative
+    doctorLine: 
+    arthurMonologue: Stop attacking me! Someone help me, please.
+    isHearingAidInteraction: 0
+    doctorLineAfter: 
+  - actionName: Lights
+    doctorLine: 
+    arthurMonologue: I can't see anything. They've blinded me!
+    isHearingAidInteraction: 0
+    doctorLineAfter: 
+  - actionName: Coat
+    doctorLine: 
+    arthurMonologue: There was no one there at all. What's happening to me?
+    isHearingAidInteraction: 0
+    doctorLineAfter: 
+  - actionName: HearingAid
+    doctorLine: Let's use your hearing aids, Arthur.
+    arthurMonologue: That's clearer now, but I'm scared, doctor. I don't know what's
+      real.
+    isHearingAidInteraction: 1
+    doctorLineAfter: Hi Arthur, I'm your doctor. Can you hear me ok now? I'm here
+      to help.

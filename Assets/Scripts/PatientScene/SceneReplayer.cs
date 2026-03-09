@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class SceneReplayer : MonoBehaviour
 {
@@ -16,20 +17,29 @@ public class SceneReplayer : MonoBehaviour
     public float startDelay = 2.0f;
     public float delayBetweenActions = 3.0f;
 
+    [Header("Scene Transition")]
+    public string nextSceneName = "EndScreen";
+
     [Header("The Actions Mapping")]
     
     public List<ReplayAction> actionLibrary; 
 
     private void Start()
     {
+        if (ReplayDialogue.Instance != null)
+            ReplayDialogue.Instance.OnOpeningLineComplete += StartReplay;
+        else
+            StartCoroutine(PlayBackHistory());
+    }
+
+    private void StartReplay()
+    {
+        ReplayDialogue.Instance.OnOpeningLineComplete -= StartReplay;
         StartCoroutine(PlayBackHistory());
     }
 
     IEnumerator PlayBackHistory()
     {
-        // Wait a moment for the scene
-        yield return new WaitForSeconds(startDelay);
-
         // Get the history from the Master script
         if (InteractionMaster.Instance == null)
         {
@@ -57,10 +67,16 @@ public class SceneReplayer : MonoBehaviour
                 Debug.LogWarning($"Could not find a replay definition for: {actionName}");
             }
 
-            // Wait before doing the next action
-            yield return new WaitForSeconds(delayBetweenActions);
+            // Wait for dialogue to start, then wait for it to finish
+            yield return new WaitUntil(() => DialogueManager.Instance.IsDialogueActive);
+            yield return new WaitUntil(() => !DialogueManager.Instance.IsDialogueActive);
         }
 
-        Debug.Log("Replay Complete.");
+        Debug.Log("Replay Complete. Switching scenes.");
+        //Switching Scenes
+        yield return new WaitForSeconds(1.5f);
+
+        SceneManager.LoadScene(nextSceneName);
     }
 }
+

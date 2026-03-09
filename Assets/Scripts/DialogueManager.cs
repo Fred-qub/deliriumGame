@@ -109,6 +109,7 @@ public class DialogueManager : MonoBehaviour
     // -------------------------------------------------------------------------
 
     private Coroutine activeCoroutine;
+    public bool IsDialogueActive => dialoguePanel.activeSelf;
     private bool playerSkipped;     // First E press — skip typewriter to full line
     private bool playerDismissed;   // Second E press — dismiss line entirely
     private bool hearingAidAnimationComplete = false;
@@ -434,13 +435,18 @@ public class DialogueManager : MonoBehaviour
     // Private Helpers
     // -------------------------------------------------------------------------
 
-private void StartDialogue(IEnumerator routine)
+    private void StartDialogue(IEnumerator routine)
     {
         if (activeCoroutine != null)
         {
             StopCoroutine(activeCoroutine);
-            HideDialogueImmediate(); // Reset panel state cleanly before starting new dialogue
+            HideDialogueImmediate();
         }
+
+        // Reset all state flags before starting fresh
+        playerSkipped = false;
+        playerDismissed = false;
+        hearingAidAnimationComplete = false;
 
         activeCoroutine = StartCoroutine(routine);
     }
@@ -475,7 +481,7 @@ private void StartDialogue(IEnumerator routine)
 
     private void SetMonologueMode(string line)
     {
-        dialoguePanelRect.anchoredPosition = monologuePosition;
+        dialoguePanelRect.anchoredPosition = spokenPosition; // was monologuePosition
 
         speakerLabel.gameObject.SetActive(false);
 
