@@ -9,8 +9,8 @@ public class SceneReplayer : MonoBehaviour
     [System.Serializable]
     public struct ReplayAction
     {
-        public string actionName; // Must match the name used in Scene 1
-        public UnityEvent onTrigger; 
+        public string actionName;
+        public UnityEvent onTrigger;
     }
 
     [Header("Configuration")]
@@ -18,11 +18,10 @@ public class SceneReplayer : MonoBehaviour
     public float delayBetweenActions = 3.0f;
 
     [Header("Scene Transition")]
-    public string nextSceneName = "EndScreen";
+    public string nextSceneName = "TipsScene";
 
     [Header("The Actions Mapping")]
-    
-    public List<ReplayAction> actionLibrary; 
+    public List<ReplayAction> actionLibrary;
 
     private void Start()
     {
@@ -40,7 +39,6 @@ public class SceneReplayer : MonoBehaviour
 
     IEnumerator PlayBackHistory()
     {
-        // Get the history from the Master script
         if (InteractionMaster.Instance == null)
         {
             Debug.LogError("No InteractionMaster found");
@@ -49,34 +47,35 @@ public class SceneReplayer : MonoBehaviour
 
         List<string> history = InteractionMaster.Instance.interactionHistory;
 
-        //Loop through every action the player took
         foreach (string actionName in history)
         {
             Debug.Log($"Replaying Event: {actionName}");
 
-            // Find the matching event in library
             ReplayAction matchingAction = actionLibrary.Find(x => x.actionName == actionName);
 
             if (matchingAction.actionName != null)
-            {
-                //Start event
                 matchingAction.onTrigger.Invoke();
-            }
             else
-            {
                 Debug.LogWarning($"Could not find a replay definition for: {actionName}");
-            }
 
             // Wait for dialogue to start, then wait for it to finish
-            yield return new WaitUntil(() => DialogueManager.Instance.IsDialogueActive);
-            yield return new WaitUntil(() => !DialogueManager.Instance.IsDialogueActive);
+            yield return new WaitUntil(() => DialogueManager.Instance.IsDialogueActive());
+            yield return new WaitUntil(() => !DialogueManager.Instance.IsDialogueActive());
         }
 
-        Debug.Log("Replay Complete. Switching scenes.");
-        //Switching Scenes
+        Debug.Log("Replay actions complete. Waiting for final dialogue to finish.");
+
+        if (DialogueManager.Instance != null)
+            yield return new WaitUntil(() => !DialogueManager.Instance.IsDialogueActive());
+
         yield return new WaitForSeconds(1.5f);
 
+        Debug.Log("Loading tips scene.");
+
+        // Save choices for tips scene before loading
+        string c1 = history.Count > 0 ? history[0] : "";
+        string c2 = history.Count > 1 ? history[1] : "";
+        TipsSceneManager.SaveChoices(c1, c2);
         SceneManager.LoadScene(nextSceneName);
     }
 }
-

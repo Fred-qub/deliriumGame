@@ -109,7 +109,7 @@ public class DialogueManager : MonoBehaviour
     // -------------------------------------------------------------------------
 
     private Coroutine activeCoroutine;
-    public bool IsDialogueActive => dialoguePanel.activeSelf;
+    public bool IsDialogueActive() => dialoguePanel.activeSelf;
     private bool playerSkipped;     // First E press — skip typewriter to full line
     private bool playerDismissed;   // Second E press — dismiss line entirely
     private bool hearingAidAnimationComplete = false;

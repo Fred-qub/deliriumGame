@@ -120,7 +120,7 @@ public class ReplayDialogue : MonoBehaviour
     {
         yield return new WaitForSeconds(openingDelay);
         DialogueManager.Instance.ShowMonologue(openingLine);
-        yield return new WaitUntil(() => !DialogueManager.Instance.IsDialogueActive);
+        yield return new WaitUntil(() => !DialogueManager.Instance.IsDialogueActive());
         OnOpeningLineComplete?.Invoke();
     }
     /// <summary>
@@ -134,4 +134,3 @@ public class ReplayDialogue : MonoBehaviour
         DialogueManager.Instance.ContinueHearingAidDialogue();
     }
 }
-
