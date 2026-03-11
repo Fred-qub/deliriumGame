@@ -1,0 +1,286 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <Style src="PatientNotes.uss" />
+
+    <!-- Root fullscreen overlay -->
+    <ui:VisualElement name="root" class="pn-root">
+
+        <!-- TOP NAV BAR (crimson row 1) -->
+        <ui:VisualElement name="topbar" class="pn-topbar">
+            <ui:VisualElement class="pn-topbar-left">
+                <ui:Label class="pn-epic-pill" text="E" />
+                <ui:Label class="pn-breadcrumb" text="Hyperspace  ·  BT BCH General Medical Ward  ·  ROBERTS, Arthur-David" />
+            </ui:VisualElement>
+            <ui:VisualElement class="pn-topbar-right">
+                <ui:Label class="pn-topbar-meta" text="10/03/2026  ·  09:41  ·  Dr A. Other" />
+                <ui:Button name="btn-exit" class="pn-btn-exit" text="Exit" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <!-- SECONDARY NAV STRIP (crimson row 2 — decorative only) -->
+        <ui:VisualElement class="pn-tabnav">
+            <ui:Label class="pn-navlabel pn-navlabel-active" text="Chart Review" />
+            <ui:Label class="pn-navlabel" text="Current Episode" />
+            <ui:Label class="pn-navlabel" text="Results" />
+            <ui:Label class="pn-navlabel" text="Medications" />
+            <ui:Label class="pn-navlabel" text="Orders" />
+        </ui:VisualElement>
+
+        <!-- PATIENT IDENTITY BANNER -->
+        <ui:VisualElement class="pn-banner">
+            <ui:Label class="pn-avatar" text="AR" />
+            <ui:VisualElement class="pn-patient-info">
+                <ui:Label class="pn-patient-name" text="ROBERTS, Arthur David" />
+                <ui:Label class="pn-patient-sub" text="Male  ·  70 yo  ·  DOB: 12/04/1955  ·  HCN: 308 721 3008  ·  Tel: 028 9012 3456  ·  Bed: BCH Med Ward–Rm1" />
+            </ui:VisualElement>
+            <ui:VisualElement class="pn-banner-flags">
+                <ui:Label class="pn-flag pn-flag-green" text="Full Resus" />
+                <ui:Label class="pn-flag pn-flag-orange" text="Nil By Mouth: NO" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <!-- BODY: sidebar + content area -->
+        <ui:VisualElement class="pn-body">
+
+            <!-- LEFT SIDEBAR -->
+            <ui:VisualElement class="pn-sidebar">
+                <ui:Label class="pn-sidebar-name" text="ROBERTS,&#10;Arthur David" />
+
+                <ui:Label class="pn-sidebar-row" text="Male, 70 yo. 12/04/1955" />
+                <ui:Label class="pn-sidebar-row" text="HCN: 308 721 3008" />
+                <ui:Label class="pn-sidebar-row" text="Phone: 028 9012 3456" />
+                <ui:Label class="pn-sidebar-tag pn-tag-green" text="Resuscitation: Full" />
+
+                <ui:Label class="pn-sidebar-section" text="STATUS" />
+                <ui:Label class="pn-sidebar-row" text="Isolation: None" />
+                <ui:Label class="pn-sidebar-row" text="Consultant: Dr Alice N Other" />
+                <ui:Label class="pn-sidebar-row" text="Allergies: None" />
+                <ui:Label class="pn-sidebar-tag pn-tag-orange" text="Nil By Mouth: NO" />
+
+                <ui:Label class="pn-sidebar-section" text="RISKS" />
+                <ui:Label class="pn-sidebar-row" text="Podiatry Risk: None" />
+                <ui:Label class="pn-sidebar-row" text="Diabetes Risk: None" />
+
+                <ui:Label class="pn-sidebar-section" text="ADMISSION" />
+                <ui:Label class="pn-sidebar-row" text="Admitted: 10/03/2026" />
+                <ui:Label class="pn-sidebar-row" text="Class: Inpatient" />
+                <ui:Label class="pn-sidebar-row" text="Exp Discharge: TBA" />
+                <ui:Label class="pn-sidebar-row" text="Problem: Eye infection" />
+
+                <ui:Label class="pn-sidebar-section" text="BIOMETRICS" />
+                <ui:Label class="pn-sidebar-row" text="Ht: 172.5 cm" />
+                <ui:Label class="pn-sidebar-row" text="Last Wt: 80.5 kg" />
+
+                <!-- 4AT neutral — intentionally no warning colour -->
+                <ui:Label class="pn-sidebar-section" text="SCORES" />
+                <ui:Label class="pn-sidebar-tag pn-tag-neutral" text="4AT Score: 6" />
+            </ui:VisualElement>
+
+            <!-- RIGHT CONTENT AREA -->
+            <ui:VisualElement class="pn-content-area">
+
+                <!-- Tab buttons — click handlers registered in PatientNotesController.cs -->
+                <ui:VisualElement name="content-tabs" class="pn-content-tabs">
+                    <ui:Button name="tab-0" class="pn-ctab pn-ctab-active" text="Patient Details" />
+                    <ui:Button name="tab-1" class="pn-ctab" text="Medical History" />
+                    <ui:Button name="tab-2" class="pn-ctab" text="Current Episode" />
+                    <ui:Button name="tab-3" class="pn-ctab" text="Blood Results" />
+                    <ui:Button name="tab-4" class="pn-ctab" text="Other Tests" />
+                </ui:VisualElement>
+
+                <!-- Content header — title swapped by controller -->
+                <ui:VisualElement class="pn-content-header">
+                    <ui:Label name="content-title" class="pn-content-title" text="Patient Details" />
+                    <ui:Label class="pn-content-timestamp" text="Last updated: 10/03/2026 09:00  ·  Dr Alice N Other" />
+                </ui:VisualElement>
+
+                <!-- Scrollable content -->
+                <ui:ScrollView name="content-scroll" class="pn-scroll"
+                    vertical-scroller-visibility="Auto"
+                    horizontal-scroller-visibility="Hidden">
+
+                    <!-- PANEL 0: Patient Details (visible on open) -->
+                    <ui:VisualElement name="panel-0" class="pn-panel">
+                        <ui:VisualElement class="pn-entry">
+                            <ui:Label class="pn-entry-label" text="EMPLOYMENT" />
+                            <ui:Label class="pn-entry-value" text="Soldier, then construction worker" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="pn-entry">
+                            <ui:Label class="pn-entry-label" text="ACCOMMODATION" />
+                            <ui:Label class="pn-entry-value" text="Lives alone in bungalow" />
+                        </ui:VisualElement>
+                        <ui:VisualElement class="pn-entry">
+                            <ui:Label class="pn-entry-label" text="FAMILY" />
+                            <ui:VisualElement class="pn-entry-value">
+                                <ui:Label class="pn-bullet" text="— Wife — Emma (deceased 2024)" />
+                                <ui:Label class="pn-bullet" text="— Son — David (London, England)" />
+                                <ui:Label class="pn-bullet" text="— Daughter — Emily (Sydney, Australia)" />
+                                <ui:Label class="pn-bullet" text="— Several grandchildren" />
+                                <ui:Label class="pn-bullet" text="— Brother — Albert (73 years old)" />
+                                <ui:Label class="pn-bullet" text="— Sister — Jean (68 years old)" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                        <ui:VisualElement class="pn-entry pn-entry-last">
+                            <ui:Label class="pn-entry-label" text="AMBULATORY" />
+                            <ui:Label class="pn-entry-value" text="No issues recorded" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+
+                    <!-- PANEL 1: Medical History -->
+                    <ui:VisualElement name="panel-1" class="pn-panel pn-panel-hidden">
+                        <ui:Label class="pn-list-item" text="Family history of schizophrenia — father treated in various inpatient facilities for many years" />
+                        <ui:Label class="pn-list-item" text="Hearing impairment due to work-related noise exposure; uses a single hearing aid" />
+                        <ui:Label class="pn-list-item" text="PTSD following military deployment to Lebanon during the 1980s; recovered following treatment but medically discharged from the Army" />
+                        <ui:Label class="pn-list-item" text="Joint inflammation in arms/hands causing pain, stiffness and difficulty with fine motor functions — uses adaptive tools at home" />
+                        <ui:Label class="pn-list-item" text="Recent cataract surgery" />
+                    </ui:VisualElement>
+
+                    <!-- PANEL 2: Current Episode -->
+                    <ui:VisualElement name="panel-2" class="pn-panel pn-panel-hidden">
+                        <ui:Label class="pn-list-item" text="Friend contacted by phone first — concerned about fever when visiting Arthur at home" />
+                        <ui:Label class="pn-list-item" text="Examined in Minor Injuries Dept; subsequently admitted for treatment of infection via IV antibiotics" />
+                        <ui:Label class="pn-list-item" text="Eye infection, likely due to inadequate post-surgical care resulting from motor issues in hands" />
+                    </ui:VisualElement>
+
+                    <!-- PANEL 3: Blood Results -->
+                    <ui:VisualElement name="panel-3" class="pn-panel pn-panel-hidden">
+                        <ui:VisualElement class="pn-blood-grid">
+
+                            <!-- Left col: FBC -->
+                            <ui:VisualElement class="pn-blood-col">
+                                <ui:Label class="pn-blood-col-title" text="FULL BLOOD COUNT (FBC)" />
+                                <ui:VisualElement class="pn-blood-row pn-blood-header-row">
+                                    <ui:Label class="pn-blood-test" text="TEST" />
+                                    <ui:Label class="pn-blood-result" text="RESULT" />
+                                    <ui:Label class="pn-blood-ref" text="REFERENCE" />
+                                    <ui:Label class="pn-blood-unit" text="UNITS" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="pn-blood-row">
+                                    <ui:Label class="pn-blood-test" text="Haemoglobin" />
+                                    <ui:Label class="pn-blood-result" text="150" />
+                                    <ui:Label class="pn-blood-ref" text="130–180" />
+                                    <ui:Label class="pn-blood-unit" text="g/L" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="pn-blood-row">
+                                    <ui:Label class="pn-blood-test" text="Total WBC" />
+                                    <ui:Label class="pn-blood-result pn-abnormal" text="12.2 ↑" />
+                                    <ui:Label class="pn-blood-ref" text="3.6–11.0" />
+                                    <ui:Label class="pn-blood-unit" text="x10⁹/L" />
+                                </ui:VisualElement>
+                                <ui:Label class="pn-blood-subheading" text="Differential count" />
+                                <ui:VisualElement class="pn-blood-row">
+                                    <ui:Label class="pn-blood-test" text="Neutrophils" />
+                                    <ui:Label class="pn-blood-result pn-abnormal" text="9.2 ↑" />
+                                    <ui:Label class="pn-blood-ref" text="1.8–7.5" />
+                                    <ui:Label class="pn-blood-unit" text="x10⁹/L" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="pn-blood-row">
+                                    <ui:Label class="pn-blood-test" text="Lymphocytes" />
+                                    <ui:Label class="pn-blood-result" text="3.0" />
+                                    <ui:Label class="pn-blood-ref" text="1.0–4.0" />
+                                    <ui:Label class="pn-blood-unit" text="x10⁹/L" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="pn-blood-row">
+                                    <ui:Label class="pn-blood-test" text="Monocytes" />
+                                    <ui:Label class="pn-blood-result" text="0.6" />
+                                    <ui:Label class="pn-blood-ref" text="0.2–0.8" />
+                                    <ui:Label class="pn-blood-unit" text="x10⁹/L" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="pn-blood-row">
+                                    <ui:Label class="pn-blood-test" text="Eosinophils" />
+                                    <ui:Label class="pn-blood-result" text="0.2" />
+                                    <ui:Label class="pn-blood-ref" text="0.1–0.4" />
+                                    <ui:Label class="pn-blood-unit" text="x10⁹/L" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="pn-blood-row">
+                                    <ui:Label class="pn-blood-test" text="Basophils" />
+                                    <ui:Label class="pn-blood-result" text="0.06" />
+                                    <ui:Label class="pn-blood-ref" text="0.02–0.10" />
+                                    <ui:Label class="pn-blood-unit" text="x10⁹/L" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="pn-blood-row">
+                                    <ui:Label class="pn-blood-test" text="Platelets" />
+                                    <ui:Label class="pn-blood-result" text="300" />
+                                    <ui:Label class="pn-blood-ref" text="140–400" />
+                                    <ui:Label class="pn-blood-unit" text="x10⁹/L" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+
+                            <!-- Right col: Red Cell + Other Bloods -->
+                            <ui:VisualElement class="pn-blood-col">
+                                <ui:Label class="pn-blood-col-title" text="RED CELL INDICES" />
+                                <ui:VisualElement class="pn-blood-row pn-blood-header-row">
+                                    <ui:Label class="pn-blood-test" text="TEST" />
+                                    <ui:Label class="pn-blood-result" text="RESULT" />
+                                    <ui:Label class="pn-blood-ref" text="REFERENCE" />
+                                    <ui:Label class="pn-blood-unit" text="UNITS" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="pn-blood-row">
+                                    <ui:Label class="pn-blood-test" text="Red Cell Count" />
+                                    <ui:Label class="pn-blood-result" text="5.20" />
+                                    <ui:Label class="pn-blood-ref" text="4.50–6.50" />
+                                    <ui:Label class="pn-blood-unit" text="x10¹²/L" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="pn-blood-row">
+                                    <ui:Label class="pn-blood-test" text="Haematocrit" />
+                                    <ui:Label class="pn-blood-result" text="0.50" />
+                                    <ui:Label class="pn-blood-ref" text="0.40–0.54" />
+                                    <ui:Label class="pn-blood-unit" text="L/L" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="pn-blood-row">
+                                    <ui:Label class="pn-blood-test" text="MCV" />
+                                    <ui:Label class="pn-blood-result" text="92" />
+                                    <ui:Label class="pn-blood-ref" text="80–100" />
+                                    <ui:Label class="pn-blood-unit" text="fL" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="pn-blood-row">
+                                    <ui:Label class="pn-blood-test" text="MCH" />
+                                    <ui:Label class="pn-blood-result" text="29" />
+                                    <ui:Label class="pn-blood-ref" text="27–32" />
+                                    <ui:Label class="pn-blood-unit" text="pg" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="pn-blood-row">
+                                    <ui:Label class="pn-blood-test" text="Reticulocyte" />
+                                    <ui:Label class="pn-blood-result" text="1.2" />
+                                    <ui:Label class="pn-blood-ref" text="0.5–2.0" />
+                                    <ui:Label class="pn-blood-unit" text="%" />
+                                </ui:VisualElement>
+                                <ui:Label class="pn-blood-col-title pn-blood-col-title-spacer" text="OTHER BLOODS" />
+                                <ui:VisualElement class="pn-blood-row pn-blood-header-row">
+                                    <ui:Label class="pn-blood-test" text="TEST" />
+                                    <ui:Label class="pn-blood-result" text="RESULT" />
+                                    <ui:Label class="pn-blood-ref" text="REFERENCE" />
+                                    <ui:Label class="pn-blood-unit" text="UNITS" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="pn-blood-row">
+                                    <ui:Label class="pn-blood-test" text="C-Reactive Protein" />
+                                    <ui:Label class="pn-blood-result pn-abnormal" text="80 ↑" />
+                                    <ui:Label class="pn-blood-ref" text="&lt;1" />
+                                    <ui:Label class="pn-blood-unit" text="mg/L" />
+                                </ui:VisualElement>
+                                <ui:VisualElement class="pn-blood-row">
+                                    <ui:Label class="pn-blood-test" text="eGFR" />
+                                    <ui:Label class="pn-blood-result pn-abnormal" text="45 ↓" />
+                                    <ui:Label class="pn-blood-ref" text="&gt;90" />
+                                    <ui:Label class="pn-blood-unit" text="mL/min" />
+                                </ui:VisualElement>
+                            </ui:VisualElement>
+
+                        </ui:VisualElement>
+
+                        <ui:VisualElement class="pn-notice pn-notice-red">
+                            <ui:Label class="pn-notice-text" text="⚠  Out-of-range results marked ↑ / ↓ and shown in red." />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+
+                    <!-- PANEL 4: Other Tests -->
+                    <ui:VisualElement name="panel-4" class="pn-panel pn-panel-hidden">
+                        <ui:Label class="pn-list-item" text="Urine output reduced — passing small quantities of dark urine" />
+                        <ui:Label class="pn-list-item" text="Constipated: Bristol Stool Chart Type 1" />
+                        <ui:Label class="pn-list-item" text="4AT score: 6" />
+                    </ui:VisualElement>
+
+                </ui:ScrollView>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
