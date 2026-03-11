@@ -13808,7 +13808,7 @@ MonoBehaviour:
   doctorLine: 
   arthurLine: "I don\u2019t know you. Don't dare touch me!"
   replayDoctorLine: 
-  arthurMonologue: Stop attacking me! Someone help me, please.
+  arthurMonologue: "Stop! You\u2019re trying to poison me!"
   isHearingAidInteraction: 0
   doctorLineAfter: 
   replayDoctorLineAfter: 
