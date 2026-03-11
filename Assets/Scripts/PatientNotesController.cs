@@ -22,6 +22,8 @@ using Cinemachine;
 /// </summary>
 public class PatientNotesController : MonoBehaviour
 {
+    public GameObject playerCam;
+
     // ── Tab title strings — shown in the content header on tab switch ──
     private static readonly string[] TabTitles = {
         "Patient Details",
@@ -84,6 +86,14 @@ public class PatientNotesController : MonoBehaviour
             UnityEngine.Cursor.lockState = CursorLockMode.None;
             UnityEngine.Cursor.visible = true;
         }
+
+        if (!UIOpen)
+        {
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+            UnityEngine.Cursor.visible = false;
+        }
+
+
     }
     private void OnEnable()
     {
@@ -111,6 +121,7 @@ public class PatientNotesController : MonoBehaviour
     public void OpenNotes()
     {
         gameObject.SetActive(true);
+
     }
 
     /// <summary>
@@ -119,6 +130,7 @@ public class PatientNotesController : MonoBehaviour
     public void CloseNotes()
     {
         gameObject.SetActive(false);
+        playerCam.SetActive(true);
     }
 
     // ── Tab switching ──────────────────────────────────────────────────

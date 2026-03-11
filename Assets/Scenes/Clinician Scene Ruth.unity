@@ -4735,6 +4735,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a924cbca4202a4f82af4b33295bddd10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCam: {fileID: 1018192895}
   cinemachineBrain: {fileID: 711297359}
 --- !u!114 &640559005
 MonoBehaviour:
@@ -12616,7 +12617,6 @@ GameObject:
   - component: {fileID: 1523997536}
   - component: {fileID: 1523997535}
   - component: {fileID: 1523997539}
-  - component: {fileID: 1523997540}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -12723,19 +12723,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionText: {fileID: 1025712126}
---- !u!114 &1523997540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1523997534}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f817afb69ec12f944a3001d3b2c3b6f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  patientNotes: {fileID: 1580878681}
 --- !u!1 &1530056879
 GameObject:
   m_ObjectHideFlags: 0
