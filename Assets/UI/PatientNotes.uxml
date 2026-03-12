@@ -11,7 +11,7 @@
                 <ui:Label class="pn-breadcrumb" text="Hyperspace  ·  BT BCH General Medical Ward  ·  ROBERTS, Arthur-David" />
             </ui:VisualElement>
             <ui:VisualElement class="pn-topbar-right">
-                <ui:Label class="pn-topbar-meta" text="10/03/2026  ·  09:41  ·  Dr A. Other" />
+                <ui:Label name="topbar-meta" class="pn-topbar-meta" text="10/03/2026  ·  09:41  ·  Dr A. Other" />
                 <ui:Button name="btn-exit" class="pn-btn-exit" text="Exit" />
             </ui:VisualElement>
         </ui:VisualElement>
@@ -30,7 +30,7 @@
             <ui:Label class="pn-avatar" text="AR" />
             <ui:VisualElement class="pn-patient-info">
                 <ui:Label class="pn-patient-name" text="ROBERTS, Arthur David" />
-                <ui:Label class="pn-patient-sub" text="Male  ·  70 yo  ·  DOB: 12/04/1955  ·  HCN: 308 721 3008  ·  Tel: 028 9012 3456  ·  Bed: BCH Med Ward–Rm1" />
+                <ui:Label name="banner-sub" class="pn-patient-sub" text="Male  ·  70 yo  ·  DOB: 12/04/1955  ·  HCN: 308 721 3008  ·  Tel: 028 9012 3456  ·  Bed: BCH Med Ward–Rm1" />
             </ui:VisualElement>
             <ui:VisualElement class="pn-banner-flags">
                 <ui:Label class="pn-flag pn-flag-green" text="Full Resus" />
@@ -45,7 +45,7 @@
             <ui:VisualElement class="pn-sidebar">
                 <ui:Label class="pn-sidebar-name" text="ROBERTS,&#10;Arthur David" />
 
-                <ui:Label class="pn-sidebar-row" text="Male, 70 yo. 12/04/1955" />
+                <ui:Label name="sidebar-dob" class="pn-sidebar-row" text="Male, 70 yo. 12/04/1955" />
                 <ui:Label class="pn-sidebar-row" text="HCN: 308 721 3008" />
                 <ui:Label class="pn-sidebar-row" text="Phone: 028 9012 3456" />
                 <ui:Label class="pn-sidebar-tag pn-tag-green" text="Resuscitation: Full" />
@@ -61,7 +61,7 @@
                 <ui:Label class="pn-sidebar-row" text="Diabetes Risk: None" />
 
                 <ui:Label class="pn-sidebar-section" text="ADMISSION" />
-                <ui:Label class="pn-sidebar-row" text="Admitted: 10/03/2026" />
+                <ui:Label name="sidebar-admitted" class="pn-sidebar-row" text="Admitted: 10/03/2026" />
                 <ui:Label class="pn-sidebar-row" text="Class: Inpatient" />
                 <ui:Label class="pn-sidebar-row" text="Exp Discharge: TBA" />
                 <ui:Label class="pn-sidebar-row" text="Problem: Eye infection" />
@@ -70,7 +70,6 @@
                 <ui:Label class="pn-sidebar-row" text="Ht: 172.5 cm" />
                 <ui:Label class="pn-sidebar-row" text="Last Wt: 80.5 kg" />
 
-                <!-- 4AT neutral — intentionally no warning colour -->
                 <ui:Label class="pn-sidebar-section" text="SCORES" />
                 <ui:Label class="pn-sidebar-tag pn-tag-neutral" text="4AT Score: 6" />
             </ui:VisualElement>
@@ -78,7 +77,7 @@
             <!-- RIGHT CONTENT AREA -->
             <ui:VisualElement class="pn-content-area">
 
-                <!-- Tab buttons — click handlers registered in PatientNotesController.cs -->
+                <!-- Tab buttons -->
                 <ui:VisualElement name="content-tabs" class="pn-content-tabs">
                     <ui:Button name="tab-0" class="pn-ctab pn-ctab-active" text="Patient Details" />
                     <ui:Button name="tab-1" class="pn-ctab" text="Medical History" />
@@ -87,10 +86,10 @@
                     <ui:Button name="tab-4" class="pn-ctab" text="Other Tests" />
                 </ui:VisualElement>
 
-                <!-- Content header — title swapped by controller -->
+                <!-- Content header -->
                 <ui:VisualElement class="pn-content-header">
                     <ui:Label name="content-title" class="pn-content-title" text="Patient Details" />
-                    <ui:Label class="pn-content-timestamp" text="Last updated: 10/03/2026 09:00  ·  Dr Alice N Other" />
+                    <ui:Label name="content-timestamp" class="pn-content-timestamp" text="Last updated: 10/03/2026 09:00  ·  Dr Alice N Other" />
                 </ui:VisualElement>
 
                 <!-- Scrollable content -->
@@ -98,7 +97,7 @@
                     vertical-scroller-visibility="Auto"
                     horizontal-scroller-visibility="Hidden">
 
-                    <!-- PANEL 0: Patient Details (visible on open) -->
+                    <!-- PANEL 0: Patient Details -->
                     <ui:VisualElement name="panel-0" class="pn-panel">
                         <ui:VisualElement class="pn-entry">
                             <ui:Label class="pn-entry-label" text="EMPLOYMENT" />
