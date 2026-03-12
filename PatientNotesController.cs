@@ -22,33 +22,41 @@ public class PatientNotesController : MonoBehaviour
     private void Awake()
     {
         _doc = GetComponent<UIDocument>();
+        Debug.Log("[PatientNotes] Awake fired");
     }
 
     private void OnEnable()
     {
-        var root = _doc.rootVisualElement;
+        Debug.Log("[PatientNotes] OnEnable fired");
 
-        root.Q<Button>("tab-0").clicked += () => SwitchTab(0);
-        root.Q<Button>("tab-1").clicked += () => SwitchTab(1);
-        root.Q<Button>("tab-2").clicked += () => SwitchTab(2);
-        root.Q<Button>("tab-3").clicked += () => SwitchTab(3);
-        root.Q<Button>("tab-4").clicked += () => SwitchTab(4);
+        var root = _doc.rootVisualElement;
+        Debug.Log("[PatientNotes] root is null: " + (root == null));
+
+        var tab0 = root.Q<Button>("tab-0");
+        Debug.Log("[PatientNotes] tab-0 found: " + (tab0 != null));
+
+        tab0.clicked += () => { Debug.Log("[PatientNotes] tab-0 clicked"); SwitchTab(0); };
+        root.Q<Button>("tab-1").clicked += () => { Debug.Log("[PatientNotes] tab-1 clicked"); SwitchTab(1); };
+        root.Q<Button>("tab-2").clicked += () => { Debug.Log("[PatientNotes] tab-2 clicked"); SwitchTab(2); };
+        root.Q<Button>("tab-3").clicked += () => { Debug.Log("[PatientNotes] tab-3 clicked"); SwitchTab(3); };
+        root.Q<Button>("tab-4").clicked += () => { Debug.Log("[PatientNotes] tab-4 clicked"); SwitchTab(4); };
         root.Q<Button>("btn-exit").clicked += CloseNotes;
 
         UIOpen = true;
-        Time.timeScale = 0f;
         SwitchTab(0);
 
         if (playerCam != null)       playerCam.SetActive(false);
         if (cinemachineBrain != null) cinemachineBrain.enabled = false;
         UnityEngine.Cursor.lockState = CursorLockMode.None;
         UnityEngine.Cursor.visible   = true;
+
+        Debug.Log("[PatientNotes] Setup complete. Cursor visible: " + UnityEngine.Cursor.visible);
     }
 
     private void OnDisable()
     {
+        Debug.Log("[PatientNotes] OnDisable fired");
         UIOpen = false;
-        Time.timeScale = 1f;
         if (playerCam != null)       playerCam.SetActive(true);
         if (cinemachineBrain != null) cinemachineBrain.enabled = true;
         UnityEngine.Cursor.lockState = CursorLockMode.Locked;
@@ -57,11 +65,13 @@ public class PatientNotesController : MonoBehaviour
 
     public void OpenNotes()
     {
+        Debug.Log("[PatientNotes] OpenNotes called");
         gameObject.SetActive(true);
     }
 
     public void CloseNotes()
     {
+        Debug.Log("[PatientNotes] CloseNotes called");
         gameObject.SetActive(false);
     }
 

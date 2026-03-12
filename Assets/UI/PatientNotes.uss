@@ -398,9 +398,7 @@
     /* Indent to leave room for a visual bullet */
 }
 
-.pn-list-item:last-child {
-    border-bottom-width: 0;
-}
+
 
 /* ── Panel 3: blood results ─────────────────────────────── */
 
@@ -415,9 +413,7 @@
     margin-right: 28px;
 }
 
-.pn-blood-col:last-child {
-    margin-right: 0;
-}
+
 
 .pn-blood-col-title {
     font-size: 11px;
