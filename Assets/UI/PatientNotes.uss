@@ -1,0 +1,512 @@
+/* =========================================================
+   PatientNotes.uss
+   Epic Hyperspace-styled patient case notes.
+   Companion to PatientNotes.uxml + PatientNotesController.cs
+   Completely separate from TipsScreen.uss — no shared classes.
+   ========================================================= */
+
+/* ── Font definitions ───────────────────────────────────── */
+
+/*
+   IBMPlexSans-Regular  → general body text, sidebar rows, panel content
+   IBMPlexSans-SemiBold → headings, labels, patient name, tab titles
+   IBMPlexSans-Light    → secondary/meta text, timestamps, reference ranges
+   IBMPlexMono-Regular  → blood result values (keeps columns aligned)
+*/
+
+.pn-root {
+}
+
+/* ── Root ───────────────────────────────────────────────── */
+
+.pn-root {
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: #F7F5F3;
+    -unity-font: url("../Fonts/IBMPlexSans-Regular.ttf");
+}
+
+/* ── Top nav bar (crimson row 1) ────────────────────────── */
+
+.pn-topbar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #7B1113;
+    height: 36px;
+    padding: 0 10px;
+    flex-shrink: 0;
+}
+
+.pn-topbar-left {
+    flex-direction: row;
+    align-items: center;
+}
+
+.pn-topbar-right {
+    flex-direction: row;
+    align-items: center;
+}
+
+.pn-epic-pill {
+    font-size: 13px;
+    -unity-font-style: bold-and-italic;
+    color: white;
+    background-color: #2E7D32;
+    border-radius: 3px;
+    padding: 2px 9px;
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.pn-breadcrumb {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.pn-topbar-meta {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.5);
+    margin-right: 10px;
+}
+
+.pn-btn-exit {
+    font-size: 11px;
+    -unity-font-style: bold;
+    color: white;
+    background-color: #5A0C0E;
+    border-width: 1px;
+    border-color: #3D080A;
+    border-radius: 2px;
+    padding: 3px 12px;
+    -unity-background-image-tint-color: rgba(0,0,0,0);
+}
+
+.pn-btn-exit:hover {
+    background-color: #7B1113;
+}
+
+.pn-btn-exit:active {
+    background-color: #3D080A;
+    translate: 0 1px;
+}
+
+/* ── Secondary nav strip (crimson row 2, decorative) ────── */
+
+.pn-tabnav {
+    flex-direction: row;
+    align-items: stretch;
+    background-color: #6B0F11;
+    height: 30px;
+    padding: 0 10px;
+    flex-shrink: 0;
+    border-bottom-width: 2px;
+    border-bottom-color: #5A0C0E;
+}
+
+.pn-navlabel {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.6);
+    padding: 0 14px;
+    -unity-text-align: middle-center;
+}
+
+.pn-navlabel-active {
+    color: #7B1113;
+    background-color: #F7F5F3;
+    -unity-font-style: bold;
+}
+
+/* ── Patient identity banner ────────────────────────────── */
+
+.pn-banner {
+    flex-direction: row;
+    align-items: center;
+    background-color: #F2F0ED;
+    border-bottom-width: 1px;
+    border-bottom-color: #D0CCC7;
+    padding: 6px 14px;
+    height: 52px;
+    flex-shrink: 0;
+}
+
+.pn-avatar {
+    width: 38px;
+    height: 38px;
+    background-color: #D0CBC4;
+    border-radius: 19px;
+    font-size: 14px;
+    -unity-font-style: bold;
+    color: #8A7A70;
+    -unity-text-align: middle-center;
+    margin-right: 14px;
+    flex-shrink: 0;
+}
+
+.pn-patient-info {
+    flex-direction: column;
+    flex: 1;
+}
+
+.pn-patient-name {
+    font-size: 15px;
+    -unity-font-style: bold;
+    color: #7B1113;
+    margin-bottom: 2px;
+}
+
+.pn-patient-sub {
+    font-size: 11px;
+    color: #5A5450;
+}
+
+.pn-banner-flags {
+    flex-direction: row;
+    align-items: center;
+    margin-left: 10px;
+}
+
+.pn-flag {
+    font-size: 10px;
+    -unity-font-style: bold;
+    border-radius: 2px;
+    padding: 3px 8px;
+    margin-left: 6px;
+    -unity-text-align: middle-center;
+}
+
+.pn-flag-green {
+    color: #2E7D32;
+    background-color: #E8F5E9;
+    border-width: 1px;
+    border-color: #A5D6A7;
+}
+
+.pn-flag-orange {
+    color: #E67E00;
+    background-color: #FFF3E0;
+    border-width: 1px;
+    border-color: #FFCC80;
+}
+
+/* ── Body: sidebar + content side by side ───────────────── */
+
+.pn-body {
+    flex-direction: row;
+    flex: 1;
+}
+
+/* ── Left sidebar ───────────────────────────────────────── */
+
+.pn-sidebar {
+    width: 200px;
+    flex-shrink: 0;
+    background-color: #F2F0ED;
+    border-right-width: 1px;
+    border-right-color: #D0CCC7;
+    padding: 10px 8px;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.pn-sidebar-name {
+    font-size: 13px;
+    -unity-font-style: bold;
+    color: #7B1113;
+    -unity-text-align: upper-center;
+    white-space: normal;
+    padding: 4px 4px 8px;
+    border-bottom-width: 1px;
+    border-bottom-color: #D0CCC7;
+    margin-bottom: 6px;
+}
+
+.pn-sidebar-section {
+    font-size: 9px;
+    -unity-font-style: bold;
+    color: #7B1113;
+    letter-spacing: 1px;
+    padding: 8px 4px 3px;
+    border-top-width: 1px;
+    border-top-color: #D0CCC7;
+    margin-top: 4px;
+}
+
+.pn-sidebar-row {
+    font-size: 11px;
+    color: #5A5450;
+    padding: 2px 4px;
+    white-space: normal;
+}
+
+.pn-sidebar-tag {
+    font-size: 11px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    border-radius: 2px;
+    padding: 4px 6px;
+    margin: 4px 0 2px;
+}
+
+.pn-tag-green {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.pn-tag-orange {
+    background-color: #E67E00;
+    color: white;
+}
+
+.pn-tag-neutral {
+    background-color: #E8E4E0;
+    color: #5A5450;
+    border-width: 1px;
+    border-color: #D0CCC7;
+}
+
+/* ── Right content area ─────────────────────────────────── */
+
+.pn-content-area {
+    flex: 1;
+    flex-direction: column;
+    background-color: white;
+    overflow: hidden;
+}
+
+/* ── Content tab strip ──────────────────────────────────── */
+
+.pn-content-tabs {
+    flex-direction: row;
+    background-color: white;
+    border-bottom-width: 1px;
+    border-bottom-color: #E8E4E0;
+    padding: 0 14px;
+    flex-shrink: 0;
+    height: 36px;
+}
+
+.pn-ctab {
+    font-size: 12px;
+    color: #5A5450;
+    background-color: rgba(0, 0, 0, 0);
+    border-width: 0;
+    border-bottom-width: 3px;
+    border-bottom-color: rgba(0, 0, 0, 0);
+    padding: 0 16px;
+    margin: 0;
+    border-radius: 0;
+    -unity-font-style: normal;
+    -unity-background-image-tint-color: rgba(0,0,0,0);
+}
+
+.pn-ctab:hover {
+    color: #7B1113;
+    background-color: #F7F5F3;
+}
+
+.pn-ctab-active {
+    color: #7B1113;
+    -unity-font-style: bold;
+    border-bottom-color: #7B1113;
+}
+
+/* ── Content panel header ───────────────────────────────── */
+
+.pn-content-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #F7F5F3;
+    border-bottom-width: 1px;
+    border-bottom-color: #E8E4E0;
+    padding: 6px 16px;
+    height: 34px;
+    flex-shrink: 0;
+}
+
+.pn-content-title {
+    font-size: 13px;
+    -unity-font-style: bold;
+    color: #7B1113;
+}
+
+.pn-content-timestamp {
+    font-size: 10px;
+    color: #B0A9A2;
+}
+
+/* ── Scroll view ────────────────────────────────────────── */
+
+.pn-scroll {
+    flex: 1;
+}
+
+.pn-scroll > #unity-content-and-vertical-scroll-container > #unity-content-viewport {
+    background-color: white;
+}
+
+/* ── Content panels ─────────────────────────────────────── */
+
+.pn-panel {
+    flex-direction: column;
+    padding: 16px 20px;
+}
+
+.pn-panel-hidden {
+    display: none;
+}
+
+/* ── Panel 0/1/2: entry rows and list items ─────────────── */
+
+.pn-entry {
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 8px 0;
+    border-bottom-width: 1px;
+    border-bottom-color: #F7F5F3;
+}
+
+.pn-entry-last {
+    border-bottom-width: 0;
+}
+
+.pn-entry-label {
+    font-size: 10px;
+    -unity-font-style: bold;
+    color: #B0A9A2;
+    letter-spacing: 1px;
+    width: 130px;
+    flex-shrink: 0;
+    padding-top: 2px;
+}
+
+.pn-entry-value {
+    flex: 1;
+    flex-direction: column;
+    font-size: 13px;
+    color: #1A1A1A;
+    white-space: normal;
+}
+
+.pn-bullet {
+    font-size: 13px;
+    color: #1A1A1A;
+    margin-bottom: 3px;
+}
+
+.pn-list-item {
+    font-size: 13px;
+    color: #1A1A1A;
+    white-space: normal;
+    padding: 10px 0 10px 18px;
+    border-bottom-width: 1px;
+    border-bottom-color: #F7F5F3;
+}
+
+/* ── Panel 3: blood results ─────────────────────────────── */
+
+.pn-blood-grid {
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.pn-blood-col {
+    flex: 1;
+    flex-direction: column;
+    margin-right: 28px;
+}
+
+.pn-blood-col-title {
+    font-size: 11px;
+    -unity-font-style: bold;
+    color: #5A5450;
+    letter-spacing: 1px;
+    padding: 8px 0 4px;
+    border-bottom-width: 2px;
+    border-bottom-color: #7B1113;
+    margin-bottom: 2px;
+}
+
+.pn-blood-col-title-spacer {
+    margin-top: 14px;
+}
+
+.pn-blood-row {
+    flex-direction: row;
+    padding: 5px 0;
+    border-bottom-width: 1px;
+    border-bottom-color: #F7F5F3;
+}
+
+.pn-blood-header-row {
+    border-bottom-color: #E8E4E0;
+}
+
+.pn-blood-test {
+    flex: 2;
+    font-size: 12px;
+    color: #1A1A1A;
+}
+
+.pn-blood-result {
+    flex: 1;
+    font-size: 12px;
+    color: #1A1A1A;
+    -unity-font-style: normal;
+}
+
+.pn-blood-ref {
+    flex: 1;
+    font-size: 11px;
+    color: #B0A9A2;
+}
+
+.pn-blood-unit {
+    flex: 1;
+    font-size: 11px;
+    color: #5A5450;
+}
+
+/* Header row text style */
+.pn-blood-header-row .pn-blood-test,
+.pn-blood-header-row .pn-blood-result,
+.pn-blood-header-row .pn-blood-ref,
+.pn-blood-header-row .pn-blood-unit {
+    font-size: 10px;
+    -unity-font-style: bold;
+    color: #B0A9A2;
+    letter-spacing: 1px;
+}
+
+/* Abnormal values */
+.pn-abnormal {
+    color: #C0392B;
+    -unity-font-style: bold;
+}
+
+.pn-blood-subheading {
+    font-size: 10px;
+    color: #5A5450;
+    padding: 6px 0 2px;
+}
+
+/* ── Notice bar ─────────────────────────────────────────── */
+
+.pn-notice {
+    margin-top: 14px;
+    padding: 9px 12px;
+    border-radius: 2px;
+    border-left-width: 3px;
+}
+
+.pn-notice-red {
+    background-color: #FDECEA;
+    border-left-color: #C0392B;
+}
+
+.pn-notice-text {
+    font-size: 11px;
+    color: #7A1A12;
+}
