@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Manages all dialogue display in both the doctor POV scene and the patient POV replay.
@@ -33,6 +34,7 @@ public class DialogueManager : MonoBehaviour
     // -------------------------------------------------------------------------
     // Inspector References
     // -------------------------------------------------------------------------
+
 
     [Header("Shared UI Elements")]
     [Tooltip("The root panel GameObject. We activate/deactivate this to show/hide dialogue.")]
@@ -126,6 +128,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Start()
     {
+        string currentSceneName = SceneManager.GetActiveScene().name;
         HideDialogueImmediate();
     }
 
@@ -223,7 +226,9 @@ public class DialogueManager : MonoBehaviour
     /// </summary>
     private string ProcessDoctorLine(string line)
     {
-        if (HearingAidFitted())
+        string currentSceneName = SceneManager.GetActiveScene().name;
+
+        if (HearingAidFitted() || (currentSceneName == "Clinician Scene Ruth"))
         {
             // TODO: Assign a real clear-voice audio clip to the clearSound field in the Inspector.
             // Suggestion: a soft tone or click to mark the improved hearing moment.
@@ -304,7 +309,7 @@ public class DialogueManager : MonoBehaviour
     {
         // Step 1: Always garbled — bypass ProcessDoctorLine
         PlaySound(clearSound);
-        yield return StartCoroutine(ShowSpokenRoutine("Doctor", doctorPortrait, (doctorLineBefore), true));
+        yield return StartCoroutine(ShowSpokenRoutine("Doctor", doctorPortrait, doctorLineBefore, true));
 
         // Step 2: Fire animation callback
         // TODO: Trigger hearing aid animation here.
