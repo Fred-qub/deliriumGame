@@ -3640,7 +3640,7 @@ MonoBehaviour:
   m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PanelSettings: {fileID: 11400000, guid: e1b7bc8afebfe4ea69a354be343f55e0, type: 2}
+  m_PanelSettings: {fileID: 11400000, guid: c0b498a7f76a04d619fbccd93ffcf36f, type: 2}
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 8d445513a81414538be7d718c8516ecd,
     type: 3}
