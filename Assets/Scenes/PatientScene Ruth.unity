@@ -5012,6 +5012,7 @@ GameObject:
   - component: {fileID: 638130174}
   - component: {fileID: 638130173}
   - component: {fileID: 638130172}
+  - component: {fileID: 638130180}
   m_Layer: 0
   m_Name: Doctor
   m_TagString: Untagged
@@ -5153,6 +5154,21 @@ Transform:
   - {fileID: 16228107}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!114 &638130180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638130171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90df365687d7e934e8f943a8d1a887d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poisonOnTrolley: {fileID: 104604032}
+  poisonInHand: {fileID: 16228108}
+  delaySeconds: 1
 --- !u!1001 &646107861
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7295,7 +7311,7 @@ PrefabInstance:
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
       propertyPath: actionLibrary.Array.data[1].onTrigger.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
@@ -7305,12 +7321,12 @@ PrefabInstance:
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
       propertyPath: actionLibrary.Array.data[1].onTrigger.m_PersistentCalls.m_Calls.Array.data[4].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
       propertyPath: actionLibrary.Array.data[1].onTrigger.m_PersistentCalls.m_Calls.Array.data[5].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
@@ -7411,22 +7427,22 @@ PrefabInstance:
         type: 3}
       propertyPath: actionLibrary.Array.data[1].onTrigger.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 104604032}
+      objectReference: {fileID: 213158592}
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
       propertyPath: actionLibrary.Array.data[1].onTrigger.m_PersistentCalls.m_Calls.Array.data[3].m_Target
       value: 
-      objectReference: {fileID: 213158592}
+      objectReference: {fileID: 638130180}
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
       propertyPath: actionLibrary.Array.data[1].onTrigger.m_PersistentCalls.m_Calls.Array.data[4].m_Target
       value: 
-      objectReference: {fileID: 16228108}
+      objectReference: {fileID: 638130180}
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
       propertyPath: actionLibrary.Array.data[1].onTrigger.m_PersistentCalls.m_Calls.Array.data[5].m_Target
       value: 
-      objectReference: {fileID: 1211083871}
+      objectReference: {fileID: 638130180}
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
       propertyPath: actionLibrary.Array.data[1].onTrigger.m_PersistentCalls.m_Calls.Array.data[6].m_Target
@@ -7650,22 +7666,22 @@ PrefabInstance:
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
       propertyPath: actionLibrary.Array.data[1].onTrigger.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: SetActive
-      objectReference: {fileID: 0}
-    - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
-        type: 3}
-      propertyPath: actionLibrary.Array.data[1].onTrigger.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
       value: AuxHallucinationLottery
       objectReference: {fileID: 0}
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
+      propertyPath: actionLibrary.Array.data[1].onTrigger.m_PersistentCalls.m_Calls.Array.data[3].m_MethodName
+      value: EnableSequence
+      objectReference: {fileID: 0}
+    - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
+        type: 3}
       propertyPath: actionLibrary.Array.data[1].onTrigger.m_PersistentCalls.m_Calls.Array.data[4].m_MethodName
-      value: SetActive
+      value: DisableSequence
       objectReference: {fileID: 0}
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
       propertyPath: actionLibrary.Array.data[1].onTrigger.m_PersistentCalls.m_Calls.Array.data[5].m_MethodName
-      value: SetActive
+      value: DisableSequence
       objectReference: {fileID: 0}
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
@@ -7775,22 +7791,22 @@ PrefabInstance:
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
       propertyPath: actionLibrary.Array.data[1].onTrigger.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
-        type: 3}
-      propertyPath: actionLibrary.Array.data[1].onTrigger.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
       value: HallucinationChance, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
+      propertyPath: actionLibrary.Array.data[1].onTrigger.m_PersistentCalls.m_Calls.Array.data[3].m_TargetAssemblyTypeName
+      value: EnableAfterdelay, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
+        type: 3}
       propertyPath: actionLibrary.Array.data[1].onTrigger.m_PersistentCalls.m_Calls.Array.data[4].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: EnableAfterdelay, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
       propertyPath: actionLibrary.Array.data[1].onTrigger.m_PersistentCalls.m_Calls.Array.data[5].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: EnableAfterdelay, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
@@ -7859,13 +7875,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
+      propertyPath: actionLibrary.Array.data[1].onTrigger.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
+        type: 3}
       propertyPath: actionLibrary.Array.data[1].onTrigger.m_PersistentCalls.m_Calls.Array.data[4].m_Arguments.m_BoolArgument
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
       propertyPath: actionLibrary.Array.data[1].onTrigger.m_PersistentCalls.m_Calls.Array.data[5].m_Arguments.m_BoolArgument
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
