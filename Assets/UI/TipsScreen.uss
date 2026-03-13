@@ -1,42 +1,53 @@
 /* =========================================================
-   TipsScreen.uss
-   Session Review screen styles — NHS Delirium Simulator
-   Mirrors the HTML mockup palette and layout exactly.
+   TipsScreen.uss  —  NHS Delirium Simulator
+   Target: 1920×1080  ·  Sticky header  ·  Scrollable body
+   Two-column tip cards  ·  Enlarged typography throughout
    ========================================================= */
 
-/* ── Root / Background ─────────────────────────────────── */
+/* ── Root ───────────────────────────────────────────────── */
 
 .root {
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
     background-color: #0d1f35;
     width: 100%;
     height: 100%;
-    padding: 10px 60px;
 }
 
-.container {
+/* ── Sticky Region ──────────────────────────────────────── */
+
+.sticky-region {
+    flex-shrink: 0;
+    flex-direction: row;
+    justify-content: center;
+    background-color: #0d1f35;
+    border-bottom-color: #1e3a5a;
+    border-bottom-width: 1px;
+    padding: 28px 60px 0 60px;
+}
+
+.sticky-inner {
     flex-direction: column;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1100px;
 }
 
 /* ── Header ─────────────────────────────────────────────── */
 
 .header {
     flex-direction: column;
-    margin-bottom: 28px;
+    margin-bottom: 22px;
 }
 
 .header-meta {
     flex-direction: row;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .nhs-badge {
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: 2px;
     -unity-font-style: bold;
     color: #00A9CE;
@@ -44,31 +55,31 @@
     border-color: rgba(0, 169, 206, 0.25);
     border-width: 1px;
     border-radius: 2px;
-    padding: 4px 10px;
-    margin-right: 12px;
+    padding: 5px 12px;
+    margin-right: 14px;
 }
 
 .session-id {
-    font-size: 10px;
+    font-size: 11px;
     color: #4a5a70;
     letter-spacing: 1px;
 }
 
 .header-title {
-    font-size: 28px;
+    font-size: 36px;
     -unity-font-style: normal;
     color: #e8edf5;
     margin-bottom: 4px;
 }
 
 .header-title-accent {
-    font-size: 28px;
+    font-size: 36px;
     -unity-font-style: bold;
     color: #00A9CE;
 }
 
 .header-sub {
-    font-size: 13px;
+    font-size: 15px;
     color: #8a9bb5;
     -unity-font-style: normal;
 }
@@ -83,25 +94,25 @@
     border-color: #1e3a5a;
     border-width: 1px;
     border-radius: 6px;
-    padding: 16px 20px;
-    margin-bottom: 24px;
+    padding: 18px 24px;
+    margin-bottom: 28px;
 }
 
 .score-label {
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: 1px;
     color: #4a5a70;
-    margin-bottom: 4px;
+    margin-bottom: 5px;
 }
 
 .score-value {
-    font-size: 22px;
+    font-size: 26px;
     -unity-font-style: bold;
     color: #FFB81C;
 }
 
 .score-value-partial {
-    font-size: 22px;
+    font-size: 26px;
     -unity-font-style: bold;
     color: #E87722;
 }
@@ -113,11 +124,11 @@
     border-color: rgba(255, 184, 28, 0.3);
     border-width: 1px;
     border-radius: 4px;
-    padding: 8px 14px;
+    padding: 10px 18px;
 }
 
 .outcome-pill-text {
-    font-size: 12px;
+    font-size: 13px;
     -unity-font-style: bold;
     color: #FFB81C;
     letter-spacing: 1px;
@@ -130,40 +141,71 @@
     border-color: rgba(232, 119, 34, 0.3);
     border-width: 1px;
     border-radius: 4px;
-    padding: 8px 14px;
+    padding: 10px 18px;
 }
 
 .outcome-pill-text-suboptimal {
-    font-size: 12px;
+    font-size: 13px;
     -unity-font-style: bold;
     color: #E87722;
     letter-spacing: 1px;
 }
 
+/* ── Scroll View ────────────────────────────────────────── */
+
+.scroll-view {
+    flex: 1;
+}
+
+/* Centre the inner content inside Unity's ScrollView hierarchy */
+.scroll-view > #unity-content-and-vertical-scroll-container > #unity-content-viewport > #unity-content-container {
+    flex-direction: column;
+    align-items: center;
+}
+
+.scroll-inner {
+    flex-direction: column;
+    width: 100%;
+    max-width: 1100px;
+    padding: 32px 60px 52px 60px;
+    align-self: center;
+}
+
 /* ── Section Label ──────────────────────────────────────── */
 
 .section-label {
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: 2px;
     color: #4a5a70;
-    margin-bottom: 12px;
-    margin-top: 4px;
+    margin-bottom: 14px;
+    margin-top: 6px;
 }
 
-/* ── Tip Cards ──────────────────────────────────────────── */
+/* ── Tip Cards — Two Column ─────────────────────────────── */
 
 .tips-list {
-    flex-direction: column;
-    margin-bottom: 20px;
+    flex-direction: row;
+    margin-bottom: 28px;
 }
 
+/* Each slot takes half the row */
+.tip-card-slot {
+    flex: 1;
+    flex-direction: column;
+}
+
+.tip-card-slot-left {
+    margin-right: 16px;
+}
+
+/* Card fills its slot fully */
 .tip-card {
     flex-direction: row;
+    flex: 1;
     background-color: #112238;
     border-color: #1e3a5a;
     border-width: 1px;
     border-radius: 6px;
-    margin-bottom: 10px;
     padding: 0;
     transition-duration: 0.2s;
     transition-property: background-color, border-color;
@@ -171,18 +213,18 @@
 
 .tip-card:hover {
     background-color: #162b45;
-    border-color: #243548;
+    border-color: #2d4d6e;
 }
 
 .tip-bar-good {
-    width: 4px;
+    width: 5px;
     border-radius: 6px 0 0 6px;
     background-color: #00875A;
     flex-shrink: 0;
 }
 
 .tip-bar-warn {
-    width: 4px;
+    width: 5px;
     border-radius: 6px 0 0 6px;
     background-color: #E87722;
     flex-shrink: 0;
@@ -191,27 +233,26 @@
 .tip-content {
     flex-direction: column;
     flex: 1;
-    padding: 16px 18px;
+    padding: 22px 22px;
 }
 
 .tip-header-row {
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
 }
 
 .tip-title {
-    font-size: 14px;
+    font-size: 17px;
     -unity-font-style: bold;
     color: #e8edf5;
-    letter-spacing: 0px;
     flex: 1;
-    margin-right: 12px;
+    margin-right: 14px;
 }
 
 .tip-tag-good {
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 1px;
     -unity-font-style: bold;
     color: #00c47a;
@@ -219,11 +260,11 @@
     border-color: #00543a;
     border-width: 1px;
     border-radius: 2px;
-    padding: 3px 8px;
+    padding: 4px 10px;
 }
 
 .tip-tag-warn {
-    font-size: 9px;
+    font-size: 10px;
     letter-spacing: 1px;
     -unity-font-style: bold;
     color: #f0a060;
@@ -231,14 +272,15 @@
     border-color: #7a3c00;
     border-width: 1px;
     border-radius: 2px;
-    padding: 3px 8px;
+    padding: 4px 10px;
 }
 
 .tip-body {
-    font-size: 13px;
+    font-size: 15px;
     color: #8a9bb5;
     white-space: normal;
     -unity-font-style: normal;
+    -unity-text-align: upper-left;
 }
 
 /* ── Clinical Insight Card ──────────────────────────────── */
@@ -249,8 +291,8 @@
     border-color: #7a5800;
     border-width: 1px;
     border-radius: 6px;
-    padding: 20px 22px;
-    margin-bottom: 10px;
+    padding: 24px 26px;
+    margin-bottom: 12px;
 }
 
 .insight-card-suboptimal {
@@ -259,21 +301,21 @@
     border-color: #1e3a5a;
     border-width: 1px;
     border-radius: 6px;
-    padding: 20px 22px;
-    margin-bottom: 10px;
+    padding: 24px 26px;
+    margin-bottom: 12px;
 }
 
 .insight-icon {
-    font-size: 20px;
+    font-size: 24px;
     color: #FFB81C;
-    margin-right: 16px;
+    margin-right: 20px;
     flex-shrink: 0;
 }
 
 .insight-icon-suboptimal {
-    font-size: 20px;
+    font-size: 24px;
     color: #00A9CE;
-    margin-right: 16px;
+    margin-right: 20px;
     flex-shrink: 0;
 }
 
@@ -283,30 +325,28 @@
 }
 
 .insight-title-optimal {
-    font-size: 13px;
+    font-size: 15px;
     -unity-font-style: bold;
     color: #FFB81C;
-    margin-bottom: 6px;
-    letter-spacing: 0px;
+    margin-bottom: 8px;
 }
 
 .insight-title-suboptimal {
-    font-size: 13px;
+    font-size: 15px;
     -unity-font-style: bold;
     color: #00A9CE;
-    margin-bottom: 6px;
-    letter-spacing: 0px;
+    margin-bottom: 8px;
 }
 
 .insight-body-optimal {
-    font-size: 13px;
+    font-size: 15px;
     color: #c8a84a;
     white-space: normal;
     -unity-font-style: normal;
 }
 
 .insight-body-suboptimal {
-    font-size: 13px;
+    font-size: 15px;
     color: #8a9bb5;
     white-space: normal;
     -unity-font-style: normal;
@@ -316,19 +356,19 @@
 
 .actions {
     flex-direction: row;
-    margin-top: 28px;
-    margin-bottom: 8px;
+    margin-top: 32px;
+    margin-bottom: 10px;
 }
 
 .btn-primary {
-    font-size: 13px;
+    font-size: 14px;
     -unity-font-style: bold;
     color: white;
     background-color: #005EB8;
     border-width: 0;
     border-radius: 4px;
-    padding: 11px 24px;
-    margin-right: 12px;
+    padding: 14px 30px;
+    margin-right: 14px;
     transition-duration: 0.15s;
     transition-property: background-color;
 }
@@ -343,14 +383,14 @@
 }
 
 .btn-secondary {
-    font-size: 13px;
+    font-size: 14px;
     -unity-font-style: normal;
     color: #8a9bb5;
     background-color: rgba(0,0,0,0);
     border-color: #243548;
     border-width: 1px;
     border-radius: 4px;
-    padding: 11px 24px;
+    padding: 14px 30px;
     transition-duration: 0.15s;
     transition-property: background-color, border-color, color;
 }
@@ -368,9 +408,9 @@
 /* ── Footer ─────────────────────────────────────────────── */
 
 .footer {
-    font-size: 10px;
+    font-size: 11px;
     color: #4a5a70;
     letter-spacing: 1px;
-    margin-top: 32px;
+    margin-top: 36px;
     -unity-text-align: upper-left;
 }
