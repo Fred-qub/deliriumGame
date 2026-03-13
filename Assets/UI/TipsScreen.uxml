@@ -2,57 +2,78 @@
     <ui:Template name="TipsScreen" src="TipsScreen.uxml" />
     <Style src="TipsScreen.uss" />
 
-    <!-- Root -->
+    <!-- Root fills the full 1920x1080 screen -->
     <ui:VisualElement name="root" class="root">
-        <ui:VisualElement name="container" class="container">
 
-            <!-- Header -->
-            <ui:VisualElement name="header" class="header">
-                <ui:VisualElement name="header-meta" class="header-meta">
-                    <ui:Label name="nhs-badge" class="nhs-badge" text="DELIRIUM SIMULATOR" />
-                    <ui:Label name="session-id" class="session-id" text="SESSION // General Medical Ward" />
+        <!-- ── STICKY REGION: header + score bar ─────────────── -->
+        <ui:VisualElement name="sticky-region" class="sticky-region">
+            <ui:VisualElement name="sticky-inner" class="sticky-inner">
+
+                <ui:VisualElement name="header" class="header">
+                    <ui:VisualElement name="header-meta" class="header-meta">
+                        <ui:Label name="nhs-badge" class="nhs-badge" text="DELIRIUM SIMULATOR" />
+                        <ui:Label name="session-id" class="session-id" text="SESSION // General Medical Ward" />
+                    </ui:VisualElement>
+                    <ui:VisualElement style="flex-direction: row;">
+                        <ui:Label class="header-title" text="Session " />
+                        <ui:Label class="header-title-accent" text="Review" />
+                    </ui:VisualElement>
+                    <ui:Label name="header-sub" class="header-sub"
+                              text="Arthur — 78 years old, post-operative hip replacement, Day 2" />
                 </ui:VisualElement>
-                <ui:VisualElement style="flex-direction: row;">
-                    <ui:Label class="header-title" text="Session " />
-                    <ui:Label class="header-title-accent" text="Review" />
+
+                <ui:VisualElement name="score-bar" class="score-bar">
+                    <ui:VisualElement>
+                        <ui:Label class="score-label" text="OUTCOME SCORE" />
+                        <ui:Label name="score-value" class="score-value" text="Optimal" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="outcome-pill" class="outcome-pill">
+                        <ui:Label name="outcome-pill-text" class="outcome-pill-text" text="Best outcome achieved" />
+                    </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:Label name="header-sub" class="header-sub" text="Arthur — 70 years old, post-operative cataract surgery, Day 2" />
+
             </ui:VisualElement>
-
-            <!-- Score Bar -->
-            <ui:VisualElement name="score-bar" class="score-bar">
-                <ui:VisualElement>
-                    <ui:Label class="score-label" text="OUTCOME SCORE" />
-                    <ui:Label name="score-value" class="score-value" text="Optimal" />
-                </ui:VisualElement>
-                <ui:VisualElement name="outcome-pill" class="outcome-pill">
-                    <ui:Label name="outcome-pill-text" class="outcome-pill-text" text="Best outcome achieved" />
-                </ui:VisualElement>
-            </ui:VisualElement>
-
-            <!-- Interventions Section -->
-            <ui:Label name="interventions-label" class="section-label" text="INTERVENTIONS SELECTED" />
-            <ui:VisualElement name="tips-list" class="tips-list" />
-
-            <!-- Clinical Insight Section -->
-            <ui:Label name="insight-label" class="section-label" text="OPTIMAL OUTCOME" />
-            <ui:VisualElement name="insight-card" class="insight-card-optimal">
-                <ui:Label name="insight-icon" class="insight-icon" text="★" />
-                <ui:VisualElement class="insight-content">
-                    <ui:Label name="insight-title" class="insight-title-optimal" text="Optimal Intervention Combination" />
-                    <ui:Label name="insight-body" class="insight-body-optimal" text="" />
-                </ui:VisualElement>
-            </ui:VisualElement>
-
-            <!-- Actions -->
-            <ui:VisualElement class="actions">
-                <ui:Button name="btn-play-again" class="btn-primary" text="Play Again →" />
-                <ui:Button name="btn-guidelines" class="btn-secondary" text="View Full Guidelines" />
-            </ui:VisualElement>
-
-            <!-- Footer -->
-            <ui:Label class="footer" text="NICE CG103  ·  Delirium: prevention, diagnosis and management  ·  Training build v0.1" />
-
         </ui:VisualElement>
+
+        <!-- ── SCROLLABLE BODY ────────────────────────────────── -->
+        <ui:ScrollView name="scroll-view" class="scroll-view"
+                       vertical-scroller-visibility="Auto"
+                       horizontal-scroller-visibility="Hidden">
+
+            <ui:VisualElement name="scroll-inner" class="scroll-inner">
+
+                <!-- Interventions section -->
+                <ui:Label name="interventions-label" class="section-label" text="INTERVENTIONS SELECTED" />
+
+                <!-- Two-column tip row: C# populates left and right slots -->
+                <ui:VisualElement name="tips-list" class="tips-list">
+                    <ui:VisualElement name="tip-card-slot-left"  class="tip-card-slot" />
+                    <ui:VisualElement name="tip-card-slot-right" class="tip-card-slot" />
+                </ui:VisualElement>
+
+                <!-- Clinical Insight section -->
+                <ui:Label name="insight-label" class="section-label" text="OPTIMAL OUTCOME" />
+                <ui:VisualElement name="insight-card" class="insight-card-optimal">
+                    <ui:Label name="insight-icon" class="insight-icon" text="★" />
+                    <ui:VisualElement class="insight-content">
+                        <ui:Label name="insight-title" class="insight-title-optimal"
+                                  text="Optimal Intervention Combination" />
+                        <ui:Label name="insight-body" class="insight-body-optimal" text="" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+                <!-- Actions -->
+                <ui:VisualElement class="actions">
+                    <ui:Button name="btn-play-again"  class="btn-primary"   text="Play Again →" />
+                    <ui:Button name="btn-guidelines"  class="btn-secondary" text="View Full Guidelines" />
+                </ui:VisualElement>
+
+                <!-- Footer -->
+                <ui:Label class="footer"
+                          text="NICE CG103  ·  Delirium: prevention, diagnosis and management  ·  Training build v0.1" />
+
+            </ui:VisualElement>
+        </ui:ScrollView>
+
     </ui:VisualElement>
 </ui:UXML>

@@ -16,14 +16,6 @@
             </ui:VisualElement>
         </ui:VisualElement>
 
-        <!-- SECONDARY NAV STRIP (crimson row 2 — decorative only) -->
-        <ui:VisualElement class="pn-tabnav">
-            <ui:Label class="pn-navlabel pn-navlabel-active" text="Chart Review" />
-            <ui:Label class="pn-navlabel" text="Current Episode" />
-            <ui:Label class="pn-navlabel" text="Results" />
-            <ui:Label class="pn-navlabel" text="Medications" />
-            <ui:Label class="pn-navlabel" text="Orders" />
-        </ui:VisualElement>
 
         <!-- PATIENT IDENTITY BANNER -->
         <ui:VisualElement class="pn-banner">

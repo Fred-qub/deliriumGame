@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 /// <summary>
 /// Manages the Tips/Session Review scene.
 /// Reads the two chosen action names from PlayerPrefs (saved by SceneReplayer),
-/// builds the tip cards dynamically, and sets the correct optimal/suboptimal state.
+/// builds tip cards into left and right column slots, and sets the correct
+/// optimal/suboptimal state throughout the UI.
 ///
 /// SETUP:
 ///   1. Attach this script to the UIManager GameObject in TipsScene.
@@ -104,9 +105,9 @@ public class TipsSceneManager : MonoBehaviour
 
     private void Start()
     {
-        // to view curson during tips scene
-        UnityEngine.Cursor.visible = true;
-        UnityEngine.Cursor.lockState = CursorLockMode.None;     
+        UnityEngine.Cursor.visible   = true;
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
+
         var root = GetComponent<UIDocument>().rootVisualElement;
 
         string choice1 = PlayerPrefs.GetString(KEY_CHOICE_1, "");
@@ -166,13 +167,20 @@ public class TipsSceneManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Populates the left and right tip card slots in the two-column layout.
+    /// choice1 → tip-card-slot-left, choice2 → tip-card-slot-right.
+    /// </summary>
     private void BuildTipCards(VisualElement root, string choice1, string choice2)
     {
-        var tipsList = root.Q<VisualElement>("tips-list");
-        tipsList.Clear();
+        var slotLeft  = root.Q<VisualElement>("tip-card-slot-left");
+        var slotRight = root.Q<VisualElement>("tip-card-slot-right");
 
-        AddTipCard(tipsList, choice1);
-        AddTipCard(tipsList, choice2);
+        slotLeft.Clear();
+        slotRight.Clear();
+
+        AddTipCard(slotLeft,  choice1);
+        AddTipCard(slotRight, choice2);
     }
 
     private void AddTipCard(VisualElement container, string actionName)
@@ -182,11 +190,7 @@ public class TipsSceneManager : MonoBehaviour
         TipData? match = null;
         foreach (var tip in allTips)
         {
-            if (tip.actionName == actionName)
-            {
-                match = tip;
-                break;
-            }
+            if (tip.actionName == actionName) { match = tip; break; }
         }
 
         if (match == null)
@@ -197,20 +201,16 @@ public class TipsSceneManager : MonoBehaviour
 
         TipData data = match.Value;
 
-        // Card
         var card = new VisualElement();
         card.AddToClassList("tip-card");
 
-        // Coloured left bar
         var bar = new VisualElement();
         bar.AddToClassList(data.isPositive ? "tip-bar-good" : "tip-bar-warn");
         card.Add(bar);
 
-        // Content area
         var content = new VisualElement();
         content.AddToClassList("tip-content");
 
-        // Header row (title + tag)
         var headerRow = new VisualElement();
         headerRow.AddToClassList("tip-header-row");
 
@@ -223,7 +223,6 @@ public class TipsSceneManager : MonoBehaviour
         headerRow.Add(title);
         headerRow.Add(tag);
 
-        // Body text
         var body = new Label(data.body);
         body.AddToClassList("tip-body");
 
@@ -278,7 +277,7 @@ public class TipsSceneManager : MonoBehaviour
         var playAgain  = root.Q<Button>("btn-play-again");
         var guidelines = root.Q<Button>("btn-guidelines");
 
-        playAgain.clicked += OnPlayAgain;
+        playAgain.clicked  += OnPlayAgain;
         guidelines.clicked += () => Debug.Log("[TipsSceneManager] View Full Guidelines clicked.");
     }
 

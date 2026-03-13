@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6c314036c131f4a239b1dafd17e32a54
+guid: 8a4119acf33da4e4081726810b923d34
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -12,7 +12,7 @@ TrueTypeFontImporter:
   - IBM Plex Sans
   fallbackFontReferences: []
   customCharacters: 
-  fontRenderingMode: 1
+  fontRenderingMode: 0
   ascentCalculationMode: 1
   useLegacyBoundsCalculation: 0
   shouldRoundAdvanceValue: 1
