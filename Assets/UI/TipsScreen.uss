@@ -13,6 +13,25 @@
     background-color: #0d1f35;
     width: 100%;
     height: 100%;
+    -unity-font-definition: none;
+    -unity-font: url("../Fonts/IBMPlexSans-Regular.ttf");
+}
+
+/* Bold elements use SemiBold variant */
+.nhs-badge,
+.header-title-accent,
+.score-value,
+.score-value-partial,
+.outcome-pill-text,
+.outcome-pill-text-suboptimal,
+.tip-title,
+.tip-tag-good,
+.tip-tag-warn,
+.insight-title-optimal,
+.insight-title-suboptimal,
+.btn-primary {
+    -unity-font-definition: none;
+    -unity-font: url("../Fonts/IBMPlexSans-SemiBold.ttf");
 }
 
 /* ── Sticky Region ──────────────────────────────────────── */
