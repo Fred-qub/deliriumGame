@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class Clock : MonoBehaviour {
 
@@ -7,9 +8,10 @@ public class Clock : MonoBehaviour {
     public int minutes = 0;
     public int hour = 0;
 	public int seconds = 0;
-	public bool realTime=true;
-	
-	public GameObject pointerSeconds;
+
+    public float TimeOfDay;
+
+    public GameObject pointerSeconds;
     public GameObject pointerMinutes;
     public GameObject pointerHours;
     
@@ -21,13 +23,38 @@ public class Clock : MonoBehaviour {
 
 void Start() 
 {
-	//-- set real time
-	if (realTime)
-	{
-		hour=System.DateTime.Now.Hour;
-		minutes=System.DateTime.Now.Minute;
-		seconds=System.DateTime.Now.Second;
-	}
+        if (PlayerPrefs.HasKey("TimeOfDay"))
+        {
+            TimeOfDay = PlayerPrefs.GetInt("TimeOfDay");
+        }
+
+        switch (TimeOfDay)
+        {
+            case 540: //9AM
+                hour = 9;
+                minutes = 0;
+                seconds = 0;
+                break;
+
+            case 960: //4PM
+                hour = 16;
+                minutes = 0;
+                seconds = 0;
+                break;
+
+            case 1380: //11PM
+                hour = 23;
+                minutes = 0;
+                seconds = 0;
+                break;
+
+            case 0: //ACTUAL TIME
+                hour = System.DateTime.Now.Hour;
+                minutes = System.DateTime.Now.Minute;
+                seconds = System.DateTime.Now.Second;
+                break;
+
+        }
 }
 
 void Update() 

@@ -26,14 +26,17 @@ public class TimeOfDaySelect : MonoBehaviour
     {
         switch (TimeOfDay)
         {
-            case 540:
+            case 540: // 9AM
                 PlayerPrefs.SetInt("TimeOfDay", 540);
                 break;
-            case 960:
+            case 960: //4PM
                 PlayerPrefs.SetInt("TimeOfDay", 960);
                 break;
-            case 1380:
+            case 1380: //11PM
                 PlayerPrefs.SetInt("TimeOfDay", 1380);
+                break;
+            case 0: //ACTUAL TIME
+                PlayerPrefs.SetInt("TimeOfDay", 0);
                 break;
         }
   
