@@ -101,7 +101,7 @@ private void Update()
         {
             TimeOfDay = PlayerPrefs.GetInt("TimeOfDay");
         }
-        else TimeOfDay = 1000;
+        else TimeOfDay = 0;
   
 
         switch (TimeOfDay)
@@ -118,6 +118,11 @@ private void Update()
                 TimeOfDay = 1380; // 11pm
                 break;
 
+            case 0: // actual time
+                TimeOfDay = 60 * (System.DateTime.Now.Hour) + (System.DateTime.Now.Minute); //takes the current hour,
+                break;                                                                      //multiplies it by 60, and then adds the minutes
+                                                                                            // to get the number of minutes since midnight
+                
 
         }
     }
