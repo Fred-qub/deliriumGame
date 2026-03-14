@@ -23,6 +23,7 @@ public class SpawnRat : MonoBehaviour
             Musophobia = PlayerPrefs.GetInt("Musophobia");
         }
         else Musophobia = 0;
+        Debug.Log(currentSceneName);
 
     }
 
@@ -34,24 +35,14 @@ public class SpawnRat : MonoBehaviour
 
     public void SpawnRats() 
     {
-        if (currentSceneName == "Patient Scene Ruth") // if Scene is patient scene
-        {
-            Vector3 spawnPos = new(spawnPosX, spawnPosY, Random.Range(-spawnRangeZ, spawnRangeZ));
-            Instantiate(ratPrefab, spawnPos, ratPrefab.transform.rotation);
-        }
-
-        else Debug.Log("No spawn as wrong scene");
+        Vector3 spawnPos = new(spawnPosX, spawnPosY, Random.Range(-spawnRangeZ, spawnRangeZ));
+        Instantiate(ratPrefab, spawnPos, ratPrefab.transform.rotation);
     }
 
     public void SpawnDarklings()
     {
-        if (currentSceneName == "Patient Scene Ruth") // if Scene is patient scene
-        {
-            Vector3 spawnPos = new(spawnPosX, spawnPosY, Random.Range(-spawnRangeZ, spawnRangeZ));
-            Instantiate(darklingPrefab, spawnPos, darklingPrefab.transform.rotation);
-        }
-
-        else Debug.Log("No spawn as wrong scene");
+        Vector3 spawnPos = new(spawnPosX, spawnPosY, Random.Range(-spawnRangeZ, spawnRangeZ));
+        Instantiate(darklingPrefab, spawnPos, darklingPrefab.transform.rotation);
     }
 
     public void StartSpawn() 

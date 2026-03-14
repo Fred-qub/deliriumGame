@@ -57,9 +57,11 @@ public class DemoInteractable : MonoBehaviour
             Debug.LogWarning($"{objectName} has already been used");
             return;
         }
-
+        
+        int choiceCount = InteractionMaster.Instance.successCount + InteractionMaster.Instance.failureCount;
+        
         // Check if Master allows more interactions
-        if (InteractionMaster.Instance.interactionHistory.Count >= InteractionMaster.Instance.maxInteractions)
+        if (choiceCount >= InteractionMaster.Instance.maxInteractions)
         {
             Debug.Log("Game Over - Cannot interact further.");
             return;

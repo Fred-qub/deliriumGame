@@ -579,8 +579,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44a1a43e674ffea478c0c8a295c1a714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRat: {fileID: 1347039194}
-  spawnSnake: {fileID: 1347039193}
   trustManager: {fileID: 45846304}
 --- !u!1 &51084968
 GameObject:
@@ -8679,6 +8677,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1668406974771968360, guid: b791cdd3a218d744da6ac4de55e886d1,
+        type: 3}
+      propertyPath: trustManager
+      value: 
+      objectReference: {fileID: 45846304}
     - target: {fileID: 3680612571013311078, guid: b791cdd3a218d744da6ac4de55e886d1,
         type: 3}
       propertyPath: snake
@@ -8694,30 +8697,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b791cdd3a218d744da6ac4de55e886d1, type: 3}
---- !u!114 &1347039193 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3680612571013311078, guid: b791cdd3a218d744da6ac4de55e886d1,
-    type: 3}
-  m_PrefabInstance: {fileID: 1347039192}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed0aabe7453b919478cf34f24a73ed65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1347039194 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6721574236611415201, guid: b791cdd3a218d744da6ac4de55e886d1,
-    type: 3}
-  m_PrefabInstance: {fileID: 1347039192}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5df3e9f1723fccf4e93d44c1a46fe3a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1352602894
 PrefabInstance:
   m_ObjectHideFlags: 0

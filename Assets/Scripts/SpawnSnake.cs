@@ -12,6 +12,7 @@ public class SpawnSnake : MonoBehaviour
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
         newspaper = GameObject.FindWithTag("Newspaper").GetComponent<ShrinkObject>();
+        Debug.Log(currentSceneName);
     }
 
     // Update is called once per frame
@@ -22,23 +23,12 @@ public class SpawnSnake : MonoBehaviour
 
     public void Newspaper() 
     {
-        if (currentSceneName == "Patient Scene Ruth") // if Scene is patient scene
-        {
-            newspaper.StartShrinking();
-        }
-
-        else  Debug.Log("No shrink as wrong scene");
+        newspaper.StartShrinking();
     }
 
     public void Snake()
     {
-        if (currentSceneName == "Patient Scene Ruth") // if Scene is patient scene
-        {
-            snake.SetActive(true);
-        }
-
-        else Debug.Log("No snake as wrong scene");
-
+        snake.SetActive(true);
     }
 
 

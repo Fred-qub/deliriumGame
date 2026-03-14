@@ -40,23 +40,24 @@ public class InteractionMaster : MonoBehaviour
     /// <param name="isSuccessAction">Is this a 'correct' action?</param>
     public void RecordInteraction(string objectName, bool isSuccessAction)
     {
-        // 1. Prevent interacting if we already hit the limit
-        if (interactionHistory.Count >= maxInteractions)
+        // Prevent interacting if limit has been reached
+        int totalChoices = successCount + failureCount;
+        if (totalChoices >= maxInteractions)
         {
             Debug.Log("Max interactions reached. Ignoring input.");
             return;
         }
 
-        // 2. Record the Boolean State (True = Activated)
+        // Boolean State (True = Activated)
         if (!objectActivationStates.ContainsKey(objectName))
         {
             objectActivationStates.Add(objectName, true);
         }
 
-        // 3. Record Order of Events
+        // Order of Events
         interactionHistory.Add(objectName);
 
-        // 4. Track Success/Failure
+        // Success/Failure
         if (isSuccessAction)
         {
             successCount++;
@@ -74,8 +75,9 @@ public class InteractionMaster : MonoBehaviour
         Debug.Log($"Object: {objectName} | Type: {(isSuccessAction ? "SUCCESS" : "FAILURE")}");
         Debug.Log($"Current History: {string.Join(" -> ", interactionHistory)}");
 
-        // 5. Check if we reached the limit to show the result
-        if (interactionHistory.Count >= maxInteractions)
+        // Check if limit has been reached and show the result
+        totalChoices = successCount + failureCount;
+        if (totalChoices >= maxInteractions)
         {
             CalculateFinalResult();
         }
@@ -85,7 +87,7 @@ public class InteractionMaster : MonoBehaviour
     
     public bool HasInteractedWith(string objectName)
     {
-        // Checks our dictionary to see if this object exists and is true
+        // Checks the dictionary to see if this object exists and is true
         if (objectActivationStates.ContainsKey(objectName))
         {
             return objectActivationStates[objectName];

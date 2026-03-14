@@ -24,7 +24,7 @@ public class DoctorAnimationStateController : MonoBehaviour
     public void startWalking()
     {
         animator.SetBool("IsWalking", true);
-        Debug.Log("the doctor is walking");
+        //Debug.Log("the doctor is walking");
     }
     
     public void stopWalking()
