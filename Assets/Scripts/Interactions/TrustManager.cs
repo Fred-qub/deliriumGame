@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class InteractionMaster : MonoBehaviour
 {
     public static InteractionMaster Instance { get; private set; }
-    public HallucinationChance hallucinationChance;
+  //  public HallucinationChance hallucinationChance;
  
 
     [Header("Game State")]
@@ -30,7 +30,7 @@ public class InteractionMaster : MonoBehaviour
         if (Instance == null) { Instance = this; DontDestroyOnLoad(gameObject); }
         else { Destroy(gameObject); }
 
-        hallucinationChance = GetComponent<HallucinationChance>();
+      //  hallucinationChance = GetComponent<HallucinationChance>();
     }
 
     /// <summary>
@@ -65,7 +65,7 @@ public class InteractionMaster : MonoBehaviour
         if (!isSuccessAction)
         {
             failureCount++;
-            CheckHallucinationChance();
+          //  CheckHallucinationChance();
         }
             
 
@@ -155,10 +155,10 @@ public class InteractionMaster : MonoBehaviour
         SceneManager.LoadScene(nextSceneName);
     }
 
-    public void CheckHallucinationChance() 
-    {
+ //   public void CheckHallucinationChance() 
+ //   {
 
-        hallucinationChance.AuxHallucinationLottery();   
+ //       hallucinationChance.AuxHallucinationLottery();   
 
-    }
+ //   }
 }

@@ -22,7 +22,7 @@ public class SpawnSnake : MonoBehaviour
 
     public void Newspaper() 
     {
-        if (currentSceneName == "Patient Scene Ruth") // if Scene is patient scene
+        if (currentSceneName == "PatientScene Ruth") // if Scene is patient scene
         {
             newspaper.StartShrinking();
         }
@@ -32,7 +32,7 @@ public class SpawnSnake : MonoBehaviour
 
     public void Snake()
     {
-        if (currentSceneName == "Patient Scene Ruth") // if Scene is patient scene
+        if (currentSceneName == "PatientScene Ruth") // if Scene is patient scene
         {
             snake.SetActive(true);
         }
