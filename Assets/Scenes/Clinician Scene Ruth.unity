@@ -581,6 +581,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnRat: {fileID: 1347039194}
   spawnSnake: {fileID: 1347039193}
+  trustManager: {fileID: 45846304}
 --- !u!1 &51084968
 GameObject:
   m_ObjectHideFlags: 0

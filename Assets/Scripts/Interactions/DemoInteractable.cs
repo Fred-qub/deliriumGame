@@ -10,6 +10,7 @@ public class DemoInteractable : MonoBehaviour
     public string objectName;       // e.g., "Verbal", "Sedative"
     public bool isSuccessOption;    // Check this box if this is a "Good" choice
 
+
     [Header("Dependency System")]
     [Tooltip("Name of the object that must be used FIRST to make this a success.")]
     public string requiredObjectName;

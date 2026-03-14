@@ -1,4 +1,5 @@
 using Unity.Collections;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,6 +9,9 @@ public class HallucinationChance : MonoBehaviour
     private int hallucinationTypeChancePercentage = 50; // chance of particular hallucination occurring
     public SpawnRat spawnRat;
     public SpawnSnake spawnSnake;
+    public InteractionMaster trustManager;
+    private string rat;
+    private string snake;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -43,6 +47,7 @@ public class HallucinationChance : MonoBehaviour
         if (Random.Range(0f, 100f) < hallucinationTypeChancePercentage) // if random number between 0 & 100 is less than the hallucination chance percentage
         {                  
                 Debug.Log("SpawnRat");
+                trustManager.interactionHistory.Add(rat);
                 spawnRat.StartSpawn();  // rat (or rat alternative) is spawned
                 
         }
@@ -50,6 +55,7 @@ public class HallucinationChance : MonoBehaviour
         else Debug.Log("Spawn Snake"); 
         spawnSnake.Newspaper();
         spawnSnake.Snake(); // otherwise a snake is spawned
+        trustManager.interactionHistory.Add(snake);
     }
 
   
