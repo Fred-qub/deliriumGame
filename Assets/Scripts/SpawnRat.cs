@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SpawnRat : MonoBehaviour
 {
@@ -10,10 +11,13 @@ public class SpawnRat : MonoBehaviour
     private float spawnRangeZ = 4; 
     private float StartDelay = 0f; // delay before items start to spawn is 0 sec
     private float SpawnInterval = 1f; //items spawn every 0.5 sec
+    private string currentSceneName;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        
+        string currentSceneName = SceneManager.GetActiveScene().name;
         if (PlayerPrefs.HasKey("Musophobia"))
         {
             Musophobia = PlayerPrefs.GetInt("Musophobia");
@@ -30,17 +34,24 @@ public class SpawnRat : MonoBehaviour
 
     public void SpawnRats() 
     {
-        Vector3 spawnPos = new(spawnPosX, spawnPosY, Random.Range(-spawnRangeZ, spawnRangeZ));
-        Instantiate(ratPrefab, spawnPos, ratPrefab.transform.rotation);
-        
+        if (currentSceneName == "Patient Scene Ruth") // if Scene is patient scene
+        {
+            Vector3 spawnPos = new(spawnPosX, spawnPosY, Random.Range(-spawnRangeZ, spawnRangeZ));
+            Instantiate(ratPrefab, spawnPos, ratPrefab.transform.rotation);
+        }
+
+        else Debug.Log("No spawn as wrong scene");
     }
 
     public void SpawnDarklings()
     {
+        if (currentSceneName == "Patient Scene Ruth") // if Scene is patient scene
+        {
+            Vector3 spawnPos = new(spawnPosX, spawnPosY, Random.Range(-spawnRangeZ, spawnRangeZ));
+            Instantiate(darklingPrefab, spawnPos, darklingPrefab.transform.rotation);
+        }
 
-        Vector3 spawnPos = new(spawnPosX, spawnPosY, Random.Range(-spawnRangeZ, spawnRangeZ));
-        Instantiate(darklingPrefab, spawnPos, darklingPrefab.transform.rotation);
-
+        else Debug.Log("No spawn as wrong scene");
     }
 
     public void StartSpawn() 

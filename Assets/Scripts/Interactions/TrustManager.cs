@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class InteractionMaster : MonoBehaviour
 {
     public static InteractionMaster Instance { get; private set; }
+    public HallucinationChance hallucinationChance;
  
 
     [Header("Game State")]
@@ -28,6 +29,8 @@ public class InteractionMaster : MonoBehaviour
     {
         if (Instance == null) { Instance = this; DontDestroyOnLoad(gameObject); }
         else { Destroy(gameObject); }
+
+        hallucinationChance = GetComponent<HallucinationChance>();
     }
 
     /// <summary>
@@ -55,9 +58,16 @@ public class InteractionMaster : MonoBehaviour
 
         // 4. Track Success/Failure
         if (isSuccessAction)
+        {
             successCount++;
-        else
+        }
+
+        if (!isSuccessAction)
+        {
             failureCount++;
+            CheckHallucinationChance();
+        }
+            
 
         // Debug Output for current state
         Debug.Log($"--- ACTION RECORDED ---");
@@ -143,5 +153,12 @@ public class InteractionMaster : MonoBehaviour
 
         Debug.Log($"Dialogue finished. Loading {nextSceneName}.");
         SceneManager.LoadScene(nextSceneName);
+    }
+
+    public void CheckHallucinationChance() 
+    {
+
+        hallucinationChance.AuxHallucinationLottery();   
+
     }
 }
