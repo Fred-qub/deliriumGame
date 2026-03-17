@@ -17,6 +17,18 @@ public class playerInteraction : MonoBehaviour
         //make sure you're not looking at nothing
         if (Input.GetKeyDown(KeyCode.E) && target != null)
         {
+            int totalChoices = InteractionMaster.Instance.successCount + InteractionMaster.Instance.failureCount;
+            if (totalChoices >= InteractionMaster.Instance.maxInteractions)
+            {
+                return;
+            }
+            
+            DemoInteractable obj = target.GetComponent<DemoInteractable>();
+            if (target.interactionLink != null && target.interactionLink.IsBlocked())
+            {
+                return;
+            }
+            
             target.Interact();
         }
     }
@@ -42,11 +54,26 @@ public class playerInteraction : MonoBehaviour
         else clearTarget();
     }
 
-    //self explanatory
+    
     void setTarget(interactableObject interactable)
     {
         target = interactable;
-        HUDmanager.instance.enableInteractionText(target.prompt);
+        DemoInteractable obj = interactable.interactionLink;
+        
+        int totalChoices = InteractionMaster.Instance.successCount + InteractionMaster.Instance.failureCount;
+
+        if (totalChoices >= InteractionMaster.Instance.maxInteractions)
+        {
+            HUDmanager.instance.enableInteractionText("<color=orange>Max interactions reached (2/2)</color>");
+        }
+        else if (obj != null && obj.IsBlocked())
+        {
+            HUDmanager.instance.disableInteractionText();
+        }
+        else
+        {
+            HUDmanager.instance.enableInteractionText(target.prompt);   
+        }
     }
     
     //if there's still a target set, get rid of it

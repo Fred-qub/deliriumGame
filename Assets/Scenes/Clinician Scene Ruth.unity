@@ -505,7 +505,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectName: Verbal
   isSuccessOption: 0
-  requiredObjectName: HearingAid
+  requiredObjectName: 
+  blockerObjectName: HearingAid
   doctorLine: "Relax, ok? There's nobody in the corner\u2026 Can't you see I'm your
     doctor, and I'm here to help?"
   arthurLine: You're with him. You're one of them!
@@ -4280,6 +4281,7 @@ MonoBehaviour:
   objectName: Lights
   isSuccessOption: 0
   requiredObjectName: 
+  blockerObjectName: 
   doctorLine: 
   arthurLine: You're hurting me. Please, stop.
   replayDoctorLine: 
@@ -7280,6 +7282,7 @@ MonoBehaviour:
   objectName: Coat
   isSuccessOption: 1
   requiredObjectName: 
+  blockerObjectName: 
   doctorLine: 
   arthurLine: "I thought someone was there. He'd been watching me all night\u2026
     What's happening to me, doctor?"
@@ -8088,6 +8091,7 @@ MonoBehaviour:
   objectName: HearingAid
   isSuccessOption: 1
   requiredObjectName: 
+  blockerObjectName: 
   doctorLine: Let's use your hearing aids, Arthur.
   arthurLine: That's clearer now, but I'm scared, doctor. I don't know what's real.
   replayDoctorLine: Let's use your hearing aids, Arthur.
@@ -11128,6 +11132,7 @@ MonoBehaviour:
   objectName: Sedative
   isSuccessOption: 0
   requiredObjectName: 
+  blockerObjectName: 
   doctorLine: 
   arthurLine: "I don\u2019t know you. Don't dare touch me!"
   replayDoctorLine: 
