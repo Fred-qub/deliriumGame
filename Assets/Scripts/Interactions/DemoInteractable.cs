@@ -14,8 +14,12 @@ public class DemoInteractable : MonoBehaviour
     [Header("Dependency System")]
     [Tooltip("Name of the object that must be used FIRST to make this a success.")]
     public string requiredObjectName;
+    [Tooltip("Name of the object that blocks this object from being interacted with.")]
+    public string blockerObjectName;
+    
 
     private bool hasInteracted = false;
+    
 
     // -------------------------------------------------------------------------
     // New dialogue fields
@@ -56,6 +60,15 @@ public class DemoInteractable : MonoBehaviour
         {
             Debug.LogWarning($"{objectName} has already been used");
             return;
+        }
+        
+        if (!string.IsNullOrEmpty(blockerObjectName))
+        {
+            if (InteractionMaster.Instance.HasInteractedWith(blockerObjectName))
+            {
+                Debug.LogWarning($"{blockerObjectName} has been used, {objectName} cannot be used");
+                return;
+            }
         }
         
         int choiceCount = InteractionMaster.Instance.successCount + InteractionMaster.Instance.failureCount;
@@ -168,5 +181,13 @@ public class DemoInteractable : MonoBehaviour
     {
         // Placeholder — signals dialogue to continue immediately until animation exists
         DialogueManager.Instance.ContinueHearingAidDialogue();
+    }
+    public bool IsBlocked()
+    {
+        if (!string.IsNullOrEmpty(blockerObjectName))
+        {
+            return InteractionMaster.Instance.HasInteractedWith(blockerObjectName);
+        }
+        return false;
     }
 }

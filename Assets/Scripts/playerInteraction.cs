@@ -17,6 +17,24 @@ public class playerInteraction : MonoBehaviour
         //make sure you're not looking at nothing
         if (Input.GetKeyDown(KeyCode.E) && target != null)
         {
+            int totalChoices = InteractionMaster.Instance.successCount + InteractionMaster.Instance.failureCount;
+            if (totalChoices >= InteractionMaster.Instance.maxInteractions)
+            {
+                return;
+            }
+            
+            DemoInteractable obj = target.interactionLink;
+            if (obj != null)
+            {
+                bool isBlocked = obj.IsBlocked();
+                bool isAlreadyUsed = InteractionMaster.Instance.HasInteractedWith(obj.objectName);
+
+                if (isBlocked || isAlreadyUsed)
+                {
+                    return;
+                }
+            }
+            
             target.Interact();
         }
     }
@@ -42,11 +60,37 @@ public class playerInteraction : MonoBehaviour
         else clearTarget();
     }
 
-    //self explanatory
+    
     void setTarget(interactableObject interactable)
     {
         target = interactable;
-        HUDmanager.instance.enableInteractionText(target.prompt);
+        DemoInteractable obj = interactable.interactionLink;
+        
+        int totalChoices = InteractionMaster.Instance.successCount + InteractionMaster.Instance.failureCount;
+
+        if (totalChoices >= InteractionMaster.Instance.maxInteractions)
+        {
+            HUDmanager.instance.enableInteractionText("<color=orange>Max interactions reached (2/2)</color>");
+        }
+        else if (obj != null)
+        {
+            //Check if Blocked OR Already Used
+            bool isBlocked = obj.IsBlocked();
+            bool isAlreadyUsed = InteractionMaster.Instance.HasInteractedWith(obj.objectName);
+
+            if (isBlocked || isAlreadyUsed)
+            {
+                HUDmanager.instance.disableInteractionText();
+            }
+            else
+            {
+                HUDmanager.instance.enableInteractionText(target.prompt);   
+            }
+        }
+        else
+        {
+            HUDmanager.instance.enableInteractionText(target.prompt);   
+        }
     }
     
     //if there's still a target set, get rid of it
