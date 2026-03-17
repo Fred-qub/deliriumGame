@@ -3,8 +3,8 @@ using UnityEngine.Animations.Rigging;
 
 public class ChangeHeadTrack : MonoBehaviour
 {
-    public MultiAimConstraint aimConstraint; // Assign in Inspector
-    public Transform corner;              // New source Transform
+    public MultiAimConstraint aimConstraint; 
+    public Transform corner;              
     public Transform mainCam;
     public RigBuilder rigBuilder;
 
@@ -39,6 +39,7 @@ public class ChangeHeadTrack : MonoBehaviour
             // Force the constraint to update immediately
             aimConstraint.weight = 1f;
 
+            // Update rig
             rigBuilder.Build();
     }
 
@@ -73,6 +74,7 @@ public class ChangeHeadTrack : MonoBehaviour
         // Force the constraint to update immediately
         aimConstraint.weight = 1f;
 
+        // Update rig
         rigBuilder.Build();
     }
 

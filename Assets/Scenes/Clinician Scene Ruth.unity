@@ -487,6 +487,7 @@ MonoBehaviour:
   objectName: Verbal
   isSuccessOption: 0
   requiredObjectName: HearingAid
+  blockerObjectName: 
   doctorLine: "Relax, ok? There's nobody in the corner\u2026 Can't you see I'm your
     doctor, and I'm here to help?"
   arthurLine: You're with him. You're one of them!
@@ -506,6 +507,7 @@ GameObject:
   m_Component:
   - component: {fileID: 45846305}
   - component: {fileID: 45846304}
+  - component: {fileID: 45846306}
   m_Layer: 0
   m_Name: TrustManager
   m_TagString: Untagged
@@ -525,7 +527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea7a5fecde6c2714aa7f48285018e12f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hallucinationChance: {fileID: 0}
+  hallucinationChance: {fileID: 45846306}
   interactionHistory: []
   successCount: 0
   failureCount: 0
@@ -547,6 +549,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &45846306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 45846303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44a1a43e674ffea478c0c8a295c1a714, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trustManager: {fileID: 45846304}
 --- !u!1 &46496824 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7619011503286379674, guid: cee10aa0746c9e549961a766e869d431,
@@ -2327,6 +2342,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  interactionLink: {fileID: 1157137382}
 --- !u!65 &288138044
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3114,6 +3130,39 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 446456576}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &450577525
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 450577526}
+  m_Layer: 0
+  m_Name: Bed
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &450577526
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450577525}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 941778740}
+  - {fileID: 1899631827}
+  m_Father: {fileID: 945433620}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &483069616 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: cee10aa0746c9e549961a766e869d431,
@@ -4355,6 +4404,7 @@ MonoBehaviour:
   objectName: Lights
   isSuccessOption: 0
   requiredObjectName: 
+  blockerObjectName: 
   doctorLine: 
   arthurLine: You're hurting me. Please, stop.
   replayDoctorLine: 
@@ -4800,6 +4850,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  interactionLink: {fileID: 1653370880}
 --- !u!65 &760276693
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5925,7 +5976,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 945433620}
+    m_TransformParent: {fileID: 450577526}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 6bf1dff9d21dfe641909e4d4edb208d7,
         type: 3}
@@ -5965,12 +6016,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 6bf1dff9d21dfe641909e4d4edb208d7,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6bf1dff9d21dfe641909e4d4edb208d7,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6bf1dff9d21dfe641909e4d4edb208d7,
         type: 3}
@@ -6060,6 +6111,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  interactionLink: {fileID: 0}
 --- !u!65 &941778748
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6151,7 +6203,7 @@ Transform:
   - {fileID: 681051023}
   - {fileID: 235946450}
   - {fileID: 807774232}
-  - {fileID: 941778740}
+  - {fileID: 450577526}
   - {fileID: 706545967}
   - {fileID: 616400355}
   - {fileID: 277622589}
@@ -7401,6 +7453,7 @@ MonoBehaviour:
   objectName: Coat
   isSuccessOption: 1
   requiredObjectName: 
+  blockerObjectName: 
   doctorLine: 
   arthurLine: "I thought someone was there. He'd been watching me all night\u2026
     What's happening to me, doctor?"
@@ -7875,6 +7928,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  interactionLink: {fileID: 691212577}
 --- !u!114 &1184448111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8313,6 +8367,7 @@ MonoBehaviour:
   objectName: HearingAid
   isSuccessOption: 1
   requiredObjectName: 
+  blockerObjectName: 
   doctorLine: Let's use your hearing aids, Arthur.
   arthurLine: That's clearer now, but I'm scared, doctor. I don't know what's real.
   replayDoctorLine: Let's use your hearing aids, Arthur.
@@ -10673,6 +10728,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  interactionLink: {fileID: 1232418982}
 --- !u!65 &1628085134
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10834,6 +10890,7 @@ MonoBehaviour:
   objectName: Sedative
   isSuccessOption: 0
   requiredObjectName: 
+  blockerObjectName: 
   doctorLine: 
   arthurLine: "I don\u2019t know you. Don't dare touch me!"
   replayDoctorLine: 
@@ -11282,6 +11339,7 @@ MonoBehaviour:
   aimConstraint: {fileID: 1702166494}
   corner: {fileID: 288138041}
   mainCam: {fileID: 711297363}
+  rigBuilder: {fileID: 919132148540377915}
 --- !u!135 &1702166497
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -12718,7 +12776,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 450577526}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: efd0002a471652248aa5b1b98abcfe07,
         type: 3}
@@ -12800,6 +12858,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efd0002a471652248aa5b1b98abcfe07, type: 3}
+--- !u!4 &1899631827 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: efd0002a471652248aa5b1b98abcfe07,
+    type: 3}
+  m_PrefabInstance: {fileID: 1899631826}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1928638504
 GameObject:
   m_ObjectHideFlags: 0
@@ -12938,6 +13002,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  interactionLink: {fileID: 0}
 --- !u!1001 &1953393550
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14931,9 +14996,10 @@ GameObject:
   - component: {fileID: 1533621866}
   - component: {fileID: 919132148540377915}
   - component: {fileID: 919132148540377914}
+  - component: {fileID: 919132148540377916}
   m_Layer: 0
   m_Name: oldman
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15058,6 +15124,35 @@ MonoBehaviour:
   - m_Rig: {fileID: 1702166493}
     m_Active: 1
   m_Effectors: []
+--- !u!114 &919132148540377916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148540377913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b16c79032d9b894e91c85b60fc31a12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prompt: Speak to Patient
+  onInteract:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 39635733}
+        m_TargetAssemblyTypeName: DemoInteractable, Assembly-CSharp
+        m_MethodName: ExecuteChoice
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  interactionLink: {fileID: 39635733}
 --- !u!1 &966256549729930224
 GameObject:
   m_ObjectHideFlags: 0
@@ -18830,4 +18925,3 @@ SceneRoots:
   - {fileID: 955594084}
   - {fileID: 640559003}
   - {fileID: 543450652208288131}
-  - {fileID: 1899631826}
