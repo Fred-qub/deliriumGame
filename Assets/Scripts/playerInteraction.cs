@@ -23,10 +23,16 @@ public class playerInteraction : MonoBehaviour
                 return;
             }
             
-            DemoInteractable obj = target.GetComponent<DemoInteractable>();
-            if (target.interactionLink != null && target.interactionLink.IsBlocked())
+            DemoInteractable obj = target.interactionLink;
+            if (obj != null)
             {
-                return;
+                bool isBlocked = obj.IsBlocked();
+                bool isAlreadyUsed = InteractionMaster.Instance.HasInteractedWith(obj.objectName);
+
+                if (isBlocked || isAlreadyUsed)
+                {
+                    return;
+                }
             }
             
             target.Interact();
@@ -66,9 +72,20 @@ public class playerInteraction : MonoBehaviour
         {
             HUDmanager.instance.enableInteractionText("<color=orange>Max interactions reached (2/2)</color>");
         }
-        else if (obj != null && obj.IsBlocked())
+        else if (obj != null)
         {
-            HUDmanager.instance.disableInteractionText();
+            //Check if Blocked OR Already Used
+            bool isBlocked = obj.IsBlocked();
+            bool isAlreadyUsed = InteractionMaster.Instance.HasInteractedWith(obj.objectName);
+
+            if (isBlocked || isAlreadyUsed)
+            {
+                HUDmanager.instance.disableInteractionText();
+            }
+            else
+            {
+                HUDmanager.instance.enableInteractionText(target.prompt);   
+            }
         }
         else
         {
