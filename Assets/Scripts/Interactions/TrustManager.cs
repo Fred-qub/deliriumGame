@@ -63,7 +63,7 @@ public class InteractionMaster : MonoBehaviour
             successCount++;
         }
 
-        if (!isSuccessAction)
+        if (!isSuccessAction && objectName != "Lights")
         {
             failureCount++;
             CheckHallucinationChance();

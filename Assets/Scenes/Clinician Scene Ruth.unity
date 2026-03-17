@@ -544,6 +544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea7a5fecde6c2714aa7f48285018e12f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hallucinationChance: {fileID: 0}
   interactionHistory: []
   successCount: 0
   failureCount: 0
@@ -7787,6 +7788,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1184448111}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cf601502d5e7a874d8da9e55be5c549e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1184448112}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cf601502d5e7a874d8da9e55be5c549e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1184448113}
   m_SourcePrefab: {fileID: 100100000, guid: cf601502d5e7a874d8da9e55be5c549e, type: 3}
 --- !u!4 &1184448107 stripped
 Transform:
@@ -7861,6 +7870,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1184448113}
+        m_TargetAssemblyTypeName: OutlineDisable, Assembly-CSharp
+        m_MethodName: OutlineOff
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1184448112}
+        m_TargetAssemblyTypeName: RemoveTag, Assembly-CSharp
+        m_MethodName: UnTag
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1184448111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7879,6 +7912,32 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &1184448112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184448108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18699682dbace9a4f9f5d4a4dc217cd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightSwitch: {fileID: 1184448108}
+--- !u!114 &1184448113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1184448108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 186ca45b179987644acdd15ca2d22155, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outline: {fileID: 1184448111}
 --- !u!1 &1185572403 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4055572739157331597, guid: cee10aa0746c9e549961a766e869d431,
