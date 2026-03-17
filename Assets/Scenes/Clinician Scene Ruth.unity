@@ -2215,6 +2215,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  interactionLink: {fileID: 1157137382}
 --- !u!65 &288138044
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4723,6 +4724,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  interactionLink: {fileID: 1653370880}
 --- !u!65 &760276693
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5965,6 +5967,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  interactionLink: {fileID: 39635733}
 --- !u!65 &941778748
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7721,6 +7724,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+  interactionLink: {fileID: 691212577}
 --- !u!1 &1197470018
 GameObject:
   m_ObjectHideFlags: 0
@@ -10989,6 +10993,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  interactionLink: {fileID: 1232418982}
 --- !u!65 &1628085134
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13065,6 +13070,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  interactionLink: {fileID: 0}
 --- !u!1001 &1953393550
 PrefabInstance:
   m_ObjectHideFlags: 0
