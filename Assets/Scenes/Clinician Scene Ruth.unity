@@ -11247,6 +11247,7 @@ GameObject:
   - component: {fileID: 1702166493}
   - component: {fileID: 1702166495}
   - component: {fileID: 1702166497}
+  - component: {fileID: 1702166498}
   m_Layer: 0
   m_Name: HeadTrackingControlRig
   m_TagString: Untagged
@@ -11299,13 +11300,13 @@ MonoBehaviour:
   m_Data:
     m_ConstrainedObject: {fileID: 5113417530756876446}
     m_SourceObjects:
-      m_Length: 1
+      m_Length: 2
       m_Item0:
         transform: {fileID: 288138041}
         weight: 1
       m_Item1:
-        transform: {fileID: 0}
-        weight: 0
+        transform: {fileID: 711297363}
+        weight: 1
       m_Item2:
         transform: {fileID: 0}
         weight: 0
@@ -11325,8 +11326,8 @@ MonoBehaviour:
         transform: {fileID: 0}
         weight: 0
     m_Offset: {x: 0, y: 0, z: 0}
-    m_MinLimit: -70
-    m_MaxLimit: 70
+    m_MinLimit: -30
+    m_MaxLimit: 30
     m_AimAxis: 4
     m_UpAxis: 2
     m_WorldUpType: 0
@@ -11344,7 +11345,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1702166491}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e51ce111bbf95e40a19de970ed52411, type: 3}
   m_Name: 
@@ -11375,6 +11376,22 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1702166498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702166491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f21558c4075ad8749aaafa790c04d155, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  multiAimConstraint: {fileID: 1702166494}
+  rigBuilder: {fileID: 919132148540377915}
+  rack: {fileID: 288138042}
+  switchDuration: 0.5
 --- !u!1001 &1707493333
 PrefabInstance:
   m_ObjectHideFlags: 0
