@@ -7,6 +7,7 @@ public class ChangeHeadTrack : MonoBehaviour
     public Transform corner;              
     public Transform mainCam;
     public RigBuilder rigBuilder;
+    public GameObject rack;
 
     private void OnTriggerExit(Collider other)
     {
@@ -18,34 +19,19 @@ public class ChangeHeadTrack : MonoBehaviour
                 return;
             }
 
-            // Get the current list of sources
-            WeightedTransformArray sources = aimConstraint.data.sourceObjects;
-
-            if (sources.Count > 0)
+            if (rack.activeInHierarchy == false) 
             {
-            // Replace the first source
-            sources.SetTransform(0, corner);
-            sources.SetWeight(0, 1f); // Full influence
-            }
-            else
-            {
-            // Add a new source if none exist
-            sources.Add(new WeightedTransform(corner, 1f));
+                return;
+        
             }
 
-            // Apply the modified sources back to the constraint
-            aimConstraint.data.sourceObjects = sources;
+            TrackRack();
 
-            // Force the constraint to update immediately
-            aimConstraint.weight = 1f;
-
-            // Update rig
-            rigBuilder.Build();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player")  
 
             if (aimConstraint == null || mainCam == null)
             {
@@ -53,6 +39,40 @@ public class ChangeHeadTrack : MonoBehaviour
                 return;
             }
 
+            TrackPlayer();
+    }
+
+    private void TrackRack() 
+    {
+
+        // Get the current list of sources
+        WeightedTransformArray sources = aimConstraint.data.sourceObjects;
+
+        if (sources.Count > 0)
+        {
+            // Replace the first source
+            sources.SetTransform(0, corner);
+            sources.SetWeight(0, 1f); // Full influence
+        }
+        else
+        {
+            // Add a new source if none exist
+            sources.Add(new WeightedTransform(corner, 1f));
+        }
+
+        // Apply the modified sources back to the constraint
+        aimConstraint.data.sourceObjects = sources;
+
+        // Force the constraint to update immediately
+        aimConstraint.weight = 1f;
+
+        // Update rig
+        rigBuilder.Build();
+
+    }
+
+    public void TrackPlayer() 
+    {
         // Get the current list of sources
         WeightedTransformArray sources = aimConstraint.data.sourceObjects;
 
@@ -76,6 +96,7 @@ public class ChangeHeadTrack : MonoBehaviour
 
         // Update rig
         rigBuilder.Build();
+
     }
 
 

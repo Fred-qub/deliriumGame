@@ -2342,6 +2342,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1702166495}
+        m_TargetAssemblyTypeName: ChangeHeadTrack, Assembly-CSharp
+        m_MethodName: TrackPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   interactionLink: {fileID: 1157137382}
 --- !u!65 &288138044
 BoxCollider:
@@ -7918,7 +7930,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 1184448112}
         m_TargetAssemblyTypeName: RemoveTag, Assembly-CSharp
-        m_MethodName: UnTag
+        m_MethodName: UnTagSwitch
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7960,6 +7972,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lightSwitch: {fileID: 1184448108}
+  arthur: {fileID: 919132148540377913}
 --- !u!114 &1184448113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11340,6 +11353,7 @@ MonoBehaviour:
   corner: {fileID: 288138041}
   mainCam: {fileID: 711297363}
   rigBuilder: {fileID: 919132148540377915}
+  rack: {fileID: 288138042}
 --- !u!135 &1702166497
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -14997,6 +15011,7 @@ GameObject:
   - component: {fileID: 919132148540377915}
   - component: {fileID: 919132148540377914}
   - component: {fileID: 919132148540377916}
+  - component: {fileID: 919132148540377917}
   m_Layer: 0
   m_Name: oldman
   m_TagString: Interactable
@@ -15152,7 +15167,33 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 919132148540377917}
+        m_TargetAssemblyTypeName: RemoveTag, Assembly-CSharp
+        m_MethodName: UnTagArthur
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   interactionLink: {fileID: 39635733}
+--- !u!114 &919132148540377917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148540377913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18699682dbace9a4f9f5d4a4dc217cd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightSwitch: {fileID: 1184448108}
+  arthur: {fileID: 919132148540377913}
 --- !u!1 &966256549729930224
 GameObject:
   m_ObjectHideFlags: 0
