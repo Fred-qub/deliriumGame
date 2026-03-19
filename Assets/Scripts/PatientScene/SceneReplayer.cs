@@ -23,6 +23,9 @@ public class SceneReplayer : MonoBehaviour
     [Header("The Actions Mapping")]
     public List<ReplayAction> actionLibrary;
 
+    public delegate void Interaction(string actionName);
+    public static event Interaction OnInteraction;
+
     private void Start()
     {
         if (ReplayDialogue.Instance != null)
@@ -52,9 +55,9 @@ public class SceneReplayer : MonoBehaviour
         foreach (string actionName in history)
         {
             Debug.Log($"Replaying Event: {actionName}");
-
+            OnInteraction?.Invoke(actionName);
             ReplayAction matchingAction = actionLibrary.Find(x => x.actionName == actionName);
-
+            
             if (!string.IsNullOrEmpty(matchingAction.actionName))
                 matchingAction.onTrigger.Invoke();
             else

@@ -11,6 +11,9 @@ public class ShrinkObject : MonoBehaviour
     public bool shrinkOnStart = true;
 
     private Coroutine shrinkRoutine;
+    
+    public delegate void Shrink();
+    public static event Shrink OnShrink;
 
     void Start()
     {
@@ -27,6 +30,8 @@ public class ShrinkObject : MonoBehaviour
         if (shrinkRoutine != null)
             StopCoroutine(shrinkRoutine);
 
+        OnShrink?.Invoke();
+        
         if (transform.localScale == Vector3.zero)
         {
   

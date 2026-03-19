@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class DemoInteractable : MonoBehaviour
 {
@@ -17,7 +18,11 @@ public class DemoInteractable : MonoBehaviour
     [Tooltip("Name of the object that blocks this object from being interacted with.")]
     public string blockerObjectName;
     
-
+    
+    
+    public delegate void Interaction(string name);
+    public static event Interaction OnInteraction;
+    
     private bool hasInteracted = false;
     
 
@@ -48,11 +53,16 @@ public class DemoInteractable : MonoBehaviour
 
     [Tooltip("Hearing Aid only. Arthur's response after the hearing aids are fitted.")]
     [TextArea] public string replayDoctorLineAfter;
+    
+    
 
     // -------------------------------------------------------------------------
     // Matthew's original ExecuteChoice — with dialogue calls added at the end
     // -------------------------------------------------------------------------
 
+    
+    
+    
     public void ExecuteChoice()
     {
         // Check if already used
@@ -101,6 +111,8 @@ public class DemoInteractable : MonoBehaviour
 
         // Mark as used and notify master — Matthew's original logic, unchanged
         hasInteracted = true;
+        OnInteraction?.Invoke(objectName);
+        
         InteractionMaster.Instance.RecordInteraction(objectName, finalOutcome);
 
         // -------------------------------------------------------------------------
@@ -142,6 +154,7 @@ public class DemoInteractable : MonoBehaviour
 
     public void ExecuteReplay()
     {
+        
         if (isHearingAidInteraction)
         {
             // Hearing Aid replay: garbled doctor line → animation → clear doctor line → Arthur monologue
