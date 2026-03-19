@@ -161,7 +161,7 @@
         <!-- Bottom citation -->
         <ui:Label name="citation"
             class="citation"
-            text="NICE CG103  ·  Delirium: prevention, diagnosis and management" />
+            text="Delirium: prevention, diagnosis and management" />
 
         <!-- About modal (hidden by default) -->
         <ui:VisualElement name="modal-overlay" class="modal-overlay">
@@ -176,7 +176,7 @@
                 </ui:VisualElement>
 
                 <ui:Label class="modal-body"
-                    text="Misperception is an interactive clinical training simulation designed to support healthcare professionals in recognising and responding to acute confusional states in elderly patients.&#10;&#10;Complete the clinician and patient perspective scenarios to unlock evidence-based learning tips and clinical guidance.&#10;&#10;This simulation is for educational purposes only and does not constitute clinical advice. All scenarios are informed by NICE CG103 guidelines." />
+                    text="Misperception is an interactive clinical training simulation designed to support healthcare professionals in recognising and responding to acute confusional states in elderly patients.&#10;&#10;Complete the clinician and patient perspective scenarios to unlock evidence-based learning tips and clinical guidance.&#10;&#10;This simulation is for educational purposes only and does not constitute clinical advice." />
 
                 <ui:VisualElement class="modal-footer">
                     <ui:Button name="modal-ok" class="btn btn-primary modal-ok-btn">
