@@ -2373,7 +2373,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1702166495}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChangeHeadTrack, Assembly-CSharp
         m_MethodName: TrackPlayer
         m_Mode: 1
@@ -11276,7 +11276,6 @@ GameObject:
   - component: {fileID: 1702166492}
   - component: {fileID: 1702166494}
   - component: {fileID: 1702166493}
-  - component: {fileID: 1702166495}
   - component: {fileID: 1702166497}
   - component: {fileID: 1702166498}
   m_Layer: 0
@@ -11369,23 +11368,6 @@ MonoBehaviour:
       x: 0
       y: 1
       z: 0
---- !u!114 &1702166495
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1702166491}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e51ce111bbf95e40a19de970ed52411, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  aimConstraint: {fileID: 1702166494}
-  corner: {fileID: 288138041}
-  mainCam: {fileID: 711297363}
-  rigBuilder: {fileID: 919132148540377915}
-  rack: {fileID: 288138042}
 --- !u!135 &1702166497
 SphereCollider:
   m_ObjectHideFlags: 0
