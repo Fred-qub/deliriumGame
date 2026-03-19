@@ -40,7 +40,7 @@
 .vignette {
     position: absolute;
     left: 0; top: 0; right: 0; bottom: 0;
-    background-color: rgba(4, 9, 16, 0.62);
+    background-color: rgba(13, 7, 32, 0.08);
 }
 
 .scanlines {
@@ -92,7 +92,7 @@
 
 .eyebrow {
     font-size: 10px;
-    color: rgb(61, 90, 96);
+    color: rgb(138, 171, 176);
     letter-spacing: 2px;
     margin-bottom: 22px;
     -unity-text-align: upper-left;
@@ -146,7 +146,7 @@
     margin-top: 30px;
     padding-top: 22px;
     border-top-width: 1px;
-    border-top-color: rgb(26, 55, 50);
+    border-top-color: rgb(74, 155, 142);
     margin-bottom: 0;
 }
 
@@ -158,7 +158,7 @@
 
 .stake-divider {
     width: 1px;
-    background-color: rgb(26, 55, 50);
+    background-color: rgb(74, 155, 142);
     margin-right: 18px;
     align-self: stretch;
 }
@@ -172,7 +172,7 @@
 
 .stake-label {
     font-size: 11px;
-    color: rgb(61, 90, 96);
+    color: rgb(138, 171, 176);
     white-space: normal;
     -unity-text-align: upper-left;
 }
@@ -431,7 +431,7 @@
 
 .panel-footer-text {
     font-size: 9px;
-    color: rgb(61, 90, 96);
+    color: rgb(138, 171, 176);
     letter-spacing: 0.8px;
     -unity-text-align: middle-left;
 }
@@ -460,7 +460,7 @@
 /* ── Citation ────────────────────────────────────────────────── */
 .citation {
     font-size: 9px;
-    color: rgb(80, 120, 114);
+    color: rgb(138, 171, 176);
     letter-spacing: 1.2px;
     -unity-text-align: lower-center;
     align-self: center;
