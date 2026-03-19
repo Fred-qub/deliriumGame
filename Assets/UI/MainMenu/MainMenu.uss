@@ -2,11 +2,9 @@
     MainMenu.uss — Misperception
     Palette:   TipsScene navy + amber (#E67E00) + teal (#4A9B8E)
     Fonts:     IBM Plex Sans via direct TTF url() reference.
-               Pattern matches TipsScreen.uss exactly:
                  -unity-font-definition: none;
                  -unity-font: url("../../Fonts/IBMPlexSans-Regular.ttf");
                Path is relative to this file at Assets/UI/MainMenu/MainMenu.uss
-               Fonts live at Assets/UI/Fonts/ — two levels up = ../../Fonts/
     Notes:     USS does not support rgba() in border-color; closest solid used.
                Linear gradients not supported; accent bars use solid rgb(0, 94, 184).
                backdrop-filter not supported in Unity 6000.1.x UI Toolkit.
@@ -42,7 +40,7 @@
 .vignette {
     position: absolute;
     left: 0; top: 0; right: 0; bottom: 0;
-    background-color: rgba(4, 9, 16, 0.35);
+    background-color: rgba(4, 9, 16, 0.62);
 }
 
 .scanlines {
@@ -75,7 +73,13 @@
     padding-left: 56px;
     padding-right: 56px;
     padding-top: 0;
-    padding-bottom: 0;
+    padding-bottom: 48px;
+    background-color: rgba(5, 12, 22, 0.55);
+    border-radius: 4px;
+    width: 65%;
+    align-self: center;
+    margin-top: 24px;
+    margin-bottom: 84px;
 }
 
 /* ── Left column ─────────────────────────────────────────────── */
