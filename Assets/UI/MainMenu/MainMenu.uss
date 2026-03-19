@@ -1,17 +1,18 @@
 /*
     MainMenu.uss — Misperception
     Palette:   TipsScene navy + amber (#E67E00) + teal (#4A9B8E)
-    Fonts:     Unity default (all -unity-font references removed for Unity 6 URP
-               compatibility — re-add as -unity-font-definition pointing to
-               imported IBM Plex SDF assets once fonts are set up)
+    Fonts:     IBM Plex Sans via direct TTF url() reference.
+               Pattern matches TipsScreen.uss exactly:
+                 -unity-font-definition: none;
+                 -unity-font: url("../../Fonts/IBMPlexSans-Regular.ttf");
+               Path is relative to this file at Assets/UI/MainMenu/MainMenu.uss
+               Fonts live at Assets/UI/Fonts/ — two levels up = ../../Fonts/
     Notes:     USS does not support rgba() in border-color; closest solid used.
-               Linear gradients on background-color not supported; use textures
-               for the accent bars (topbar_gradient.png) or accept solid colour.
-               backdrop-filter not supported in Unity 6000.1.x UI Toolkit;
-               panel opacity provides the glass-over-camera effect instead.
+               Linear gradients not supported; accent bars use solid rgb(0, 94, 184).
+               backdrop-filter not supported in Unity 6000.1.x UI Toolkit.
 */
 
-/* ── Root ─────────────────────────────────────────────────────── */
+/* ── Root — sets default font for all children ───────────────── */
 .root {
     width: 100%;
     height: 100%;
@@ -19,6 +20,19 @@
     align-items: stretch;
     justify-content: flex-start;
     background-color: rgba(0,0,0,0);
+    -unity-font-definition: none;
+    -unity-font: url("../../Fonts/IBMPlexSans-Regular.ttf");
+}
+
+/* Bold elements — mirrors TipsScreen.uss pattern */
+.panel-title,
+.patient-name,
+.stake-num,
+.btn-label,
+.modal-title,
+.ctx-val {
+    -unity-font-definition: none;
+    -unity-font: url("../../Fonts/IBMPlexSans-SemiBold.ttf");
 }
 
 /* ── Atmosphere layers ───────────────────────────────────────── */
@@ -40,8 +54,6 @@
     position: absolute;
     left: 0; top: 0; right: 0;
     height: 3px;
-    background-image: url("project://database/Assets/UI/Textures/topbar_gradient.png");
-    -unity-background-scale-mode: stretch-to-fill;
     background-color: rgb(0, 94, 184);
 }
 
@@ -82,6 +94,7 @@
 
 .hook-quote {
     font-size: 14px;
+    -unity-font-style: italic;
     color: rgb(74, 155, 142);
     margin-bottom: 18px;
     white-space: normal;
@@ -89,7 +102,7 @@
     opacity: 0.85;
 }
 
-/* Title split — "Mis" light / "perception" bold amber */
+/* Title split — "Mis" regular / "perception" semibold amber */
 .title-row {
     flex-direction: row;
     align-items: flex-end;
@@ -104,6 +117,8 @@
 }
 
 .title-perception {
+    -unity-font-definition: none;
+    -unity-font: url("../../Fonts/IBMPlexSans-SemiBold.ttf");
     font-size: 58px;
     color: rgb(230, 126, 0);
     -unity-text-align: lower-left;
@@ -214,8 +229,6 @@
 
 .panel-accent {
     height: 3px;
-    background-image: url("project://database/Assets/UI/Textures/topbar_gradient.png");
-    -unity-background-scale-mode: stretch-to-fill;
     background-color: rgb(0, 94, 184);
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
@@ -327,7 +340,6 @@
     border-radius: 3px;
     margin-bottom: 7px;
     padding: 0;
-    cursor: default;
 }
 
 /* Note: :last-child not supported in USS — bottom margin handled per-button */
@@ -489,7 +501,6 @@
     color: rgb(138, 171, 176);
     font-size: 13px;
     -unity-text-align: middle-center;
-    cursor: default;
     padding: 0;
 }
 
