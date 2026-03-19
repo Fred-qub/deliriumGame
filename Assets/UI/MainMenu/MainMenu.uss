@@ -1,0 +1,518 @@
+/*
+    MainMenu.uss — Misperception
+    Palette:   TipsScene navy + amber (#E67E00) + teal (#4A9B8E)
+    Fonts:     Unity default (all -unity-font references removed for Unity 6 URP
+               compatibility — re-add as -unity-font-definition pointing to
+               imported IBM Plex SDF assets once fonts are set up)
+    Notes:     USS does not support rgba() in border-color; closest solid used.
+               Linear gradients on background-color not supported; use textures
+               for the accent bars (topbar_gradient.png) or accept solid colour.
+               backdrop-filter not supported in Unity 6000.1.x UI Toolkit;
+               panel opacity provides the glass-over-camera effect instead.
+*/
+
+/* ── Root ─────────────────────────────────────────────────────── */
+.root {
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    background-color: rgba(0,0,0,0);
+}
+
+/* ── Atmosphere layers ───────────────────────────────────────── */
+
+.vignette {
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+    background-color: rgba(4, 9, 16, 0.35);
+}
+
+.scanlines {
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+    background-color: rgba(0,0,0,0);
+    opacity: 0.0;
+}
+
+.top-stripe {
+    position: absolute;
+    left: 0; top: 0; right: 0;
+    height: 3px;
+    background-image: url("project://database/Assets/UI/Textures/topbar_gradient.png");
+    -unity-background-scale-mode: stretch-to-fill;
+    background-color: rgb(0, 94, 184);
+}
+
+.bot-stripe {
+    position: absolute;
+    left: 0; bottom: 0; right: 0;
+    height: 1px;
+    background-color: rgb(26, 60, 55);
+}
+
+/* ── Screen layout ───────────────────────────────────────────── */
+.screen {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    padding-left: 56px;
+    padding-right: 56px;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+/* ── Left column ─────────────────────────────────────────────── */
+.col-left {
+    flex: 1;
+    flex-direction: column;
+    max-width: 480px;
+    padding-right: 56px;
+}
+
+.eyebrow {
+    font-size: 10px;
+    color: rgb(61, 90, 96);
+    letter-spacing: 2px;
+    margin-bottom: 22px;
+    -unity-text-align: upper-left;
+}
+
+.hook-quote {
+    font-size: 14px;
+    color: rgb(74, 155, 142);
+    margin-bottom: 18px;
+    white-space: normal;
+    -unity-text-align: upper-left;
+    opacity: 0.85;
+}
+
+/* Title split — "Mis" light / "perception" bold amber */
+.title-row {
+    flex-direction: row;
+    align-items: flex-end;
+    margin-bottom: 20px;
+}
+
+.title-mis {
+    font-size: 58px;
+    color: rgb(237, 242, 240);
+    -unity-text-align: lower-left;
+    margin-right: -3px;
+}
+
+.title-perception {
+    font-size: 58px;
+    color: rgb(230, 126, 0);
+    -unity-text-align: lower-left;
+}
+
+.hook-body {
+    font-size: 13px;
+    color: rgb(138, 171, 176);
+    white-space: normal;
+    -unity-text-align: upper-left;
+    max-width: 390px;
+    margin-bottom: 0;
+}
+
+/* ── Stakes strip ────────────────────────────────────────────── */
+.stakes {
+    flex-direction: row;
+    align-items: stretch;
+    margin-top: 30px;
+    padding-top: 22px;
+    border-top-width: 1px;
+    border-top-color: rgb(26, 55, 50);
+    margin-bottom: 0;
+}
+
+.stake {
+    flex: 1;
+    flex-direction: column;
+    padding-right: 18px;
+}
+
+.stake-divider {
+    width: 1px;
+    background-color: rgb(26, 55, 50);
+    margin-right: 18px;
+    align-self: stretch;
+}
+
+.stake-num {
+    font-size: 20px;
+    color: rgb(230, 126, 0);
+    -unity-text-align: upper-left;
+    margin-bottom: 4px;
+}
+
+.stake-label {
+    font-size: 11px;
+    color: rgb(61, 90, 96);
+    white-space: normal;
+    -unity-text-align: upper-left;
+}
+
+/* ── Patient pill ────────────────────────────────────────────── */
+.patient-pill {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 26px;
+    padding: 9px 14px;
+    background-color: rgb(15, 34, 30);
+    border-width: 1px;
+    border-color: rgb(30, 65, 58);
+    border-radius: 3px;
+    align-self: flex-start;
+}
+
+.patient-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 4px;
+    background-color: rgb(74, 155, 142);
+    margin-right: 10px;
+    flex-shrink: 0;
+}
+
+.patient-info {
+    flex-direction: column;
+}
+
+.patient-name {
+    font-size: 13px;
+    color: rgb(237, 242, 240);
+    -unity-text-align: upper-left;
+    margin-bottom: 2px;
+}
+
+.patient-meta {
+    font-size: 10px;
+    color: rgb(61, 90, 96);
+    letter-spacing: 0.8px;
+    -unity-text-align: upper-left;
+}
+
+/* ── Right column ────────────────────────────────────────────── */
+.col-right {
+    width: 336px;
+    flex-shrink: 0;
+    flex-direction: column;
+}
+
+/* ── Panel ───────────────────────────────────────────────────── */
+.panel {
+    flex-direction: column;
+    background-color: rgba(10, 20, 36, 0.86);
+    border-width: 1px;
+    border-color: rgb(26, 55, 50);
+    border-radius: 4px;
+}
+
+.panel-accent {
+    height: 3px;
+    background-image: url("project://database/Assets/UI/Textures/topbar_gradient.png");
+    -unity-background-scale-mode: stretch-to-fill;
+    background-color: rgb(0, 94, 184);
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.panel-header {
+    padding: 16px 22px 13px 22px;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(20, 44, 40);
+}
+
+.panel-eyebrow {
+    font-size: 9px;
+    color: rgb(61, 90, 96);
+    letter-spacing: 2px;
+    -unity-text-align: upper-left;
+    margin-bottom: 4px;
+}
+
+.panel-title {
+    font-size: 16px;
+    color: rgb(237, 242, 240);
+    -unity-text-align: upper-left;
+}
+
+/* ── Objectives ──────────────────────────────────────────────── */
+.objectives {
+    flex-direction: column;
+    padding: 13px 22px 11px 22px;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(18, 38, 35);
+}
+
+.obj-row {
+    flex-direction: row;
+    align-items: flex-start;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(16, 34, 30);
+}
+
+.obj-row-last {
+    border-bottom-width: 0;
+}
+
+.obj-num {
+    font-size: 9px;
+    color: rgb(74, 155, 142);
+    opacity: 0.55;
+    width: 18px;
+    flex-shrink: 0;
+    padding-top: 2px;
+    -unity-text-align: upper-left;
+}
+
+.obj-text {
+    font-size: 11px;
+    color: rgb(138, 171, 176);
+    white-space: normal;
+    -unity-text-align: upper-left;
+    flex-grow: 1;
+}
+
+/* ── Context strip ───────────────────────────────────────────── */
+.context-strip {
+    flex-direction: row;
+    padding: 11px 22px;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(18, 38, 35);
+}
+
+.ctx-tag {
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    padding: 7px 4px;
+    background-color: rgb(12, 26, 24);
+    border-width: 1px;
+    border-color: rgb(24, 52, 46);
+    border-radius: 2px;
+    margin-right: 5px;
+}
+
+/* Note: :last-child not supported in USS — ctx-tag spacing handled via btn-group padding */
+
+.ctx-label {
+    font-size: 8px;
+    color: rgb(61, 90, 96);
+    letter-spacing: 1px;
+    -unity-text-align: upper-center;
+    margin-bottom: 3px;
+}
+
+.ctx-val {
+    font-size: 11px;
+    color: rgb(74, 155, 142);
+    -unity-text-align: upper-center;
+}
+
+/* ── Buttons ─────────────────────────────────────────────────── */
+.btn-group {
+    flex-direction: column;
+    padding: 13px 22px 15px 22px;
+}
+
+.btn {
+    height: 46px;
+    border-radius: 3px;
+    margin-bottom: 7px;
+    padding: 0;
+    cursor: default;
+}
+
+/* Note: :last-child not supported in USS — bottom margin handled per-button */
+
+.btn-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.btn-label {
+    font-size: 13px;
+    -unity-text-align: middle-left;
+}
+
+.btn-arrow {
+    font-size: 14px;
+    opacity: 0.5;
+    -unity-text-align: middle-right;
+}
+
+/* Primary — Enter the ward */
+.btn-primary {
+    background-color: rgb(74, 155, 142);
+    border-width: 1px;
+    border-color: rgb(58, 128, 112);
+}
+
+.btn-primary:hover {
+    background-color: rgb(82, 176, 160);
+    border-color: rgb(74, 155, 142);
+}
+
+.btn-primary:active {
+    background-color: rgb(58, 128, 112);
+}
+
+.btn-primary .btn-label {
+    color: rgb(255, 255, 255);
+}
+
+.btn-primary .btn-arrow {
+    color: rgb(255, 255, 255);
+}
+
+/* Secondary — About this simulation */
+.btn-secondary {
+    background-color: rgba(0,0,0,0);
+    border-width: 1px;
+    border-color: rgb(24, 52, 46);
+}
+
+.btn-secondary:hover {
+    background-color: rgb(15, 34, 30);
+    border-color: rgb(74, 155, 142);
+}
+
+.btn-secondary .btn-label {
+    color: rgb(138, 171, 176);
+}
+
+.btn-secondary .btn-arrow {
+    color: rgb(138, 171, 176);
+}
+
+.btn-secondary:hover .btn-label {
+    color: rgb(237, 242, 240);
+}
+
+/* ── Panel footer ────────────────────────────────────────────── */
+.panel-footer {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 9px 22px 13px 22px;
+    border-top-width: 1px;
+    border-top-color: rgb(18, 38, 35);
+}
+
+.panel-footer-text {
+    font-size: 9px;
+    color: rgb(61, 90, 96);
+    letter-spacing: 0.8px;
+    -unity-text-align: middle-left;
+}
+
+.panel-version {
+    font-size: 9px;
+    color: rgb(61, 90, 96);
+    border-width: 1px;
+    border-color: rgb(24, 52, 46);
+    border-radius: 2px;
+    padding: 2px 6px;
+    -unity-text-align: middle-center;
+}
+
+/* ── Citation ────────────────────────────────────────────────── */
+.citation {
+    font-size: 9px;
+    color: rgb(40, 68, 64);
+    letter-spacing: 1.2px;
+    -unity-text-align: lower-center;
+    align-self: center;
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+}
+
+/* ── Modal overlay ───────────────────────────────────────────── */
+.modal-overlay {
+    position: absolute;
+    left: 0; top: 0; right: 0; bottom: 0;
+    background-color: rgba(4, 9, 16, 0.75);
+    align-items: center;
+    justify-content: center;
+    display: none;
+}
+
+.modal-overlay.visible {
+    display: flex;
+}
+
+.modal-card {
+    width: 460px;
+    background-color: rgb(10, 20, 36);
+    border-width: 1px;
+    border-color: rgb(26, 55, 50);
+    border-radius: 4px;
+    flex-direction: column;
+}
+
+.modal-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 22px 13px 22px;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(20, 44, 40);
+}
+
+.modal-title {
+    font-size: 15px;
+    color: rgb(237, 242, 240);
+    -unity-text-align: middle-left;
+}
+
+.modal-close {
+    width: 28px;
+    height: 28px;
+    background-color: rgba(0,0,0,0);
+    border-width: 1px;
+    border-color: rgb(26, 55, 50);
+    border-radius: 2px;
+    color: rgb(138, 171, 176);
+    font-size: 13px;
+    -unity-text-align: middle-center;
+    cursor: default;
+    padding: 0;
+}
+
+.modal-close:hover {
+    border-color: rgb(74, 155, 142);
+    color: rgb(237, 242, 240);
+    background-color: rgb(15, 34, 30);
+}
+
+.modal-body {
+    font-size: 12px;
+    color: rgb(138, 171, 176);
+    white-space: normal;
+    -unity-text-align: upper-left;
+    padding: 18px 22px;
+}
+
+.modal-footer {
+    padding: 0 22px 18px 22px;
+    align-items: flex-end;
+}
+
+.modal-ok-btn {
+    width: 120px;
+    margin-bottom: 0;
+}

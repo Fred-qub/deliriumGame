@@ -1,0 +1,197 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <Style src="MainMenu.uss" />
+
+    <!--
+        MainMenu.uxml — Misperception
+        Attach to a UIDocument component on the UIManager GameObject in MainMenu scene.
+        Companion stylesheet: MainMenu.uss
+        Controller script:   MainMenuController.cs
+    -->
+
+    <ui:VisualElement name="root" class="root">
+
+        <!-- Atmospheric overlay layers (sit over the live 3D camera) -->
+        <ui:VisualElement name="vignette"   class="vignette"   picking-mode="Ignore" />
+        <ui:VisualElement name="scanlines"  class="scanlines"  picking-mode="Ignore" />
+        <ui:VisualElement name="top-stripe" class="top-stripe" picking-mode="Ignore" />
+        <ui:VisualElement name="bot-stripe" class="bot-stripe" picking-mode="Ignore" />
+
+        <!-- Two-column layout -->
+        <ui:VisualElement name="screen" class="screen">
+
+            <!-- ── LEFT COLUMN: identity + emotional hook ── -->
+            <ui:VisualElement name="col-left" class="col-left">
+
+                <ui:Label name="eyebrow"
+                    class="eyebrow"
+                    text="A clinical training simulation" />
+
+                <ui:Label name="hook-quote"
+                    class="hook-quote"
+                    text="&quot;He keeps saying there&apos;s a strange man in the room.&quot;" />
+
+                <!-- Game title: "Mis" light + "perception" bold amber -->
+                <ui:VisualElement name="title-row" class="title-row">
+                    <ui:Label name="title-mis"        class="title-mis"        text="Mis" />
+                    <ui:Label name="title-perception" class="title-perception" text="perception" />
+                </ui:VisualElement>
+
+                <ui:Label name="hook-body"
+                    class="hook-body"
+                    text="An elderly patient is saying things that don&apos;t add up. He&apos;s frightened and not making sense. He may not be able to tell you what&apos;s wrong — but the truth is there, if you know how to look for it." />
+
+                <!-- Stakes strip -->
+                <ui:VisualElement name="stakes" class="stakes">
+
+                    <ui:VisualElement class="stake">
+                        <ui:Label class="stake-num"   text="1 in 8" />
+                        <ui:Label class="stake-label" text="hospital patients are affected" />
+                    </ui:VisualElement>
+
+                    <ui:VisualElement class="stake-divider" />
+
+                    <ui:VisualElement class="stake">
+                        <ui:Label class="stake-num"   text="10×" />
+                        <ui:Label class="stake-label" text="higher mortality if missed" />
+                    </ui:VisualElement>
+
+                    <ui:VisualElement class="stake-divider" />
+
+                    <ui:VisualElement class="stake">
+                        <ui:Label class="stake-num"   text="70%" />
+                        <ui:Label class="stake-label" text="of cases are preventable" />
+                    </ui:VisualElement>
+
+                </ui:VisualElement>
+
+                <!-- Patient identity pill -->
+                <ui:VisualElement name="patient-pill" class="patient-pill">
+                    <ui:VisualElement name="patient-dot" class="patient-dot" />
+                    <ui:VisualElement class="patient-info">
+                        <ui:Label class="patient-name" text="Arthur Roberts, 70" />
+                        <ui:Label class="patient-meta" text="GENERAL MEDICAL WARD  ·  DAY 2 POST-OP  ·  CATARACT" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+
+            </ui:VisualElement>
+            <!-- /col-left -->
+
+            <!-- ── RIGHT COLUMN: action panel ── -->
+            <ui:VisualElement name="col-right" class="col-right">
+                <ui:VisualElement name="panel" class="panel">
+
+                    <ui:VisualElement class="panel-accent" />
+
+                    <ui:VisualElement class="panel-header">
+                        <ui:Label class="panel-eyebrow" text="Module 01  ·  Misperception" />
+                        <ui:Label class="panel-title"   text="Begin your shift" />
+                    </ui:VisualElement>
+
+                    <!-- Objectives: dramatic questions, not learning outcomes -->
+                    <ui:VisualElement class="objectives">
+
+                        <ui:VisualElement class="obj-row">
+                            <ui:Label class="obj-num"  text="01" />
+                            <ui:Label class="obj-text" text="A patient is confused and distressed. What do you do first?" />
+                        </ui:VisualElement>
+
+                        <ui:VisualElement class="obj-row">
+                            <ui:Label class="obj-num"  text="02" />
+                            <ui:Label class="obj-text" text="He&apos;s telling you something. It doesn&apos;t make sense — or does it?" />
+                        </ui:VisualElement>
+
+                        <ui:VisualElement class="obj-row obj-row-last">
+                            <ui:Label class="obj-num"  text="03" />
+                            <ui:Label class="obj-text" text="One decision will help him. Another will make things significantly worse." />
+                        </ui:VisualElement>
+
+                    </ui:VisualElement>
+
+                    <!-- Context tags -->
+                    <ui:VisualElement class="context-strip">
+
+                        <ui:VisualElement class="ctx-tag">
+                            <ui:Label class="ctx-label" text="YOUR ROLE" />
+                            <ui:Label class="ctx-val"   text="Clinician" />
+                        </ui:VisualElement>
+
+                        <ui:VisualElement class="ctx-tag">
+                            <ui:Label class="ctx-label" text="DURATION" />
+                            <ui:Label class="ctx-val"   text="~15 min" />
+                        </ui:VisualElement>
+
+                        <ui:VisualElement class="ctx-tag">
+                            <ui:Label class="ctx-label" text="PERSPECTIVES" />
+                            <ui:Label class="ctx-val"   text="2 POV" />
+                        </ui:VisualElement>
+
+                    </ui:VisualElement>
+
+                    <!-- Action buttons -->
+                    <ui:VisualElement class="btn-group">
+
+                        <ui:Button name="btn-start" class="btn btn-primary">
+                            <ui:VisualElement class="btn-inner">
+                                <ui:Label class="btn-label" text="Enter the ward" />
+                                <ui:Label class="btn-arrow" text="→" />
+                            </ui:VisualElement>
+                        </ui:Button>
+
+                        <ui:Button name="btn-about" class="btn btn-secondary">
+                            <ui:VisualElement class="btn-inner">
+                                <ui:Label class="btn-label" text="About this simulation" />
+                                <ui:Label class="btn-arrow" text="↗" />
+                            </ui:VisualElement>
+                        </ui:Button>
+
+                    </ui:VisualElement>
+
+                    <ui:VisualElement class="panel-footer">
+                        <ui:Label class="panel-footer-text" text="Educational use only  ·  Not clinical guidance" />
+                        <ui:Label class="panel-version"     text="v1.0.0" />
+                    </ui:VisualElement>
+
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <!-- /col-right -->
+
+        </ui:VisualElement>
+        <!-- /screen -->
+
+        <!-- Bottom citation -->
+        <ui:Label name="citation"
+            class="citation"
+            text="NICE CG103  ·  Delirium: prevention, diagnosis and management" />
+
+        <!-- About modal (hidden by default) -->
+        <ui:VisualElement name="modal-overlay" class="modal-overlay">
+
+            <ui:VisualElement name="modal-card" class="modal-card">
+
+                <ui:VisualElement class="panel-accent" />
+
+                <ui:VisualElement class="modal-header">
+                    <ui:Label class="modal-title" text="About this simulation" />
+                    <ui:Button name="modal-close" class="modal-close" text="✕" />
+                </ui:VisualElement>
+
+                <ui:Label class="modal-body"
+                    text="Misperception is an interactive clinical training simulation designed to support healthcare professionals in recognising and responding to acute confusional states in elderly patients.&#10;&#10;Complete the clinician and patient perspective scenarios to unlock evidence-based learning tips and clinical guidance.&#10;&#10;This simulation is for educational purposes only and does not constitute clinical advice. All scenarios are informed by NICE CG103 guidelines." />
+
+                <ui:VisualElement class="modal-footer">
+                    <ui:Button name="modal-ok" class="btn btn-primary modal-ok-btn">
+                        <ui:VisualElement class="btn-inner">
+                            <ui:Label class="btn-label" text="Close" />
+                        </ui:VisualElement>
+                    </ui:Button>
+                </ui:VisualElement>
+
+            </ui:VisualElement>
+
+        </ui:VisualElement>
+        <!-- /modal -->
+
+    </ui:VisualElement>
+    <!-- /root -->
+
+</ui:UXML>
