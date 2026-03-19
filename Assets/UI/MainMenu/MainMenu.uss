@@ -20,6 +20,8 @@
     align-items: stretch;
     justify-content: flex-start;
     background-color: rgba(0,0,0,0);
+    background-image: url("project://database/Assets/UI/MainMenu/MainMenuBackground.png");
+    -unity-background-scale-mode: stretch-to-fill;
     -unity-font-definition: none;
     -unity-font: url("../../Fonts/IBMPlexSans-Regular.ttf");
 }
@@ -176,10 +178,10 @@
     flex-direction: row;
     align-items: center;
     margin-top: 26px;
-    padding: 9px 14px;
-    background-color: rgb(15, 34, 30);
+    padding: 10px 16px;
+    background-color: rgb(16, 38, 34);
     border-width: 1px;
-    border-color: rgb(30, 65, 58);
+    border-color: rgb(74, 155, 142);
     border-radius: 3px;
     align-self: flex-start;
 }
@@ -206,7 +208,7 @@
 
 .patient-meta {
     font-size: 10px;
-    color: rgb(61, 90, 96);
+    color: rgb(120, 170, 162);
     letter-spacing: 0.8px;
     -unity-text-align: upper-left;
 }
@@ -440,10 +442,21 @@
     -unity-text-align: middle-center;
 }
 
+/* ── ECG strip ──────────────────────────────────────────────── */
+.ecg-strip {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 28px;
+    height: 40px;
+    opacity: 0.22;
+    /* Background image assigned at runtime by MainMenuController.cs */
+}
+
 /* ── Citation ────────────────────────────────────────────────── */
 .citation {
     font-size: 9px;
-    color: rgb(40, 68, 64);
+    color: rgb(80, 120, 114);
     letter-spacing: 1.2px;
     -unity-text-align: lower-center;
     align-self: center;
