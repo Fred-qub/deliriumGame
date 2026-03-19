@@ -18659,6 +18659,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1668406974771968360, guid: b791cdd3a218d744da6ac4de55e886d1,
+        type: 3}
+      propertyPath: trustManager
+      value: 
+      objectReference: {fileID: 45846304}
     - target: {fileID: 3680612571013311078, guid: b791cdd3a218d744da6ac4de55e886d1,
         type: 3}
       propertyPath: snake
