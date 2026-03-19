@@ -487,7 +487,7 @@ MonoBehaviour:
   objectName: Verbal
   isSuccessOption: 0
   requiredObjectName: HearingAid
-  blockerObjectName: 
+  blockerObjectName: HearingAid
   doctorLine: "Relax, ok? There's nobody in the corner\u2026 Can't you see I'm your
     doctor, and I'm here to help?"
   arthurLine: You're with him. You're one of them!
