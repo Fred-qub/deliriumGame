@@ -13685,6 +13685,11 @@ PrefabInstance:
       value: I don't know who you are. What do you want? Why are you standing there
         saying nothing?
       objectReference: {fileID: 0}
+    - target: {fileID: 4224466730367405167, guid: de2b1cd7757611c4fbfb741282ba355b,
+        type: 3}
+      propertyPath: entries.Array.data[1].arthurMonologue
+      value: Stop you're poisoning me! Someone help me, please.
+      objectReference: {fileID: 0}
     - target: {fileID: 7098531433753089871, guid: de2b1cd7757611c4fbfb741282ba355b,
         type: 3}
       propertyPath: m_Name
