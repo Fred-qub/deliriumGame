@@ -17,6 +17,10 @@ public class DemoInteractable : MonoBehaviour
     [Tooltip("Name of the object that blocks this object from being interacted with.")]
     public string blockerObjectName;
     
+    [Header("Hallucinations")]
+    [Tooltip("This will trigger a hallucination if the interaction is a fail")]
+    public bool hallucinationOnFail = true;
+    
 
     private bool hasInteracted = false;
     
@@ -102,6 +106,12 @@ public class DemoInteractable : MonoBehaviour
         // Mark as used and notify master — Matthew's original logic, unchanged
         hasInteracted = true;
         InteractionMaster.Instance.RecordInteraction(objectName, finalOutcome);
+        
+        //Triggers Hallucination
+        if (finalOutcome == false && hallucinationOnFail)
+        {
+            InteractionMaster.Instance.CheckHallucinationChance();
+        }
 
         // -------------------------------------------------------------------------
         // Trigger dialogue based on which interaction this is

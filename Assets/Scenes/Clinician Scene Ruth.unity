@@ -486,8 +486,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectName: Verbal
   isSuccessOption: 0
-  requiredObjectName: HearingAid
+  requiredObjectName: 
   blockerObjectName: HearingAid
+  hallucinationOnFail: 1
   doctorLine: "Relax, ok? There's nobody in the corner\u2026 Can't you see I'm your
     doctor, and I'm here to help?"
   arthurLine: You're with him. You're one of them!
@@ -4448,6 +4449,7 @@ MonoBehaviour:
   isSuccessOption: 0
   requiredObjectName: 
   blockerObjectName: 
+  hallucinationOnFail: 0
   doctorLine: 
   arthurLine: You're hurting me. Please, stop.
   replayDoctorLine: 
@@ -6154,7 +6156,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  interactionLink: {fileID: 0}
+  interactionLink: {fileID: 39635733}
 --- !u!65 &941778748
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7497,6 +7499,7 @@ MonoBehaviour:
   isSuccessOption: 1
   requiredObjectName: 
   blockerObjectName: 
+  hallucinationOnFail: 0
   doctorLine: 
   arthurLine: "I thought someone was there. He'd been watching me all night\u2026
     What's happening to me, doctor?"
@@ -8412,6 +8415,7 @@ MonoBehaviour:
   isSuccessOption: 1
   requiredObjectName: 
   blockerObjectName: 
+  hallucinationOnFail: 0
   doctorLine: Let's use your hearing aids, Arthur.
   arthurLine: That's clearer now, but I'm scared, doctor. I don't know what's real.
   replayDoctorLine: Let's use your hearing aids, Arthur.
@@ -10935,6 +10939,7 @@ MonoBehaviour:
   isSuccessOption: 0
   requiredObjectName: 
   blockerObjectName: 
+  hallucinationOnFail: 1
   doctorLine: 
   arthurLine: "I don\u2019t know you. Don't dare touch me!"
   replayDoctorLine: 

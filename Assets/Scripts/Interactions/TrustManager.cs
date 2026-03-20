@@ -66,7 +66,6 @@ public class InteractionMaster : MonoBehaviour
         if (!isSuccessAction)
         {
             failureCount++;
-            CheckHallucinationChance();
         }
             
 
