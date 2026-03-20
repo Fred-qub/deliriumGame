@@ -182,6 +182,10 @@ public class DemoInteractable : MonoBehaviour
         // Only fire if a hallucination was actually assigned this run
         if (string.IsNullOrEmpty(hallucinationType)) yield break;
 
+        // Only fire once per run — prevents repeating on a second bad interaction
+        if (InteractionMaster.Instance.hallucinationLineShown) yield break;
+        InteractionMaster.Instance.hallucinationLineShown = true;
+
         string resolvedLine = arthurHallucinationLine.Replace("{hallucination}", hallucinationType);
         DialogueManager.Instance.ShowArthurLine(resolvedLine);
     }

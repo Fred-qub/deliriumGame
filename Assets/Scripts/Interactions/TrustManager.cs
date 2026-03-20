@@ -23,6 +23,10 @@ public class InteractionMaster : MonoBehaviour
     public string nextSceneName = "Scene_Replay"; // Name of next scene
     public float delayBeforeSwitch = 5.0f; // Time to read result before switching
 
+    // Prevents the hallucination dialogue line from firing more than once per run.
+    // Reset in ResetState() so each playthrough starts clean.
+    [HideInInspector] public bool hallucinationLineShown = false;
+
     private void Awake()
     {
         if (Instance == null)
@@ -129,6 +133,7 @@ public class InteractionMaster : MonoBehaviour
         objectActivationStates.Clear();
         successCount = 0;
         failureCount = 0;
+        hallucinationLineShown = false;
         Debug.Log("[InteractionMaster] ResetState called — history and scores cleared.");
     }
 
@@ -188,8 +193,14 @@ public class InteractionMaster : MonoBehaviour
         // Wait for dialogue to start (in case it hasn't yet)
         yield return new WaitUntil(() => DialogueManager.Instance.IsDialogueActive());
 
-        // Then wait for it to finish
+        // Wait for it to finish
         yield return new WaitUntil(() => !DialogueManager.Instance.IsDialogueActive());
+
+        // Brief pause to catch any appended dialogue (e.g. hallucination line)
+        // which fires after a short gap following the main line
+        yield return new WaitForSeconds(0.3f);
+        if (DialogueManager.Instance.IsDialogueActive())
+            yield return new WaitUntil(() => !DialogueManager.Instance.IsDialogueActive());
 
         // Small buffer so the last line doesn't feel abrupt
         yield return new WaitForSeconds(1.5f);
