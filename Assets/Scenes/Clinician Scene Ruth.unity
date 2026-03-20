@@ -497,6 +497,7 @@ MonoBehaviour:
   isHearingAidInteraction: 0
   doctorLineAfter: 
   replayDoctorLineAfter: 
+  arthurHallucinationLine: And get that {hallucination} away from me!
 --- !u!1 &45846303
 GameObject:
   m_ObjectHideFlags: 0
@@ -4455,6 +4456,7 @@ MonoBehaviour:
   isHearingAidInteraction: 0
   doctorLineAfter: 
   replayDoctorLineAfter: 
+  arthurHallucinationLine: And get that {hallucination} away from me!
 --- !u!1001 &706545966
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7505,6 +7507,7 @@ MonoBehaviour:
   isHearingAidInteraction: 0
   doctorLineAfter: 
   replayDoctorLineAfter: 
+  arthurHallucinationLine: 
 --- !u!1001 &1157241782
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8422,6 +8425,7 @@ MonoBehaviour:
     help.
   replayDoctorLineAfter: Hi Arthur, I'm your doctor. Can you hear me ok now? I'm
     here to help.
+  arthurHallucinationLine: 
 --- !u!1001 &1273870078
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10942,6 +10946,7 @@ MonoBehaviour:
   isHearingAidInteraction: 0
   doctorLineAfter: 
   replayDoctorLineAfter: 
+  arthurHallucinationLine: And get that {hallucination} away from me!
 --- !u!1001 &1653663115
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -87,8 +87,8 @@ public class SceneReplayer : MonoBehaviour
         List<string> choicesOnly = history.FindAll(x => x !="RatHallucination" && x !="SnakeHallucination");
 
         // Save choices for tips scene before loading
-        string c1 = choicesOnly.Count > 0 ? history[0] : "";
-        string c2 = choicesOnly.Count > 1 ? history[1] : "";
+        string c1 = choicesOnly.Count > 0 ? choicesOnly[0] : "";
+        string c2 = choicesOnly.Count > 1 ? choicesOnly[1] : "";
         TipsSceneManager.SaveChoices(c1, c2);
         SceneManager.LoadScene(nextSceneName);
     }

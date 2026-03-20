@@ -11,6 +11,13 @@ using System.Collections;
 ///
 /// This script is intentionally independent of the doctor scene — it holds
 /// its own copy of the dialogue data so the two scenes don't depend on each other.
+///
+/// HALLUCINATION APPEND:
+/// Each ReplayEntry has an optional arthurHallucinationMonologue field.
+/// If filled in AND a hallucination was assigned this run, this line plays
+/// automatically after the main arthurMonologue. Use {hallucination} to
+/// insert "rat" or "snake" dynamically.
+/// Example: "There it is again... that {hallucination}. Can't they see it?"
 /// </summary>
 public class ReplayDialogue : MonoBehaviour
 {
@@ -18,7 +25,6 @@ public class ReplayDialogue : MonoBehaviour
 
     // -------------------------------------------------------------------------
     // Replay Dialogue Entry
-    // Each interaction gets one of these in the Inspector.
     // -------------------------------------------------------------------------
 
     [System.Serializable]
@@ -39,6 +45,13 @@ public class ReplayDialogue : MonoBehaviour
 
         [Tooltip("Hearing Aid only. The doctor's second line after hearing aids are fitted (always clear).")]
         [TextArea] public string doctorLineAfter;
+
+        [Header("Hallucination Dialogue")]
+        [Tooltip("Appended after arthurMonologue only if a hallucination was triggered this run. " +
+                 "Use {hallucination} to insert 'rat' or 'snake' dynamically. " +
+                 "Example: 'There it is... that {hallucination}. Right there.' " +
+                 "Leave blank on entries that should never show a hallucination line.")]
+        [TextArea] public string arthurHallucinationMonologue;
     }
 
     // -------------------------------------------------------------------------
@@ -65,20 +78,21 @@ public class ReplayDialogue : MonoBehaviour
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
     }
+
     public event System.Action OnOpeningLineComplete;
 
     private void Start()
     {
         StartCoroutine(PlayOpeningThenNotify());
-}
+    }
+
     // -------------------------------------------------------------------------
     // Public API
-    // Wire SceneReplayer's onTrigger events to this method, passing the action name.
     // -------------------------------------------------------------------------
 
     /// <summary>
     /// Called by SceneReplayer's onTrigger event for each replayed action.
-    /// Looks up the matching entry and triggers the appropriate dialogue.
+    /// Plays the main monologue, then appends the hallucination monologue if applicable.
     /// </summary>
     public void ExecuteReplay(string actionName)
     {
@@ -110,6 +124,12 @@ public class ReplayDialogue : MonoBehaviour
             // All other interactions: Arthur monologue only
             DialogueManager.Instance.ShowMonologue(entry.arthurMonologue);
         }
+
+        // Append hallucination monologue after main dialogue if field is filled in
+        if (!string.IsNullOrEmpty(entry.arthurHallucinationMonologue))
+        {
+            StartCoroutine(AppendHallucinationMonologue(entry.arthurHallucinationMonologue));
+        }
     }
 
     // -------------------------------------------------------------------------
@@ -123,11 +143,28 @@ public class ReplayDialogue : MonoBehaviour
         yield return new WaitUntil(() => !DialogueManager.Instance.IsDialogueActive());
         OnOpeningLineComplete?.Invoke();
     }
+
+    /// <summary>
+    /// Waits for the main monologue to finish, then fires the hallucination
+    /// monologue only if a hallucination was actually assigned this run.
+    /// </summary>
+    private IEnumerator AppendHallucinationMonologue(string hallucinationMonologue)
+    {
+        // Wait for main dialogue to finish
+        yield return new WaitUntil(() => !DialogueManager.Instance.IsDialogueActive());
+
+        string hallucinationType = InteractionMaster.Instance.GetHallucinationType();
+
+        // Only fire if a hallucination was actually assigned this run
+        if (string.IsNullOrEmpty(hallucinationType)) yield break;
+
+        string resolvedLine = hallucinationMonologue.Replace("{hallucination}", hallucinationType);
+        DialogueManager.Instance.ShowMonologue(resolvedLine);
+    }
+
     /// <summary>
     /// Hearing aid animation placeholder.
     /// TODO: Replace with actual animation trigger when animation is ready.
-    /// Remove the immediate ContinueHearingAidDialogue() call and instead
-    /// call it via an Animation Event at the end of the hearing aid animation clip.
     /// </summary>
     private void OnHearingAidAnimationTrigger()
     {
