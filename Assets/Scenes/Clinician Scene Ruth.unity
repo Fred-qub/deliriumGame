@@ -10941,7 +10941,8 @@ MonoBehaviour:
   blockerObjectName: 
   hallucinationOnFail: 1
   doctorLine: 
-  arthurLine: "I don\u2019t know you. Don't dare touch me!"
+  arthurLine: "I don\u2019t know you.  You\u2019re trying to poison me!  Somebody
+    help!"
   replayDoctorLine: 
   arthurMonologue: "Stop! You\u2019re trying to poison me!"
   isHearingAidInteraction: 0
