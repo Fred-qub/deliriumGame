@@ -2,7 +2,7 @@
 - Project name: deliriumGame
 - Unity version: Unity 6000.1.15f1
 - Active game object:
-  - Name: PatientNotes_UI
+  - Name: 2: Sedative
   - Tag: Untagged
   - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
