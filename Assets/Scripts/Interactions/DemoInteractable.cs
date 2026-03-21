@@ -18,6 +18,14 @@ public class DemoInteractable : MonoBehaviour
     public string blockerObjectName;
 
     private bool hasInteracted = false;
+    
+    // -------------------------------------------------------------------------
+    // Events
+    // -------------------------------------------------------------------------
+    
+    public delegate void Interaction(string name);
+    public static event Interaction OnInteraction;
+    
 
     // -------------------------------------------------------------------------
     // Dialogue fields
@@ -105,7 +113,9 @@ public class DemoInteractable : MonoBehaviour
         // RecordInteraction fires HallucinationTypeLottery() internally if this is a bad choice,
         // so by the time dialogue plays, GetHallucinationType() already has the correct result.
         InteractionMaster.Instance.RecordInteraction(objectName, finalOutcome);
-
+        
+        OnInteraction?.Invoke(objectName);
+        
         // -------------------------------------------------------------------------
         // Trigger main dialogue — unchanged from before
         // -------------------------------------------------------------------------
