@@ -33,26 +33,36 @@ public class HeadTrackSmooth : MonoBehaviour
             return;
         }
 
-        // Start with first source active
+        // Start with rack active
         sources.SetWeight(0, 1f);
         sources.SetWeight(1, 0f);
         multiAimConstraint.data.sourceObjects = sources;
+        StartSwitch(0);
+        
+    }
+
+    private void Update()
+    {
+        rigBuilder.Build();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            StartSwitch(1); // Switch to second source
+            StartSwitch(1); // Switch to player
         }
+
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.tag == "Player" && rack.activeInHierarchy == true)
-        {
-            StartSwitch(0); // Switch back to first source
+            {
+            StartSwitch(0); // Switch back to rack
+
         }
+        
     }
 
     private void StartSwitch(int activeIndex)
@@ -99,5 +109,11 @@ public class HeadTrackSmooth : MonoBehaviour
 
         if (rigBuilder != null)
             rigBuilder.Build();
+    }
+
+    public void CoatRemoved() 
+    {
+        StartSwitch(1);
+
     }
 }
