@@ -12,10 +12,18 @@ public class HUDmanager : MonoBehaviour
     [SerializeField] TMP_Text interactionText;
 
     public void enableInteractionText(string text)
-    {
+    {   
         interactionText.text = text + " (E)";
         interactionText.gameObject.SetActive(true);
     }
+
+    public void enableMaxInteractionText(string text)
+    {
+        interactionText.text = text;
+        interactionText.gameObject.SetActive(true);
+    }
+
+
 
     public void disableInteractionText()
     {

@@ -70,7 +70,7 @@ public class playerInteraction : MonoBehaviour
 
         if (totalChoices >= InteractionMaster.Instance.maxInteractions)
         {
-            HUDmanager.instance.enableInteractionText("<color=orange>Max interactions reached (2/2)</color>");
+            HUDmanager.instance.enableMaxInteractionText("<color=orange>Max interactions reached (2/2)</color>");
         }
         else if (obj != null)
         {
