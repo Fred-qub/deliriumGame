@@ -487,7 +487,7 @@ MonoBehaviour:
   objectName: Verbal
   isSuccessOption: 0
   requiredObjectName: 
-  blockerObjectName: HearingAid
+  blockerObjectName: 
   doctorLine: "Relax, ok? There's nobody in the corner\u2026 Can't you see I'm your
     doctor, and I'm here to help?"
   arthurLine: You're with him. You're one of them!
@@ -497,7 +497,7 @@ MonoBehaviour:
   isHearingAidInteraction: 0
   doctorLineAfter: 
   replayDoctorLineAfter: 
-  arthurHallucinationLine: And get that {hallucination} away from me!
+  arthurHallucinationLine: 
 --- !u!1 &45846303
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,7 +528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea7a5fecde6c2714aa7f48285018e12f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hallucinationChance: {fileID: 45846306}
+  hallucinationChance: {fileID: 0}
   interactionHistory: []
   successCount: 0
   failureCount: 0
@@ -4621,7 +4621,7 @@ MonoBehaviour:
   isHearingAidInteraction: 0
   doctorLineAfter: 
   replayDoctorLineAfter: 
-  arthurHallucinationLine: And get that {hallucination} away from me!
+  arthurHallucinationLine: 
 --- !u!1001 &706545966
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6579,7 +6579,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  interactionLink: {fileID: 39635733}
+  interactionLink: {fileID: 0}
 --- !u!65 &941778748
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11340,7 +11340,7 @@ MonoBehaviour:
   isHearingAidInteraction: 0
   doctorLineAfter: 
   replayDoctorLineAfter: 
-  arthurHallucinationLine: And get that {hallucination} away from me!
+  arthurHallucinationLine: 
 --- !u!1001 &1653663115
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15624,6 +15624,7 @@ GameObject:
   - component: {fileID: 919132148540377915}
   - component: {fileID: 919132148540377914}
   - component: {fileID: 919132148540377916}
+  - component: {fileID: 919132148540377917}
   m_Layer: 0
   m_Name: oldman
   m_TagString: Interactable
@@ -15780,6 +15781,19 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   interactionLink: {fileID: 39635733}
+--- !u!114 &919132148540377917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148540377913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffb480f8e08e3495ba4e1af08efbf0a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delayBeforeDialogue: 2
 --- !u!1 &966256549729930224
 GameObject:
   m_ObjectHideFlags: 0

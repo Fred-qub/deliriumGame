@@ -23,7 +23,7 @@ public class SceneOpener : MonoBehaviour
 
         DialogueManager.Instance.ShowArthurLine(
             "I don't know who you are. What do you want? " +
-            "Why are you sitting there saying nothing?"
+            "Why are you standing there saying nothing?"
         );
     }
 }
