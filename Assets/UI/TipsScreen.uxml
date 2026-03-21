@@ -65,7 +65,7 @@
                 <!-- Actions -->
                 <ui:VisualElement class="actions">
                     <ui:Button name="btn-play-again"  class="btn-primary"   text="Play Again →" />
-                    <ui:Button name="btn-guidelines"  class="btn-secondary" text="View Full Guidelines" />
+                    <ui:Button name="btn-guidelines"  class="btn-secondary" text="View NICE Guidelines" />
                 </ui:VisualElement>
 
                 <!-- Footer -->

@@ -15,6 +15,7 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class TipsSceneManager : MonoBehaviour
 {
+
     // -------------------------------------------------------------------------
     // PlayerPrefs keys — must match SceneReplayer
     // -------------------------------------------------------------------------
@@ -167,6 +168,13 @@ public class TipsSceneManager : MonoBehaviour
         }
     }
 
+    // -------------------------------------------------------------------------
+    // Web Address
+    // -------------------------------------------------------------------------
+
+
+    [SerializeField] private string websiteURL = "https://www.nice.org.uk/Guidance/CG103";
+
     /// <summary>
     /// Populates the left and right tip card slots in the two-column layout.
     /// choice1 → tip-card-slot-left, choice2 → tip-card-slot-right.
@@ -278,7 +286,7 @@ public class TipsSceneManager : MonoBehaviour
         var guidelines = root.Q<Button>("btn-guidelines");
 
         playAgain.clicked  += OnPlayAgain;
-        guidelines.clicked += () => Debug.Log("[TipsSceneManager] View Full Guidelines clicked.");
+        guidelines.clicked += ViewFullGuidelines;
     }
 
     private void OnPlayAgain()
@@ -291,5 +299,10 @@ public class TipsSceneManager : MonoBehaviour
             InteractionMaster.Instance.ResetState();
 
         SceneManager.LoadScene(clinicianSceneName);
+    }
+
+    private void ViewFullGuidelines() 
+    {
+        Application.OpenURL(websiteURL);
     }
 }
