@@ -6,12 +6,11 @@ public class InteractionMaster : MonoBehaviour
 {
     public static InteractionMaster Instance { get; private set; }
     public HallucinationChance hallucinationChance;
- 
 
     [Header("Game State")]
     // Tracks if specific objects have been used (Name -> True/False)
     public Dictionary<string, bool> objectActivationStates = new Dictionary<string, bool>();
-    
+
     // Records the order of events
     public List<string> interactionHistory = new List<string>();
 
@@ -19,18 +18,47 @@ public class InteractionMaster : MonoBehaviour
     public int successCount = 0;
     public int failureCount = 0;
     public int maxInteractions = 2; // Trigger result after this many choices
-    
-    [Header("Scene Management")]
-    public string nextSceneName = "Scene_Replay"; //Name of next scene
 
-    public float delayBeforeSwitch = 5.0f; //Time to read result before switching
+    [Header("Scene Management")]
+    public string nextSceneName = "Scene_Replay"; // Name of next scene
+    public float delayBeforeSwitch = 5.0f; // Time to read result before switching
+
+    // Prevents the hallucination dialogue line from firing more than once per run.
+    // Reset in ResetState() so each playthrough starts clean.
+    [HideInInspector] public bool hallucinationLineShown = false;
 
     private void Awake()
     {
-        if (Instance == null) { Instance = this; DontDestroyOnLoad(gameObject); }
-        else { Destroy(gameObject); }
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
 
         hallucinationChance = GetComponent<HallucinationChance>();
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    /// <summary>
+    /// Automatically resets all game state when the clinician scene loads.
+    /// This ensures a clean slate whether arriving via Play Again or directly from the editor.
+    /// </summary>
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "Clinician Scene Ruth")
+        {
+            ResetState();
+            Debug.Log("[InteractionMaster] State reset for new playthrough.");
+        }
     }
 
     /// <summary>
@@ -40,8 +68,11 @@ public class InteractionMaster : MonoBehaviour
     /// <param name="isSuccessAction">Is this a 'correct' action?</param>
     public void RecordInteraction(string objectName, bool isSuccessAction)
     {
-        // Prevent interacting if limit has been reached
-        int totalChoices = successCount + failureCount;
+        // Count only real player choices — hallucination entries added by HallucinationChance
+        // are excluded so they never count toward the interaction limit.
+        int totalChoices = interactionHistory.FindAll(x =>
+            x != "RatHallucination" && x != "SnakeHallucination").Count;
+
         if (totalChoices >= maxInteractions)
         {
             Debug.Log("Max interactions reached. Ignoring input.");
@@ -63,27 +94,28 @@ public class InteractionMaster : MonoBehaviour
             successCount++;
         }
 
-        if (!isSuccessAction)
+        // Lights is a choice but not counted as a failure — it still triggers
+        // CalculateFinalResult via the totalChoices count below.
+        if (!isSuccessAction && objectName != "Lights")
         {
             failureCount++;
         }
-            
 
         // Debug Output for current state
         Debug.Log($"--- ACTION RECORDED ---");
         Debug.Log($"Object: {objectName} | Type: {(isSuccessAction ? "SUCCESS" : "FAILURE")}");
         Debug.Log($"Current History: {string.Join(" -> ", interactionHistory)}");
 
-        // Check if limit has been reached and show the result
-        totalChoices = successCount + failureCount;
+        // Recount after adding the new interaction — still excluding hallucination entries
+        totalChoices = interactionHistory.FindAll(x =>
+            x != "RatHallucination" && x != "SnakeHallucination").Count;
+
         if (totalChoices >= maxInteractions)
         {
             CalculateFinalResult();
         }
-
-        
     }
-    
+
     public bool HasInteractedWith(string objectName)
     {
         // Checks the dictionary to see if this object exists and is true
@@ -100,12 +132,26 @@ public class InteractionMaster : MonoBehaviour
         objectActivationStates.Clear();
         successCount = 0;
         failureCount = 0;
+        hallucinationLineShown = false;
+        Debug.Log("[InteractionMaster] ResetState called — history and scores cleared.");
     }
-    
+
+    /// <summary>
+    /// Returns "rat", "snake", or empty string if no hallucination assigned yet.
+    /// Called by DemoInteractable and ReplayDialogue to inject the correct
+    /// hallucination word into Arthur's dialogue at runtime via the {hallucination} token.
+    /// </summary>
+    public string GetHallucinationType()
+    {
+        if (interactionHistory.Contains("RatHallucination")) return "rat";
+        if (interactionHistory.Contains("SnakeHallucination")) return "snake";
+        return "";
+    }
+
     private void CalculateFinalResult()
     {
         Debug.Log("--- FINAL RESULT ---");
-        
+
         if (successCount == 2)
         {
             Debug.Log("RESULT: TOTAL SUCCESS (Patient Calm)");
@@ -118,11 +164,11 @@ public class InteractionMaster : MonoBehaviour
         {
             Debug.Log("RESULT: MIXED RESULT (Patient Mixed)");
         }
-        
-        //Start the scene change
+
+        // Start the scene change
         StartCoroutine(SwitchSceneRoutine());
     }
-    
+
     public string GetFinalResultText()
     {
         if (successCount >= 2)
@@ -146,8 +192,14 @@ public class InteractionMaster : MonoBehaviour
         // Wait for dialogue to start (in case it hasn't yet)
         yield return new WaitUntil(() => DialogueManager.Instance.IsDialogueActive());
 
-        // Then wait for it to finish
+        // Wait for it to finish
         yield return new WaitUntil(() => !DialogueManager.Instance.IsDialogueActive());
+
+        // Brief pause to catch any appended dialogue (e.g. hallucination line)
+        // which fires after a short gap following the main line
+        yield return new WaitForSeconds(0.3f);
+        if (DialogueManager.Instance.IsDialogueActive())
+            yield return new WaitUntil(() => !DialogueManager.Instance.IsDialogueActive());
 
         // Small buffer so the last line doesn't feel abrupt
         yield return new WaitForSeconds(1.5f);
@@ -156,10 +208,8 @@ public class InteractionMaster : MonoBehaviour
         SceneManager.LoadScene(nextSceneName);
     }
 
-    public void CheckHallucinationChance() 
+    public void CheckHallucinationChance()
     {
-
-        hallucinationChance.AuxHallucinationLottery();   
-
+        hallucinationChance.AuxHallucinationLottery();
     }
 }

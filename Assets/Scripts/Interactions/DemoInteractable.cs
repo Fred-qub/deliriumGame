@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class DemoInteractable : MonoBehaviour
 {
@@ -10,23 +11,16 @@ public class DemoInteractable : MonoBehaviour
     public string objectName;       // e.g., "Verbal", "Sedative"
     public bool isSuccessOption;    // Check this box if this is a "Good" choice
 
-
     [Header("Dependency System")]
     [Tooltip("Name of the object that must be used FIRST to make this a success.")]
     public string requiredObjectName;
     [Tooltip("Name of the object that blocks this object from being interacted with.")]
     public string blockerObjectName;
-    
-    [Header("Hallucinations")]
-    [Tooltip("This will trigger a hallucination if the interaction is a fail")]
-    public bool hallucinationOnFail = true;
-    
 
     private bool hasInteracted = false;
-    
 
     // -------------------------------------------------------------------------
-    // New dialogue fields
+    // Dialogue fields
     // -------------------------------------------------------------------------
 
     [Header("Dialogue - Doctor POV")]
@@ -53,19 +47,25 @@ public class DemoInteractable : MonoBehaviour
     [Tooltip("Hearing Aid only. Arthur's response after the hearing aids are fitted.")]
     [TextArea] public string replayDoctorLineAfter;
 
+    [Header("Hallucination Dialogue")]
+    [Tooltip("Appended after arthurLine only if a hallucination was triggered on this interaction. " +
+             "Use {hallucination} to insert 'rat' or 'snake' dynamically. " +
+             "Example: 'Get that {hallucination} away from me!' " +
+             "Leave blank on interactions that should never show a hallucination line.")]
+    [TextArea] public string arthurHallucinationLine;
+
     // -------------------------------------------------------------------------
-    // Matthew's original ExecuteChoice — with dialogue calls added at the end
+    // ExecuteChoice
     // -------------------------------------------------------------------------
 
     public void ExecuteChoice()
     {
-        // Check if already used
         if (hasInteracted)
         {
             Debug.LogWarning($"{objectName} has already been used");
             return;
         }
-        
+
         if (!string.IsNullOrEmpty(blockerObjectName))
         {
             if (InteractionMaster.Instance.HasInteractedWith(blockerObjectName))
@@ -74,20 +74,17 @@ public class DemoInteractable : MonoBehaviour
                 return;
             }
         }
-        
+
         int choiceCount = InteractionMaster.Instance.successCount + InteractionMaster.Instance.failureCount;
-        
-        // Check if Master allows more interactions
+
         if (choiceCount >= InteractionMaster.Instance.maxInteractions)
         {
             Debug.Log("Game Over - Cannot interact further.");
             return;
         }
 
-        // Determine the final result
         bool finalOutcome = isSuccessOption;
 
-        // Check dependency
         if (!string.IsNullOrEmpty(requiredObjectName))
         {
             bool conditionMet = InteractionMaster.Instance.HasInteractedWith(requiredObjectName);
@@ -103,26 +100,18 @@ public class DemoInteractable : MonoBehaviour
             }
         }
 
-        // Mark as used and notify master — Matthew's original logic, unchanged
         hasInteracted = true;
+
+        // RecordInteraction fires HallucinationTypeLottery() internally if this is a bad choice,
+        // so by the time dialogue plays, GetHallucinationType() already has the correct result.
         InteractionMaster.Instance.RecordInteraction(objectName, finalOutcome);
-        
-        //Triggers Hallucination
-        if (finalOutcome == false && hallucinationOnFail)
-        {
-            InteractionMaster.Instance.CheckHallucinationChance();
-        }
 
         // -------------------------------------------------------------------------
-        // Trigger dialogue based on which interaction this is
+        // Trigger main dialogue — unchanged from before
         // -------------------------------------------------------------------------
 
         if (isHearingAidInteraction)
         {
-            // Hearing Aid: garbled doctor line → animation → clear doctor line → Arthur
-            // doctorLine        = the doctor's first line (before hearing aids, shown garbled in replay)
-            // doctorLineAfter   = the doctor's second line (after hearing aids, always clear)
-            // arthurLine        = Arthur's spoken response
             DialogueManager.Instance.ShowHearingAidSequence(
                 doctorLine,
                 doctorLineAfter,
@@ -132,32 +121,33 @@ public class DemoInteractable : MonoBehaviour
         }
         else if (!string.IsNullOrEmpty(doctorLine))
         {
-            // Speak interaction: doctor line → Arthur responds
             DialogueManager.Instance.ShowDoctorThenArthur(doctorLine, arthurLine);
         }
         else
         {
-            // All other interactions: Arthur responds only (Coat, Lights, Sedate)
             DialogueManager.Instance.ShowArthurLine(arthurLine);
+        }
+
+        // -------------------------------------------------------------------------
+        // Append hallucination line after main dialogue completes,
+        // but only if this interaction has a hallucination line set in the Inspector
+        // AND a hallucination was actually assigned this run.
+        // -------------------------------------------------------------------------
+
+        if (!string.IsNullOrEmpty(arthurHallucinationLine))
+        {
+            StartCoroutine(AppendHallucinationLine());
         }
     }
 
     // -------------------------------------------------------------------------
-    // New method for the patient POV replay.
-    // Designed to be called instead of ExecuteChoice() when replaying from the patient's perspective.
-    // Currently unused in the patient scene due to each scene having its own independent dialogue setup.
-    // Kept in for future development — if the project moves to a shared ScriptableObject approach,
-    // this becomes the correct hook for driving replay dialogue from DemoInteractable directly.
+    // Patient POV replay — unchanged from before
     // -------------------------------------------------------------------------
 
     public void ExecuteReplay()
     {
         if (isHearingAidInteraction)
         {
-            // Hearing Aid replay: garbled doctor line → animation → clear doctor line → Arthur monologue
-            // replayDoctorLine      = same first doctor line (will be garbled)
-            // replayDoctorLineAfter = same second doctor line (clear)
-            // arthurMonologue       = Arthur's internal response
             DialogueManager.Instance.ShowHearingAidReplaySequence(
                 replayDoctorLine,
                 replayDoctorLineAfter,
@@ -167,37 +157,52 @@ public class DemoInteractable : MonoBehaviour
         }
         else if (!string.IsNullOrEmpty(replayDoctorLine))
         {
-            // Speak replay: doctor line → Arthur internal monologue
             DialogueManager.Instance.ShowDoctorThenArthur(replayDoctorLine, arthurMonologue);
         }
         else
         {
-            // All other interactions: Arthur internal monologue only
             DialogueManager.Instance.ShowMonologue(arthurMonologue);
         }
     }
 
     // -------------------------------------------------------------------------
-    // Hearing aid animation trigger
-    // This is the callback passed to the DialogueManager to fire the animation.
-    // For now it immediately signals the animation is complete so dialogue continues.
-    //
-    // TODO: Replace the body of this method with your actual animation trigger,
-    // e.g. GetComponent<Animator>().SetTrigger("FitHearingAid");
-    // Then remove the immediate ContinueHearingAidDialogue() call below,
-    // and instead call it via an Animation Event at the end of the animation clip.
+    // Hallucination append coroutine
+    // Waits for the current dialogue to finish, then fires the hallucination
+    // line only if a hallucination was actually assigned this run.
+    // Safe to call on any interaction — silently does nothing if no hallucination.
     // -------------------------------------------------------------------------
+
+    private IEnumerator AppendHallucinationLine()
+    {
+        // Wait for the main dialogue line to finish
+        yield return new WaitUntil(() => !DialogueManager.Instance.IsDialogueActive());
+
+        string hallucinationType = InteractionMaster.Instance.GetHallucinationType();
+
+        // Only fire if a hallucination was actually assigned this run
+        if (string.IsNullOrEmpty(hallucinationType)) yield break;
+
+        // Only fire once per run — prevents repeating on a second bad interaction
+        if (InteractionMaster.Instance.hallucinationLineShown) yield break;
+        InteractionMaster.Instance.hallucinationLineShown = true;
+
+        string resolvedLine = arthurHallucinationLine.Replace("{hallucination}", hallucinationType);
+        DialogueManager.Instance.ShowArthurLine(resolvedLine);
+    }
+
+    // -------------------------------------------------------------------------
+    // Helpers
+    // -------------------------------------------------------------------------
+
     private void OnHearingAidAnimationTrigger()
     {
-        // Placeholder — signals dialogue to continue immediately until animation exists
         DialogueManager.Instance.ContinueHearingAidDialogue();
     }
+
     public bool IsBlocked()
     {
         if (!string.IsNullOrEmpty(blockerObjectName))
-        {
             return InteractionMaster.Instance.HasInteractedWith(blockerObjectName);
-        }
         return false;
     }
 }

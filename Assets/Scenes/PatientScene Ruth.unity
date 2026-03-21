@@ -892,6 +892,7 @@ MonoBehaviour:
   isHearingAidInteraction: 0
   doctorLineAfter: 
   replayDoctorLineAfter: 
+  arthurHallucinationLine: 
 --- !u!1 &45846303
 GameObject:
   m_ObjectHideFlags: 0
@@ -5356,6 +5357,7 @@ MonoBehaviour:
   isHearingAidInteraction: 0
   doctorLineAfter: 
   replayDoctorLineAfter: 
+  arthurHallucinationLine: 
 --- !u!1 &693711602
 GameObject:
   m_ObjectHideFlags: 0
@@ -9904,6 +9906,7 @@ MonoBehaviour:
   isHearingAidInteraction: 0
   doctorLineAfter: 
   replayDoctorLineAfter: 
+  arthurHallucinationLine: 
 --- !u!1 &1157725058
 GameObject:
   m_ObjectHideFlags: 0
@@ -11226,6 +11229,7 @@ MonoBehaviour:
     help.
   replayDoctorLineAfter: Hi Arthur, I'm your doctor. Can you hear me ok now? I'm
     here to help.
+  arthurHallucinationLine: 
 --- !u!1001 &1263926058
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13690,6 +13694,24 @@ PrefabInstance:
       propertyPath: entries.Array.data[1].arthurMonologue
       value: Stop you're poisoning me! Someone help me, please.
       objectReference: {fileID: 0}
+    - target: {fileID: 4224466730367405167, guid: de2b1cd7757611c4fbfb741282ba355b,
+        type: 3}
+      propertyPath: entries.Array.data[0].arthurHallucinationMonologue
+      value: And there it is again... that {hallucination}. Right there. Can't they
+        see it?
+      objectReference: {fileID: 0}
+    - target: {fileID: 4224466730367405167, guid: de2b1cd7757611c4fbfb741282ba355b,
+        type: 3}
+      propertyPath: entries.Array.data[1].arthurHallucinationMonologue
+      value: And there it is again... that {hallucination}. Right there. Can't they
+        see it?
+      objectReference: {fileID: 0}
+    - target: {fileID: 4224466730367405167, guid: de2b1cd7757611c4fbfb741282ba355b,
+        type: 3}
+      propertyPath: entries.Array.data[2].arthurHallucinationMonologue
+      value: And there it is again... that {hallucination}. Right there. Can't they
+        see it?
+      objectReference: {fileID: 0}
     - target: {fileID: 7098531433753089871, guid: de2b1cd7757611c4fbfb741282ba355b,
         type: 3}
       propertyPath: m_Name
@@ -14630,6 +14652,7 @@ MonoBehaviour:
   isHearingAidInteraction: 0
   doctorLineAfter: 
   replayDoctorLineAfter: 
+  arthurHallucinationLine: 
 --- !u!1001 &1665360639
 PrefabInstance:
   m_ObjectHideFlags: 0
