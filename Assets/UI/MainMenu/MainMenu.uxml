@@ -69,7 +69,7 @@
                     <ui:VisualElement name="patient-dot" class="patient-dot" />
                     <ui:VisualElement class="patient-info">
                         <ui:Label class="patient-name" text="Arthur Roberts, 70" />
-                        <ui:Label class="patient-meta" text="GENERAL MEDICAL WARD  ·  DAY 2 POST-OP  ·  CATARACT" />
+                        <ui:Label class="patient-meta" text="GENERAL MEDICAL WARD  ·  INPATIENT - DAY 2  ·  EYE INFECTION" />
                     </ui:VisualElement>
                 </ui:VisualElement>
 

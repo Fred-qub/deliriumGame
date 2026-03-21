@@ -94,11 +94,11 @@ public class InteractionMaster : MonoBehaviour
             successCount++;
         }
 
-        // Lights is a choice but not counted as a failure — it still triggers
         // CalculateFinalResult via the totalChoices count below.
-        if (!isSuccessAction && objectName != "Lights")
+        if (!isSuccessAction)
         {
             failureCount++;
+            CheckHallucinationChance();
         }
 
         // Debug Output for current state
