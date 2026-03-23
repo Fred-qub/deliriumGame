@@ -30,7 +30,8 @@
 .stake-num,
 .btn-label,
 .modal-title,
-.ctx-val {
+.ctx-val,
+.options-row-title {
     -unity-font-definition: none;
     -unity-font: url("../../Fonts/IBMPlexSans-SemiBold.ttf");
 }
@@ -348,7 +349,10 @@
     padding: 0;
 }
 
-/* Note: :last-child not supported in USS — bottom margin handled per-button */
+/* Note: :last-child not supported in USS — zero out margin on the last button via a named class */
+.btn-about-last {
+    margin-bottom: 0;
+}
 
 .btn-inner {
     flex-direction: row;
@@ -395,7 +399,7 @@
     color: rgb(255, 255, 255);
 }
 
-/* Secondary — About this simulation */
+/* Secondary — About / Options */
 .btn-secondary {
     background-color: rgba(0,0,0,0);
     border-width: 1px;
@@ -543,4 +547,157 @@
 .modal-ok-btn {
     width: 120px;
     margin-bottom: 0;
+}
+
+/* ── Options modal: sections ─────────────────────────────────── */
+
+.options-section {
+    flex-direction: column;
+    padding: 14px 22px 10px 22px;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(20, 44, 40);
+}
+
+.options-section-last {
+    border-bottom-width: 0;
+}
+
+.options-section-label {
+    font-size: 8px;
+    color: rgb(61, 90, 96);
+    letter-spacing: 2px;
+    -unity-text-align: upper-left;
+    margin-bottom: 10px;
+}
+
+/* ── Options rows ────────────────────────────────────────────── */
+
+/* Default row: label+desc on left, control on right (horizontal) */
+.options-row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+
+/* Stacked variant: title+desc on top, control below (for tod group) */
+.options-row-col {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.options-row-text {
+    flex-direction: column;
+    flex: 1;
+}
+
+.options-row-title {
+    font-size: 12px;
+    color: rgb(237, 242, 240);
+    -unity-text-align: upper-left;
+    margin-bottom: 2px;
+}
+
+.options-row-desc {
+    font-size: 10px;
+    color: rgb(100, 138, 146);
+    -unity-text-align: upper-left;
+    white-space: normal;
+}
+
+/* ── Musophobia toggle ───────────────────────────────────────── */
+
+/*
+    Unity UI Toolkit Toggle consists of:
+      .unity-toggle               — root row
+      .unity-toggle__input        — the checkbox square
+      .unity-toggle__checkmark    — the tick inside the checkbox
+      .unity-toggle__label        — text label (hidden here — we use options-row-text instead)
+
+    We hide the built-in label and style the checkbox to match the palette.
+*/
+
+.options-toggle {
+    /* Remove the built-in left margin that normally aligns it with a label */
+    margin-left: 0;
+    margin-right: 0;
+    flex-shrink: 0;
+}
+
+.options-toggle > .unity-toggle__input {
+    width: 36px;
+    height: 20px;
+    border-radius: 10px;
+    background-color: rgb(24, 52, 46);
+    border-width: 1px;
+    border-color: rgb(40, 80, 72);
+    /* Hide the default square checkmark — we use background-color swap for on/off */
+    justify-content: center;
+    align-items: center;
+}
+
+.options-toggle:checked > .unity-toggle__input {
+    background-color: rgb(74, 155, 142);
+    border-color: rgb(58, 128, 112);
+}
+
+.options-toggle > .unity-toggle__input > .unity-toggle__checkmark {
+    /* Pill thumb */
+    width: 14px;
+    height: 14px;
+    border-radius: 7px;
+    background-color: rgb(100, 138, 146);
+    /* Suppress the default checkmark image */
+    -unity-background-image-tint-color: rgba(0,0,0,0);
+    position: relative;
+    left: -6px;
+}
+
+.options-toggle:checked > .unity-toggle__input > .unity-toggle__checkmark {
+    background-color: rgb(255, 255, 255);
+    left: 6px;
+}
+
+/* Hide the built-in text label — the UXML row provides its own */
+.options-toggle > .unity-label {
+    display: none;
+}
+
+/* ── Time-of-day button group ────────────────────────────────── */
+
+.tod-group {
+    flex-direction: row;
+    margin-top: 10px;
+    margin-bottom: 4px;
+}
+
+.tod-btn {
+    height: 32px;
+    padding: 0 12px;
+    margin-right: 6px;
+    border-radius: 3px;
+    font-size: 11px;
+    background-color: rgb(12, 26, 24);
+    border-width: 1px;
+    border-color: rgb(24, 52, 46);
+    color: rgb(100, 138, 146);
+    -unity-text-align: middle-center;
+}
+
+.tod-btn:hover {
+    background-color: rgb(18, 40, 36);
+    border-color: rgb(74, 155, 142);
+    color: rgb(237, 242, 240);
+}
+
+/* Selected state — applied by MainMenuController.cs via AddToClassList */
+.tod-btn.selected {
+    background-color: rgb(74, 155, 142);
+    border-color: rgb(58, 128, 112);
+    color: rgb(255, 255, 255);
+}
+
+.tod-btn.selected:hover {
+    background-color: rgb(82, 176, 160);
 }

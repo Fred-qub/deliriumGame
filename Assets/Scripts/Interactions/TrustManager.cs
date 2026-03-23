@@ -143,7 +143,8 @@ public class InteractionMaster : MonoBehaviour
     /// </summary>
     public string GetHallucinationType()
     {
-        if (interactionHistory.Contains("RatHallucination")) return "rat";
+        if (interactionHistory.Contains("RatHallucination"))
+            return PlayerPrefs.GetInt("Musophobia", 0) == 1 ? "thing" : "rat";
         if (interactionHistory.Contains("SnakeHallucination")) return "snake";
         return "";
     }

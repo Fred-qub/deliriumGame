@@ -137,7 +137,14 @@
                             </ui:VisualElement>
                         </ui:Button>
 
-                        <ui:Button name="btn-about" class="btn btn-secondary">
+                        <ui:Button name="btn-options" class="btn btn-secondary">
+                            <ui:VisualElement class="btn-inner">
+                                <ui:Label class="btn-label" text="Options" />
+                                <ui:Label class="btn-arrow" text="⚙" />
+                            </ui:VisualElement>
+                        </ui:Button>
+
+                        <ui:Button name="btn-about" class="btn btn-secondary btn-about-last">
                             <ui:VisualElement class="btn-inner">
                                 <ui:Label class="btn-label" text="About this simulation" />
                                 <ui:Label class="btn-arrow" text="↗" />
@@ -189,7 +196,67 @@
             </ui:VisualElement>
 
         </ui:VisualElement>
-        <!-- /modal -->
+        <!-- /about-modal -->
+
+        <!-- Options modal (hidden by default) -->
+        <ui:VisualElement name="options-modal-overlay" class="modal-overlay">
+
+            <ui:VisualElement name="options-modal-card" class="modal-card">
+
+                <ui:VisualElement class="panel-accent" />
+
+                <ui:VisualElement class="modal-header">
+                    <ui:Label class="modal-title" text="Options" />
+                    <ui:Button name="options-modal-close" class="modal-close" text="✕" />
+                </ui:VisualElement>
+
+                <!-- ── Accessibility section ── -->
+                <ui:VisualElement class="options-section">
+
+                    <ui:Label class="options-section-label" text="ACCESSIBILITY" />
+
+                    <!-- Musophobia toggle -->
+                    <ui:VisualElement class="options-row">
+                        <ui:VisualElement class="options-row-text">
+                            <ui:Label class="options-row-title" text="Musophobia mode" />
+                            <ui:Label class="options-row-desc"  text="Replaces rat imagery with abstract symbols" />
+                        </ui:VisualElement>
+                        <ui:Toggle name="toggle-musophobia" class="options-toggle" />
+                    </ui:VisualElement>
+
+                </ui:VisualElement>
+
+                <!-- ── Simulation section ── -->
+                <ui:VisualElement class="options-section options-section-last">
+
+                    <ui:Label class="options-section-label" text="SIMULATION" />
+
+                    <!-- Time of day selector -->
+                    <ui:VisualElement class="options-row options-row-col">
+                        <ui:Label class="options-row-title" text="Time of day" />
+                        <ui:Label class="options-row-desc"  text="Sets the ward lighting and atmosphere" />
+                        <ui:VisualElement class="tod-group">
+                            <ui:Button name="tod-btn-morning"  class="tod-btn" text="9 AM" />
+                            <ui:Button name="tod-btn-afternoon" class="tod-btn" text="4 PM" />
+                            <ui:Button name="tod-btn-night"    class="tod-btn" text="11 PM" />
+                            <ui:Button name="tod-btn-actual"   class="tod-btn" text="Actual time" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+
+                </ui:VisualElement>
+
+                <ui:VisualElement class="modal-footer">
+                    <ui:Button name="options-modal-ok" class="btn btn-primary modal-ok-btn">
+                        <ui:VisualElement class="btn-inner">
+                            <ui:Label class="btn-label" text="Save &amp; close" />
+                        </ui:VisualElement>
+                    </ui:Button>
+                </ui:VisualElement>
+
+            </ui:VisualElement>
+
+        </ui:VisualElement>
+        <!-- /options-modal -->
 
     </ui:VisualElement>
     <!-- /root -->

@@ -497,7 +497,8 @@ MonoBehaviour:
   isHearingAidInteraction: 0
   doctorLineAfter: 
   replayDoctorLineAfter: 
-  arthurHallucinationLine: 
+  arthurHallucinationLine: There's a {hallucination} right there. You must be able
+    to see it.
 --- !u!1 &45846303
 GameObject:
   m_ObjectHideFlags: 0
@@ -4621,7 +4622,8 @@ MonoBehaviour:
   isHearingAidInteraction: 0
   doctorLineAfter: 
   replayDoctorLineAfter: 
-  arthurHallucinationLine: 
+  arthurHallucinationLine: There's a {hallucination} right there. You must be able
+    to see it.
 --- !u!1001 &706545966
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11340,7 +11342,8 @@ MonoBehaviour:
   isHearingAidInteraction: 0
   doctorLineAfter: 
   replayDoctorLineAfter: 
-  arthurHallucinationLine: 
+  arthurHallucinationLine: There's a {hallucination} right there. You must be able
+    to see it.
 --- !u!1001 &1653663115
 PrefabInstance:
   m_ObjectHideFlags: 0
