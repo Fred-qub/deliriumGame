@@ -529,7 +529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea7a5fecde6c2714aa7f48285018e12f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hallucinationChance: {fileID: 0}
+  hallucinationChance: {fileID: 45846306}
   interactionHistory: []
   successCount: 0
   failureCount: 0
