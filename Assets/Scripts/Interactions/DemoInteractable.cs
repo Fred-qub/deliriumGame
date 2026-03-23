@@ -108,17 +108,17 @@ public class DemoInteractable : MonoBehaviour
         }
 
         hasInteracted = true;
-        
-        if (finalOutcome == InteractionMaster.OutcomeType.Failure && triggersHallucinationOnFail)
-        {
-            InteractionMaster.Instance.CheckHallucinationChance();
-        }
 
         // RecordInteraction fires HallucinationTypeLottery() internally if this is a bad choice,
         // so by the time dialogue plays, GetHallucinationType() already has the correct result.
         InteractionMaster.Instance.RecordInteraction(objectName, finalOutcome);
         
         OnInteraction?.Invoke(objectName);
+        
+        if (finalOutcome == InteractionMaster.OutcomeType.Failure && triggersHallucinationOnFail)
+        {
+            InteractionMaster.Instance.CheckHallucinationChance();
+        }
         
         // -------------------------------------------------------------------------
         // Trigger main dialogue — unchanged from before
