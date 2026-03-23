@@ -216,7 +216,7 @@ public class DialogueManager : MonoBehaviour
     /// If true, all doctor lines are displayed clearly.
     /// If false, all doctor lines are garbled.
     /// </summary>
-    public bool HearingAidFitted()
+    private bool HearingAidFitted()
     {
 
         int index = InteractionMaster.Instance.interactionHistory.IndexOf("HearingAid");
