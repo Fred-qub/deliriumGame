@@ -210,7 +210,9 @@ public class DialogueManager : MonoBehaviour
     // -------------------------------------------------------------------------
 
     /// <summary>
-    /// Checks InteractionMaster to see if hearing aids have been fitted.
+    /// Checks InteractionMaster to see if hearing aids have been fitted - only returns true if hearing aid interaction is first in the list
+    /// This only works because there are only 2 possible choices; any more than that and we would haev to check index of verbal option as
+    /// well and ensure hearing aid index was less than verbal.
     /// If true, all doctor lines are displayed clearly.
     /// If false, all doctor lines are garbled.
     /// </summary>
@@ -220,9 +222,7 @@ public class DialogueManager : MonoBehaviour
         int index = InteractionMaster.Instance.interactionHistory.IndexOf("HearingAid");
 
         if (InteractionMaster.Instance == null) return false;
-        // return InteractionMaster.Instance.HasInteractedWith("HearingAid");
-
-        
+     
         if (index == 0)
         {
 
