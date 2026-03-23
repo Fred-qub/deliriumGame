@@ -4,6 +4,7 @@ using TMPro;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
+
 /// <summary>
 /// Manages all dialogue display in both the doctor POV scene and the patient POV replay.
 /// Attach this to a GameObject in each scene independently.
@@ -213,12 +214,24 @@ public class DialogueManager : MonoBehaviour
     /// If true, all doctor lines are displayed clearly.
     /// If false, all doctor lines are garbled.
     /// </summary>
-    private bool HearingAidFitted()
+    public bool HearingAidFitted()
     {
-        if (InteractionMaster.Instance == null) return false;
-        return InteractionMaster.Instance.HasInteractedWith("HearingAid");
-    }
 
+        int index = InteractionMaster.Instance.interactionHistory.IndexOf("HearingAid");
+
+        if (InteractionMaster.Instance == null) return false;
+        // return InteractionMaster.Instance.HasInteractedWith("HearingAid");
+
+        
+        if (index == 0)
+        {
+
+            return InteractionMaster.Instance.HasInteractedWith("HearingAid");
+
+        }
+
+        else return false;
+    }
     /// <summary>
     /// Processes a doctor line before display.
     /// Returns garbled text and plays garbled sound if hearing aids not yet fitted.
