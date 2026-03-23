@@ -157,6 +157,16 @@ public class MainMenuController : MonoBehaviour
         PulsePatientDot();
     }
 
+    private void OnApplicationQuit()
+    {
+        PlayerPrefs.Save();
+    }
+
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        if (!hasFocus) PlayerPrefs.Save();
+    }
+
     // -------------------------------------------------------------------------
     // Button handlers — About modal
     // -------------------------------------------------------------------------
