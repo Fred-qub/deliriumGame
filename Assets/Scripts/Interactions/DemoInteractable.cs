@@ -9,14 +9,17 @@ public class DemoInteractable : MonoBehaviour
 
     [Header("Settings")]
     public string objectName;       // e.g., "Verbal", "Sedative"
-    public bool isSuccessOption;    // Check this box if this is a "Good" choice
+    public InteractionMaster.OutcomeType defaultOutcome;    
 
     [Header("Dependency System")]
     [Tooltip("Name of the object that must be used FIRST to make this a success.")]
     public string requiredObjectName;
     [Tooltip("Name of the object that blocks this object from being interacted with.")]
     public string blockerObjectName;
-
+    
+    [Header("Hallucinations")]
+    public bool triggersHallucinationOnFail = true;
+    
     private bool hasInteracted = false;
     
     // -------------------------------------------------------------------------
@@ -83,7 +86,7 @@ public class DemoInteractable : MonoBehaviour
             }
         }
 
-        int choiceCount = InteractionMaster.Instance.successCount + InteractionMaster.Instance.failureCount;
+        int choiceCount = InteractionMaster.Instance.successCount + InteractionMaster.Instance.failureCount + InteractionMaster.Instance.neutralCount;
 
         if (choiceCount >= InteractionMaster.Instance.maxInteractions)
         {
@@ -91,7 +94,7 @@ public class DemoInteractable : MonoBehaviour
             return;
         }
 
-        bool finalOutcome = isSuccessOption;
+        InteractionMaster.OutcomeType finalOutcome = defaultOutcome;
 
         if (!string.IsNullOrEmpty(requiredObjectName))
         {
@@ -99,12 +102,8 @@ public class DemoInteractable : MonoBehaviour
 
             if (conditionMet)
             {
-                Debug.Log($"[DEPENDENCY MET] {requiredObjectName} was used. Changing {objectName} to SUCCESS.");
-                finalOutcome = true;
-            }
-            else
-            {
-                Debug.Log($"[DEPENDENCY FAILED] {requiredObjectName} was NOT used. {objectName} remains {(finalOutcome ? "SUCCESS" : "FAILURE")}.");
+                Debug.Log($"Dependency met! Upgrading {objectName} to SUCCESS.");
+                finalOutcome = InteractionMaster.OutcomeType.Success;
             }
         }
 
@@ -115,6 +114,11 @@ public class DemoInteractable : MonoBehaviour
         InteractionMaster.Instance.RecordInteraction(objectName, finalOutcome);
         
         OnInteraction?.Invoke(objectName);
+        
+        if (finalOutcome == InteractionMaster.OutcomeType.Failure && triggersHallucinationOnFail)
+        {
+            InteractionMaster.Instance.CheckHallucinationChance();
+        }
         
         // -------------------------------------------------------------------------
         // Trigger main dialogue — unchanged from before

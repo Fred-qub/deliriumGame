@@ -13,10 +13,12 @@ public class InteractionMaster : MonoBehaviour
 
     // Records the order of events
     public List<string> interactionHistory = new List<string>();
-
-    [Header("Scoring")]
+    
+    public enum OutcomeType {Success, Failure, Neutral}
+    
     public int successCount = 0;
     public int failureCount = 0;
+    public int neutralCount = 0;
     public int maxInteractions = 2; // Trigger result after this many choices
 
     [Header("Scene Management")]
@@ -65,8 +67,7 @@ public class InteractionMaster : MonoBehaviour
     /// Called by objects when interacted with.
     /// </summary>
     /// <param name="objectName">Name of the object</param>
-    /// <param name="isSuccessAction">Is this a 'correct' action?</param>
-    public void RecordInteraction(string objectName, bool isSuccessAction)
+    public void RecordInteraction(string objectName, OutcomeType outcome)
     {
         // Count only real player choices — hallucination entries added by HallucinationChance
         // are excluded so they never count toward the interaction limit.
@@ -88,22 +89,23 @@ public class InteractionMaster : MonoBehaviour
         // Order of Events
         interactionHistory.Add(objectName);
 
-        // Success/Failure
-        if (isSuccessAction)
+        // Success/Failure/Neutral
+        if (outcome == OutcomeType.Success)
         {
             successCount++;
         }
-
-        // CalculateFinalResult via the totalChoices count below.
-        if (!isSuccessAction)
+        else if (outcome == OutcomeType.Failure)
         {
             failureCount++;
-            CheckHallucinationChance();
+        }
+        else if (outcome == OutcomeType.Neutral)
+        {
+            neutralCount++;
         }
 
         // Debug Output for current state
         Debug.Log($"--- ACTION RECORDED ---");
-        Debug.Log($"Object: {objectName} | Type: {(isSuccessAction ? "SUCCESS" : "FAILURE")}");
+        Debug.Log($"Object: {objectName} | Type: {outcome}");
         Debug.Log($"Current History: {string.Join(" -> ", interactionHistory)}");
 
         // Recount after adding the new interaction — still excluding hallucination entries
@@ -132,6 +134,7 @@ public class InteractionMaster : MonoBehaviour
         objectActivationStates.Clear();
         successCount = 0;
         failureCount = 0;
+        neutralCount = 0;
         hallucinationLineShown = false;
         Debug.Log("[InteractionMaster] ResetState called — history and scores cleared.");
     }
@@ -153,15 +156,30 @@ public class InteractionMaster : MonoBehaviour
     {
         Debug.Log("--- FINAL RESULT ---");
 
+        //Success Outcomes
         if (successCount == 2)
         {
-            Debug.Log("RESULT: TOTAL SUCCESS (Patient Calm)");
+            Debug.Log("RESULT: TOTAL SUCCESS (Patient Calmed)");
+        } 
+        if (successCount == 1 && neutralCount== 1)
+        {
+            Debug.Log("RESULT: MINOR SUCCESS (Patient Calmer)");
         }
-        else if (failureCount == 2)
+        //Failure Outcomes
+        if (failureCount == 2)
         {
             Debug.Log("RESULT: TOTAL FAILURE (Patient Upset)");
         }
-        else
+        if (failureCount == 1 && neutralCount == 1)
+        {
+            Debug.Log("RESULT: MINOR FAILURE (Patient Uneasy)");
+        }
+        //Neutral/Mixed Outcomes
+        if (neutralCount == 2)
+        {
+            Debug.Log("RESULT: Neutral RESULT (Patient Unchanged");
+        }
+        if (successCount == 1 && failureCount == 1)
         {
             Debug.Log("RESULT: MIXED RESULT (Patient Mixed)");
         }
