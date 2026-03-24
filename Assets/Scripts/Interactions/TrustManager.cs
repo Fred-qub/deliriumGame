@@ -139,18 +139,6 @@ public class InteractionMaster : MonoBehaviour
         Debug.Log("[InteractionMaster] ResetState called — history and scores cleared.");
     }
 
-    /// <summary>
-    /// Returns "rat", "snake", or empty string if no hallucination assigned yet.
-    /// Called by DemoInteractable and ReplayDialogue to inject the correct
-    /// hallucination word into Arthur's dialogue at runtime via the {hallucination} token.
-    /// </summary>
-    public string GetHallucinationType()
-    {
-        if (interactionHistory.Contains("RatHallucination"))
-            return PlayerPrefs.GetInt("Musophobia", 0) == 1 ? "thing" : "rat";
-        if (interactionHistory.Contains("SnakeHallucination")) return "snake";
-        return "";
-    }
 
     private void CalculateFinalResult()
     {

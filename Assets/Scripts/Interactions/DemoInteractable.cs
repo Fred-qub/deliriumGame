@@ -58,12 +58,6 @@ public class DemoInteractable : MonoBehaviour
     [Tooltip("Hearing Aid only. Arthur's response after the hearing aids are fitted.")]
     [TextArea] public string replayDoctorLineAfter;
 
-    [Header("Hallucination Dialogue")]
-    [Tooltip("Appended after arthurLine only if a hallucination was triggered on this interaction. " +
-             "Use {hallucination} to insert 'rat' or 'snake' dynamically. " +
-             "Example: 'Get that {hallucination} away from me!' " +
-             "Leave blank on interactions that should never show a hallucination line.")]
-    [TextArea] public string arthurHallucinationLine;
 
     // -------------------------------------------------------------------------
     // ExecuteChoice
