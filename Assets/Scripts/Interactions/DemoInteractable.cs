@@ -141,17 +141,6 @@ public class DemoInteractable : MonoBehaviour
         {
             DialogueManager.Instance.ShowArthurLine(arthurLine);
         }
-
-        // -------------------------------------------------------------------------
-        // Append hallucination line after main dialogue completes,
-        // but only if this interaction has a hallucination line set in the Inspector
-        // AND a hallucination was actually assigned this run.
-        // -------------------------------------------------------------------------
-
-        if (!string.IsNullOrEmpty(arthurHallucinationLine))
-        {
-            StartCoroutine(AppendHallucinationLine());
-        }
     }
 
     // -------------------------------------------------------------------------
@@ -177,31 +166,6 @@ public class DemoInteractable : MonoBehaviour
         {
             DialogueManager.Instance.ShowMonologue(arthurMonologue);
         }
-    }
-
-    // -------------------------------------------------------------------------
-    // Hallucination append coroutine
-    // Waits for the current dialogue to finish, then fires the hallucination
-    // line only if a hallucination was actually assigned this run.
-    // Safe to call on any interaction — silently does nothing if no hallucination.
-    // -------------------------------------------------------------------------
-
-    private IEnumerator AppendHallucinationLine()
-    {
-        // Wait for the main dialogue line to finish
-        yield return new WaitUntil(() => !DialogueManager.Instance.IsDialogueActive());
-
-        string hallucinationType = InteractionMaster.Instance.GetHallucinationType();
-
-        // Only fire if a hallucination was actually assigned this run
-        if (string.IsNullOrEmpty(hallucinationType)) yield break;
-
-        // Only fire once per run — prevents repeating on a second bad interaction
-        if (InteractionMaster.Instance.hallucinationLineShown) yield break;
-        InteractionMaster.Instance.hallucinationLineShown = true;
-
-        string resolvedLine = arthurHallucinationLine.Replace("{hallucination}", hallucinationType);
-        DialogueManager.Instance.ShowArthurLine(resolvedLine);
     }
 
     // -------------------------------------------------------------------------

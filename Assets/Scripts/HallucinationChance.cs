@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.Collections;
 using UnityEditor;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class HallucinationChance : MonoBehaviour
     public InteractionMaster trustManager;
     private string rat = "RatHallucination";
     private string snake = "SnakeHallucination";
+    public SpawnRat ratSpawner;
+    public SpawnSnake snakeSpawner;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -45,14 +48,33 @@ public class HallucinationChance : MonoBehaviour
         if (Random.Range(0f, 100f) < hallucinationTypeChancePercentage) // if random number between 0 & 100 is less than the hallucination chance percentage
         {                  
                 Debug.Log("SpawnRat");
-                trustManager.interactionHistory.Add(rat);               
+                trustManager.interactionHistory.Add(rat);
+                if (ratSpawner != null)
+                {
+                    StartCoroutine(DelayedHallucinationDialogue(ratSpawner));
+                }
         }
 
         else
         {
             Debug.Log("Spawn Snake"); 
             trustManager.interactionHistory.Add(snake);
+            if (snakeSpawner != null)
+            {
+                StartCoroutine(DelayedHallucinationDialogue(snakeSpawner));
+            }
         }
+    }
+
+    //Wait until Current Dialogue is finished to say Hallucination Dialogue
+    private IEnumerator DelayedHallucinationDialogue(MonoBehaviour spawner)
+    {
+        yield return new WaitUntil(() => !DialogueManager.Instance.IsDialogueActive());
+        
+        yield return new WaitForSeconds(0.5f);
+        
+        if (spawner is SpawnRat rat) rat.TriggerHallucinationDialogue();
+        else if (spawner is SpawnSnake snake) snake.TriggerHallucinationDialogue();
     }
 
   

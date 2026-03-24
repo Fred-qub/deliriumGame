@@ -880,9 +880,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectName: Verbal
-  isSuccessOption: 0
+  defaultOutcome: 0
   requiredObjectName: HearingAid
   blockerObjectName: 
+  triggersHallucinationOnFail: 1
   doctorLine: "Relax, ok? There's nobody in the corner\u2026 Can't you see I'm your
     doctor, and I'm here to help?"
   arthurLine: You're with him. You're one of them!
@@ -926,6 +927,7 @@ MonoBehaviour:
   interactionHistory: []
   successCount: 0
   failureCount: 0
+  neutralCount: 0
   maxInteractions: 2
   nextSceneName: PatientScene
   delayBeforeSwitch: 10
@@ -5789,9 +5791,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectName: Lights
-  isSuccessOption: 0
+  defaultOutcome: 0
   requiredObjectName: 
   blockerObjectName: 
+  triggersHallucinationOnFail: 1
   doctorLine: 
   arthurLine: You're hurting me. Please, stop.
   replayDoctorLine: 
@@ -7696,12 +7699,12 @@ PrefabInstance:
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
       propertyPath: actionLibrary.Array.data[5].onTrigger.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
       propertyPath: actionLibrary.Array.data[6].onTrigger.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
@@ -7826,7 +7829,7 @@ PrefabInstance:
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
       propertyPath: actionLibrary.Array.data[6].onTrigger.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
@@ -7997,7 +8000,7 @@ PrefabInstance:
         type: 3}
       propertyPath: actionLibrary.Array.data[6].onTrigger.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 1552612445}
+      objectReference: {fileID: 7961727395178152786}
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
       propertyPath: actionLibrary.Array.data[0].onTrigger.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
@@ -8256,7 +8259,7 @@ PrefabInstance:
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
       propertyPath: actionLibrary.Array.data[5].onTrigger.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: StartSpawn
+      value: TriggerHallucinationDialogue
       objectReference: {fileID: 0}
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
@@ -8276,7 +8279,7 @@ PrefabInstance:
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
       propertyPath: actionLibrary.Array.data[6].onTrigger.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: ExecuteReplay
+      value: TriggerHallucinationDialogue
       objectReference: {fileID: 0}
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
@@ -8401,7 +8404,7 @@ PrefabInstance:
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
       propertyPath: actionLibrary.Array.data[6].onTrigger.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
-      value: ReplayDialogue, Assembly-CSharp
+      value: SpawnSnake, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
@@ -10475,9 +10478,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectName: Coat
-  isSuccessOption: 1
+  defaultOutcome: 0
   requiredObjectName: 
   blockerObjectName: 
+  triggersHallucinationOnFail: 1
   doctorLine: 
   arthurLine: "I thought someone was there. He'd been watching me all night\u2026
     What's happening to me, doctor?"
@@ -11893,9 +11897,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectName: HearingAid
-  isSuccessOption: 1
+  defaultOutcome: 0
   requiredObjectName: 
   blockerObjectName: 
+  triggersHallucinationOnFail: 1
   doctorLine: Let's use your hearing aids, Arthur.
   arthurLine: That's clearer now, but I'm scared, doctor. I don't know what's real.
   replayDoctorLine: Let's use your hearing aids, Arthur.
@@ -14703,14 +14708,12 @@ PrefabInstance:
     - target: {fileID: 4224466730367405167, guid: de2b1cd7757611c4fbfb741282ba355b,
         type: 3}
       propertyPath: entries.Array.data[1].arthurHallucinationMonologue
-      value: And there it is again... that {hallucination}. Right there. Can't they
-        see it?
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4224466730367405167, guid: de2b1cd7757611c4fbfb741282ba355b,
         type: 3}
       propertyPath: entries.Array.data[2].arthurHallucinationMonologue
-      value: And there it is again... that {hallucination}. Right there. Can't they
-        see it?
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7098531433753089871, guid: de2b1cd7757611c4fbfb741282ba355b,
         type: 3}
@@ -15642,9 +15645,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectName: Sedative
-  isSuccessOption: 0
+  defaultOutcome: 0
   requiredObjectName: 
   blockerObjectName: 
+  triggersHallucinationOnFail: 1
   doctorLine: 
   arthurLine: "I don\u2019t know you. Don't dare touch me!"
   replayDoctorLine: 
@@ -19947,6 +19951,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1668406974771968360, guid: b791cdd3a218d744da6ac4de55e886d1,
         type: 3}
+      propertyPath: ratSpawner
+      value: 
+      objectReference: {fileID: 7961727395178152787}
+    - target: {fileID: 1668406974771968360, guid: b791cdd3a218d744da6ac4de55e886d1,
+        type: 3}
+      propertyPath: snakeSpawner
+      value: 
+      objectReference: {fileID: 7961727395178152786}
+    - target: {fileID: 1668406974771968360, guid: b791cdd3a218d744da6ac4de55e886d1,
+        type: 3}
       propertyPath: trustManager
       value: 
       objectReference: {fileID: 45846304}
@@ -19955,6 +19969,11 @@ PrefabInstance:
       propertyPath: snake
       value: 
       objectReference: {fileID: 1211083871}
+    - target: {fileID: 3680612571013311078, guid: b791cdd3a218d744da6ac4de55e886d1,
+        type: 3}
+      propertyPath: newspaper
+      value: 
+      objectReference: {fileID: 582648054}
     - target: {fileID: 5969017409812006195, guid: b791cdd3a218d744da6ac4de55e886d1,
         type: 3}
       propertyPath: m_Name

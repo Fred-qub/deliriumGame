@@ -5,26 +5,45 @@ public class SpawnRat : MonoBehaviour
 {
     public GameObject ratPrefab;
     public GameObject darklingPrefab;
+
+    [Header("HallucinationDialogue")] 
+    [TextArea] public string arthurClinicianDialogue = "Help! There's rats everywhere!";
+
+    [TextArea] public string arthurReplayMonologue = "Oh no! There's rats everywhere!";
+    
     public int Musophobia;
     private float spawnPosY = -0.88f; // items spawn -0.88 in Y direction
     private float spawnPosX = 3; // items spawn at 3 on x-axis
     private float spawnRangeZ = 4; 
     private float StartDelay = 0f; // delay before items start to spawn is 0 sec
     private float SpawnInterval = 1f; //items spawn every 0.5 sec
-    private string currentSceneName;
+    
+    private string replaySceneName = "PatientScene Ruth";
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
-        string currentSceneName = SceneManager.GetActiveScene().name;
         if (PlayerPrefs.HasKey("Musophobia"))
         {
             Musophobia = PlayerPrefs.GetInt("Musophobia");
         }
         else Musophobia = 0;
-        Debug.Log(currentSceneName);
+    }
 
+    public void TriggerHallucinationDialogue()
+    {
+        string currentScene = SceneManager.GetActiveScene().name;
+
+        if (currentScene != replaySceneName)
+        {
+            //Clinician Scene
+            DialogueManager.Instance.ShowArthurLine(arthurClinicianDialogue);
+        }
+        else
+        {
+            //Replay Scene
+            DialogueManager.Instance.ShowArthurLine(arthurReplayMonologue);
+        }
     }
 
     // Update is called once per frame
@@ -37,6 +56,7 @@ public class SpawnRat : MonoBehaviour
     {
         Vector3 spawnPos = new(spawnPosX, spawnPosY, Random.Range(-spawnRangeZ, spawnRangeZ));
         Instantiate(ratPrefab, spawnPos, ratPrefab.transform.rotation);
+        
     }
 
     public void SpawnDarklings()
@@ -45,20 +65,22 @@ public class SpawnRat : MonoBehaviour
         Instantiate(darklingPrefab, spawnPos, darklingPrefab.transform.rotation);
     }
 
-    public void StartSpawn() 
+    public void StartSpawn()
     {
-        switch (Musophobia)
+        if (SceneManager.GetActiveScene().name == replaySceneName)
         {
-            case 0:
-                InvokeRepeating("SpawnRats", StartDelay, SpawnInterval);
-                break;
+            switch (Musophobia)
+            {
+                case 0:
+                    InvokeRepeating("SpawnRats", StartDelay, SpawnInterval);
+                    break;
 
-            case 1:
-                InvokeRepeating("SpawnDarklings", StartDelay, SpawnInterval);
-                break;
+                case 1:
+                    InvokeRepeating("SpawnDarklings", StartDelay, SpawnInterval);
+                    break;
 
-        }     
-
+            }     
+        }
     }
 
     

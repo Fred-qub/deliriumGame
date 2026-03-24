@@ -124,12 +124,6 @@ public class ReplayDialogue : MonoBehaviour
             // All other interactions: Arthur monologue only
             DialogueManager.Instance.ShowMonologue(entry.arthurMonologue);
         }
-
-        // Append hallucination monologue after main dialogue if field is filled in
-        if (!string.IsNullOrEmpty(entry.arthurHallucinationMonologue))
-        {
-            StartCoroutine(AppendHallucinationMonologue(entry.arthurHallucinationMonologue));
-        }
     }
 
     // -------------------------------------------------------------------------
@@ -143,24 +137,7 @@ public class ReplayDialogue : MonoBehaviour
         yield return new WaitUntil(() => !DialogueManager.Instance.IsDialogueActive());
         OnOpeningLineComplete?.Invoke();
     }
-
-    /// <summary>
-    /// Waits for the main monologue to finish, then fires the hallucination
-    /// monologue only if a hallucination was actually assigned this run.
-    /// </summary>
-    private IEnumerator AppendHallucinationMonologue(string hallucinationMonologue)
-    {
-        // Wait for main dialogue to finish
-        yield return new WaitUntil(() => !DialogueManager.Instance.IsDialogueActive());
-
-        string hallucinationType = InteractionMaster.Instance.GetHallucinationType();
-
-        // Only fire if a hallucination was actually assigned this run
-        if (string.IsNullOrEmpty(hallucinationType)) yield break;
-
-        string resolvedLine = hallucinationMonologue.Replace("{hallucination}", hallucinationType);
-        DialogueManager.Instance.ShowMonologue(resolvedLine);
-    }
+    
 
     /// <summary>
     /// Hearing aid animation placeholder.
