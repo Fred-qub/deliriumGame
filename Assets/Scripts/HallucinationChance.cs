@@ -93,9 +93,11 @@ public class HallucinationChance : MonoBehaviour
     //Wait until Current Dialogue is finished to say Hallucination Dialogue
     private IEnumerator DelayedHallucinationDialogue(MonoBehaviour spawner)
     {
+        yield return new WaitUntil(() => DialogueManager.Instance.IsDialogueActive());
+        
         yield return new WaitUntil(() => !DialogueManager.Instance.IsDialogueActive());
         
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.0f);
         
         if (spawner is SpawnRat rat) rat.TriggerHallucinationDialogue();
         else if (spawner is SpawnSnake snake) snake.TriggerHallucinationDialogue();

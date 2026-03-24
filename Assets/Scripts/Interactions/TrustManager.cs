@@ -216,12 +216,12 @@ public class InteractionMaster : MonoBehaviour
 
         // Brief pause to catch any appended dialogue (e.g. hallucination line)
         // which fires after a short gap following the main line
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(1.0f);
         if (DialogueManager.Instance.IsDialogueActive())
             yield return new WaitUntil(() => !DialogueManager.Instance.IsDialogueActive());
 
         // Small buffer so the last line doesn't feel abrupt
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(5.0f);
 
         Debug.Log($"Dialogue finished. Loading {nextSceneName}.");
         SceneManager.LoadScene(nextSceneName);
