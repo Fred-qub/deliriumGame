@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class HallucinationChance : MonoBehaviour
 {
-    private int auxHallucinationChancePercentage = 100; // chance of an auxilliary hallucination occuring on a bad choice
+    private int auxHallucinationChancePercentage = 50; // chance of an auxilliary hallucination occuring on a bad choice
     private int hallucinationTypeChancePercentage = 50; // chance of particular hallucination occurring
     public InteractionMaster trustManager;
     private string rat = "RatHallucination";
