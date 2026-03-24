@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class HallucinationChance : MonoBehaviour
 {
-    private int auxHallucinationChancePercentage = 50; // chance of an auxilliary hallucination occuring on a bad choice
+    private int auxHallucinationChancePercentage = 100; // chance of an auxilliary hallucination occuring on a bad choice
     private int hallucinationTypeChancePercentage = 50; // chance of particular hallucination occurring
     public InteractionMaster trustManager;
     private string rat = "RatHallucination";
@@ -46,23 +46,47 @@ public class HallucinationChance : MonoBehaviour
     {
 
         if (Random.Range(0f, 100f) < hallucinationTypeChancePercentage) // if random number between 0 & 100 is less than the hallucination chance percentage
-        {                  
-                Debug.Log("SpawnRat");
-                trustManager.interactionHistory.Add(rat);
-                if (ratSpawner != null)
-                {
-                    StartCoroutine(DelayedHallucinationDialogue(ratSpawner));
-                }
+        {
+            if (!trustManager.interactionHistory.Contains(rat))
+            {
+                TriggerRatSpawner();
+            }
+            else if (trustManager.interactionHistory.Contains(rat) && !trustManager.interactionHistory.Contains(snake))
+            {
+                TriggerSnakeSpawner();
+            }
         }
 
         else
         {
-            Debug.Log("Spawn Snake"); 
-            trustManager.interactionHistory.Add(snake);
-            if (snakeSpawner != null)
+            if (!trustManager.interactionHistory.Contains(snake))
             {
-                StartCoroutine(DelayedHallucinationDialogue(snakeSpawner));
+                TriggerSnakeSpawner();
             }
+            else if (trustManager.interactionHistory.Contains(snake) && !trustManager.interactionHistory.Contains(rat))
+            {
+                TriggerRatSpawner();
+            }
+        }
+    }
+
+    private void TriggerRatSpawner()
+    {
+        Debug.Log("SpawnRat");
+        trustManager.interactionHistory.Add(rat);
+        if (ratSpawner != null)
+        {
+            StartCoroutine(DelayedHallucinationDialogue(ratSpawner));
+        }
+    }
+
+    private void TriggerSnakeSpawner()
+    {
+        Debug.Log("Spawn Snake"); 
+        trustManager.interactionHistory.Add(snake);
+        if (snakeSpawner != null)
+        {
+            StartCoroutine(DelayedHallucinationDialogue(snakeSpawner));
         }
     }
 

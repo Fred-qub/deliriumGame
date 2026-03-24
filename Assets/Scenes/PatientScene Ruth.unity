@@ -880,7 +880,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectName: Verbal
-  defaultOutcome: 0
+  defaultOutcome: 2
   requiredObjectName: HearingAid
   blockerObjectName: 
   triggersHallucinationOnFail: 1
@@ -5791,7 +5791,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectName: Lights
-  defaultOutcome: 0
+  defaultOutcome: 1
   requiredObjectName: 
   blockerObjectName: 
   triggersHallucinationOnFail: 1
@@ -15645,7 +15645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectName: Sedative
-  defaultOutcome: 0
+  defaultOutcome: 1
   requiredObjectName: 
   blockerObjectName: 
   triggersHallucinationOnFail: 1

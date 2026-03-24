@@ -88,7 +88,7 @@ public class SceneReplayer : MonoBehaviour
         if (DialogueManager.Instance != null)
             yield return new WaitUntil(() => !DialogueManager.Instance.IsDialogueActive());
 
-        yield return new WaitForSeconds(4.5f);
+        yield return new WaitForSeconds(5.5f);
 
         Debug.Log("Loading tips scene.");
         

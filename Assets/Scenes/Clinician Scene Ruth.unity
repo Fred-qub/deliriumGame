@@ -536,7 +536,7 @@ MonoBehaviour:
   neutralCount: 0
   maxInteractions: 2
   nextSceneName: PatientScene Ruth
-  delayBeforeSwitch: 10
+  delayBeforeSwitch: 18
   hallucinationLineShown: 0
 --- !u!4 &45846305
 Transform:
@@ -4744,8 +4744,7 @@ MonoBehaviour:
   isHearingAidInteraction: 0
   doctorLineAfter: 
   replayDoctorLineAfter: 
-  arthurHallucinationLine: There's a {hallucination} right there. You must be able
-    to see it.
+  arthurHallucinationLine: 
 --- !u!1001 &706545966
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11467,8 +11466,7 @@ MonoBehaviour:
   isHearingAidInteraction: 0
   doctorLineAfter: 
   replayDoctorLineAfter: 
-  arthurHallucinationLine: There's a {hallucination} right there. You must be able
-    to see it.
+  arthurHallucinationLine: 
 --- !u!1001 &1653663115
 PrefabInstance:
   m_ObjectHideFlags: 0
