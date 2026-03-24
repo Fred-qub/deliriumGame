@@ -8,9 +8,11 @@ public class SpawnRat : MonoBehaviour
 
     [Header("HallucinationDialogue")] 
     [TextArea] public string arthurClinicianDialogue = "Help! There's rats everywhere!";
+    [TextArea] public string arthurClinicianDialogueMusophobia = "Help! Those things with glowing eyes are everywhere!";
 
     [TextArea] public string arthurReplayMonologue = "Oh no! There's rats everywhere!";
-    
+    [TextArea] public string arthurReplayMonologueMusophobia = "Oh no! Those things with glowing eyes are everywhere!";
+
     public int Musophobia;
     private float spawnPosY = -0.88f; // items spawn -0.88 in Y direction
     private float spawnPosX = 3; // items spawn at 3 on x-axis
@@ -37,12 +39,35 @@ public class SpawnRat : MonoBehaviour
         if (currentScene != replaySceneName)
         {
             //Clinician Scene
-            DialogueManager.Instance.ShowArthurLine(arthurClinicianDialogue);
+
+            switch (Musophobia)
+            { 
+                case 0:
+                    DialogueManager.Instance.ShowArthurLine(arthurClinicianDialogue);
+                    break;
+
+                case 1:
+            
+                     DialogueManager.Instance.ShowArthurLine(arthurClinicianDialogueMusophobia);
+                     break;
+            }
         }
-        else
+        
+        if (currentScene == replaySceneName)
         {
             //Replay Scene
-            DialogueManager.Instance.ShowArthurLine(arthurReplayMonologue);
+
+            switch (Musophobia)          
+            {
+                case 0:
+                    DialogueManager.Instance.ShowArthurLine(arthurReplayMonologue);
+                    break;
+
+                case 1:
+                    DialogueManager.Instance.ShowArthurLine(arthurReplayMonologueMusophobia);
+                    break;
+
+            }
         }
     }
 
