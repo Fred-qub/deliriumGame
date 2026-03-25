@@ -56,8 +56,10 @@ public class AudioController : MonoBehaviour
     {
         switch (objectName)
         {
-            case  "Lights": lightSwitch.Play(); break;
-            case "Coat": coat.Play(); break;
+            case  "Lights": lightSwitch.Play(); heartSlow.Stop(); heartMedium.Stop(); heartFast.Play(); break;
+            case "Sedative": heartSlow.Stop(); heartMedium.Stop(); heartFast.Play(); break;
+            case "Coat": coat.Play(); heartMedium.Stop(); heartFast.Stop(); heartSlow.Play(); break;
+            case "HearingAid": heartMedium.Stop(); heartFast.Stop(); heartSlow.Play(); break;
         }
     }
 
