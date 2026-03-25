@@ -12,12 +12,6 @@ using System.Collections;
 /// This script is intentionally independent of the doctor scene — it holds
 /// its own copy of the dialogue data so the two scenes don't depend on each other.
 ///
-/// HALLUCINATION APPEND:
-/// Each ReplayEntry has an optional arthurHallucinationMonologue field.
-/// If filled in AND a hallucination was assigned this run, this line plays
-/// automatically after the main arthurMonologue. Use {hallucination} to
-/// insert "rat" or "snake" dynamically.
-/// Example: "There it is again... that {hallucination}. Can't they see it?"
 /// </summary>
 public class ReplayDialogue : MonoBehaviour
 {
