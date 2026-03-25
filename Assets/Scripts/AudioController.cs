@@ -10,7 +10,11 @@ public class AudioController : MonoBehaviour
     [SerializeField]private AudioSource sedative;
     [SerializeField]private AudioSource radioReal;
     [SerializeField]private AudioSource radioHallucination;
-    
+    [SerializeField] private AudioSource heartSlow;
+    [SerializeField] private AudioSource heartMedium;
+    [SerializeField] private AudioSource heartFast;
+
+
     [Header("Ghost Audio")]
     [SerializeField]private AudioSource ghostMoans;
     [SerializeField] private float startVolume;
@@ -40,8 +44,10 @@ public class AudioController : MonoBehaviour
         
         switch (actionName)
         {
-            case "Lights": lightBuzz.Play(); lightSwitch.Play(); break;
-            case "Sedative": sedative.Play(); break;
+            case "Lights": lightBuzz.Play(); lightSwitch.Play(); heartSlow.Stop(); heartMedium.Stop(); heartFast.Play(); break;
+            case "Sedative": sedative.Play(); heartSlow.Stop(); heartMedium.Stop(); heartFast.Play(); break;
+            case "Coat": heartMedium.Stop(); heartFast.Stop(); heartSlow.Play(); break;
+            case "HearingAid": heartMedium.Stop(); heartFast.Stop(); heartSlow.Play(); break;
         }
         
     }
@@ -64,6 +70,7 @@ public class AudioController : MonoBehaviour
             if (history[i] == "Lights" || history[i] == "Sedative") 
             {
                 radioHallucination.Play();
+                heartMedium.Play();
                 isHallucinating = true;
                 break;
             }
@@ -73,6 +80,7 @@ public class AudioController : MonoBehaviour
         if (!isHallucinating)
         {
             radioReal.Play();
+            heartMedium.Play();
         }
     }
 
