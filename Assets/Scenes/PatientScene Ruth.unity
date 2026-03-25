@@ -893,7 +893,6 @@ MonoBehaviour:
   isHearingAidInteraction: 0
   doctorLineAfter: 
   replayDoctorLineAfter: 
-  arthurHallucinationLine: 
 --- !u!1 &45846303
 GameObject:
   m_ObjectHideFlags: 0
@@ -5802,7 +5801,6 @@ MonoBehaviour:
   isHearingAidInteraction: 0
   doctorLineAfter: 
   replayDoctorLineAfter: 
-  arthurHallucinationLine: 
 --- !u!1 &693711602
 GameObject:
   m_ObjectHideFlags: 0
@@ -10490,7 +10488,6 @@ MonoBehaviour:
   isHearingAidInteraction: 0
   doctorLineAfter: 
   replayDoctorLineAfter: 
-  arthurHallucinationLine: 
 --- !u!1 &1157725058
 GameObject:
   m_ObjectHideFlags: 0
@@ -11911,7 +11908,6 @@ MonoBehaviour:
     help.
   replayDoctorLineAfter: Hi Arthur, I'm your doctor. Can you hear me ok now? I'm
     here to help.
-  arthurHallucinationLine: 
 --- !u!1001 &1263926058
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15656,7 +15652,6 @@ MonoBehaviour:
   isHearingAidInteraction: 0
   doctorLineAfter: 
   replayDoctorLineAfter: 
-  arthurHallucinationLine: 
 --- !u!1001 &1665360639
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19251,8 +19246,8 @@ MonoBehaviour:
   dialogueText: {fileID: 1792528277}
   dialoguePanelCanvasGroup: {fileID: 1321495626}
   portraitImage: {fileID: 1634099058}
-  doctorPortrait: {fileID: 21300000, guid: c7ab1b89d46794c7c9ff7d5da58e1e41, type: 3}
-  arthurPortrait: {fileID: 21300000, guid: f6185e573ddbf4468b64638b13ddc732, type: 3}
+  doctorPortrait: {fileID: 21300000, guid: 82a5f4b95fe730848845de69d3b338ab, type: 3}
+  arthurPortrait: {fileID: 21300000, guid: 6350be1f3d179ab4d9a9b62d2a760e44, type: 3}
   audioSource: {fileID: 2136332877}
   garbledSound: {fileID: 8300000, guid: 8d4752144f44f4907b447c1111f84ac7, type: 3}
   clearSound: {fileID: 8300000, guid: ab8808ce48100434880d435839b438a6, type: 3}
