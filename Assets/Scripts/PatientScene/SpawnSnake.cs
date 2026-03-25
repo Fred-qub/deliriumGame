@@ -29,7 +29,7 @@ public class SpawnSnake : MonoBehaviour
         }
         else
         {
-            DialogueManager.Instance.ShowArthurLine(arthurReplayMonologue);
+            DialogueManager.Instance.ShowMonologue(arthurReplayMonologue);
         }
     }
 

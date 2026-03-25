@@ -46,12 +46,6 @@ public class ReplayDialogue : MonoBehaviour
         [Tooltip("Hearing Aid only. The doctor's second line after hearing aids are fitted (always clear).")]
         [TextArea] public string doctorLineAfter;
 
-        [Header("Hallucination Dialogue")]
-        [Tooltip("Appended after arthurMonologue only if a hallucination was triggered this run. " +
-                 "Use {hallucination} to insert 'rat' or 'snake' dynamically. " +
-                 "Example: 'There it is... that {hallucination}. Right there.' " +
-                 "Leave blank on entries that should never show a hallucination line.")]
-        [TextArea] public string arthurHallucinationMonologue;
     }
 
     // -------------------------------------------------------------------------
@@ -61,6 +55,10 @@ public class ReplayDialogue : MonoBehaviour
     [Header("Opening Scene Line")]
     [Tooltip("Arthur's opening line, replayed at the start of the patient POV scene.")]
     [TextArea] public string openingLine;
+
+    [Header("Opening thoughhts on doctor")]
+    [Tooltip("Arthur's thoughts about how the doctor appears, replayed at the start of the patient POV scene.")]
+    [TextArea] public string doctorAppearanceLine;
 
     [Tooltip("How long to wait before playing the opening line.")]
     [SerializeField] private float openingDelay = 2f;
@@ -134,6 +132,8 @@ public class ReplayDialogue : MonoBehaviour
     {
         yield return new WaitForSeconds(openingDelay);
         DialogueManager.Instance.ShowMonologue(openingLine);
+        yield return new WaitForSeconds(8f);
+        DialogueManager.Instance.ShowMonologue(doctorAppearanceLine);
         yield return new WaitUntil(() => !DialogueManager.Instance.IsDialogueActive());
         OnOpeningLineComplete?.Invoke();
     }

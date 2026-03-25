@@ -14482,7 +14482,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f817afb69ec12f944a3001d3b2c3b6f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patientNotes: {fileID: 1580878681}
 --- !u!114 &1523997541
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14495,10 +14494,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50abfe93cce204f4e831148b512c8e97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetButton1: {fileID: 1218293257}
-  targetButton2: {fileID: 1415463275}
-  triggerKey1: 101
-  triggerKey2: 27
 --- !u!1 &1530056879
 GameObject:
   m_ObjectHideFlags: 0
@@ -14692,8 +14687,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4224466730367405167, guid: de2b1cd7757611c4fbfb741282ba355b,
         type: 3}
+      propertyPath: doctorAppearanceLine
+      value: Who just came in?  Their face looks distorted to me...not human.  I'm
+        frightened.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4224466730367405167, guid: de2b1cd7757611c4fbfb741282ba355b,
+        type: 3}
+      propertyPath: entries.Array.data[0].arthurMonologue
+      value: Get away from me, whatever you are!  Leave me alone!
+      objectReference: {fileID: 0}
+    - target: {fileID: 4224466730367405167, guid: de2b1cd7757611c4fbfb741282ba355b,
+        type: 3}
       propertyPath: entries.Array.data[1].arthurMonologue
-      value: Stop you're poisoning me! Someone help me, please.
+      value: Stop!  They're trying to poison me! Someone help me...please.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4224466730367405167, guid: de2b1cd7757611c4fbfb741282ba355b,
+        type: 3}
+      propertyPath: entries.Array.data[4].arthurMonologue
+      value: That's clearer now, but I'm scared.  I don't know what's real.  You
+        say you're  a doctor...but you don't even look human to me.
       objectReference: {fileID: 0}
     - target: {fileID: 4224466730367405167, guid: de2b1cd7757611c4fbfb741282ba355b,
         type: 3}

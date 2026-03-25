@@ -60,11 +60,11 @@ public class SpawnRat : MonoBehaviour
             switch (Musophobia)          
             {
                 case 0:
-                    DialogueManager.Instance.ShowArthurLine(arthurReplayMonologue);
+                    DialogueManager.Instance.ShowMonologue(arthurReplayMonologue);
                     break;
 
                 case 1:
-                    DialogueManager.Instance.ShowArthurLine(arthurReplayMonologueMusophobia);
+                    DialogueManager.Instance.ShowMonologue(arthurReplayMonologueMusophobia);
                     break;
 
             }
