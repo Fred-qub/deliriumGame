@@ -489,12 +489,14 @@ MonoBehaviour:
   requiredObjectName: 
   blockerObjectName: HearingAid
   triggersHallucinationOnFail: 0
-  doctorLine: "Relax, ok? There's nobody in the corner\u2026 Can't you see I'm your
-    doctor, and I'm here to help?"
-  arthurLine: You're with him. You're one of them!
+  doctorLine: Relax, Artie.  There's nobody in the corner.  You're safe. I'm your
+    doctor, and I'm here to help.
+  arthurLine: 'I can''t understand what you''re saying.  You''re with him. You''re
+    one of them!  '
   replayDoctorLine: "Relax, ok? There's nobody in the corner\u2026 Can't you see
     I'm your doctor, and I'm here to help?"
-  arthurMonologue: Get away from me. Leave me alone!
+  arthurMonologue: Get away from me, whatever you are!  Stop mumbling!  Leave me
+    alone
   isHearingAidInteraction: 0
   doctorLineAfter: 
   replayDoctorLineAfter: 
@@ -8933,8 +8935,8 @@ MonoBehaviour:
   doctorLine: Let's use your hearing aids, Arthur.
   arthurLine: That's clearer now, but I'm scared, doctor. I don't know what's real.
   replayDoctorLine: Let's use your hearing aids, Arthur.
-  arthurMonologue: That's clearer now, but I'm scared, doctor. I don't know what's
-    real.
+  arthurMonologue: That's clearer now, but I'm scared.  I don't know what's real. 
+    You say you're  a doctor...but you don't even look human to me.
   isHearingAidInteraction: 1
   doctorLineAfter: Hi Arthur, I'm your doctor. Can you hear me ok now? I'm here to
     help.
@@ -11458,7 +11460,7 @@ MonoBehaviour:
   arthurLine: "I don\u2019t know you.  You\u2019re trying to poison me!  Somebody
     help!"
   replayDoctorLine: 
-  arthurMonologue: "Stop! You\u2019re trying to poison me!"
+  arthurMonologue: Stop!  They're trying to poison me! Someone help me...please.
   isHearingAidInteraction: 0
   doctorLineAfter: 
   replayDoctorLineAfter: 

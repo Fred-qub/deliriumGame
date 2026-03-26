@@ -14693,8 +14693,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4224466730367405167, guid: de2b1cd7757611c4fbfb741282ba355b,
         type: 3}
+      propertyPath: entries.Array.data[0].doctorLine
+      value: Relax, Artie.  There's nobody in the corner.  You're safe. I'm your
+        doctor, and I'm here to help.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4224466730367405167, guid: de2b1cd7757611c4fbfb741282ba355b,
+        type: 3}
       propertyPath: entries.Array.data[0].arthurMonologue
-      value: Get away from me, whatever you are!  Leave me alone!
+      value: Get away from me, whatever you are!  Stop mumbling!  Leave me alone!
       objectReference: {fileID: 0}
     - target: {fileID: 4224466730367405167, guid: de2b1cd7757611c4fbfb741282ba355b,
         type: 3}
@@ -14705,7 +14711,7 @@ PrefabInstance:
         type: 3}
       propertyPath: entries.Array.data[4].arthurMonologue
       value: That's clearer now, but I'm scared.  I don't know what's real.  You
-        say you're  a doctor...but you don't even look human to me.
+        say you're a doctor...but you don't even look human to me.
       objectReference: {fileID: 0}
     - target: {fileID: 4224466730367405167, guid: de2b1cd7757611c4fbfb741282ba355b,
         type: 3}
