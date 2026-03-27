@@ -24,21 +24,14 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+        StartCoroutine(PlaySoundsSequentially(SceneManager.GetActiveScene().buildIndex + 1));
+
     }
 
-    IEnumerator LoadLevel(int levelIndex)
+   IEnumerator PlaySoundsSequentially(int levelIndex)
     {
         audioSource = GetComponent<AudioSource>();
         transition.SetTrigger("End");
-
-        StartCoroutine(PlaySoundsSequentially());
-        yield return new WaitForSeconds(transitionTime);
-        SceneManager.LoadScene(levelIndex);
-    }
-
-   IEnumerator PlaySoundsSequentially()
-    {
         // Play first clip
         audioSource.clip = firstClip;
         audioSource.Play();
@@ -52,6 +45,6 @@ public class LevelLoader : MonoBehaviour
 
         yield return new WaitForSeconds(secondClip.length);
 
-
+        SceneManager.LoadScene(levelIndex);
     }
 }
