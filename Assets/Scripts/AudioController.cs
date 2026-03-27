@@ -21,45 +21,60 @@ public class AudioController : MonoBehaviour
     [SerializeField] private float endVolume;
     [SerializeField] private float fadeTime;
 
+    private HeartBeat heartBeatScript;
+    private int heartbeat;
+
+
     private void OnEnable()
     {
-        SceneReplayer.OnInteraction += AudioRoutePatient;
-        DemoInteractable.OnInteraction += AudioRouteClinician;
+        SceneReplayer.OnInteraction += AudioRoutePatient; StartCoroutine(HeartSpeed());
+        DemoInteractable.OnInteraction += AudioRouteClinician; StartCoroutine(HeartSpeed());
         ShrinkObject.OnShrink += FadeGhost;
+  
     }
 
     private void OnDisable()
     {
-        SceneReplayer.OnInteraction -= AudioRoutePatient;
-        DemoInteractable.OnInteraction -= AudioRouteClinician;
+        SceneReplayer.OnInteraction -= AudioRoutePatient; StartCoroutine(HeartSpeed());
+        DemoInteractable.OnInteraction -= AudioRouteClinician; StartCoroutine(HeartSpeed());
         ShrinkObject.OnShrink -= FadeGhost;
     }
 
     private void Start()
     {
         RadioRoute();
+
     }
+
+    private void Update()
+    {
+        heartbeat = heartBeatScript.Heartbeat;
+    }
+
     private void AudioRoutePatient(string actionName)
     {
-        
+        StartCoroutine(HeartSpeed());
+
         switch (actionName)
         {
-            case "Lights": lightBuzz.Play(); lightSwitch.Play(); heartSlow.Stop(); heartMedium.Stop(); heartFast.Play(); break;
-            case "Sedative": sedative.Play(); heartSlow.Stop(); heartMedium.Stop(); heartFast.Play(); break;
-            case "Coat": heartMedium.Stop(); heartFast.Stop(); heartSlow.Play(); break;
-            case "HearingAid": heartMedium.Stop(); heartFast.Stop(); heartSlow.Play(); break;
+            case "Lights": lightBuzz.Play(); lightSwitch.Play(); break;
+            case "Sedative": sedative.Play();break;
+            case "Coat": break;
+            case "HearingAid": break;
         }
         
     }
 
     private void AudioRouteClinician(string objectName)
     {
+        StartCoroutine(HeartSpeed());
+
         switch (objectName)
         {
-            case  "Lights": lightSwitch.Play(); heartSlow.Stop(); heartMedium.Stop(); heartFast.Play(); break;
-            case "Sedative": heartSlow.Stop(); heartMedium.Stop(); heartFast.Play(); break;
-            case "Coat": coat.Play(); heartMedium.Stop(); heartFast.Stop(); heartSlow.Play(); break;
-            case "HearingAid": heartMedium.Stop(); heartFast.Stop(); heartSlow.Play(); break;
+            case "Lights": lightSwitch.Play(); break;
+            case "Sedative": break;
+            case "Coat": coat.Play(); break;
+            case "HearingAid": break;
         }
     }
 
@@ -72,7 +87,6 @@ public class AudioController : MonoBehaviour
             if (history[i] == "Lights" || history[i] == "Sedative") 
             {
                 radioHallucination.Play();
-                heartMedium.Play();
                 isHallucinating = true;
                 break;
             }
@@ -82,12 +96,32 @@ public class AudioController : MonoBehaviour
         if (!isHallucinating)
         {
             radioReal.Play();
-            heartMedium.Play();
+
         }
     }
 
     private void FadeGhost()
     {
         ghostMoans.volume = Mathf.Lerp(startVolume, endVolume, fadeTime);
+    }                                          
+   IEnumerator HeartSpeed() 
+    {
+        heartBeatScript = GetComponent<HeartBeat>();
+        heartbeat = heartBeatScript.Heartbeat;
+        yield return new WaitForSeconds(0.5f);
+        switch (heartbeat)
+        {
+            case 0: 
+                heartSlow.Play(); heartMedium.Stop(); heartFast.Stop(); 
+                break;
+            case 1:
+                heartSlow.Stop(); heartMedium.Play(); heartFast.Stop();
+                break;
+            case 2:
+                heartSlow.Stop(); heartMedium.Stop(); heartFast.Play();
+                break;
+
+
+        }
     }
 }

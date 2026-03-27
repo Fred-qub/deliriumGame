@@ -2686,6 +2686,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1985792285}
+        m_TargetAssemblyTypeName: HeartBeat, Assembly-CSharp
+        m_MethodName: SubtractOne
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   interactionLink: {fileID: 1157137382}
 --- !u!65 &288138044
 BoxCollider:
@@ -5305,6 +5317,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1985792285}
+        m_TargetAssemblyTypeName: HeartBeat, Assembly-CSharp
+        m_MethodName: AddOne
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -8634,6 +8658,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1985792285}
+        m_TargetAssemblyTypeName: HeartBeat, Assembly-CSharp
+        m_MethodName: AddOne
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   interactionLink: {fileID: 691212577}
 --- !u!114 &1184448111
 MonoBehaviour:
@@ -11414,6 +11450,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1985792285}
+        m_TargetAssemblyTypeName: HeartBeat, Assembly-CSharp
+        m_MethodName: SubtractOne
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -14284,6 +14332,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1985792283}
   - component: {fileID: 1985792284}
+  - component: {fileID: 1985792285}
   m_Layer: 0
   m_Name: AudioController
   m_TagString: Untagged
@@ -14331,6 +14380,23 @@ MonoBehaviour:
   startVolume: 0
   endVolume: 0
   fadeTime: 0
+  heartBeatScript: {fileID: 1985792285}
+  heartbeat: 0
+--- !u!114 &1985792285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1985792282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b2ac6d1e77b220468835dbf0c6e206d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heartbeat: 1
+  minValue: 0
+  maxValue: 2
 --- !u!4 &2006083357 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2626791346282926631, guid: caeb1e102101fb943bbe691055b3f3e6,
