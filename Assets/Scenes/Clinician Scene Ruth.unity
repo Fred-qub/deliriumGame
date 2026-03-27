@@ -536,7 +536,7 @@ MonoBehaviour:
   failureCount: 0
   neutralCount: 0
   maxInteractions: 2
-  nextSceneName: PatientScene Ruth
+  nextSceneName: TransitionPatient
   delayBeforeSwitch: 18
   hallucinationLineShown: 0
 --- !u!4 &45846305

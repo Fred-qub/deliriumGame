@@ -9,8 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 0c8dfdb9a1eb352418de8220888611c7
   - enabled: 1
+    path: Assets/Scenes/TransitionClinician.unity
+    guid: 94aad5bfb4ea1b042bc0dcc4918a46a2
+  - enabled: 1
     path: Assets/Scenes/Clinician Scene Ruth.unity
     guid: 65d8709a6cecbbe4e9ef31fcf2f0eae6
+  - enabled: 1
+    path: Assets/Scenes/TransitionPatient.unity
+    guid: 8c57166c9c1fd6445bbb62cf0c3ae645
   - enabled: 1
     path: Assets/Scenes/PatientScene Ruth.unity
     guid: 447dd60c2ffdb7a4b938627c84c5b9c4
