@@ -9,7 +9,7 @@ public class HeartBeat : MonoBehaviour
 
     // Min and max limits
     public int minValue = 0;
-    public int maxValue = 2;
+    public int maxValue = 3;
 
     void Start()
     {

@@ -120,6 +120,9 @@ public class AudioController : MonoBehaviour
             case 2:
                 heartSlow.Stop(); heartMedium.Stop(); heartFast.Play();
                 break;
+            case 3:
+                heartSlow.Stop(); heartMedium.Stop(); heartFast.Play();
+                break;
 
 
         }
