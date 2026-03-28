@@ -26,11 +26,6 @@ public class HeartBeat : MonoBehaviour
     }
     
 
-    void Update()
-    {
-        
-    }
-
     // Increase value by 1 (with limit)
     public void AddOne()
     {
@@ -38,6 +33,7 @@ public class HeartBeat : MonoBehaviour
         {
             heartbeat++;
             Debug.Log("Heart Value increased to: " + heartbeat);
+            BroadcastRateChanged(heartbeat);
         }
 
         else
@@ -53,6 +49,7 @@ public class HeartBeat : MonoBehaviour
         {
             heartbeat--;
             Debug.Log("Heart Value decreased to: " + heartbeat);
+            BroadcastRateChanged(heartbeat);
         }
         else
         {
