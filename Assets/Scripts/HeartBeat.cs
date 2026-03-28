@@ -4,7 +4,7 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class HeartBeat : MonoBehaviour
 {
-    [SerializeField] private int heartbeat = 2;
+    [SerializeField] private int heartbeat = 2; // equivalent to 82 bpm
     public int Heartbeat => heartbeat;
 
     public delegate void HeartRateChanged(int heartbeat); 
@@ -17,12 +17,13 @@ public class HeartBeat : MonoBehaviour
 
   
     // Min and max limits
-    private int minValue = 0;
-    private int maxValue = 4;
+    private int minValue = 0; // 52 bpm
+    private int maxValue = 4; // 121 bpm
 
     void Start()
     {
         Debug.Log("Starting heart value: " + heartbeat);
+        BroadcastRateChanged(heartbeat);
     }
     
 

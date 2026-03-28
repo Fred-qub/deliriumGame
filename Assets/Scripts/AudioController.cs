@@ -10,9 +10,11 @@ public class AudioController : MonoBehaviour
     [SerializeField]private AudioSource sedative;
     [SerializeField]private AudioSource radioReal;
     [SerializeField]private AudioSource radioHallucination;
-    [SerializeField] private AudioSource heartSlow;
-    [SerializeField] private AudioSource heartMedium;
-    [SerializeField] private AudioSource heartFast;
+    [SerializeField] private AudioSource heart52;
+    [SerializeField] private AudioSource heart71;
+    [SerializeField] private AudioSource heart82;
+    [SerializeField] private AudioSource heart107;
+    [SerializeField] private AudioSource heart121;
 
 
     [Header("Ghost Audio")]
@@ -43,7 +45,7 @@ public class AudioController : MonoBehaviour
     private void Start()
     {
         RadioRoute();
-        HeartSpeed(2);
+
     }
 
     private void AudioRoutePatient(string actionName)
@@ -104,28 +106,27 @@ public class AudioController : MonoBehaviour
    private void HeartSpeed(int heartbeat) 
     {
 
-      //  yield return new WaitForSeconds(0.5f);
         switch (heartbeat)
         {
-            case 0: 
-                heartSlow.Play(); heartMedium.Stop(); heartFast.Stop();
-                Debug.Log("Audio heart 0");
+            case 0: // 52 bpm
+               // heart52.Play(); heart71.Stop(); heart82.Stop(); heart107.Stop(); heart121.Stop();
+                Debug.Log("Heartrate 52 bpm");
                 break;
-            case 1:
-                heartSlow.Stop(); heartMedium.Play(); heartFast.Stop();
-                Debug.Log("Audio heart 1");
+            case 1: // 71 bpm
+              //  heart52.Stop(); heart71.Play(); heart82.Stop(); heart107.Stop(); heart121.Stop();
+                Debug.Log("Heartrate 71 bpm");
                 break;
-            case 2:
-                heartSlow.Stop(); heartMedium.Stop(); heartFast.Play();
-                Debug.Log("Audio heart 2");
+            case 2: // 82 bpm
+              //  heart52.Stop(); heart71.Stop(); heart82.Play(); heart107.Stop(); heart121.Stop();
+                Debug.Log("Heartrate 82 bpm");
                 break;
-            case 3:
-                heartSlow.Stop(); heartMedium.Stop(); heartFast.Play();
-                Debug.Log("Audio heart 3");
+            case 3: // 107 bpm
+              //  heart52.Stop(); heart71.Stop(); heart82.Stop(); heart107.Play(); heart121.Stop();
+                Debug.Log("Heartrate 107 bpm");
                 break;
-            case 4:
-                heartSlow.Stop(); heartMedium.Stop(); heartFast.Play();
-                Debug.Log("Audio heart 4");
+            case 4:// 121 bpm
+             //   heart52.Stop(); heart71.Stop(); heart82.Stop(); heart107.Stop(); heart121.Play();
+                Debug.Log("Heartrate 121 bpm");
                 break;
 
         }
