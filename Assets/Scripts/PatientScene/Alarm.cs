@@ -27,7 +27,7 @@ public class Alarm : MonoBehaviour
         {
             normalScreen.gameObject.SetActive(false);
             alarmScreen.gameObject.SetActive(true);
-            Debug.Log("alarm active");
+           // Debug.Log("alarm active");
             StartCoroutine(Flash());
         }
 

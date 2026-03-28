@@ -21,39 +21,34 @@ public class AudioController : MonoBehaviour
     [SerializeField] private float endVolume;
     [SerializeField] private float fadeTime;
 
-    private HeartBeat heartBeatScript;
-    private int heartbeat;
 
 
     private void OnEnable()
     {
-        SceneReplayer.OnInteraction += AudioRoutePatient; StartCoroutine(HeartSpeed());
-        DemoInteractable.OnInteraction += AudioRouteClinician; StartCoroutine(HeartSpeed());
+        SceneReplayer.OnInteraction += AudioRoutePatient;
+        HeartBeat.OnHeartRateChanged += HeartSpeed;
+        DemoInteractable.OnInteraction += AudioRouteClinician;
         ShrinkObject.OnShrink += FadeGhost;
   
     }
 
     private void OnDisable()
     {
-        SceneReplayer.OnInteraction -= AudioRoutePatient; StartCoroutine(HeartSpeed());
-        DemoInteractable.OnInteraction -= AudioRouteClinician; StartCoroutine(HeartSpeed());
+        SceneReplayer.OnInteraction -= AudioRoutePatient;
+        DemoInteractable.OnInteraction -= AudioRouteClinician;
+        HeartBeat.OnHeartRateChanged -= HeartSpeed;
         ShrinkObject.OnShrink -= FadeGhost;
     }
 
     private void Start()
     {
         RadioRoute();
-
-    }
-
-    private void Update()
-    {
-        heartbeat = heartBeatScript.Heartbeat;
+        HeartSpeed(2);
     }
 
     private void AudioRoutePatient(string actionName)
     {
-        StartCoroutine(HeartSpeed());
+
 
         switch (actionName)
         {
@@ -67,7 +62,6 @@ public class AudioController : MonoBehaviour
 
     private void AudioRouteClinician(string objectName)
     {
-        StartCoroutine(HeartSpeed());
 
         switch (objectName)
         {
@@ -103,27 +97,36 @@ public class AudioController : MonoBehaviour
     private void FadeGhost()
     {
         ghostMoans.volume = Mathf.Lerp(startVolume, endVolume, fadeTime);
-    }                                          
-   IEnumerator HeartSpeed() 
+
+    }
+
+
+   private void HeartSpeed(int heartbeat) 
     {
-        heartBeatScript = GetComponent<HeartBeat>();
-        heartbeat = heartBeatScript.Heartbeat;
-        yield return new WaitForSeconds(0.5f);
+
+      //  yield return new WaitForSeconds(0.5f);
         switch (heartbeat)
         {
             case 0: 
-                heartSlow.Play(); heartMedium.Stop(); heartFast.Stop(); 
+                heartSlow.Play(); heartMedium.Stop(); heartFast.Stop();
+                Debug.Log("Audio heart 0");
                 break;
             case 1:
                 heartSlow.Stop(); heartMedium.Play(); heartFast.Stop();
+                Debug.Log("Audio heart 1");
                 break;
             case 2:
                 heartSlow.Stop(); heartMedium.Stop(); heartFast.Play();
+                Debug.Log("Audio heart 2");
                 break;
             case 3:
                 heartSlow.Stop(); heartMedium.Stop(); heartFast.Play();
+                Debug.Log("Audio heart 3");
                 break;
-
+            case 4:
+                heartSlow.Stop(); heartMedium.Stop(); heartFast.Play();
+                Debug.Log("Audio heart 4");
+                break;
 
         }
     }

@@ -1,15 +1,24 @@
+using System;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
 public class HeartBeat : MonoBehaviour
 {
-    // Heatbeat value starts at 1
-   [SerializeField] private int heartbeat = 1;
+    [SerializeField] private int heartbeat = 2;
     public int Heartbeat => heartbeat;
 
+    public delegate void HeartRateChanged(int heartbeat); 
+    public static event HeartRateChanged OnHeartRateChanged;
+
+    public static void BroadcastRateChanged(int heartbeat)
+    {
+        OnHeartRateChanged?.Invoke(heartbeat);
+    }
+
+  
     // Min and max limits
-    public int minValue = 0;
-    public int maxValue = 3;
+    private int minValue = 0;
+    private int maxValue = 4;
 
     void Start()
     {

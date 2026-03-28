@@ -14685,9 +14685,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b2ac6d1e77b220468835dbf0c6e206d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heartbeat: 1
+  heartbeat: 2
   minValue: 0
-  maxValue: 3
+  maxValue: 4
 --- !u!4 &2006083357 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2626791346282926631, guid: caeb1e102101fb943bbe691055b3f3e6,
