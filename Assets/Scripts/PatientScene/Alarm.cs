@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Alarm : MonoBehaviour
 {
@@ -39,6 +40,7 @@ public class Alarm : MonoBehaviour
 
     public IEnumerator FlashYellow()
     {
+<<<<<<< Updated upstream
         yellowAlarmLamp.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
         yellowAlarmLamp.gameObject.SetActive(false);
@@ -125,11 +127,54 @@ public class Alarm : MonoBehaviour
                 StartCoroutine(FlashRed());
                 Debug.Log("screen 121 bpm");
                 break;
+=======
+        var scene = SceneManager.GetActiveScene();
+        if (scene.name == "Clinician Scene Ruth")
+        {
+            switch (heartbeat)
+            {
+                case 0: // 52 bpm
+                    RemoveScreens();
+                    normalScreen52.gameObject.SetActive(true);
+                    Debug.Log("screen 52 bpm");
+                    break;
+                case 1: // 71 bpm
+                    RemoveScreens();
+                    normalScreen71.gameObject.SetActive(true);
+                    Debug.Log("screen 71 bpm");
+                    break;
+                case 2: // 82 bpm
+                    RemoveScreens();
+                    normalScreen82.gameObject.SetActive(true);
+                    Debug.Log("screen 82 bpm");
+                    break;
+                case 3: // 107 bpm
+                    RemoveScreens();
+                    normalScreen107.gameObject.SetActive(true);
+                    Debug.Log("screen 107 bpm");
+                    break;
+                case 4: // 121 bpm
+                    RemoveScreens();
+                    alarmScreen121.gameObject.SetActive(true);
+                    StartCoroutine(Flash());
+                    Debug.Log("screen 121 bpm");
+                    break;
+>>>>>>> Stashed changes
 
+            }
         }
 
 
 
          }
+
+    private void RemoveScreens()
+    {
+        normalScreen52.gameObject.SetActive(false);
+        normalScreen71.gameObject.SetActive(false);
+        normalScreen82.gameObject.SetActive(false);
+        normalScreen107.gameObject.SetActive(false);
+        alarmScreen121.gameObject.SetActive(false);
+    }
 
 }

@@ -9,7 +9,7 @@ public class HeartBeat : MonoBehaviour
 
     public delegate void HeartRateChanged(int heartbeat); 
     public static event HeartRateChanged OnHeartRateChanged;
-
+    
     public static void BroadcastRateChanged(int heartbeat)
     {
         OnHeartRateChanged?.Invoke(heartbeat);
@@ -36,7 +36,6 @@ public class HeartBeat : MonoBehaviour
             Debug.Log("Heart Value increased to: " + heartbeat);
             BroadcastRateChanged(heartbeat);
         }
-
         else
         {
             Debug.Log("Heart Value is already at maximum.");

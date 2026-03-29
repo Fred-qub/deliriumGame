@@ -1,8 +1,18 @@
 <!-- UNITY CODE ASSIST INSTRUCTIONS START -->
 - Project name: deliriumGame
 - Unity version: Unity 6000.1.15f1
+- Active scene:
+  - Name: PatientScene Ruth
+  - Tags:
+    - Untagged, Respawn, Finish, EditorOnly, MainCamera, Player, GameController, Interactable, Newspaper
+  - Layers:
+    - Default, TransparentFX, Ignore Raycast, Water, UI
 - Active game object:
+<<<<<<< Updated upstream
   - Name: Green Point Light
+=======
+  - Name: Heart 52
+>>>>>>> Stashed changes
   - Tag: Untagged
   - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
