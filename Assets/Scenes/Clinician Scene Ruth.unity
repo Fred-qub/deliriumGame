@@ -17516,7 +17516,7 @@ MonoBehaviour:
   arthurPortrait: {fileID: 21300000, guid: f6185e573ddbf4468b64638b13ddc732, type: 3}
   audioSource: {fileID: 2136332877}
   garbledSound: {fileID: 8300000, guid: 8d4752144f44f4907b447c1111f84ac7, type: 3}
-  clearSound: {fileID: 8300000, guid: ab8808ce48100434880d435839b438a6, type: 3}
+  clearSound: {fileID: 0}
   arthurSound: {fileID: 0}
   typewriterSound: {fileID: 8300000, guid: 770546ef4dc4f484196730f82be21cd5, type: 3}
   typewriterVolume: 0.2
