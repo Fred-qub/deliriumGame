@@ -30,9 +30,7 @@ public class AudioController : MonoBehaviour
     [SerializeField] private float endVolume;
     [SerializeField] private float fadeTime;
 
-
-
-    private void OnEnable()
+        private void OnEnable()
     {
         SceneReplayer.OnInteraction += AudioRoutePatient;
         HeartBeat.OnHeartRateChanged += SceneRoute;

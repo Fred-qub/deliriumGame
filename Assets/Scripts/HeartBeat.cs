@@ -1,6 +1,5 @@
-using System;
+
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class HeartBeat : MonoBehaviour
 {

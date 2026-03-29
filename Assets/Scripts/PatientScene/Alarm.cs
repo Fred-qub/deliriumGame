@@ -15,7 +15,6 @@ public class Alarm : MonoBehaviour
     public GameObject alarmScreen121;
     public float flashDuration = 0.1f;
     public float beatInterval;
-    private float timer;
 
     private void OnEnable()
     {
@@ -25,7 +24,7 @@ public class Alarm : MonoBehaviour
 
     private void OnDisable()
     {
-        HeartBeat.OnHeartRateChanged += ChangeScreen;
+        HeartBeat.OnHeartRateChanged -= ChangeScreen;
     }
 
 
@@ -86,71 +85,102 @@ public class Alarm : MonoBehaviour
         private void ChangeScreen(int heartbeat) 
         {
             var scene = SceneManager.GetActiveScene();
-            if (scene.name == "Clinician Scene Ruth")
+        if (scene.name == "Clinician Scene Ruth")
+        {
+            switch (heartbeat)
             {
-            switch (heartbeat) 
-            {
-            case 0: // 52 bpm
-                RemoveScreens();
-                normalScreen52.gameObject.SetActive(true);
-                Debug.Log("screen 52 bpm");
-                StopAllCoroutines();
-                yellowAlarmLamp.gameObject.SetActive(false);
-                redAlarmLamp.gameObject.SetActive(false);             
-                StartCoroutine(FlashGreen(heartbeat));      
-                break;
-            case 1: // 71 bpm
-                RemoveScreens();
-                normalScreen71.gameObject.SetActive(true);
-                Debug.Log("screen 71 bpm");
-                StopAllCoroutines();
-                yellowAlarmLamp.gameObject.SetActive(false);
-                redAlarmLamp.gameObject.SetActive(false);
-                StartCoroutine(FlashGreen(heartbeat));
-                break;
-            case 2: // 82 bpm
-                RemoveScreens();
-                normalScreen82.gameObject.SetActive(true);
-                Debug.Log("screen 82 bpm");
-                StopAllCoroutines();
-                yellowAlarmLamp.gameObject.SetActive(false);
-                redAlarmLamp.gameObject.SetActive(false);
-                StartCoroutine(FlashGreen(heartbeat));
-                break;
-            case 3: // 107 bpm
-                RemoveScreens();
-                normalScreen107.gameObject.SetActive(true);
-                StopAllCoroutines();
-                greenAlarmLamp.gameObject.SetActive(false);
-                redAlarmLamp.gameObject.SetActive(false);
-                StartCoroutine(FlashYellow());
-                Debug.Log("screen 107 bpm");
-                break;
-            case 4:// 121 bpm
-                RemoveScreens();
-                alarmScreen121.gameObject.SetActive(true);
-                StopAllCoroutines();
-                greenAlarmLamp.gameObject.SetActive(false);
-                yellowAlarmLamp.gameObject.SetActive(false);
-                StartCoroutine(FlashRed());
-                Debug.Log("screen 121 bpm");
-                break;
-
+                case 0: // 52 bpm
+                    RemoveScreens();
+                    normalScreen52.gameObject.SetActive(true);
+                    Debug.Log("screen 52 bpm");
+                    StopAllCoroutines();
+                    TurnOffLights();
+                    StartCoroutine(FlashGreen(heartbeat));
+                    break;
+                case 1: // 71 bpm
+                    RemoveScreens();
+                    normalScreen71.gameObject.SetActive(true);
+                    Debug.Log("screen 71 bpm");
+                    StopAllCoroutines();
+                    TurnOffLights();
+                    StartCoroutine(FlashGreen(heartbeat));
+                    break;
+                case 2: // 82 bpm
+                    RemoveScreens();
+                    normalScreen82.gameObject.SetActive(true);
+                    Debug.Log("screen 82 bpm");
+                    StopAllCoroutines();
+                    TurnOffLights();
+                    StartCoroutine(FlashGreen(heartbeat));
+                    break;
+                case 3: // 107 bpm
+                    RemoveScreens();
+                    normalScreen107.gameObject.SetActive(true);
+                    StopAllCoroutines();
+                    TurnOffLights();
+                    StartCoroutine(FlashYellow());
+                    Debug.Log("screen 107 bpm");
+                    break;
+                case 4:// 121 bpm
+                    RemoveScreens();
+                    alarmScreen121.gameObject.SetActive(true);
+                    StopAllCoroutines();
+                    TurnOffLights();
+                    StartCoroutine(FlashRed());
+                    Debug.Log("screen 121 bpm");
+                    break;
 
             }
+
+            }        
         }
-
-
-
-         }
 
     private void RemoveScreens()
     {
-        normalScreen52.gameObject.SetActive(false);
-        normalScreen71.gameObject.SetActive(false);
-        normalScreen82.gameObject.SetActive(false);
-        normalScreen107.gameObject.SetActive(false);
-        alarmScreen121.gameObject.SetActive(false);
+        if (normalScreen52) 
+        {
+            normalScreen52.gameObject.SetActive(false);
+        }
+
+        if (normalScreen71)
+        {
+            normalScreen71.gameObject.SetActive(false);
+        }
+
+        if (normalScreen82)
+        {
+            normalScreen82.gameObject.SetActive(false);
+        }
+
+        if (normalScreen107)
+        {
+            normalScreen107.gameObject.SetActive(false);
+        }
+
+        if (alarmScreen121)
+        {
+            alarmScreen121.gameObject.SetActive(false);
+        }
+
+  
+    }
+
+    private void TurnOffLights()
+    {
+        if (greenAlarmLamp)
+        {
+            greenAlarmLamp.gameObject.SetActive(false);
+        }
+
+        if (yellowAlarmLamp)
+        {
+            yellowAlarmLamp.gameObject.SetActive(false);
+        }
+
+        if (redAlarmLamp)
+        {
+            redAlarmLamp.gameObject.SetActive(false);
+        }
     }
 
 }
