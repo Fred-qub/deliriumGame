@@ -73,12 +73,12 @@ public class MainMenuController : MonoBehaviour
     // Ophidiophobia
     private Toggle        _toggleOphidiophobia;
 
-    // Crosshair selector buttons
+    // Crosshair Size selector buttons
     private Button _crosshairSmall; // 0
     private Button _crosshairMedium; // 1 
     private Button _crosshairLarge;  // 2
 
-    // Tracks which crosshair button is currently selected so we can swap the class
+    // Tracks which crosshair size button is currently selected so we can swap the class
     private Button _crosshairSelected;
 
 
@@ -287,7 +287,7 @@ public class MainMenuController : MonoBehaviour
     private void LoadCrosshairSizePref()
     {
         // Default to small if the key has never been set
-        int saved = PlayerPrefs.GetInt("Crosshair", 0);
+        int saved = PlayerPrefs.GetInt("CrosshairSize", 0);
         Button toSelect = saved switch
         {         
             1 => _crosshairMedium,
@@ -300,7 +300,7 @@ public class MainMenuController : MonoBehaviour
 
     private void SelectCrosshairSize(Button btn, int value)
     {
-        PlayerPrefs.SetInt("Crosshair", value);
+        PlayerPrefs.SetInt("CrosshairSize", value);
         ApplyCrosshairSelection(btn);
     }
 

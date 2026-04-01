@@ -3,7 +3,7 @@ using UnityEngine;
 public class CrosshairManager : MonoBehaviour
 {
 
-    public int Crosshair;
+    public int crosshairSize;
     public RectTransform uiElement; // Assign in Inspector
     public Vector3 smallScale = new Vector3(0.06f, 0.06f, 0.06f);
     public Vector3 mediumScale = new Vector3(0.2f, 0.2f, 0.2f);
@@ -13,7 +13,7 @@ public class CrosshairManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        LoadCrossHair();
+        LoadCrossHairSize();
     }
 
     // Update is called once per frame
@@ -22,16 +22,16 @@ public class CrosshairManager : MonoBehaviour
         
     }
 
-    public void LoadCrossHair()
+    public void LoadCrossHairSize()
     {
-        if (PlayerPrefs.HasKey("Crosshair"))
+        if (PlayerPrefs.HasKey("CrosshairSize"))
         {
-            Crosshair = PlayerPrefs.GetInt("Crosshair");
+            crosshairSize = PlayerPrefs.GetInt("CrosshairSize");
         }
-        else Crosshair = 0;
+        else crosshairSize = 0;
 
 
-        switch (Crosshair)
+        switch (crosshairSize)
         {
             case 0:
                 uiElement.localScale = smallScale; // 9am
