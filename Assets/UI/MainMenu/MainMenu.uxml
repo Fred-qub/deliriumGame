@@ -219,9 +219,18 @@
                     <ui:VisualElement class="options-row">
                         <ui:VisualElement class="options-row-text">
                             <ui:Label class="options-row-title" text="Musophobia mode" />
-                            <ui:Label class="options-row-desc"  text="Replaces rat imagery with abstract symbols" />
+                            <ui:Label class="options-row-desc"  text="Replaces rat imagery with alternative" />
                         </ui:VisualElement>
                         <ui:Toggle name="toggle-musophobia" class="options-toggle" />
+                    </ui:VisualElement>
+
+                     <!-- Ophidiophobia toggle -->
+                    <ui:VisualElement class="options-row">
+                        <ui:VisualElement class="options-row-text">
+                            <ui:Label class="options-row-title" text="Ophidiophobia mode" />
+                            <ui:Label class="options-row-desc"  text="Replaces snake imagery with alternative" />
+                        </ui:VisualElement>
+                        <ui:Toggle name="toggle-ophidiophobia" class="options-toggle" />
                     </ui:VisualElement>
 
                 </ui:VisualElement>

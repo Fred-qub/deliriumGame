@@ -70,6 +70,10 @@ public class MainMenuController : MonoBehaviour
     // Musophobia
     private Toggle        _toggleMusophobia;
 
+    // Ophidiophobia
+    private Toggle        _toggleOphidiophobia;
+
+
     // Time-of-day selector buttons
     private Button        _todMorning;    // 540  = 9 AM
     private Button        _todAfternoon;  // 960  = 4 PM
@@ -109,6 +113,7 @@ public class MainMenuController : MonoBehaviour
         _btnOptionsClose    = _root.Q<Button>("options-modal-close");
         _btnOptionsOk       = _root.Q<Button>("options-modal-ok");
         _toggleMusophobia   = _root.Q<Toggle>("toggle-musophobia");
+        _toggleOphidiophobia = _root.Q<Toggle>("toggle-ophidiophobia");
         _todMorning         = _root.Q<Button>("tod-btn-morning");
         _todAfternoon       = _root.Q<Button>("tod-btn-afternoon");
         _todNight           = _root.Q<Button>("tod-btn-night");
@@ -126,6 +131,7 @@ public class MainMenuController : MonoBehaviour
 
         // ── Restore saved prefs ───────────────────────────────────────────────
         LoadMusophobiaPref();
+        LoadOphidiophobiaPref();
         LoadTimeOfDayPref();
 
         // ── Cursor ───────────────────────────────────────────────────────────
@@ -207,9 +213,10 @@ public class MainMenuController : MonoBehaviour
 
     private void CloseOptionsModal()
     {
-        // Persist musophobia immediately (toggle fires onValueChanged, but save
+        // Persist musophobia & ophidiophobia immediately (toggle fires onValueChanged, but save
         // again here for belt-and-braces consistency with TimeOfDay pattern).
         PlayerPrefs.SetInt("Musophobia", _toggleMusophobia.value ? 1 : 0);
+        PlayerPrefs.SetInt("Ophidiophobia", _toggleOphidiophobia.value ? 1 : 0);
         PlayerPrefs.Save();
         _optionsModalOverlay.RemoveFromClassList("visible");
     }
@@ -236,6 +243,24 @@ public class MainMenuController : MonoBehaviour
     private void OnMusophobiaChanged(ChangeEvent<bool> evt)
     {
         PlayerPrefs.SetInt("Musophobia", evt.newValue ? 1 : 0);
+    }
+
+    // -------------------------------------------------------------------------
+    // Ophidiophobia
+    // -------------------------------------------------------------------------
+
+    private void LoadOphidiophobiaPref()
+    {
+        bool isOn = PlayerPrefs.GetInt("Ophidiophobia", 0) == 1;
+        _toggleOphidiophobia.value = isOn;
+        // Wire value-change so it saves immediately if the user toggles without
+        // explicitly pressing "Save & close".
+        _toggleOphidiophobia.RegisterValueChangedCallback(OnOphidiophobiaChanged);
+    }
+
+    private void OnOphidiophobiaChanged(ChangeEvent<bool> evt)
+    {
+        PlayerPrefs.SetInt("Ophidiophobia", evt.newValue ? 1 : 0);
     }
 
     // -------------------------------------------------------------------------

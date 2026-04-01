@@ -72,7 +72,7 @@ public class HallucinationChance : MonoBehaviour
 
     private void TriggerRatSpawner()
     {
-        Debug.Log("SpawnRat");
+        Debug.Log("Spawn Rat");
         trustManager.interactionHistory.Add(rat);
         if (ratSpawner != null)
         {
