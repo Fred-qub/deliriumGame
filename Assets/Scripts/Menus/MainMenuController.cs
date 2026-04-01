@@ -73,6 +73,14 @@ public class MainMenuController : MonoBehaviour
     // Ophidiophobia
     private Toggle        _toggleOphidiophobia;
 
+    // Crosshair selector buttons
+    private Button _crosshairSmall; // 0
+    private Button _crosshairMedium; // 1 
+    private Button _crosshairLarge;  // 2
+
+    // Tracks which crosshair button is currently selected so we can swap the class
+    private Button _crosshairSelected;
+
 
     // Time-of-day selector buttons
     private Button        _todMorning;    // 540  = 9 AM
@@ -114,6 +122,9 @@ public class MainMenuController : MonoBehaviour
         _btnOptionsOk       = _root.Q<Button>("options-modal-ok");
         _toggleMusophobia   = _root.Q<Toggle>("toggle-musophobia");
         _toggleOphidiophobia = _root.Q<Toggle>("toggle-ophidiophobia");
+        _crosshairSmall = _root.Q<Button>("crosshair-btn-small");
+        _crosshairMedium = _root.Q<Button>("crosshair-btn-medium");
+        _crosshairLarge = _root.Q<Button>("crosshair-btn-large");
         _todMorning         = _root.Q<Button>("tod-btn-morning");
         _todAfternoon       = _root.Q<Button>("tod-btn-afternoon");
         _todNight           = _root.Q<Button>("tod-btn-night");
@@ -129,10 +140,16 @@ public class MainMenuController : MonoBehaviour
         _todNight.clicked     += () => SelectTimeOfDay(_todNight,    1380);
         _todActual.clicked    += () => SelectTimeOfDay(_todActual,      0);
 
+        _crosshairSmall.clicked += () => SelectCrosshairSize(_crosshairSmall, 0);
+        _crosshairMedium.clicked += () => SelectCrosshairSize(_crosshairMedium, 1);
+        _crosshairLarge.clicked += () => SelectCrosshairSize(_crosshairLarge, 2);
+        
+
         // ── Restore saved prefs ───────────────────────────────────────────────
         LoadMusophobiaPref();
         LoadOphidiophobiaPref();
         LoadTimeOfDayPref();
+        LoadCrosshairSizePref();
 
         // ── Cursor ───────────────────────────────────────────────────────────
         UnityEngine.Cursor.visible   = true;
@@ -264,6 +281,45 @@ public class MainMenuController : MonoBehaviour
     }
 
     // -------------------------------------------------------------------------
+    // Crosshair Size
+    // -------------------------------------------------------------------------
+
+    private void LoadCrosshairSizePref()
+    {
+        // Default to small if the key has never been set
+        int saved = PlayerPrefs.GetInt("Crosshair", 0);
+        Button toSelect = saved switch
+        {         
+            1 => _crosshairMedium,
+            2 => _crosshairLarge,
+            _ => _crosshairSmall, // 0 & anything unexpected
+
+        };
+        ApplyCrosshairSelection(toSelect);
+    }
+
+    private void SelectCrosshairSize(Button btn, int value)
+    {
+        PlayerPrefs.SetInt("Crosshair", value);
+        ApplyCrosshairSelection(btn);
+    }
+
+    /// <summary>
+    /// Moves the "selected" USS class to <paramref name="btn"/>.
+    /// Safe to call when _CrosshairSelected is null (first load).
+    /// </summary>
+    private void ApplyCrosshairSelection(Button btn)
+    {
+        if (_crosshairSelected != null)
+            _crosshairSelected.RemoveFromClassList("selected");
+
+        _crosshairSelected = btn;
+
+        if (_crosshairSelected != null)
+            _crosshairSelected.AddToClassList("selected");
+    }
+
+    // -------------------------------------------------------------------------
     // Time of day
     // -------------------------------------------------------------------------
 
@@ -301,6 +357,8 @@ public class MainMenuController : MonoBehaviour
         if (_todSelected != null)
             _todSelected.AddToClassList("selected");
     }
+
+
 
     // -------------------------------------------------------------------------
     // Scene transition

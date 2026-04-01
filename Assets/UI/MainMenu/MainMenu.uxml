@@ -233,6 +233,17 @@
                         <ui:Toggle name="toggle-ophidiophobia" class="options-toggle" />
                     </ui:VisualElement>
 
+                    <!-- Crosshair Size selector -->
+                    <ui:VisualElement class="options-row options-row-col">
+                        <ui:Label class="options-row-title" text="Crosshair size" />
+                        <ui:Label class="options-row-desc"  text="Sets the size of the crosshair" />
+                        <ui:VisualElement class="crosshair-group">
+                            <ui:Button name="crosshair-btn-small"  class="crosshair-btn" text="SMALL" />
+                            <ui:Button name="crosshair-btn-medium" class="crosshair-btn" text="MEDIUM" />
+                            <ui:Button name="crosshair-btn-large"    class="crosshair-btn" text="LARGE" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+
                 </ui:VisualElement>
 
                 <!-- ── Simulation section ── -->

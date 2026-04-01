@@ -701,3 +701,41 @@
 .tod-btn.selected:hover {
     background-color: rgb(82, 176, 160);
 }
+
+/* ── Crosshair button group ────────────────────────────────── */
+
+.crosshair-group {
+    flex-direction: row;
+    margin-top: 10px;
+    margin-bottom: 4px;
+}
+
+.crosshair-btn {
+    height: 32px;
+    padding: 0 12px;
+    margin-right: 6px;
+    border-radius: 3px;
+    font-size: 11px;
+    background-color: rgb(12, 26, 24);
+    border-width: 1px;
+    border-color: rgb(24, 52, 46);
+    color: rgb(100, 138, 146);
+    -unity-text-align: middle-center;
+}
+
+.crosshair-btn:hover {
+    background-color: rgb(18, 40, 36);
+    border-color: rgb(74, 155, 142);
+    color: rgb(237, 242, 240);
+}
+
+/* Selected state — applied by MainMenuController.cs via AddToClassList */
+.crosshair-btn.selected {
+    background-color: rgb(74, 155, 142);
+    border-color: rgb(58, 128, 112);
+    color: rgb(255, 255, 255);
+}
+
+.crosshair-btn.selected:hover {
+    background-color: rgb(82, 176, 160);
+}
