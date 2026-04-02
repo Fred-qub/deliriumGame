@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -81,6 +82,16 @@ public class MainMenuController : MonoBehaviour
     // Tracks which crosshair size button is currently selected so we can swap the class
     private Button _crosshairSelected;
 
+    // Crosshair Colour selector buttons
+    private Button _crosshairWhite;
+    private Button _crosshairRed; 
+    private Button _crosshairBlue;
+    private Button _crosshairYellow;
+    private Button _crosshairOrange;
+
+    // Tracks which crosshair colour button is currently selected so we can swap the class
+    private Button _crosshairColourSelected;
+
 
     // Time-of-day selector buttons
     private Button        _todMorning;    // 540  = 9 AM
@@ -125,6 +136,11 @@ public class MainMenuController : MonoBehaviour
         _crosshairSmall = _root.Q<Button>("crosshair-btn-small");
         _crosshairMedium = _root.Q<Button>("crosshair-btn-medium");
         _crosshairLarge = _root.Q<Button>("crosshair-btn-large");
+        _crosshairWhite = _root.Q<Button>("crosshair-btn-white");
+        _crosshairRed = _root.Q<Button>("crosshair-btn-red");
+        _crosshairBlue = _root.Q<Button>("crosshair-btn-blue");
+        _crosshairYellow = _root.Q<Button>("crosshair-btn-yellow");
+        _crosshairOrange = _root.Q<Button>("crosshair-btn-orange");
         _todMorning         = _root.Q<Button>("tod-btn-morning");
         _todAfternoon       = _root.Q<Button>("tod-btn-afternoon");
         _todNight           = _root.Q<Button>("tod-btn-night");
@@ -143,13 +159,20 @@ public class MainMenuController : MonoBehaviour
         _crosshairSmall.clicked += () => SelectCrosshairSize(_crosshairSmall, 0);
         _crosshairMedium.clicked += () => SelectCrosshairSize(_crosshairMedium, 1);
         _crosshairLarge.clicked += () => SelectCrosshairSize(_crosshairLarge, 2);
-        
+
+        _crosshairWhite.clicked += () => SelectCrosshairColour(_crosshairWhite, "White");
+        _crosshairRed.clicked += () => SelectCrosshairColour(_crosshairRed, "Red");
+        _crosshairBlue.clicked += () => SelectCrosshairColour(_crosshairBlue, "Blue");
+        _crosshairYellow.clicked += () => SelectCrosshairColour(_crosshairYellow, "Yellow");
+        _crosshairOrange.clicked += () => SelectCrosshairColour(_crosshairOrange, "Orange");
+
 
         // ── Restore saved prefs ───────────────────────────────────────────────
         LoadMusophobiaPref();
         LoadOphidiophobiaPref();
         LoadTimeOfDayPref();
         LoadCrosshairSizePref();
+        LoadCrosshairColourPref();
 
         // ── Cursor ───────────────────────────────────────────────────────────
         UnityEngine.Cursor.visible   = true;
@@ -317,6 +340,48 @@ public class MainMenuController : MonoBehaviour
 
         if (_crosshairSelected != null)
             _crosshairSelected.AddToClassList("selected");
+    }
+
+
+    // -------------------------------------------------------------------------
+    // Crosshair Colour
+    // -------------------------------------------------------------------------
+
+    private void LoadCrosshairColourPref()
+    {
+        // Default to white if the key has never been set
+        string saved = PlayerPrefs.GetString("CrosshairColour", "White");
+        Button toSelect = saved switch
+        {
+            "red" => _crosshairRed,
+            "blue" => _crosshairBlue,
+            "yellow" => _crosshairYellow,
+            "orange" => _crosshairOrange,
+            "white" => _crosshairWhite,
+            _ => _crosshairWhite,
+        };
+        ApplyCrosshairColourSelection(toSelect);
+    }
+
+    private void SelectCrosshairColour(Button btn, string value)
+    {
+        PlayerPrefs.SetString("CrosshairColour", value);
+        ApplyCrosshairColourSelection(btn);
+    }
+
+    /// <summary>
+    /// Moves the "selected" USS class to <paramref name="btn"/>.
+    /// Safe to call when _CrosshairSelected is null (first load).
+    /// </summary>
+    private void ApplyCrosshairColourSelection(Button btn)
+    {
+        if (_crosshairColourSelected != null)
+            _crosshairColourSelected.RemoveFromClassList("selected");
+
+        _crosshairColourSelected = btn;
+
+        if (_crosshairColourSelected != null)
+            _crosshairColourSelected.AddToClassList("selected");
     }
 
     // -------------------------------------------------------------------------

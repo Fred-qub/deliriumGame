@@ -16897,11 +16897,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 044d265b1c7f1c94eb67223e7d2d776e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Crosshair: 0
-  uiElement: {fileID: 2033796687}
-  smallScale: {x: 0.06, y: 0.06, z: 0.06}
-  mediumScale: {x: 0.2, y: 0.2, z: 0.2}
-  largeScale: {x: 0.3, y: 0.3, z: 0.3}
+  crosshairSize: 0
+  crosshairColour: Blue
+  crosshairTransform: {fileID: 2033796687}
+  crosshairGraphic: {fileID: 2033796688}
 --- !u!4 &2034863433 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3255367397730000191, guid: 7d499f43b1602ef49a5826eb654cf150,

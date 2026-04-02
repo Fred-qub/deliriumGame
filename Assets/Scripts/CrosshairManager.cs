@@ -1,19 +1,24 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CrosshairManager : MonoBehaviour
 {
 
     public int crosshairSize;
-    public RectTransform uiElement; // Assign in Inspector
-    public Vector3 smallScale = new Vector3(0.06f, 0.06f, 0.06f);
-    public Vector3 mediumScale = new Vector3(0.2f, 0.2f, 0.2f);
-    public Vector3 largeScale = new Vector3(0.3f, 0.3f, 0.3f);
+    public string crosshairColour;
+    public RectTransform crosshairTransform; // Assign in Inspector
+    public Graphic crosshairGraphic; // Assign in Inspector
+    private Vector3 smallScale = new Vector3(0.06f, 0.06f, 0.06f);
+    private Vector3 mediumScale = new Vector3(0.2f, 0.2f, 0.2f);
+    private Vector3 largeScale = new Vector3(0.3f, 0.3f, 0.3f);
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         LoadCrossHairSize();
+        LoadCrossHairColour();
     }
 
     // Update is called once per frame
@@ -22,7 +27,7 @@ public class CrosshairManager : MonoBehaviour
         
     }
 
-    public void LoadCrossHairSize()
+    private void LoadCrossHairSize()
     {
         if (PlayerPrefs.HasKey("CrosshairSize"))
         {
@@ -34,18 +39,50 @@ public class CrosshairManager : MonoBehaviour
         switch (crosshairSize)
         {
             case 0:
-                uiElement.localScale = smallScale; // 9am
+                crosshairTransform.localScale = smallScale; 
                 break;
 
             case 1:
-                uiElement.localScale = mediumScale;
+                crosshairTransform.localScale = mediumScale;
                 break;
 
             case 2:
-                uiElement.localScale = largeScale; // 11pm
+                crosshairTransform.localScale = largeScale; 
                 break;
 
+        }
+    }
 
+    private void LoadCrossHairColour()
+    {
+        if (PlayerPrefs.HasKey("CrosshairColour"))
+        {
+            crosshairColour = PlayerPrefs.GetString("CrosshairColour");
+        }
+        else crosshairColour = "White";
+
+
+        switch (crosshairColour)
+        {
+            case "White":
+                crosshairGraphic.color = Color.white;
+                break;
+
+            case "Red":
+                crosshairGraphic.color = Color.red;
+                break;
+
+            case "Blue":
+                crosshairGraphic.color = Color.blue;
+                break;
+
+            case "Yellow":
+                crosshairGraphic.color = Color.yellow;
+                break;
+
+            case "Orange":
+                crosshairGraphic.color = Color.orange;
+                break;
 
         }
     }

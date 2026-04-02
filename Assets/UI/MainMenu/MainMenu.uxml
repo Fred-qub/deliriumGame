@@ -244,6 +244,19 @@
                         </ui:VisualElement>
                     </ui:VisualElement>
 
+                     <!-- Crosshair Colour selector -->
+                    <ui:VisualElement class="options-row options-row-col">
+                        <ui:Label class="options-row-title" text="Crosshair colour" />
+                        <ui:Label class="options-row-desc"  text="Sets the colour of the crosshair" />
+                        <ui:VisualElement class="crosshair-group">
+                            <ui:Button name="crosshair-btn-white"  class="crosshair-btn" text="WHITE" />
+                            <ui:Button name="crosshair-btn-red" class="crosshair-btn" text="RED" />
+                            <ui:Button name="crosshair-btn-blue"    class="crosshair-btn" text="BLUE" />
+                            <ui:Button name="crosshair-btn-yellow"    class="crosshair-btn" text="YELLOW" />
+                            <ui:Button name="crosshair-btn-orange"    class="crosshair-btn" text="ORANGE" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+
                 </ui:VisualElement>
 
                 <!-- ── Simulation section ── -->
