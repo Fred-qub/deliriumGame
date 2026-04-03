@@ -92,6 +92,15 @@ public class MainMenuController : MonoBehaviour
     // Tracks which crosshair colour button is currently selected so we can swap the class
     private Button _crosshairColourSelected;
 
+    // Outline Scheme selector buttons
+    private Button _outlineStandard;
+    private Button _outlineProtanopia;
+    private Button _outlineDeuteranopia;
+    private Button _outlineTritanopia;
+
+    // Tracks which crosshair colour button is currently selected so we can swap the class
+    private Button _outlineSelected;
+
 
     // Time-of-day selector buttons
     private Button        _todMorning;    // 540  = 9 AM
@@ -141,6 +150,10 @@ public class MainMenuController : MonoBehaviour
         _crosshairBlue = _root.Q<Button>("crosshair-btn-blue");
         _crosshairYellow = _root.Q<Button>("crosshair-btn-yellow");
         _crosshairOrange = _root.Q<Button>("crosshair-btn-orange");
+        _outlineStandard = _root.Q<Button>("outline-btn-standard");
+        _outlineProtanopia = _root.Q<Button>("outline-btn-protanopia");
+        _outlineDeuteranopia = _root.Q<Button>("outline-btn-deuteranopia");
+        _outlineTritanopia = _root.Q<Button>("outline-btn-tritanopia");
         _todMorning         = _root.Q<Button>("tod-btn-morning");
         _todAfternoon       = _root.Q<Button>("tod-btn-afternoon");
         _todNight           = _root.Q<Button>("tod-btn-night");
@@ -165,6 +178,11 @@ public class MainMenuController : MonoBehaviour
         _crosshairBlue.clicked += () => SelectCrosshairColour(_crosshairBlue, "Blue");
         _crosshairYellow.clicked += () => SelectCrosshairColour(_crosshairYellow, "Yellow");
         _crosshairOrange.clicked += () => SelectCrosshairColour(_crosshairOrange, "Orange");
+        
+        _outlineStandard.clicked += () => SelectOutlineScheme(_outlineStandard, "Standard");
+        _outlineProtanopia.clicked += () => SelectOutlineScheme(_outlineProtanopia, "Protanopia");
+        _outlineDeuteranopia.clicked += () => SelectOutlineScheme(_outlineDeuteranopia, "Deuteranopia");
+        _outlineTritanopia.clicked += () => SelectOutlineScheme(_outlineTritanopia, "Tritanopia");
 
 
         // ── Restore saved prefs ───────────────────────────────────────────────
@@ -173,6 +191,7 @@ public class MainMenuController : MonoBehaviour
         LoadTimeOfDayPref();
         LoadCrosshairSizePref();
         LoadCrosshairColourPref();
+        LoadOutlineScheme();
 
         // ── Cursor ───────────────────────────────────────────────────────────
         UnityEngine.Cursor.visible   = true;
@@ -358,7 +377,7 @@ public class MainMenuController : MonoBehaviour
             "yellow" => _crosshairYellow,
             "orange" => _crosshairOrange,
             "white" => _crosshairWhite,
-            _ => _crosshairWhite,
+           _ => _crosshairWhite,
         };
         ApplyCrosshairColourSelection(toSelect);
     }
@@ -382,6 +401,46 @@ public class MainMenuController : MonoBehaviour
 
         if (_crosshairColourSelected != null)
             _crosshairColourSelected.AddToClassList("selected");
+    }
+
+    // -------------------------------------------------------------------------
+    // Outline Scheme
+    // -------------------------------------------------------------------------
+
+    private void LoadOutlineScheme()
+    {
+        // Default to standard if the key has never been set
+        string saved = PlayerPrefs.GetString("OutlineScheme", "Standard");
+        Button toSelect = saved switch
+        {
+            "standard" => _outlineStandard,
+            "protanopia" => _outlineProtanopia,
+            "deuteranopia" => _outlineDeuteranopia,
+            "tritanopia" => _outlineTritanopia,
+            _ => _outlineStandard,
+        };
+        ApplyOutlineColourScheme(toSelect);
+    }
+
+    private void SelectOutlineScheme(Button btn, string value)
+    {
+        PlayerPrefs.SetString("OutlineScheme", value);
+        ApplyOutlineColourScheme(btn);
+    }
+
+    /// <summary>
+    /// Moves the "selected" USS class to <paramref name="btn"/>.
+    /// Safe to call when _OutlineSelected is null (first load).
+    /// </summary>
+    private void ApplyOutlineColourScheme(Button btn)
+    {
+        if (_outlineSelected != null)
+            _outlineSelected.RemoveFromClassList("selected");
+
+        _outlineSelected = btn;
+
+        if (_outlineSelected != null)
+            _outlineSelected.AddToClassList("selected");
     }
 
     // -------------------------------------------------------------------------

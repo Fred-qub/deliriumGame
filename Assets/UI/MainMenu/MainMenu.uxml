@@ -257,6 +257,18 @@
                         </ui:VisualElement>
                     </ui:VisualElement>
 
+                    <!-- Outline Colour Scheme selector -->
+                    <ui:VisualElement class="options-row options-row-col">
+                        <ui:Label class="options-row-title" text="Colour Blindness Accomodation" />
+                        <ui:Label class="options-row-desc"  text="Alters highlights to assist individuals with colour vision deficiency" />
+                        <ui:VisualElement class="outline-group">
+                            <ui:Button name="outline-btn-standard"  class="outline-btn" text="STANDARD" />
+                            <ui:Button name="outline-btn-protanopia" class="outline-btn" text="PROTANOPIA" />
+                            <ui:Button name="outline-btn-deuteranopia"    class="outline-btn" text="DEUTERANOPIA" />
+                            <ui:Button name="outline-btn-tritanopia"    class="outline-btn" text="TRITANOPIA" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+
                 </ui:VisualElement>
 
                 <!-- ── Simulation section ── -->
