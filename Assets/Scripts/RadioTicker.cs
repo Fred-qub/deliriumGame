@@ -8,6 +8,7 @@ public class RadioTicker : MonoBehaviour
     public RectTransform textRect;     // RectTransform of the text
     public RectTransform maskRect;     // RectTransform of the mask area
     public GameObject radioSubtitle;
+    public int subtitles;
 
     [Header("Settings")]
     private float scrollSpeed = 250f;   // Pixels per second
@@ -24,6 +25,24 @@ public class RadioTicker : MonoBehaviour
             Debug.LogError("OneShotTicker: Missing references in Inspector.");
             enabled = false;
             return;
+        }
+
+        if (PlayerPrefs.HasKey("Subtitles"))
+        {
+           subtitles = PlayerPrefs.GetInt("Subtitles");
+        }
+        else subtitles = 0;
+
+        switch (subtitles)
+        {
+            case 0:
+                radioSubtitle.SetActive(false);
+                break;
+
+            case 1:
+
+                radioSubtitle.SetActive(true);
+                break;
         }
 
         // Set the text
