@@ -706,8 +706,8 @@
 
 .crosshair-group {
     flex-direction: row;
-    margin-top: 10px;
-    margin-bottom: 4px;
+    margin-top: 4px;
+    margin-bottom: 25px;
 }
 
 .crosshair-btn {
@@ -744,8 +744,8 @@
 
 .crosshairColour-group {
     flex-direction: row;
-    margin-top: 10px;
-    margin-bottom: 4px;
+    margin-top: 4px;
+    margin-bottom: 25px;
 }
 
 .crosshairColour-btn {
@@ -782,8 +782,8 @@
 
 .outline-group {
     flex-direction: row;
-    margin-top: 10px;
-    margin-bottom: 4px;
+    margin-top: 4px;
+    margin-bottom: 25px;
 }
 
 .outline-btn {
