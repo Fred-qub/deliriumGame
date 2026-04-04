@@ -41,6 +41,13 @@ public class playerInteraction : MonoBehaviour
 
     void CheckInteraction()
     {
+        //checks if dialogue is active and hides the prompt
+        if (DialogueManager.Instance != null && DialogueManager.Instance.IsDialogueActive())
+        {
+            clearTarget();
+            return;
+        }
+        
         //draws a raycast from the camera
         RaycastHit hit;
         Ray ray = new Ray(camera.transform.position, camera.transform.forward);
