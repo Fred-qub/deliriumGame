@@ -14933,7 +14933,7 @@ MonoBehaviour:
   tickerText: {fileID: 1763091059}
   textRect: {fileID: 1763091058}
   maskRect: {fileID: 1868078529}
-  scrollSpeed: 200
+  radioSubtitle: {fileID: 1868078528}
 --- !u!1 &1792528274
 GameObject:
   m_ObjectHideFlags: 0

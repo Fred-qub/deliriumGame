@@ -7,19 +7,21 @@ public class RadioTicker : MonoBehaviour
     public TextMeshProUGUI tickerText; // The text to scroll
     public RectTransform textRect;     // RectTransform of the text
     public RectTransform maskRect;     // RectTransform of the mask area
+    public GameObject radioSubtitle;
 
     [Header("Settings")]
-    public float scrollSpeed = 200f;   // Pixels per second
+    private float scrollSpeed = 250f;   // Pixels per second
+    [TextArea]
     private string message = "RADIO ANNOUNCER: It is the top of the hour, you are listening to DSFM with me, Sam Todd.  We've got some great tracks coming up for you this show - but first, the news. Top story tonight - civil unrest continues across America, while the current administration tries to divert the public's attention by introducing a reverse carbon tax, whereby citizens will receive a tax rebate directly proportional to the amount of carbon they consume.  Video call provider Zoom has faced criticism for its new AI features, which allow users to send an artificially-generated version of themselves to attend meetings on their behalf.  Zoom's PR department have declined to comment, as the server malfunction has restricted access to its in-house AI model for the time being.";
 
-    private float startX;
     private float endX;
+    private bool isScrolling = false;
 
-    void Start()
+    void OnEnable()
     {
         if (tickerText == null || textRect == null || maskRect == null)
         {
-            Debug.LogError("ScrollingTicker: Missing references in Inspector.");
+            Debug.LogError("OneShotTicker: Missing references in Inspector.");
             enabled = false;
             return;
         }
@@ -27,30 +29,41 @@ public class RadioTicker : MonoBehaviour
         // Set the text
         tickerText.text = message;
 
-        // Calculate start and end positions
-        startX = maskRect.rect.width;
-        endX = -textRect.rect.width;
+        // Force update to get correct width
+        tickerText.ForceMeshUpdate();
 
-        // Start at the right edge
+        // Start position: just outside the right edge of the mask
+        float startX = maskRect.rect.width;
         textRect.anchoredPosition = new Vector2(startX, textRect.anchoredPosition.y);
+
+        // End position: fully off-screen to the left
+        endX = -tickerText.preferredWidth;
+
+        isScrolling = true;
     }
 
     void Update()
     {
+        if (!isScrolling) return;
+
         // Move text left
         textRect.anchoredPosition += Vector2.left * scrollSpeed * Time.deltaTime;
 
+        // Check if text has fully passed
+        if (textRect.anchoredPosition.x <= endX)
+        {
+            isScrolling = false;
+            radioSubtitle.SetActive(false); // Disable the GameObject
+        }
     }
 
     /// <summary>
-    /// Dynamically updates the ticker message.
+    /// Call this to start the ticker with a new message.
     /// </summary>
-    public void SetMessage(string newMessage)
+    public void StartTicker(string newMessage)
     {
         message = newMessage;
-        tickerText.text = message;
-        endX = -textRect.rect.width;
-        textRect.anchoredPosition = new Vector2(startX, textRect.anchoredPosition.y);
+        radioSubtitle.SetActive(true); // This will trigger OnEnable and restart
     }
 }
 
