@@ -83,11 +83,11 @@ public class MainMenuController : MonoBehaviour
     private Button _crosshairSelected;
 
     // Crosshair Colour selector buttons
-    private Button _crosshairWhite;
-    private Button _crosshairRed; 
-    private Button _crosshairBlue;
-    private Button _crosshairYellow;
-    private Button _crosshairOrange;
+    private Button _crosshairColourWhite;
+    private Button _crosshairColourRed; 
+    private Button _crosshairColourBlue;
+    private Button _crosshairColourYellow;
+    private Button _crosshairColourOrange;
 
     // Tracks which crosshair colour button is currently selected so we can swap the class
     private Button _crosshairColourSelected;
@@ -145,11 +145,11 @@ public class MainMenuController : MonoBehaviour
         _crosshairSmall = _root.Q<Button>("crosshair-btn-small");
         _crosshairMedium = _root.Q<Button>("crosshair-btn-medium");
         _crosshairLarge = _root.Q<Button>("crosshair-btn-large");
-        _crosshairWhite = _root.Q<Button>("crosshair-btn-white");
-        _crosshairRed = _root.Q<Button>("crosshair-btn-red");
-        _crosshairBlue = _root.Q<Button>("crosshair-btn-blue");
-        _crosshairYellow = _root.Q<Button>("crosshair-btn-yellow");
-        _crosshairOrange = _root.Q<Button>("crosshair-btn-orange");
+        _crosshairColourWhite = _root.Q<Button>("crosshairColour-btn-white");
+        _crosshairColourRed = _root.Q<Button>("crosshairColour-btn-red");
+        _crosshairColourBlue = _root.Q<Button>("crosshairColour-btn-blue");
+        _crosshairColourYellow = _root.Q<Button>("crosshairColour-btn-yellow");
+        _crosshairColourOrange = _root.Q<Button>("crosshairColour-btn-orange");
         _outlineStandard = _root.Q<Button>("outline-btn-standard");
         _outlineProtanopia = _root.Q<Button>("outline-btn-protanopia");
         _outlineDeuteranopia = _root.Q<Button>("outline-btn-deuteranopia");
@@ -173,11 +173,11 @@ public class MainMenuController : MonoBehaviour
         _crosshairMedium.clicked += () => SelectCrosshairSize(_crosshairMedium, 1);
         _crosshairLarge.clicked += () => SelectCrosshairSize(_crosshairLarge, 2);
 
-        _crosshairWhite.clicked += () => SelectCrosshairColour(_crosshairWhite, "White");
-        _crosshairRed.clicked += () => SelectCrosshairColour(_crosshairRed, "Red");
-        _crosshairBlue.clicked += () => SelectCrosshairColour(_crosshairBlue, "Blue");
-        _crosshairYellow.clicked += () => SelectCrosshairColour(_crosshairYellow, "Yellow");
-        _crosshairOrange.clicked += () => SelectCrosshairColour(_crosshairOrange, "Orange");
+        _crosshairColourWhite.clicked += () => SelectCrosshairColour(_crosshairColourWhite, "White");
+        _crosshairColourRed.clicked += () => SelectCrosshairColour(_crosshairColourRed, "Red");
+        _crosshairColourBlue.clicked += () => SelectCrosshairColour(_crosshairColourBlue, "Blue");
+        _crosshairColourYellow.clicked += () => SelectCrosshairColour(_crosshairColourYellow, "Yellow");
+        _crosshairColourOrange.clicked += () => SelectCrosshairColour(_crosshairColourOrange, "Orange");
         
         _outlineStandard.clicked += () => SelectOutlineScheme(_outlineStandard, "Standard");
         _outlineProtanopia.clicked += () => SelectOutlineScheme(_outlineProtanopia, "Protanopia");
@@ -372,12 +372,12 @@ public class MainMenuController : MonoBehaviour
         string saved = PlayerPrefs.GetString("CrosshairColour", "White");
         Button toSelect = saved switch
         {
-            "red" => _crosshairRed,
-            "blue" => _crosshairBlue,
-            "yellow" => _crosshairYellow,
-            "orange" => _crosshairOrange,
-            "white" => _crosshairWhite,
-           _ => _crosshairWhite,
+            "red" => _crosshairColourRed,
+            "blue" => _crosshairColourBlue,
+            "yellow" => _crosshairColourYellow,
+            "orange" => _crosshairColourOrange,
+            "white" => _crosshairColourWhite,
+            _ => _crosshairColourWhite,
         };
         ApplyCrosshairColourSelection(toSelect);
     }
