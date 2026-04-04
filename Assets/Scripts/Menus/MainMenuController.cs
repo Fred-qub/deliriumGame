@@ -74,6 +74,9 @@ public class MainMenuController : MonoBehaviour
     // Ophidiophobia
     private Toggle        _toggleOphidiophobia;
 
+    // Radio Subtitles
+    private Toggle        _toggleSubtitles;
+
     // Crosshair Size selector buttons
     private Button _crosshairSmall; // 0
     private Button _crosshairMedium; // 1 
@@ -142,6 +145,7 @@ public class MainMenuController : MonoBehaviour
         _btnOptionsOk       = _root.Q<Button>("options-modal-ok");
         _toggleMusophobia   = _root.Q<Toggle>("toggle-musophobia");
         _toggleOphidiophobia = _root.Q<Toggle>("toggle-ophidiophobia");
+        _toggleSubtitles = _root.Q<Toggle>("toggle-subtitles");
         _crosshairSmall = _root.Q<Button>("crosshair-btn-small");
         _crosshairMedium = _root.Q<Button>("crosshair-btn-medium");
         _crosshairLarge = _root.Q<Button>("crosshair-btn-large");
@@ -188,6 +192,7 @@ public class MainMenuController : MonoBehaviour
         // ── Restore saved prefs ───────────────────────────────────────────────
         LoadMusophobiaPref();
         LoadOphidiophobiaPref();
+        LoadSubtitlesPref();
         LoadTimeOfDayPref();
         LoadCrosshairSizePref();
         LoadCrosshairColourPref();
@@ -320,6 +325,24 @@ public class MainMenuController : MonoBehaviour
     private void OnOphidiophobiaChanged(ChangeEvent<bool> evt)
     {
         PlayerPrefs.SetInt("Ophidiophobia", evt.newValue ? 1 : 0);
+    }
+
+    // -------------------------------------------------------------------------
+    // Radio Subtitles
+    // -------------------------------------------------------------------------
+
+    private void LoadSubtitlesPref()
+    {
+        bool isOn = PlayerPrefs.GetInt("Subtitles", 0) == 1;
+        _toggleSubtitles.value = isOn;
+        // Wire value-change so it saves immediately if the user toggles without
+        // explicitly pressing "Save & close".
+        _toggleSubtitles.RegisterValueChangedCallback(OnSubtitlesChanged);
+    }
+
+    private void OnSubtitlesChanged(ChangeEvent<bool> evt)
+    {
+        PlayerPrefs.SetInt("Subtitles", evt.newValue ? 1 : 0);
     }
 
     // -------------------------------------------------------------------------

@@ -233,6 +233,15 @@
                         <ui:Toggle name="toggle-ophidiophobia" class="options-toggle" />
                     </ui:VisualElement>
 
+                    <!-- Radio subtitles toggle -->
+                    <ui:VisualElement class="options-row">
+                        <ui:VisualElement class="options-row-text">
+                            <ui:Label class="options-row-title" text="Additional Subtitles" />
+                            <ui:Label class="options-row-desc"  text="Displays subtitles for radio broadcast" />
+                        </ui:VisualElement>
+                        <ui:Toggle name="toggle-subtitles" class="options-toggle" />
+                    </ui:VisualElement>
+
                     <!-- Crosshair Size selector -->
                     <ui:VisualElement class="options-row options-row-col">
                         <ui:Label class="options-row-title" text="Crosshair size" />
