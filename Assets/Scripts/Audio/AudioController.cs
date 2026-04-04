@@ -7,20 +7,31 @@ public class AudioController : MonoBehaviour
 {
     [SerializeField] private AudioSource lightSwitch;
     [SerializeField] private AudioSource lightBuzz;
+    
     [SerializeField] private AudioSource coat;
+
+    [SerializeField] private AudioSource hearingAid;
+    
     [SerializeField] private AudioSource sedative;
+    
     [SerializeField] private AudioSource radioReal;
     [SerializeField] private AudioSource radioHallucination;
+    
     [SerializeField] private AudioSource heart52;
     [SerializeField] private AudioSource monitor52;
+    
     [SerializeField] private AudioSource heart71;
     [SerializeField] private AudioSource monitor71;
+    
     [SerializeField] private AudioSource heart82;
     [SerializeField] private AudioSource monitor82;
+    
     [SerializeField] private AudioSource heart107;
     [SerializeField] private AudioSource monitor107;
+    
     [SerializeField] private AudioSource heart121;
     [SerializeField] private AudioSource monitor121;
+    
     [SerializeField] private AudioSource alarm;
 
 
@@ -61,8 +72,8 @@ public class AudioController : MonoBehaviour
         {
             case "Lights": lightBuzz.Play(); lightSwitch.Play(); break;
             case "Sedative": sedative.Play();break;
+            case "HearingAid": hearingAid.Play(); break;
             case "Coat": break;
-            case "HearingAid": break;
         }
         
     }

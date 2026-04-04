@@ -29,6 +29,9 @@ public class SceneReplayer : MonoBehaviour
 
     public delegate void Interaction(string actionName);
     public static event Interaction OnInteraction;
+    
+    public delegate void HearingAid();
+    public static event HearingAid OnHearingAid;
 
     private void Start()
     {
@@ -62,6 +65,10 @@ public class SceneReplayer : MonoBehaviour
         {
             Debug.Log($"Replaying Event: {actionName}");
             OnInteraction?.Invoke(actionName);
+            if (actionName == "HearingAid")
+            {
+                OnHearingAid?.Invoke();
+            }
             ReplayAction matchingAction = actionLibrary.Find(x => x.actionName == actionName);
 
             if (!string.IsNullOrEmpty(matchingAction.actionName))
