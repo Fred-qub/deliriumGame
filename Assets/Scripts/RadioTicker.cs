@@ -9,6 +9,7 @@ public class RadioTicker : MonoBehaviour
     public RectTransform maskRect;     // RectTransform of the mask area
     public GameObject radioSubtitle;
     public int subtitles;
+    public string textColour;
 
     [Header("Settings")]
     private float scrollSpeed = 250f;   // Pixels per second
@@ -42,8 +43,11 @@ public class RadioTicker : MonoBehaviour
             case 1:
 
                 radioSubtitle.SetActive(true);
+                LoadColourScheme();
                 break;
         }
+
+        
 
         // Set the text
         tickerText.text = message;
@@ -84,5 +88,62 @@ public class RadioTicker : MonoBehaviour
         message = newMessage;
         radioSubtitle.SetActive(true); // This will trigger OnEnable and restart
     }
+
+    private void LoadColourScheme()
+    {
+        if (PlayerPrefs.HasKey("OutlineScheme"))
+        {
+            textColour = PlayerPrefs.GetString("OutlineScheme");
+        }
+        else textColour = "Standard";
+
+
+        switch (textColour)
+        {
+            case "Standard":
+                Standard();
+                break;
+
+            case "Protanopia":
+                Protanopia();
+                break;
+
+            case "Deuteranopia":
+                Deuteranopia();
+                break;
+
+            case "Tritanopia":
+                Tritanopia();
+                break;
+
+        }
+
+    }
+
+    public void Standard() 
+    {
+        tickerText.color = Color.red;
+    
+    }
+
+    public void Protanopia()
+    {
+        tickerText.color = Color.yellow;
+
+    }
+
+    public void Deuteranopia()
+    {
+        tickerText.color = Color.yellow;
+
+    }
+
+    public void Tritanopia()
+    {
+        tickerText.color = Color.red;
+
+    }
+
+
 }
 

@@ -44,7 +44,7 @@ public class OutlineColourChange : MonoBehaviour
                 Protanopia();
                 break;
 
-            case "Deuteraopia":
+            case "Deuteranopia":
                 Deuteranopia();
                 break;
 
