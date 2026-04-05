@@ -60,10 +60,15 @@ public class MoveToTarget : MonoBehaviour
         
         //stop walking animation
         doctorAnimationStateController.stopWalking();
-
+        
+        //play interaction animation
+        doctorAnimationStateController.triggerInteract();
+       
         //Wait
         Debug.Log($"{name} reached target. Waiting for {stayDuration} seconds...");
         yield return new WaitForSeconds(stayDuration);
+        
+        
 
         //Go back to start
         Debug.Log($"{name} is returning to start.");
