@@ -269,7 +269,7 @@
                     <!-- Outline Colour Scheme selector -->
                     <ui:VisualElement class="options-row options-row-col">
                         <ui:Label class="options-row-title" text="Colour Blindness Accomodation" />
-                        <ui:Label class="options-row-desc"  text="Alters highlights to assist individuals with colour vision deficiency" />
+                        <ui:Label class="options-row-desc"  text="Alters important visual elements to assist individuals with colour vision deficiency" />
                         <ui:VisualElement class="outline-group">
                             <ui:Button name="outline-btn-standard"  class="outline-btn" text="STANDARD" />
                             <ui:Button name="outline-btn-protanopia" class="outline-btn" text="PROTANOPIA" />
