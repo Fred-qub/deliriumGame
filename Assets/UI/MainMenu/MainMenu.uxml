@@ -237,7 +237,7 @@
                     <ui:VisualElement class="options-row">
                         <ui:VisualElement class="options-row-text">
                             <ui:Label class="options-row-title" text="Additional Subtitles" />
-                            <ui:Label class="options-row-desc"  text="Displays subtitles for radio broadcast" />
+                            <ui:Label class="options-row-desc"  text="Displays subtitles for some audio events" />
                         </ui:VisualElement>
                         <ui:Toggle name="toggle-subtitles" class="options-toggle" />
                     </ui:VisualElement>
