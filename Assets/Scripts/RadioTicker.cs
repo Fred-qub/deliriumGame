@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RadioTicker : MonoBehaviour
 {
@@ -14,43 +15,16 @@ public class RadioTicker : MonoBehaviour
     [Header("Settings")]
     private float scrollSpeed = 250f;   // Pixels per second
     [TextArea]
-    private string message = "RADIO ANNOUNCER: It is the top of the hour, you are listening to DSFM with me, Sam Todd.  We've got some great tracks coming up for you this show - but first, the news. Top story tonight - civil unrest continues across America, while the current administration tries to divert the public's attention by introducing a reverse carbon tax, whereby citizens will receive a tax rebate directly proportional to the amount of carbon they consume.  Video call provider Zoom has faced criticism for its new AI features, which allow users to send an artificially-generated version of themselves to attend meetings on their behalf.  Zoom's PR department have declined to comment, as the server malfunction has restricted access to its in-house AI model for the time being.";
+    private string clinicianMessage = "RADIO ANNOUNCER: It is the top of the hour, you are listening to DSFM with me, Sam Todd.  We've got some great tracks coming up for you this show - but first, the news. Top story tonight - civil unrest continues across America, while the current administration tries to divert the public's attention by introducing a reverse carbon tax, whereby citizens will receive tax rebates directly proportional to the amount of carbon they consume.  Video call provider Zoom has faced criticism for its new AI features, which allow users to send an artificially-generated version of themselves to attend meetings on their behalf.  Zoom's PR department have declined to comment, as the server malfunction has restricted access to its in-house AI model for the time being.";
+    private string patientMessage = "RADIO ANNOUNCER: It is the top of the hour, you are listening to DSFM with me, Sam Todd.  We've got some great tracks coming up for you this show - but first, the news. Top story tonight - civil unrest continues across America, while the current administration tries to divert the public's attention by introducing a reverse carbon tax, whereby citizens will receive tax rebates directly proportional to the amount of carbon they consume.  But most importantly, hospital break-ins are at an all-time high, with reports of shadowy figures finding their way into the rooms of patients, particularly the elderly and patients recovering from surgery.  Anyone witnessing such figures should be made aware that they are NOT hallucinating, and are in fact in very real danger.  One such person is Arthur Roberts, who should be getting a wee visit from one as we speak.  Good luck Artie, cos I think you're gonna need it!";
 
     private float endX;
     private bool isScrolling = false;
 
     void OnEnable()
     {
-        if (tickerText == null || textRect == null || maskRect == null)
-        {
-            Debug.LogError("OneShotTicker: Missing references in Inspector.");
-            enabled = false;
-            return;
-        }
 
-        if (PlayerPrefs.HasKey("Subtitles"))
-        {
-           subtitles = PlayerPrefs.GetInt("Subtitles");
-        }
-        else subtitles = 0;
-
-        switch (subtitles)
-        {
-            case 0:
-                radioSubtitle.SetActive(false);
-                break;
-
-            case 1:
-
-                radioSubtitle.SetActive(true);
-                LoadColourScheme();
-                break;
-        }
-
-        
-
-        // Set the text
-        tickerText.text = message;
+        CheckSubtitleOption();
 
         // Force update to get correct width
         tickerText.ForceMeshUpdate();
@@ -80,14 +54,6 @@ public class RadioTicker : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Call this to start the ticker with a new message.
-    /// </summary>
-    public void StartTicker(string newMessage)
-    {
-        message = newMessage;
-        radioSubtitle.SetActive(true); // This will trigger OnEnable and restart
-    }
 
     private void LoadColourScheme()
     {
@@ -141,6 +107,50 @@ public class RadioTicker : MonoBehaviour
     public void Tritanopia()
     {
         tickerText.color = Color.red;
+
+    }
+
+    void CheckSubtitleOption() 
+    {
+        if (PlayerPrefs.HasKey("Subtitles"))
+        {
+            subtitles = PlayerPrefs.GetInt("Subtitles");
+        }
+        else subtitles = 0;
+
+        switch (subtitles)
+        {
+            case 0:
+                radioSubtitle.SetActive(false);
+                break;
+
+            case 1:
+
+                radioSubtitle.SetActive(true);
+                LoadColourScheme();
+                CheckScene();
+                break;
+        }
+
+    }
+
+    void CheckScene() 
+    {
+
+
+        string currentSceneName = SceneManager.GetActiveScene().name;
+
+        if (currentSceneName == "Clinician Scene Ruth")
+        {
+            tickerText.text = clinicianMessage;
+
+        }
+
+        if (currentSceneName == "PatientScene Ruth")
+        {
+            tickerText.text = patientMessage;
+
+        }
 
     }
 
