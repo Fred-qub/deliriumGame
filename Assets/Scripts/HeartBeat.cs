@@ -1,5 +1,7 @@
 
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class HeartBeat : MonoBehaviour
 {
