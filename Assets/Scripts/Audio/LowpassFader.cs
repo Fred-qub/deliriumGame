@@ -4,9 +4,9 @@ using UnityEngine.Audio;
 
 public class LowpassFader : MonoBehaviour
 {
-    public AudioMixer mixer;
-    public float targetFrequency = 20000f;
-    public float speed = 5f;
+    [SerializeField] private AudioMixer mixer;
+    [SerializeField] private float targetFrequency = 15000f;
+    [SerializeField] private float speed = 5f;
     private float currentFrequency = 1000f;
     private bool isFading = false;
 
@@ -30,12 +30,12 @@ public class LowpassFader : MonoBehaviour
         if (!isFading) return;
 
         currentFrequency = Mathf.MoveTowards(currentFrequency, targetFrequency, Time.deltaTime * speed);
-        Debug.Log($"LowpassCutoff set to: {currentFrequency}");
         mixer.SetFloat("LowpassCutoff", currentFrequency);
 
         if (Mathf.Abs(currentFrequency - targetFrequency) < 1f)
         {
             mixer.SetFloat("LowpassCutoff", targetFrequency);
+            Debug.Log($"LowpassCutoff set to: {currentFrequency}");
             isFading = false;
         }
     }
