@@ -8,17 +8,18 @@ public class HeartrateDisplay : MonoBehaviour
     [SerializeField] private TMP_Text heartrateDisplay;
     [SerializeField] private GameObject AudioController;
     private HeartBeat heartBeatScript;
-    public int rate;
-    public GameObject heart;
-    public float flashDuration = 0.1f;
-    public float beatInterval;
+    private int rate;
+    [SerializeField] private GameObject heart;
+    private float flashDuration = 0.1f;
+    private float beatInterval;
+    private int subtitles;
 
 
     private void OnEnable()
     {
         
         HeartBeat.OnHeartRateChanged += DisplayHeartrate;
-      
+        CheckSubtitleOption();
 
     }
 
@@ -133,6 +134,28 @@ public class HeartrateDisplay : MonoBehaviour
                 }
 
         }
+    }
+
+    void CheckSubtitleOption()
+    {
+        if (PlayerPrefs.HasKey("Subtitles"))
+        {
+            subtitles = PlayerPrefs.GetInt("Subtitles");
+        }
+        else subtitles = 0;
+
+        switch (subtitles)
+        {
+            case 0:
+                gameObject.SetActive(false);
+                break;
+
+            case 1:
+
+                gameObject.SetActive(true);
+                break;
+        }
+
     }
 
 

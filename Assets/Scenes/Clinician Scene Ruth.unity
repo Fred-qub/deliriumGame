@@ -7246,6 +7246,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Heartbeat
       objectReference: {fileID: 0}
+    - target: {fileID: 4529362747754557924, guid: 3ae17306356a04945a13bfd74473b168,
+        type: 3}
+      propertyPath: AudioController
+      value: 
+      objectReference: {fileID: 1985792282}
     - target: {fileID: 5113789736939224512, guid: 3ae17306356a04945a13bfd74473b168,
         type: 3}
       propertyPath: m_Pivot.x
