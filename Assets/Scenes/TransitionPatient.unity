@@ -373,6 +373,7 @@ MonoBehaviour:
   secondClip: {fileID: 8300000, guid: b3bf065b1e4a94d48a37bf21413957f1, type: 3}
   knock: {fileID: 1740278862}
   door: {fileID: 1740278861}
+  subtitles: 0
 --- !u!4 &927330472
 Transform:
   m_ObjectHideFlags: 0
@@ -750,6 +751,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Subtitle
+      objectReference: {fileID: 0}
+    - target: {fileID: 4207084078370438446, guid: 4bd0736d8ee54f748b8ef94bf6698b31,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242432890727571390, guid: 4bd0736d8ee54f748b8ef94bf6698b31,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 109
+      objectReference: {fileID: 0}
+    - target: {fileID: 7793203132294221657, guid: 4bd0736d8ee54f748b8ef94bf6698b31,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8487142062164153607, guid: 4bd0736d8ee54f748b8ef94bf6698b31,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 252
       objectReference: {fileID: 0}
     - target: {fileID: 8820835996616650833, guid: 4bd0736d8ee54f748b8ef94bf6698b31,
         type: 3}
