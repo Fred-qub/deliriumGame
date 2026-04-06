@@ -10,6 +10,8 @@ public class HeartrateDisplay : MonoBehaviour
     private HeartBeat heartBeatScript;
     private int rate;
     [SerializeField] private GameObject heart;
+    [SerializeField] private GameObject redAlarm;
+    [SerializeField] private GameObject yellowAlarm;
     private float flashDuration = 0.1f;
     private float beatInterval;
     private int subtitles;
@@ -48,6 +50,7 @@ public class HeartrateDisplay : MonoBehaviour
                 Debug.Log("Heartrate 52 bpm");
                 heartrateDisplay.text = "52";
                 heart.gameObject.SetActive(false);
+                TurnOffAlarm();
                 StopAllCoroutines();
                 StartCoroutine(Flash(rate));
                 break;
@@ -55,6 +58,7 @@ public class HeartrateDisplay : MonoBehaviour
                 Debug.Log("Heartrate 71 bpm");
                 heartrateDisplay.text = "71";
                 heart.gameObject.SetActive(false);
+                TurnOffAlarm();
                 StopAllCoroutines();
                 StartCoroutine(Flash(rate));
                 break;
@@ -62,6 +66,7 @@ public class HeartrateDisplay : MonoBehaviour
                 Debug.Log("Heartrate 82 bpm");
                 heartrateDisplay.text = "82";
                 heart.gameObject.SetActive(false);
+                TurnOffAlarm();
                 StopAllCoroutines();
                 StartCoroutine(Flash(rate));
                 break;
@@ -69,15 +74,19 @@ public class HeartrateDisplay : MonoBehaviour
                 Debug.Log("Heartrate 107 bpm");
                 heartrateDisplay.text = "107";
                 heart.gameObject.SetActive(false);
+                TurnOffAlarm();
                 StopAllCoroutines();
                 StartCoroutine(Flash(rate));
+                StartCoroutine(FlashYellow());
                 break;
             case 4:// 121 bpm
                 Debug.Log("Heartrate 121 bpm");
                 heartrateDisplay.text = "121";
                 heart.gameObject.SetActive(false);
+                TurnOffAlarm();
                 StopAllCoroutines();
                 StartCoroutine(Flash(rate));
+                StartCoroutine(FlashRed());
                 break;
 
         }
@@ -136,6 +145,25 @@ public class HeartrateDisplay : MonoBehaviour
         }
     }
 
+    public IEnumerator FlashRed()
+    {
+        redAlarm.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        redAlarm.gameObject.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
+        StartCoroutine(FlashRed());
+    }
+
+    public IEnumerator FlashYellow()
+    {
+
+        yellowAlarm.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        yellowAlarm.gameObject.SetActive(false);
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(FlashYellow());
+    }
+
     void CheckSubtitleOption()
     {
         if (PlayerPrefs.HasKey("Subtitles"))
@@ -156,6 +184,20 @@ public class HeartrateDisplay : MonoBehaviour
                 break;
         }
 
+    }
+
+    private void TurnOffAlarm()
+    {
+        
+        if (yellowAlarm)
+        {
+            yellowAlarm.gameObject.SetActive(false);
+        }
+
+        if (redAlarm)
+        {
+            redAlarm.gameObject.SetActive(false);
+        }
     }
 
 
