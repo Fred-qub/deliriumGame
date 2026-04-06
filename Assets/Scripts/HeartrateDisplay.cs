@@ -48,7 +48,7 @@ public class HeartrateDisplay : MonoBehaviour
         {
             case 0: // 52 bpm
                 Debug.Log("Heartrate 52 bpm");
-                heartrateDisplay.text = "52";
+                FindObjectOfType<NumberAnimator>().AnimateTo(52);
                 heart.gameObject.SetActive(false);
                 TurnOffAlarm();
                 StopAllCoroutines();
@@ -56,7 +56,7 @@ public class HeartrateDisplay : MonoBehaviour
                 break;
             case 1: // 71 bpm
                 Debug.Log("Heartrate 71 bpm");
-                heartrateDisplay.text = "71";
+                FindObjectOfType<NumberAnimator>().AnimateTo(71);
                 heart.gameObject.SetActive(false);
                 TurnOffAlarm();
                 StopAllCoroutines();
@@ -64,7 +64,7 @@ public class HeartrateDisplay : MonoBehaviour
                 break;
             case 2: // 82 bpm
                 Debug.Log("Heartrate 82 bpm");
-                heartrateDisplay.text = "82";
+                FindObjectOfType<NumberAnimator>().AnimateTo(82);
                 heart.gameObject.SetActive(false);
                 TurnOffAlarm();
                 StopAllCoroutines();
@@ -72,7 +72,7 @@ public class HeartrateDisplay : MonoBehaviour
                 break;
             case 3: // 107 bpm
                 Debug.Log("Heartrate 107 bpm");
-                heartrateDisplay.text = "107";
+                FindObjectOfType<NumberAnimator>().AnimateTo(107);
                 heart.gameObject.SetActive(false);
                 TurnOffAlarm();
                 StopAllCoroutines();
@@ -81,7 +81,7 @@ public class HeartrateDisplay : MonoBehaviour
                 break;
             case 4:// 121 bpm
                 Debug.Log("Heartrate 121 bpm");
-                heartrateDisplay.text = "121";
+                FindObjectOfType<NumberAnimator>().AnimateTo(121);
                 heart.gameObject.SetActive(false);
                 TurnOffAlarm();
                 StopAllCoroutines();

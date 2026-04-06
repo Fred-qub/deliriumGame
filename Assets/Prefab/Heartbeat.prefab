@@ -232,6 +232,8 @@ MonoBehaviour:
   heartrateDisplay: {fileID: 8508045895135787579}
   AudioController: {fileID: 0}
   heart: {fileID: 8755080565560136996}
+  redAlarm: {fileID: 0}
+  yellowAlarm: {fileID: 0}
 --- !u!1 &1154950253571250463
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,6 +457,7 @@ GameObject:
   - component: {fileID: 8775099593425686460}
   - component: {fileID: 665971790794979710}
   - component: {fileID: 8508045895135787579}
+  - component: {fileID: 1556884421635574705}
   m_Layer: 5
   m_Name: Heartrate
   m_TagString: Untagged
@@ -580,6 +583,20 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1556884421635574705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4240325038240774448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a08da74e4d1ce964c9a5ddd660cfa5c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiText: {fileID: 8508045895135787579}
+  animationDuration: 1
 --- !u!1 &5169812564309763241
 GameObject:
   m_ObjectHideFlags: 0
