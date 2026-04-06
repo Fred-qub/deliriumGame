@@ -3812,6 +3812,7 @@ MonoBehaviour:
   startVolume: 0.5
   endVolume: 0
   fadeTime: 10
+  dialogueManager: {fileID: 0}
 --- !u!114 &393842003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20600,8 +20601,25 @@ MonoBehaviour:
   doctorPortrait: {fileID: 21300000, guid: 82a5f4b95fe730848845de69d3b338ab, type: 3}
   arthurPortrait: {fileID: 21300000, guid: 6350be1f3d179ab4d9a9b62d2a760e44, type: 3}
   audioSource: {fileID: 2136332877}
+  arthurSyllables:
+  - {fileID: 8300000, guid: 87ea0f2198365b84e81dbebfa905481c, type: 3}
+  - {fileID: 8300000, guid: 1c75080b3d4530e408ed910ec118df8b, type: 3}
+  - {fileID: 8300000, guid: fc6cd58f81aaf9e479deb577baad81f0, type: 3}
+  - {fileID: 8300000, guid: 4c2c524b33121ec4a880571c46629cd4, type: 3}
+  - {fileID: 8300000, guid: 3fab7ff94bbb08c41a55f8d781b483b5, type: 3}
+  - {fileID: 8300000, guid: e9d7d0711200e0b44a5c15edf78a9ad3, type: 3}
+  - {fileID: 8300000, guid: 49afdec9290917a45998f6aeac4554af, type: 3}
+  doctorSyllables:
+  - {fileID: 8300000, guid: 22962901275d35c49870364165336296, type: 3}
+  - {fileID: 8300000, guid: cb7135264c7e13a4ebce5273af2468fa, type: 3}
+  - {fileID: 8300000, guid: 443e907ae16241d4b8b2ce6f37f4d437, type: 3}
+  - {fileID: 8300000, guid: 4f4b9059506bf82488599872d24cf4b9, type: 3}
+  - {fileID: 8300000, guid: dd0f4155cc74c0248b1fb4caef90db9a, type: 3}
+  - {fileID: 8300000, guid: 2717972eea48a564a9872207ed6ed4af, type: 3}
+  - {fileID: 8300000, guid: 083dc4a20b764bd41a9b3d73085e3d42, type: 3}
+  syllableVolume: 0.4
   garbledSound: {fileID: 8300000, guid: 8d4752144f44f4907b447c1111f84ac7, type: 3}
-  clearSound: {fileID: 8300000, guid: ab8808ce48100434880d435839b438a6, type: 3}
+  clearSound: {fileID: 0}
   arthurSound: {fileID: 0}
   typewriterSound: {fileID: 8300000, guid: 770546ef4dc4f484196730f82be21cd5, type: 3}
   typewriterVolume: 0.2

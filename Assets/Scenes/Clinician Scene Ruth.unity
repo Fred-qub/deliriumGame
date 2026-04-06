@@ -16488,6 +16488,7 @@ MonoBehaviour:
   startVolume: 0
   endVolume: 0
   fadeTime: 0
+  dialogueManager: {fileID: 0}
 --- !u!114 &1985792285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17716,12 +17717,13 @@ AudioSource:
   m_GameObject: {fileID: 2136332876}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 7027764887101711915, guid: 98e14b404d50d6745947ee7a001c593c,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 0.85
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -17824,6 +17826,30 @@ MonoBehaviour:
   doctorPortrait: {fileID: 21300000, guid: 82a5f4b95fe730848845de69d3b338ab, type: 3}
   arthurPortrait: {fileID: 21300000, guid: 6350be1f3d179ab4d9a9b62d2a760e44, type: 3}
   audioSource: {fileID: 2136332877}
+  arthurSyllables:
+  - {fileID: 8300000, guid: 87ea0f2198365b84e81dbebfa905481c, type: 3}
+  - {fileID: 8300000, guid: 1c75080b3d4530e408ed910ec118df8b, type: 3}
+  - {fileID: 8300000, guid: fc6cd58f81aaf9e479deb577baad81f0, type: 3}
+  - {fileID: 8300000, guid: 4c2c524b33121ec4a880571c46629cd4, type: 3}
+  - {fileID: 8300000, guid: 3fab7ff94bbb08c41a55f8d781b483b5, type: 3}
+  - {fileID: 8300000, guid: e9d7d0711200e0b44a5c15edf78a9ad3, type: 3}
+  - {fileID: 8300000, guid: 49afdec9290917a45998f6aeac4554af, type: 3}
+  - {fileID: 8300000, guid: d76381b0de39ca64e971b2c54d9a8239, type: 3}
+  - {fileID: 8300000, guid: 78adee76837ee52449f0685bd9cf1f9a, type: 3}
+  doctorSyllables:
+  - {fileID: 8300000, guid: 22962901275d35c49870364165336296, type: 3}
+  - {fileID: 8300000, guid: cb7135264c7e13a4ebce5273af2468fa, type: 3}
+  - {fileID: 8300000, guid: 443e907ae16241d4b8b2ce6f37f4d437, type: 3}
+  - {fileID: 8300000, guid: 4f4b9059506bf82488599872d24cf4b9, type: 3}
+  - {fileID: 8300000, guid: dd0f4155cc74c0248b1fb4caef90db9a, type: 3}
+  - {fileID: 8300000, guid: 2717972eea48a564a9872207ed6ed4af, type: 3}
+  - {fileID: 8300000, guid: 083dc4a20b764bd41a9b3d73085e3d42, type: 3}
+  - {fileID: 8300000, guid: a47717dc7bed1d847959a1448475206c, type: 3}
+  - {fileID: 8300000, guid: 7791e8a42db1bdc4690ee92581ca4b72, type: 3}
+  - {fileID: 8300000, guid: b278fdceb4de06c438896ad6fcf85ec5, type: 3}
+  - {fileID: 8300000, guid: 40212b92008b27d4e987650df67f375e, type: 3}
+  - {fileID: 8300000, guid: d1163a639a751c742a4f2e003a98ce3c, type: 3}
+  syllableVolume: 0.4
   garbledSound: {fileID: 8300000, guid: 8d4752144f44f4907b447c1111f84ac7, type: 3}
   clearSound: {fileID: 0}
   arthurSound: {fileID: 0}

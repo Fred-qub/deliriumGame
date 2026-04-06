@@ -41,6 +41,8 @@ public class AudioController : MonoBehaviour
     [SerializeField] private float endVolume;
     [SerializeField] private float fadeTime;
 
+    [SerializeField] private DialogueManager dialogueManager;
+    
         private void OnEnable()
     {
         SceneReplayer.OnInteraction += AudioRoutePatient;
@@ -218,6 +220,7 @@ public class AudioController : MonoBehaviour
 
         }
     }
+    
     
     private void StopAllMonitors()
     {

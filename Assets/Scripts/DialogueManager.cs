@@ -62,6 +62,18 @@ public class DialogueManager : MonoBehaviour
     [Header("Audio")]
     [Tooltip("AudioSource used to play dialogue sounds. Add an AudioSource component to this GameObject.")]
     [SerializeField] private AudioSource audioSource;
+    
+    [Header("Dialogue Audio")]
+    
+    private AudioClip[] activeSyllables;
+    [Tooltip("Vowel/syllable clips for Arthur's voice.")]
+    [SerializeField] private AudioClip[] arthurSyllables;
+
+    [Tooltip("Vowel/syllable clips for the Doctor's voice.")]
+    [SerializeField] private AudioClip[] doctorSyllables;
+
+    [Tooltip("Volume of the syllable sounds.")]
+    [SerializeField] [Range(0f, 1f)] private float syllableVolume = 0.4f;
 
     [Tooltip("Sound played when garbled doctor dialogue appears.")]
     [SerializeField] private AudioClip garbledSound;
@@ -407,8 +419,23 @@ public class DialogueManager : MonoBehaviour
 
             // Play typewriter tick for letters and numbers only — skip spaces and punctuation
             // so the sound doesn't fire on every character and become too rapid or uneven
-            if (char.IsLetterOrDigit(fullLine[i]) && typewriterSound != null && audioSource != null)
-                audioSource.PlayOneShot(typewriterSound, typewriterVolume);
+            
+            if (char.IsLetter(fullLine[i]) && activeSyllables != null && activeSyllables.Length > 0 && audioSource != null)
+            {
+                AudioClip syllable = activeSyllables[Random.Range(0, activeSyllables.Length)];
+                
+                if (activeSyllables == arthurSyllables)
+                {
+                    audioSource.pitch = 0.9f;
+                }
+                if (activeSyllables == doctorSyllables)
+                {
+                    audioSource.pitch = 1.25f;
+                }
+                audioSource.PlayOneShot(syllable, syllableVolume);
+            }
+            // if (char.IsLetterOrDigit(fullLine[i]) && typewriterSound != null && audioSource != null)
+            //     audioSource.PlayOneShot(typewriterSound, typewriterVolume);
 
             yield return new WaitForSeconds(delay);
         }
@@ -481,6 +508,7 @@ public class DialogueManager : MonoBehaviour
 
     private void SetSpokenMode(string speaker, Sprite portrait, string line)
     {
+        activeSyllables = speaker == "Arthur" ? arthurSyllables : doctorSyllables;
         dialoguePanelRect.anchoredPosition = spokenPosition;
 
         speakerLabel.gameObject.SetActive(true);
@@ -498,6 +526,7 @@ public class DialogueManager : MonoBehaviour
 
     private void SetMonologueMode(string line)
     {
+        activeSyllables = arthurSyllables;
         dialoguePanelRect.anchoredPosition = spokenPosition; // was monologuePosition
 
         speakerLabel.gameObject.SetActive(false);
@@ -553,4 +582,5 @@ public class DialogueManager : MonoBehaviour
 
         return new string(chars);
     }
+    
 }
