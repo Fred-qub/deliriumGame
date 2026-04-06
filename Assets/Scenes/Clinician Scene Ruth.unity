@@ -481,7 +481,8 @@ AudioSource:
   m_GameObject: {fileID: 20516525}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 98e14b404d50d6745947ee7a001c593c,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 0ccaa0656df653349a172c6a29a39cbe, type: 3}
   m_PlayOnAwake: 0
@@ -5590,7 +5591,8 @@ AudioSource:
   m_GameObject: {fileID: 727462802}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 98e14b404d50d6745947ee7a001c593c,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 5ed26a68fde7aeb499a6538475546c1e, type: 3}
   m_PlayOnAwake: 0
@@ -8524,7 +8526,8 @@ AudioSource:
   m_GameObject: {fileID: 1007224274}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 98e14b404d50d6745947ee7a001c593c,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: e80e33d0f4de87648bd1c44ea8cc6c51, type: 3}
   m_PlayOnAwake: 0
@@ -14498,7 +14501,8 @@ AudioSource:
   m_GameObject: {fileID: 1718514994}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 98e14b404d50d6745947ee7a001c593c,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: c3af93d16d323304e9585c2edaa34244, type: 3}
   m_PlayOnAwake: 0
@@ -16465,6 +16469,7 @@ MonoBehaviour:
   lightSwitch: {fileID: 1930152322}
   lightBuzz: {fileID: 0}
   coat: {fileID: 862610852}
+  hearingAid: {fileID: 0}
   sedative: {fileID: 0}
   radioReal: {fileID: 841929816}
   radioHallucination: {fileID: 0}
@@ -17021,7 +17026,8 @@ AudioSource:
   m_GameObject: {fileID: 2062711906}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 98e14b404d50d6745947ee7a001c593c,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: bd724c905a7de714ca7956c544347c55, type: 3}
   m_PlayOnAwake: 0

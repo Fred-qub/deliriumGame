@@ -44,8 +44,8 @@ public class AudioController : MonoBehaviour
         private void OnEnable()
     {
         SceneReplayer.OnInteraction += AudioRoutePatient;
-        HeartBeat.OnHeartRateChanged += SceneRoute;
         DemoInteractable.OnInteraction += AudioRouteClinician;
+        HeartBeat.OnHeartRateChanged += SceneRoute;
         ShrinkObject.OnShrink += FadeGhost;
   
     }
