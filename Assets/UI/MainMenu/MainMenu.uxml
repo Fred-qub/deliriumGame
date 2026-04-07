@@ -22,10 +22,6 @@
             <!-- ── LEFT COLUMN: identity + emotional hook ── -->
             <ui:VisualElement name="col-left" class="col-left">
 
-                <ui:Label name="eyebrow"
-                    class="eyebrow"
-                    text="A clinical training simulation" />
-
                 <ui:Label name="hook-quote"
                     class="hook-quote"
                     text="&quot;He keeps saying there&apos;s a strange man in the room.&quot;" />
@@ -40,29 +36,9 @@
                     class="hook-body"
                     text="An elderly patient is saying things that don&apos;t add up. He&apos;s frightened and not making sense. He may not be able to tell you what&apos;s wrong — but the truth is there, if you know how to look for it." />
 
-                <!-- Stakes strip -->
-                <ui:VisualElement name="stakes" class="stakes">
-
-                    <ui:VisualElement class="stake">
-                        <ui:Label class="stake-num"   text="1 in 8" />
-                        <ui:Label class="stake-label" text="hospital patients are affected" />
-                    </ui:VisualElement>
-
-                    <ui:VisualElement class="stake-divider" />
-
-                    <ui:VisualElement class="stake">
-                        <ui:Label class="stake-num"   text="10×" />
-                        <ui:Label class="stake-label" text="higher mortality if missed" />
-                    </ui:VisualElement>
-
-                    <ui:VisualElement class="stake-divider" />
-
-                    <ui:VisualElement class="stake">
-                        <ui:Label class="stake-num"   text="70%" />
-                        <ui:Label class="stake-label" text="of cases are preventable" />
-                    </ui:VisualElement>
-
-                </ui:VisualElement>
+                <ui:Label name="mystery-body"
+                    class="mystery-body"
+                    text="Something just isn&apos;t right with the patient. The staff have noticed. His family have noticed, too. But no one has been able to say what — or why. Can you help Arthur before it&apos;s too late?" />
 
                 <!-- Patient identity pill -->
                 <ui:VisualElement name="patient-pill" class="patient-pill">
@@ -165,11 +141,6 @@
         </ui:VisualElement>
         <!-- /screen -->
 
-        <!-- Bottom citation -->
-        <ui:Label name="citation"
-            class="citation"
-            text="Delirium: prevention, diagnosis and management" />
-
         <!-- About modal (hidden by default) -->
         <ui:VisualElement name="modal-overlay" class="modal-overlay">
 
@@ -183,7 +154,7 @@
                 </ui:VisualElement>
 
                 <ui:Label class="modal-body"
-                    text="Misperception is an interactive clinical training simulation designed to support healthcare professionals in recognising and responding to acute confusional states in elderly patients.&#10;&#10;Complete the clinician and patient perspective scenarios to unlock evidence-based learning tips and clinical guidance.&#10;&#10;This simulation is for educational purposes only and does not constitute clinical advice." />
+                    text="Misperception is an interactive simulation designed to support healthcare professionals in understanding how patients experience a ward environment — and how clinical decisions shape that experience.&#10;&#10;Complete both perspectives to unlock evidence-based learning tips and guidance.&#10;&#10;This simulation is for educational purposes only and does not constitute clinical advice." />
 
                 <ui:VisualElement class="modal-footer">
                     <ui:Button name="modal-ok" class="btn btn-primary modal-ok-btn">
