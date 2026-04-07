@@ -13,14 +13,27 @@ using UnityEngine.UIElements;
 ///   - SceneManager.LoadScene() used for scene transitions
 ///   - No legacy uGUI / onClick() Inspector wiring
 /// 
-/// OPTIONS MODAL:
-///   - Musophobia toggle: reads/writes PlayerPrefs key "Musophobia" (int 0/1).
-///     NOTE: MusophobiaMode.cs uses UnityEngine.UI (uGUI) and must NOT be attached
-///     to any GameObject in the MainMenu scene. This controller handles the logic.
-///   - Time of day: reads/writes PlayerPrefs key "TimeOfDay" (int minutes-since-midnight).
+/// OPTIONS MODAL — three sections:
+///
+///   ACCESSIBILITY
+///   - Content warnings: Musophobia (key "Musophobia") and Ophidiophobia
+///     (key "Ophidiophobia") toggles, both int 0/1 in PlayerPrefs.
+///   - Additional subtitles: key "Subtitles" (int 0/1).
+///   - Colour blindness accommodation: key "OutlineScheme" (string).
+///
+///   CONTROLS
+///   - Crosshair size: key "CrosshairSize" (int 0/1/2 = small/medium/large).
+///   - Crosshair colour: key "CrosshairColour" (string).
+///
+///   SIMULATION
+///   - Time of day: key "TimeOfDay" (int minutes-since-midnight).
 ///     Values: 540 = 9 AM, 960 = 4 PM, 1380 = 11 PM, 0 = actual system time.
-///     NOTE: TimeOfDaySelect.cs uses UnityEngine.UI (uGUI) and must NOT be attached
-///     to any GameObject in the MainMenu scene. This controller handles the logic.
+///
+///   All selector button groups share the USS class "options-btn" with a
+///   "selected" modifier applied by ApplySelection() helpers.
+///
+///   NOTE: MusophobiaMode.cs and TimeOfDaySelect.cs use UnityEngine.UI (uGUI)
+///   and must NOT be attached to any GameObject in the MainMenu scene.
 /// 
 /// SETUP:
 ///   1. Attach this script to the UIManager GameObject in the MainMenu scene.
@@ -220,6 +233,7 @@ public class MainMenuController : MonoBehaviour
 
         // Time-of-day buttons — lambdas registered above are anonymous, so we
         // just let them go when the VisualElement tree is destroyed with the scene.
+        // All selector buttons share the USS "options-btn" + "selected" pattern.
     }
 
     private void Update()
