@@ -26,6 +26,7 @@
 .outcome-pill-text-suboptimal,
 .tip-title,
 .tip-tag-good,
+.tip-tag-neutral,
 .tip-tag-warn,
 .insight-title-optimal,
 .insight-title-suboptimal,
@@ -242,6 +243,14 @@
     flex-shrink: 0;
 }
 
+/* Neutral — cyan, matching the project accent colour */
+.tip-bar-neutral {
+    width: 5px;
+    border-radius: 6px 0 0 6px;
+    background-color: #00A9CE;
+    flex-shrink: 0;
+}
+
 .tip-bar-warn {
     width: 5px;
     border-radius: 6px 0 0 6px;
@@ -277,6 +286,19 @@
     color: #00c47a;
     background-color: #00291a;
     border-color: #00543a;
+    border-width: 1px;
+    border-radius: 2px;
+    padding: 4px 10px;
+}
+
+/* Neutral tag — cyan text on a dark cyan-tinted background */
+.tip-tag-neutral {
+    font-size: 10px;
+    letter-spacing: 1px;
+    -unity-font-style: bold;
+    color: #00A9CE;
+    background-color: #001e28;
+    border-color: #005570;
     border-width: 1px;
     border-radius: 2px;
     padding: 4px 10px;
