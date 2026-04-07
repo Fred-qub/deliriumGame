@@ -51,6 +51,12 @@
                     <ui:VisualElement name="tip-card-slot-right" class="tip-card-slot" />
                 </ui:VisualElement>
 
+                <!-- Patient notes banner: C# sets class and text based on patientNotesViewed -->
+                <ui:VisualElement name="notes-banner" class="notes-banner-positive">
+                    <ui:Label name="notes-banner-icon" class="notes-banner-icon" text="✓" />
+                    <ui:Label name="notes-banner-text" class="notes-banner-text" text="" />
+                </ui:VisualElement>
+
                 <!-- Clinical Insight section -->
                 <ui:Label name="insight-label" class="section-label" text="OPTIMAL OUTCOME" />
                 <ui:VisualElement name="insight-card" class="insight-card-optimal">

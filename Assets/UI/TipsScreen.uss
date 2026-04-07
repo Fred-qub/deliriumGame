@@ -28,6 +28,7 @@
 .tip-tag-good,
 .tip-tag-neutral,
 .tip-tag-warn,
+.notes-banner-text,
 .insight-title-optimal,
 .insight-title-suboptimal,
 .btn-primary {
@@ -322,6 +323,56 @@
     white-space: normal;
     -unity-font-style: normal;
     -unity-text-align: upper-left;
+}
+
+/* ── Patient Notes Banner ───────────────────────────────── */
+
+.notes-banner-positive {
+    flex-direction: row;
+    align-items: center;
+    background-color: #002e1a;
+    border-color: #00543a;
+    border-width: 1px;
+    border-radius: 6px;
+    padding: 14px 20px;
+    margin-bottom: 20px;
+}
+
+.notes-banner-advisory {
+    flex-direction: row;
+    align-items: center;
+    background-color: #001e28;
+    border-color: #005570;
+    border-width: 1px;
+    border-radius: 6px;
+    padding: 14px 20px;
+    margin-bottom: 20px;
+}
+
+.notes-banner-icon {
+    font-size: 16px;
+    margin-right: 14px;
+    flex-shrink: 0;
+    color: #00c47a;
+}
+
+.notes-banner-icon-advisory {
+    font-size: 16px;
+    margin-right: 14px;
+    flex-shrink: 0;
+    color: #00A9CE;
+}
+
+.notes-banner-text {
+    font-size: 14px;
+    -unity-font-style: bold;
+    color: #00c47a;
+}
+
+.notes-banner-text-advisory {
+    font-size: 14px;
+    -unity-font-style: bold;
+    color: #00A9CE;
 }
 
 /* ── Clinical Insight Card ──────────────────────────────── */

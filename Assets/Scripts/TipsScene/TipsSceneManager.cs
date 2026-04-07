@@ -127,6 +127,7 @@ public class TipsSceneManager : MonoBehaviour
 
         SetScoreBar(root, isOptimal);
         BuildTipCards(root, choice1, choice2);
+        SetNotesBanner(root);
         SetInsightSection(root, isOptimal);
         WireButtons(root);
     }
@@ -267,6 +268,39 @@ public class TipsSceneManager : MonoBehaviour
         content.Add(body);
         card.Add(content);
         container.Add(card);
+    }
+
+    private void SetNotesBanner(VisualElement root)
+    {
+        bool viewed = InteractionMaster.Instance != null
+                   && InteractionMaster.Instance.patientNotesViewed;
+
+        var banner   = root.Q<VisualElement>("notes-banner");
+        var icon     = root.Q<Label>("notes-banner-icon");
+        var text     = root.Q<Label>("notes-banner-text");
+
+        if (viewed)
+        {
+            banner.RemoveFromClassList("notes-banner-advisory");
+            banner.AddToClassList("notes-banner-positive");
+            icon.text = "✓";
+            icon.RemoveFromClassList("notes-banner-icon-advisory");
+            icon.AddToClassList("notes-banner-icon");
+            text.text = "You checked the patient notes — well done!";
+            text.RemoveFromClassList("notes-banner-text-advisory");
+            text.AddToClassList("notes-banner-text");
+        }
+        else
+        {
+            banner.RemoveFromClassList("notes-banner-positive");
+            banner.AddToClassList("notes-banner-advisory");
+            icon.text = "→";
+            icon.RemoveFromClassList("notes-banner-icon");
+            icon.AddToClassList("notes-banner-icon-advisory");
+            text.text = "You should always check the patient notes before making a decision.";
+            text.RemoveFromClassList("notes-banner-text");
+            text.AddToClassList("notes-banner-text-advisory");
+        }
     }
 
     private void SetInsightSection(VisualElement root, bool isOptimal)
