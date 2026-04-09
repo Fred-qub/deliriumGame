@@ -210,27 +210,85 @@
                     <ui:Button name="options-modal-close" class="modal-close" text="✕" />
                 </ui:VisualElement>
 
+                <ui:ScrollView name="options-scroll-body" class="options-scroll-body"
+                               vertical-scroller-visibility="Auto"
+                               horizontal-scroller-visibility="Hidden">
+
                 <!-- ── Accessibility section ── -->
                 <ui:VisualElement class="options-section">
 
                     <ui:Label class="options-section-label" text="ACCESSIBILITY" />
 
-                    <!-- Musophobia toggle -->
-                    <ui:VisualElement class="options-row">
-                        <ui:VisualElement class="options-row-text">
-                            <ui:Label class="options-row-title" text="Musophobia mode" />
-                            <ui:Label class="options-row-desc"  text="Replaces rat imagery with alternative" />
+                    <!-- Colour Blindness Accommodation selector -->
+                    <ui:VisualElement class="options-row options-row-col">
+                        <ui:Label class="options-row-title" text="Colour blindness accommodation" />
+                        <ui:Label class="options-row-desc"  text="Alters important visual elements to assist individuals with colour vision deficiency" />
+                        <ui:VisualElement class="options-btn-group">
+                            <ui:Button name="outline-btn-standard"     class="options-btn" text="STANDARD" />
+                            <ui:Button name="outline-btn-protanopia"   class="options-btn" text="PROTANOPIA" />
+                            <ui:Button name="outline-btn-deuteranopia" class="options-btn" text="DEUTERANOPIA" />
+                            <ui:Button name="outline-btn-tritanopia"   class="options-btn" text="TRITANOPIA" />
                         </ui:VisualElement>
-                        <ui:Toggle name="toggle-musophobia" class="options-toggle" />
                     </ui:VisualElement>
 
-                     <!-- Ophidiophobia toggle -->
+                    <!-- Content warnings — combined phobia section -->
+                    <ui:VisualElement class="options-row options-row-col">
+                        <ui:Label class="options-row-title" text="Content warnings" />
+                        <ui:Label class="options-row-desc"  text="Toggle sensitive content options for rat and snake imagery" />
+                        <ui:VisualElement class="options-phobia-rows">
+                            <ui:VisualElement class="options-row options-phobia-row">
+                                <ui:VisualElement class="options-row-text">
+                                    <ui:Label class="options-row-title" text="Rats" />
+                                </ui:VisualElement>
+                                <ui:Toggle name="toggle-musophobia" class="options-toggle" />
+                            </ui:VisualElement>
+                            <ui:VisualElement class="options-row options-phobia-row">
+                                <ui:VisualElement class="options-row-text">
+                                    <ui:Label class="options-row-title" text="Snakes" />
+                                </ui:VisualElement>
+                                <ui:Toggle name="toggle-ophidiophobia" class="options-toggle" />
+                            </ui:VisualElement>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+
+                    <!-- Additional Subtitles toggle -->
                     <ui:VisualElement class="options-row">
                         <ui:VisualElement class="options-row-text">
-                            <ui:Label class="options-row-title" text="Ophidiophobia mode" />
-                            <ui:Label class="options-row-desc"  text="Replaces snake imagery with alternative" />
+                            <ui:Label class="options-row-title" text="Additional subtitles" />
+                            <ui:Label class="options-row-desc"  text="Displays subtitles for some audio events" />
                         </ui:VisualElement>
-                        <ui:Toggle name="toggle-ophidiophobia" class="options-toggle" />
+                        <ui:Toggle name="toggle-subtitles" class="options-toggle" />
+                    </ui:VisualElement>
+
+                </ui:VisualElement>
+
+                <!-- ── Controls section ── -->
+                <ui:VisualElement class="options-section">
+
+                    <ui:Label class="options-section-label" text="CONTROLS" />
+
+                    <!-- Crosshair size selector -->
+                    <ui:VisualElement class="options-row options-row-col">
+                        <ui:Label class="options-row-title" text="Crosshair size" />
+                        <ui:Label class="options-row-desc"  text="Sets the size of the crosshair" />
+                        <ui:VisualElement class="options-btn-group">
+                            <ui:Button name="crosshair-btn-small"  class="options-btn" text="SMALL" />
+                            <ui:Button name="crosshair-btn-medium" class="options-btn" text="MEDIUM" />
+                            <ui:Button name="crosshair-btn-large"  class="options-btn" text="LARGE" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+
+                    <!-- Crosshair colour selector -->
+                    <ui:VisualElement class="options-row options-row-col">
+                        <ui:Label class="options-row-title" text="Crosshair colour" />
+                        <ui:Label class="options-row-desc"  text="Sets the colour of the crosshair" />
+                        <ui:VisualElement class="options-btn-group">
+                            <ui:Button name="crosshairColour-btn-white"  class="options-btn" text="WHITE" />
+                            <ui:Button name="crosshairColour-btn-red"    class="options-btn" text="RED" />
+                            <ui:Button name="crosshairColour-btn-blue"   class="options-btn" text="BLUE" />
+                            <ui:Button name="crosshairColour-btn-yellow" class="options-btn" text="YELLOW" />
+                            <ui:Button name="crosshairColour-btn-orange" class="options-btn" text="ORANGE" />
+                        </ui:VisualElement>
                     </ui:VisualElement>
 
                 </ui:VisualElement>
@@ -244,15 +302,17 @@
                     <ui:VisualElement class="options-row options-row-col">
                         <ui:Label class="options-row-title" text="Time of day" />
                         <ui:Label class="options-row-desc"  text="Sets the ward lighting and atmosphere" />
-                        <ui:VisualElement class="tod-group">
-                            <ui:Button name="tod-btn-morning"  class="tod-btn" text="9 AM" />
-                            <ui:Button name="tod-btn-afternoon" class="tod-btn" text="4 PM" />
-                            <ui:Button name="tod-btn-night"    class="tod-btn" text="11 PM" />
-                            <ui:Button name="tod-btn-actual"   class="tod-btn" text="Actual time" />
+                        <ui:VisualElement class="options-btn-group">
+                            <ui:Button name="tod-btn-morning"   class="options-btn" text="9 AM" />
+                            <ui:Button name="tod-btn-afternoon" class="options-btn" text="4 PM" />
+                            <ui:Button name="tod-btn-night"     class="options-btn" text="11 PM" />
+                            <ui:Button name="tod-btn-actual"    class="options-btn" text="Actual time" />
                         </ui:VisualElement>
                     </ui:VisualElement>
 
                 </ui:VisualElement>
+
+                </ui:ScrollView>
 
                 <ui:VisualElement class="modal-footer">
                     <ui:Button name="options-modal-ok" class="btn btn-primary modal-ok-btn">
