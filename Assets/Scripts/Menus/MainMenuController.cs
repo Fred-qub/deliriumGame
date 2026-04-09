@@ -19,11 +19,11 @@ using UnityEngine.UIElements;
 ///   - Content warnings: Musophobia (key "Musophobia") and Ophidiophobia
 ///     (key "Ophidiophobia") toggles, both int 0/1 in PlayerPrefs.
 ///   - Additional subtitles: key "Subtitles" (int 0/1).
-///   - Colour blindness accommodation: key "OutlineScheme" (string).
+///   - Colour blindness accommodation: key "OutlineScheme" (int 0/1/2/3).
 ///
 ///   CONTROLS
 ///   - Crosshair size: key "CrosshairSize" (int 0/1/2 = small/medium/large).
-///   - Crosshair colour: key "CrosshairColour" (string).
+///   - Crosshair colour: key "CrosshairColour" (int 0/1/2/3/4 = white/red/blue/yellow/orange)
 ///
 ///   SIMULATION
 ///   - Time of day: key "TimeOfDay" (int minutes-since-midnight).
@@ -99,11 +99,11 @@ public class MainMenuController : MonoBehaviour
     private Button _crosshairSelected;
 
     // Crosshair Colour selector buttons
-    private Button _crosshairColourWhite;
-    private Button _crosshairColourRed; 
-    private Button _crosshairColourBlue;
-    private Button _crosshairColourYellow;
-    private Button _crosshairColourOrange;
+    private Button _crosshairColourWhite; //0
+    private Button _crosshairColourRed; //1
+    private Button _crosshairColourBlue; //2
+    private Button _crosshairColourYellow; //3
+    private Button _crosshairColourOrange; //4
 
     // Tracks which crosshair colour button is currently selected so we can swap the class
     private Button _crosshairColourSelected;
@@ -114,7 +114,7 @@ public class MainMenuController : MonoBehaviour
     private Button _outlineDeuteranopia;
     private Button _outlineTritanopia;
 
-    // Tracks which crosshair colour button is currently selected so we can swap the class
+    // Tracks which outline selector button is currently selected so we can swap the class
     private Button _outlineSelected;
 
 
@@ -190,16 +190,16 @@ public class MainMenuController : MonoBehaviour
         _crosshairMedium.clicked += () => SelectCrosshairSize(_crosshairMedium, 1);
         _crosshairLarge.clicked += () => SelectCrosshairSize(_crosshairLarge, 2);
 
-        _crosshairColourWhite.clicked += () => SelectCrosshairColour(_crosshairColourWhite, "White");
-        _crosshairColourRed.clicked += () => SelectCrosshairColour(_crosshairColourRed, "Red");
-        _crosshairColourBlue.clicked += () => SelectCrosshairColour(_crosshairColourBlue, "Blue");
-        _crosshairColourYellow.clicked += () => SelectCrosshairColour(_crosshairColourYellow, "Yellow");
-        _crosshairColourOrange.clicked += () => SelectCrosshairColour(_crosshairColourOrange, "Orange");
+        _crosshairColourWhite.clicked += () => SelectCrosshairColour(_crosshairColourWhite, 0);
+        _crosshairColourRed.clicked += () => SelectCrosshairColour(_crosshairColourRed, 1);
+        _crosshairColourBlue.clicked += () => SelectCrosshairColour(_crosshairColourBlue, 2);
+        _crosshairColourYellow.clicked += () => SelectCrosshairColour(_crosshairColourYellow, 3);
+        _crosshairColourOrange.clicked += () => SelectCrosshairColour(_crosshairColourOrange, 4);
         
-        _outlineStandard.clicked += () => SelectOutlineScheme(_outlineStandard, "Standard");
-        _outlineProtanopia.clicked += () => SelectOutlineScheme(_outlineProtanopia, "Protanopia");
-        _outlineDeuteranopia.clicked += () => SelectOutlineScheme(_outlineDeuteranopia, "Deuteranopia");
-        _outlineTritanopia.clicked += () => SelectOutlineScheme(_outlineTritanopia, "Tritanopia");
+        _outlineStandard.clicked += () => SelectOutlineScheme(_outlineStandard, 0);
+        _outlineProtanopia.clicked += () => SelectOutlineScheme(_outlineProtanopia, 1);
+        _outlineDeuteranopia.clicked += () => SelectOutlineScheme(_outlineDeuteranopia, 2);
+        _outlineTritanopia.clicked += () => SelectOutlineScheme(_outlineTritanopia, 3);
 
 
         // ── Restore saved prefs ───────────────────────────────────────────────
@@ -406,22 +406,22 @@ public class MainMenuController : MonoBehaviour
     private void LoadCrosshairColourPref()
     {
         // Default to white if the key has never been set
-        string saved = PlayerPrefs.GetString("CrosshairColour", "White");
+        int saved = PlayerPrefs.GetInt("CrosshairColour", 0);
         Button toSelect = saved switch
         {
-            "red" => _crosshairColourRed,
-            "blue" => _crosshairColourBlue,
-            "yellow" => _crosshairColourYellow,
-            "orange" => _crosshairColourOrange,
-            "white" => _crosshairColourWhite,
+            1 => _crosshairColourRed,
+            2 => _crosshairColourBlue,
+            3 => _crosshairColourYellow,
+            4 => _crosshairColourOrange,
+            0 => _crosshairColourWhite,
             _ => _crosshairColourWhite,
         };
         ApplyCrosshairColourSelection(toSelect);
     }
 
-    private void SelectCrosshairColour(Button btn, string value)
+    private void SelectCrosshairColour(Button btn, int value)
     {
-        PlayerPrefs.SetString("CrosshairColour", value);
+        PlayerPrefs.SetInt("CrosshairColour", value);
         ApplyCrosshairColourSelection(btn);
     }
 
@@ -447,21 +447,21 @@ public class MainMenuController : MonoBehaviour
     private void LoadOutlineScheme()
     {
         // Default to standard if the key has never been set
-        string saved = PlayerPrefs.GetString("OutlineScheme", "Standard");
+        int saved = PlayerPrefs.GetInt("OutlineScheme", 0);
         Button toSelect = saved switch
         {
-            "standard" => _outlineStandard,
-            "protanopia" => _outlineProtanopia,
-            "deuteranopia" => _outlineDeuteranopia,
-            "tritanopia" => _outlineTritanopia,
+            0 => _outlineStandard,
+            1 => _outlineProtanopia,
+            2 => _outlineDeuteranopia,
+            3 => _outlineTritanopia,
             _ => _outlineStandard,
         };
         ApplyOutlineColourScheme(toSelect);
     }
 
-    private void SelectOutlineScheme(Button btn, string value)
+    private void SelectOutlineScheme(Button btn, int value)
     {
-        PlayerPrefs.SetString("OutlineScheme", value);
+        PlayerPrefs.SetInt("OutlineScheme", value);
         ApplyOutlineColourScheme(btn);
     }
 

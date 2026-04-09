@@ -5,7 +5,7 @@ public class CrosshairManager : MonoBehaviour
 {
 
     public int crosshairSize;
-    public string crosshairColour;
+    public int crosshairColour;
     public RectTransform crosshairTransform; // Assign in Inspector
     public Graphic crosshairGraphic; // Assign in Inspector
     private Vector3 smallScale = new Vector3(0.06f, 0.06f, 0.06f);
@@ -57,30 +57,30 @@ public class CrosshairManager : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("CrosshairColour"))
         {
-            crosshairColour = PlayerPrefs.GetString("CrosshairColour");
+            crosshairColour = PlayerPrefs.GetInt("CrosshairColour");
         }
-        else crosshairColour = "White";
+        else crosshairColour = 0; //white
 
 
         switch (crosshairColour)
         {
-            case "White":
+            case 0:
                 crosshairGraphic.color = Color.white;
                 break;
 
-            case "Red":
+            case 1:
                 crosshairGraphic.color = Color.red;
                 break;
 
-            case "Blue":
+            case 2:
                 crosshairGraphic.color = Color.blue;
                 break;
 
-            case "Yellow":
+            case 3:
                 crosshairGraphic.color = Color.yellow;
                 break;
 
-            case "Orange":
+            case 4:
                 crosshairGraphic.color = Color.orange;
                 break;
 
