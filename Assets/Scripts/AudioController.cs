@@ -49,11 +49,13 @@ public class AudioController : MonoBehaviour
 
     private void Start()
     {
-        RadioRoute();
+        RadioRoute(); // Checks at start of scene which radio broadcast should play; this depends on whether or not patient is hallucinating.  Because it only checks at the start of the scene,
+                        // it will not change mid-scene.  So in practice, the normal one will always play in the clinician scene, and the other may or may not play in the patient scene, depending
+                        // on the actions the player took during the clinician scene
 
     }
 
-    private void AudioRoutePatient(string actionName)
+    private void AudioRoutePatient(string actionName) // checks & plays correct sound during clinician scene interactions
     {
 
 
@@ -67,7 +69,7 @@ public class AudioController : MonoBehaviour
         
     }
 
-    private void AudioRouteClinician(string objectName)
+    private void AudioRouteClinician(string objectName) // checks & plays correct sound during clinician scene interactions
     {
 
         switch (objectName)
@@ -81,11 +83,11 @@ public class AudioController : MonoBehaviour
 
     private void RadioRoute()
     {
-        List<string> history = InteractionMaster.Instance.interactionHistory;
-        bool isHallucinating = false;
+        List<string> history = InteractionMaster.Instance.interactionHistory; // checks what is in the interaction history
+        bool isHallucinating = false; // initially patient is not hallucinating
         for (int i=0; i< history.Count; i++) 
         {
-            if (history[i] == "Lights" || history[i] == "Sedative") 
+            if (history[i] == "Lights" || history[i] == "Sedative") //if the interation history contains lights or sedative, the patient will hallucinate, so play this radio broadcast
             {
                 radioHallucination.Play();
                 isHallucinating = true;
@@ -94,64 +96,59 @@ public class AudioController : MonoBehaviour
                 
         }
 
-        if (!isHallucinating)
+        if (!isHallucinating) //if the patient is not hallucinating, play this radio broadcast
         {
             radioReal.Play();
 
         }
     }
 
-    private void FadeGhost()
+    private void FadeGhost() // allows shadow man audio to fade
     {
         ghostMoans.volume = Mathf.Lerp(startVolume, endVolume, fadeTime);
 
     }
 
-    private void SceneRoute(int heartbeat)
+    private void SceneRoute(int heartbeat) // plays correct heart sound depending on scene
     {
-        var scene = SceneManager.GetActiveScene();
+        var scene = SceneManager.GetActiveScene(); // Get scene name
         Debug.Log(scene.name);
         switch (scene.name)
         {
-            case "Clinician Scene Ruth": MonitorSpeed(heartbeat);
+            case "Clinician Scene Ruth": MonitorSpeed(heartbeat); // plays patient monitor beep at correct speed for patient heartrate in clinician scene
                 break;
-            case "PatientScene Ruth": HeartSpeed(heartbeat);
+            case "PatientScene Ruth": HeartSpeed(heartbeat); // plays patient's own heartbeat at correct speed in patient scene
                 break;
         }
     }
 
-   private void HeartSpeed(int heartbeat) 
+   private void HeartSpeed(int heartbeat) // this is for playing the heartbeat in the patient's own ears during the patient scene
     {
 
         switch (heartbeat)
         {
-            case 0: // 52 bpm
-               // heart52.Play(); heart71.Stop(); heart82.Stop(); heart107.Stop(); heart121.Stop();
-               StopAllHeartbeats();
-               heart52.Play();
+            case 0: // this int relates to 52 bpm
+               StopAllHeartbeats(); // stop heart sounds
+               heart52.Play(); //play correct file for this rate
                 Debug.Log("Heartrate 52 bpm");
                 break;
-            case 1: // 71 bpm
-              //  heart52.Stop(); heart71.Play(); heart82.Stop(); heart107.Stop(); heart121.Stop();
-              StopAllHeartbeats();
+            case 1: // this int relates to 71 bpm
+                StopAllHeartbeats();
               heart71.Play();
                 Debug.Log("Heartrate 71 bpm");
                 break;
-            case 2: // 82 bpm
-              //  heart52.Stop(); heart71.Stop(); heart82.Play(); heart107.Stop(); heart121.Stop();
-              StopAllHeartbeats();
+            case 2: // this int relates to 82 bpm
+                StopAllHeartbeats();
               heart82.Play();
                 Debug.Log("Heartrate 82 bpm");
                 break;
-            case 3: // 107 bpm
-              //  heart52.Stop(); heart71.Stop(); heart82.Stop(); heart107.Play(); heart121.Stop();
-              StopAllHeartbeats();
+            case 3: // this int relates to 107 bpm
+                StopAllHeartbeats();
               heart107.Play();
                 Debug.Log("Heartrate 107 bpm");
                 break;
-            case 4:// 121 bpm
-             //   heart52.Stop(); heart71.Stop(); heart82.Stop(); heart107.Stop(); heart121.Play();
-             StopAllHeartbeats();
+            case 4:// this int relates to 121 bpm
+                StopAllHeartbeats();
              heart121.Play();
                 Debug.Log("Heartrate 121 bpm");
                 break;
@@ -159,7 +156,7 @@ public class AudioController : MonoBehaviour
         }
     }
 
-    private void StopAllHeartbeats()
+    private void StopAllHeartbeats() // stops all heartbeat sounds and alarm sounds
     {
         heart52.Stop();
         heart71.Stop();
@@ -168,37 +165,32 @@ public class AudioController : MonoBehaviour
         heart121.Stop();
     }
 
-    private void MonitorSpeed(int heartbeat) 
+    private void MonitorSpeed(int heartbeat)  // this is for playing the monitor beeps during the clinician scene
     {
 
         switch (heartbeat)
         {
-            case 0: // 52 bpm
-                // heart52.Play(); heart71.Stop(); heart82.Stop(); heart107.Stop(); heart121.Stop();
-                StopAllMonitors();
-                monitor52.Play();
+            case 0: // this int relates to 52 bpm
+                StopAllMonitors(); // stop monitor sounds
+                monitor52.Play(); //play correct file for this heart rate
                 Debug.Log("Heartrate 52 bpm");
                 break;
-            case 1: // 71 bpm
-                //  heart52.Stop(); heart71.Play(); heart82.Stop(); heart107.Stop(); heart121.Stop();
+            case 1: // this int relates to 71 bpm
                 StopAllMonitors();
                 monitor71.Play();
                 Debug.Log("Heartrate 71 bpm");
                 break;
-            case 2: // 82 bpm
-                //  heart52.Stop(); heart71.Stop(); heart82.Play(); heart107.Stop(); heart121.Stop();
+            case 2: // this int relates to 82 bpm
                 StopAllMonitors();
                 monitor82.Play();
                 Debug.Log("Heartrate 82 bpm");
                 break;
-            case 3: // 107 bpm
-                //  heart52.Stop(); heart71.Stop(); heart82.Stop(); heart107.Play(); heart121.Stop();
+            case 3: // this int relates to 107 bpm
                 StopAllMonitors();
                 monitor107.Play();
                 Debug.Log("Heartrate 107 bpm");
                 break;
-            case 4:// 121 bpm
-                //   heart52.Stop(); heart71.Stop(); heart82.Stop(); heart107.Stop(); heart121.Play();
+            case 4:// this int relates to 121 bpm
                 StopAllMonitors();
                 monitor121.Play();
                 alarm.Play();
@@ -208,7 +200,7 @@ public class AudioController : MonoBehaviour
         }
     }
     
-    private void StopAllMonitors()
+    private void StopAllMonitors() // stops all heart monitor sounds and alarm sounds
     {
         monitor52.Stop();
         monitor71.Stop();

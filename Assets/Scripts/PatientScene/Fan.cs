@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Fan : MonoBehaviour
 {
+    // used in both scenes to rotate the fan blades
+
     [Header("Rotation Settings")]
     [Tooltip("Rotation speed in degrees per second.")]
     public float rotationSpeed = 200f;

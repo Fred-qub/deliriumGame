@@ -4,6 +4,7 @@ using System.Collections;
 
 public class NumberAnimator : MonoBehaviour
 {
+    // This script animates the numbers in the heartrate display UI, so the rate does not change immediately but will count up/down
     [Header("UI Reference")]
     public TextMeshProUGUI uiText; // Assign your TMP Text component here
 
@@ -34,7 +35,7 @@ public class NumberAnimator : MonoBehaviour
 
         float elapsed = 0f;
 
-        while (elapsed < animationDuration)
+        while (elapsed < animationDuration) // while elapsed time is less than the set animation duration time
         {
             elapsed += Time.deltaTime;
             float t = Mathf.Clamp01(elapsed / animationDuration);

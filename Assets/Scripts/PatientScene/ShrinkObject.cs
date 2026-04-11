@@ -3,7 +3,8 @@ using System.Collections;
 
 public class ShrinkObject : MonoBehaviour
 {
-   
+   // This is used by both the shadow man hallucination and the newspaper on Arthur's table, to shrink them when required
+
     [Tooltip("Time in seconds for the object to shrink to zero.")]
     public float shrinkDuration = 1.0f;
 
@@ -24,7 +25,7 @@ public class ShrinkObject : MonoBehaviour
 
         OnShrink?.Invoke();
         
-        if (transform.localScale == Vector3.zero)
+        if (transform.localScale == Vector3.zero) // if the item is already at zero scale, stop
         {
   
             return;
@@ -38,7 +39,7 @@ public class ShrinkObject : MonoBehaviour
         Vector3 startScale = transform.localScale;
         float elapsed = 0f;
 
-        while (elapsed < shrinkDuration)
+        while (elapsed < shrinkDuration) // while the time is less than the shrink duration time, run this code
         {
             elapsed += Time.deltaTime;
             float t = Mathf.Clamp01(elapsed / shrinkDuration);

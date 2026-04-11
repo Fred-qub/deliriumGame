@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class HeartBeat : MonoBehaviour
 {
-    [SerializeField] private int heartbeat = 2; // equivalent to 82 bpm
+    // This script changes patient heartrate depending on player actions, and broadcasts it so other scrcipts can pick it up
+
+    [SerializeField] private int heartbeat = 2; // sets int for starting rate, equivalent to 82 bpm
     public int Heartbeat => heartbeat;
 
     public delegate void HeartRateChanged(int heartbeat); 
@@ -17,18 +19,18 @@ public class HeartBeat : MonoBehaviour
     }
 
   
-    // Min and max limits
+    // Min and max limits for int
     private int minValue = 0; // 52 bpm
     private int maxValue = 4; // 121 bpm
 
     void Start()
     {
         Debug.Log("Starting heart value: " + heartbeat);
-        BroadcastRateChanged(heartbeat);
+        BroadcastRateChanged(heartbeat); // broadcasts the initial heartrate for other scripts to read
     }
     
 
-    // Increase value by 1 (with limit)
+    // Increase heartrate int value by 1 as long as value is not already at max, and broadcast change.  Called when player performs a negative action (sedative or lights)
     public void AddOne()
     {
         if (heartbeat < maxValue)
@@ -43,7 +45,7 @@ public class HeartBeat : MonoBehaviour
         }
     }
 
-    // Decrease value by 1 (with limit)
+    // Decrease value by 1 as long as value is not already at min, and broadcast change.  Called when player performs a positive action (hearing aid or remove coat)
     public void SubtractOne()
     {
         if (heartbeat > minValue)

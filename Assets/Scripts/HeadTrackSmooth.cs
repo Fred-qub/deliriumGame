@@ -4,10 +4,13 @@ using System.Collections;
 
 public class HeadTrackSmooth : MonoBehaviour
 {
+    // This script causes the patient's head to track the player if they are in range or if the coat has been removed from the rack; otherwise the patient looks at the corner where the
+    // shadowman hallucination is
+
     [Header("Rig Settings")]
     [SerializeField] private MultiAimConstraint multiAimConstraint;
     [SerializeField] private RigBuilder rigBuilder; // assign if you want instant rig rebuilds
-    [SerializeField] private GameObject rack;
+    [SerializeField] private GameObject rack; // coatrack
 
     [Header("Blend Settings")]
     [SerializeField] private float switchDuration = 0.5f;
@@ -33,7 +36,7 @@ public class HeadTrackSmooth : MonoBehaviour
             return;
         }
 
-        // Start with rack active
+        // Start with rack active - so patient is looking at the corner where the coatrack is
         sources.SetWeight(0, 1f);
         sources.SetWeight(1, 0f);
         multiAimConstraint.data.sourceObjects = sources;
@@ -43,12 +46,12 @@ public class HeadTrackSmooth : MonoBehaviour
 
     private void Update()
     {
-        rigBuilder.Build();
+        rigBuilder.Build(); // ensure rig is constantly updated so head will always track as it should
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player") // if player enters the patient's trigger area
         {
             StartSwitch(1); // Switch to looking at player
         }
@@ -57,10 +60,10 @@ public class HeadTrackSmooth : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Player" && rack.activeInHierarchy == true)
-            {
+        if (other.gameObject.tag == "Player" && rack.activeInHierarchy == true) // if player enters the patient's trigger area and the coat is still on the rack (otherwise there would be
+                                                                                // no reason for the patient to look at the corner where the rack is)
+        {         
             StartSwitch(0); // Switch back to looking at coat rack
-
         }
         
     }
@@ -111,7 +114,7 @@ public class HeadTrackSmooth : MonoBehaviour
             rigBuilder.Build();
     }
 
-    public void CoatRemoved() 
+    public void CoatRemoved() // When player removes coat from the rack, the patient immediately starts to track the player's position
     {
         StartSwitch(1);
 

@@ -4,6 +4,8 @@ using static UnityEngine.Rendering.DebugUI;
 
 public class OutlineColourChange : MonoBehaviour
 {
+    //This script manages the colour of the outlines on the interactable objects.  The colour can be changed with the colour blindess options in the options menu.
+
     public GameObject lightSwitch;
     public GameObject hearingAid;
     public GameObject sedative;
@@ -14,41 +16,41 @@ public class OutlineColourChange : MonoBehaviour
     public GameObject computer4;
     public GameObject computer5;
     public GameObject computer6;
-    public string outlineScheme;
+    public int outlineScheme;
 
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        LoadOutlineScheme();       
+        LoadOutlineScheme();      
     }
 
 
     private void LoadOutlineScheme() 
     {
-        if (PlayerPrefs.HasKey("OutlineScheme"))
+        if (PlayerPrefs.HasKey("OutlineScheme")) // if playerprefs contains the outlinescheme key, use it; otherwise assume 0 which is standard.
         { 
-            outlineScheme = PlayerPrefs.GetString("OutlineScheme");
+            outlineScheme = PlayerPrefs.GetInt("OutlineScheme");
         }
-        else outlineScheme = "Standard";
+        else outlineScheme = 0;
 
 
         switch (outlineScheme)
         {
-            case "Standard":
+            case 0:
                 Standard();
                 break;
 
-            case "Protanopia":
+            case 1:
                 Protanopia();
                 break;
 
-            case "Deuteranopia":
+            case 2:
                 Deuteranopia();
                 break;
 
-            case "Tritanopia":
+            case 3:
                 Tritanopia();
                 break;
 

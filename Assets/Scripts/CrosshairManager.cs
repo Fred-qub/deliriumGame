@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class CrosshairManager : MonoBehaviour
 {
+    // This script loads (from playerprefs) the size and colour of the aiming target in the clinician scene, which the player has set in the options menu & saved
 
     public int crosshairSize;
     public int crosshairColour;
@@ -23,7 +24,7 @@ public class CrosshairManager : MonoBehaviour
 
     private void LoadCrossHairSize()
     {
-        if (PlayerPrefs.HasKey("CrosshairSize"))
+        if (PlayerPrefs.HasKey("CrosshairSize")) // if playerprefs has the crosshair size key, load it; otherwise, assume 0 which relates to small size
         {
             crosshairSize = PlayerPrefs.GetInt("CrosshairSize");
         }
@@ -47,7 +48,7 @@ public class CrosshairManager : MonoBehaviour
         }
     }
 
-    private void LoadCrossHairColour()
+    private void LoadCrossHairColour() // if playerprefs has the crosshair colour key, load it; otherwise, assume 0 which relates to white
     {
         if (PlayerPrefs.HasKey("CrosshairColour"))
         {
