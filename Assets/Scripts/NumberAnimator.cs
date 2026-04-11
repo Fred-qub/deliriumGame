@@ -13,9 +13,9 @@ public class NumberAnimator : MonoBehaviour
 
     private Coroutine animationCoroutine;
 
-    /// <summary>
-    /// Starts animating the number from the current displayed value to the target value.
-    /// </summary>
+
+    // Starts animating the number from the current displayed value to the target value.
+
     public void AnimateTo(int targetValue)
     {
         // Stop any ongoing animation to avoid conflicts

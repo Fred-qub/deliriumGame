@@ -7,19 +7,11 @@ public class ShrinkObject : MonoBehaviour
     [Tooltip("Time in seconds for the object to shrink to zero.")]
     public float shrinkDuration = 1.0f;
 
-    [Tooltip("Automatically start shrinking on play.")]
-    public bool shrinkOnStart = true;
 
     private Coroutine shrinkRoutine;
 
     public delegate void Shrink();
     public static event Shrink OnShrink;
-    
-    void Start()
-    {
-        if (shrinkOnStart)
-            StartShrinking();
-    }
 
    
     /// Starts shrinking the object to zero scale over time.

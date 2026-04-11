@@ -14,18 +14,6 @@ public class HallucinationChance : MonoBehaviour
     public SpawnRat ratSpawner;
     public SpawnSnake snakeSpawner;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void AuxHallucinationLottery() 
     {
 
@@ -39,9 +27,6 @@ public class HallucinationChance : MonoBehaviour
         else Debug.Log("No Hallucination occurs");
 
     }
-
-
-
     public void HallucinationTypeLottery()
     {
 
@@ -102,6 +87,5 @@ public class HallucinationChance : MonoBehaviour
         if (spawner is SpawnRat rat) rat.TriggerHallucinationDialogue();
         else if (spawner is SpawnSnake snake) snake.TriggerHallucinationDialogue();
     }
-
   
 }

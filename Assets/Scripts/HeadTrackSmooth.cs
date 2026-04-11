@@ -50,7 +50,7 @@ public class HeadTrackSmooth : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            StartSwitch(1); // Switch to player
+            StartSwitch(1); // Switch to looking at player
         }
 
     }
@@ -59,7 +59,7 @@ public class HeadTrackSmooth : MonoBehaviour
     {
         if (other.gameObject.tag == "Player" && rack.activeInHierarchy == true)
             {
-            StartSwitch(0); // Switch back to rack
+            StartSwitch(0); // Switch back to looking at coat rack
 
         }
         
@@ -94,7 +94,7 @@ public class HeadTrackSmooth : MonoBehaviour
             // Apply changes so rig sees them
             multiAimConstraint.data.sourceObjects = sources;
 
-            // Optional: force rig to rebuild immediately
+            // Force rig to rebuild immediately
             if (rigBuilder != null)
                 rigBuilder.Build();
 

@@ -70,12 +70,6 @@ public class SpawnSnake : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void Newspaper()
     {
         if (SceneManager.GetActiveScene().name == replaySceneName)
@@ -118,9 +112,6 @@ public class SpawnSnake : MonoBehaviour
             }
         }
     }
-
-
-
 
 
 }

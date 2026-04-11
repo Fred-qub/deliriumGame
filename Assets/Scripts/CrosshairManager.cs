@@ -21,12 +21,6 @@ public class CrosshairManager : MonoBehaviour
         LoadCrossHairColour();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void LoadCrossHairSize()
     {
         if (PlayerPrefs.HasKey("CrosshairSize"))
