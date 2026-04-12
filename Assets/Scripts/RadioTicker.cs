@@ -61,7 +61,7 @@ public class RadioTicker : MonoBehaviour
         // Check if text has fully passed
         if (textRect.anchoredPosition.x <= endX)
         {
-            isScrolling = false;
+            isScrolling = false; // set scolling bool to false
             radioSubtitle.SetActive(false); // Disable the GameObject
         }
     }
@@ -89,7 +89,7 @@ public class RadioTicker : MonoBehaviour
     }
 
 
-    private void SetBroadcastMessage()          // sets message on ticker to hallucination message or normal one depending on bool
+    private void SetBroadcastMessage()          // sets message on ticker to hallucination message or normal one depending on hallucination bool state
     {
 
         if (hallucination)
