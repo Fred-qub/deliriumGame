@@ -24,7 +24,7 @@ public class LightManager : MonoBehaviour
     {
         if (ControlLights)
         {
-            Light[] lights = FindObjectsOfType<Light>();
+            Light[] lights = FindObjectsByType<Light>(FindObjectsSortMode.None);
             foreach (Light li in lights)
             {
                 switch (li.type)
