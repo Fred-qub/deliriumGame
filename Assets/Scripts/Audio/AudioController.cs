@@ -5,26 +5,34 @@ using UnityEngine.SceneManagement;
 
 public class AudioController : MonoBehaviour
 {
+    [Header ("Clinician Actions")]
     [SerializeField] private AudioSource lightSwitch;
     [SerializeField] private AudioSource lightBuzz;
     [SerializeField] private AudioSource coat;
     [SerializeField] private AudioSource sedative;
-    [SerializeField] private AudioSource radioReal;
-    [SerializeField] private AudioSource radioHallucination;
+    [SerializeField] private AudioSource hearingAidFeedback;
+
+    [Header("Radio")] 
+    public AudioSource radioReal;
+    public AudioSource radioHallucination;
+    
+    [Header ("Heartbeats")]
     [SerializeField] private AudioSource heart52;
-    [SerializeField] private AudioSource monitor52;
     [SerializeField] private AudioSource heart71;
-    [SerializeField] private AudioSource monitor71;
     [SerializeField] private AudioSource heart82;
-    [SerializeField] private AudioSource monitor82;
     [SerializeField] private AudioSource heart107;
-    [SerializeField] private AudioSource monitor107;
     [SerializeField] private AudioSource heart121;
+    
+    [Header ("Heart Rate Monitor")]
+    [SerializeField] private AudioSource monitor52;
+    [SerializeField] private AudioSource monitor71;
+    [SerializeField] private AudioSource monitor82;
+    [SerializeField] private AudioSource monitor107;
     [SerializeField] private AudioSource monitor121;
     [SerializeField] private AudioSource alarm;
+    
     public bool isHallucinating;
-
-
+    
     [Header("Ghost Audio")]
     [SerializeField]private AudioSource ghostMoans;
     [SerializeField] private float startVolume;
@@ -34,8 +42,8 @@ public class AudioController : MonoBehaviour
         private void OnEnable()
     {
         SceneReplayer.OnInteraction += AudioRoutePatient;
-        HeartBeat.OnHeartRateChanged += SceneRoute;
         DemoInteractable.OnInteraction += AudioRouteClinician;
+        HeartBeat.OnHeartRateChanged += SceneRoute;
         ShrinkObject.OnShrink += FadeGhost;
   
     }
@@ -58,16 +66,13 @@ public class AudioController : MonoBehaviour
 
     private void AudioRoutePatient(string actionName) // checks & plays correct sound during clinician scene interactions
     {
-
-
         switch (actionName)
         {
             case "Lights": lightBuzz.Play(); lightSwitch.Play(); break;
             case "Sedative": sedative.Play();break;
             case "Coat": break;
-            case "HearingAid": break;
+            case "HearingAid": hearingAidFeedback.Play(); break;
         }
-        
     }
 
     private void AudioRouteClinician(string objectName) // checks & plays correct sound during clinician scene interactions
@@ -78,7 +83,7 @@ public class AudioController : MonoBehaviour
             case "Lights": lightSwitch.Play(); break;
             case "Sedative": break;
             case "Coat": coat.Play(); break;
-            case "HearingAid": break;
+            case "HearingAid": hearingAidFeedback.Play(); break;
         }
     }
 
@@ -100,14 +105,12 @@ public class AudioController : MonoBehaviour
         if (!isHallucinating) //if the patient is not hallucinating, play this radio broadcast
         {
             radioReal.Play();
-
         }
     }
 
     private void FadeGhost() // allows shadow man audio to fade
     {
         ghostMoans.volume = Mathf.Lerp(startVolume, endVolume, fadeTime);
-
     }
 
     private void SceneRoute(int heartbeat) // plays correct heart sound depending on scene

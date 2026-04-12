@@ -669,6 +669,7 @@ MonoBehaviour:
   nextSceneName: TransitionPatient
   delayBeforeSwitch: 18
   hallucinationLineShown: 0
+  patientNotesViewed: 0
 --- !u!4 &45846305
 Transform:
   m_ObjectHideFlags: 0
@@ -1580,6 +1581,7 @@ Transform:
   - {fileID: 1025832335}
   - {fileID: 189824931}
   - {fileID: 912061082}
+  - {fileID: 1733699635}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &192760364
@@ -10369,7 +10371,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shrinkDuration: 1
-  shrinkOnStart: 0
 --- !u!1001 &1209402113
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11498,7 +11499,7 @@ MonoBehaviour:
   computer4: {fileID: 1150983612}
   computer5: {fileID: 607807205}
   computer6: {fileID: 1680081383}
-  outlineScheme: 
+  outlineScheme: 0
 --- !u!1001 &1355201896
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14823,6 +14824,135 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1733699634
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1733699635}
+  - component: {fileID: 1733699636}
+  m_Layer: 0
+  m_Name: Hearing Aid
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1733699635
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733699634}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 192183712}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1733699636
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1733699634}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 81b1e343e10241744b250e2a7f17fdfc, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &1760858419
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16708,26 +16838,26 @@ MonoBehaviour:
   lightSwitch: {fileID: 1930152322}
   lightBuzz: {fileID: 0}
   coat: {fileID: 862610852}
-  hearingAid: {fileID: 0}
   sedative: {fileID: 0}
+  hearingAidFeedback: {fileID: 1733699636}
   radioReal: {fileID: 841929816}
   radioHallucination: {fileID: 0}
   heart52: {fileID: 0}
-  monitor52: {fileID: 20516527}
   heart71: {fileID: 0}
-  monitor71: {fileID: 2062711908}
   heart82: {fileID: 0}
-  monitor82: {fileID: 1718514996}
   heart107: {fileID: 0}
-  monitor107: {fileID: 1007224276}
   heart121: {fileID: 0}
+  monitor52: {fileID: 20516527}
+  monitor71: {fileID: 2062711908}
+  monitor82: {fileID: 1718514996}
+  monitor107: {fileID: 1007224276}
   monitor121: {fileID: 727462804}
   alarm: {fileID: 1025832336}
+  isHallucinating: 0
   ghostMoans: {fileID: 0}
   startVolume: 0
   endVolume: 0
   fadeTime: 0
-  dialogueManager: {fileID: 0}
 --- !u!114 &1985792285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17143,7 +17273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   crosshairSize: 0
-  crosshairColour: Blue
+  crosshairColour: 0
   crosshairTransform: {fileID: 2033796687}
   crosshairGraphic: {fileID: 2033796688}
 --- !u!4 &2034863433 stripped

@@ -937,6 +937,7 @@ MonoBehaviour:
   nextSceneName: PatientScene
   delayBeforeSwitch: 10
   hallucinationLineShown: 0
+  patientNotesViewed: 0
 --- !u!4 &45846305
 Transform:
   m_ObjectHideFlags: 0
@@ -3928,26 +3929,26 @@ MonoBehaviour:
   lightSwitch: {fileID: 2075337791}
   lightBuzz: {fileID: 735006728}
   coat: {fileID: 134679299}
-  hearingAid: {fileID: 1342575039}
   sedative: {fileID: 248854199}
+  hearingAidFeedback: {fileID: 1342575039}
   radioReal: {fileID: 1350407968}
   radioHallucination: {fileID: 628199591}
   heart52: {fileID: 1145531939}
-  monitor52: {fileID: 0}
   heart71: {fileID: 275877969}
-  monitor71: {fileID: 0}
   heart82: {fileID: 809864200}
-  monitor82: {fileID: 0}
   heart107: {fileID: 184320886}
-  monitor107: {fileID: 0}
   heart121: {fileID: 536969923}
+  monitor52: {fileID: 0}
+  monitor71: {fileID: 0}
+  monitor82: {fileID: 0}
+  monitor107: {fileID: 0}
   monitor121: {fileID: 0}
   alarm: {fileID: 0}
+  isHallucinating: 0
   ghostMoans: {fileID: 2079717971}
   startVolume: 0.5
   endVolume: 0
   fadeTime: 10
-  dialogueManager: {fileID: 0}
 --- !u!114 &393842003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13732,7 +13733,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: a738ad9ce5750ee41853ab4fe32b6ef2, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.488
+  m_Volume: 0.747
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -18798,7 +18799,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shrinkDuration: 1
-  shrinkOnStart: 0
 --- !u!1 &1864231038
 GameObject:
   m_ObjectHideFlags: 0
