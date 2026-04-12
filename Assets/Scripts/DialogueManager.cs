@@ -87,9 +87,6 @@ public class DialogueManager : MonoBehaviour
     [Tooltip("Sound played per character during the typewriter effect. Use a very short clip (0.05-0.1 seconds).")]
     [SerializeField] private AudioClip typewriterSound;
 
-    [Tooltip("Volume of the typewriter sound — keep this low (0.1 to 0.3) so it doesn't overpower dialogue.")]
-    [SerializeField] [Range(0f, 1f)] private float typewriterVolume = 0.2f;
-
     [Header("Timing")]
     [Tooltip("Minimum time a line stays on screen regardless of word count (seconds).")]
     [SerializeField] private float minDisplayDuration = 2f;
@@ -434,8 +431,7 @@ public class DialogueManager : MonoBehaviour
                 }
                 audioSource.PlayOneShot(syllable, syllableVolume);
             }
-            // if (char.IsLetterOrDigit(fullLine[i]) && typewriterSound != null && audioSource != null)
-            //     audioSource.PlayOneShot(typewriterSound, typewriterVolume);
+
 
             yield return new WaitForSeconds(delay);
         }

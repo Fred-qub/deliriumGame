@@ -1,6 +1,7 @@
 using TMPro;
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class HeartrateDisplay : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class HeartrateDisplay : MonoBehaviour
     private float flashDuration = 0.1f;
     private float beatInterval;
     private int subtitles;
+    private string replaySceneName = "PatientScene Ruth";
 
 
     private void OnEnable() // When object becomes active, subscribe to heartbeat update and check to see if subtitles should be on
@@ -39,17 +41,18 @@ public class HeartrateDisplay : MonoBehaviour
         heartBeatScript = audioController.GetComponent<HeartBeat>(); // get the heartbeat script attached to the audio controller
         rate = heartBeatScript.Heartbeat; // 'rate' value here is set to from the heartbeat value in the heartbeat script
         DisplayHeartrate(rate); // pass rate value to DisplayHeartrate method
-
+        
     }
 
     public void DisplayHeartrate(int rate) 
     {
+        string currentScene = SceneManager.GetActiveScene().name; // check scene name
 
         switch (rate)
         {
             case 0: // this int relates to 52 bpm
                 Debug.Log("Heartrate 52 bpm");
-                FindObjectOfType<NumberAnimator>().AnimateTo(52); //find the number animator in the scene & pass the desired heartrate value to it
+                FindAnyObjectByType<NumberAnimator>().AnimateTo(52); //find the number animator in the scene & pass the desired heartrate value to it
                 heart.gameObject.SetActive(false); // turn off the heart sprite
                 TurnOffAlarm(); // turn off the red & yellow alarm images
                 StopAllCoroutines(); // stop the alarm images flashing
@@ -57,7 +60,7 @@ public class HeartrateDisplay : MonoBehaviour
                 break;
             case 1: // this int relates to 71 bpm
                 Debug.Log("Heartrate 71 bpm");
-                FindObjectOfType<NumberAnimator>().AnimateTo(71);
+                FindAnyObjectByType<NumberAnimator>().AnimateTo(71);
                 heart.gameObject.SetActive(false);
                 TurnOffAlarm();
                 StopAllCoroutines();
@@ -65,7 +68,7 @@ public class HeartrateDisplay : MonoBehaviour
                 break;
             case 2: // this int relates to 82 bpm
                 Debug.Log("Heartrate 82 bpm");
-                FindObjectOfType<NumberAnimator>().AnimateTo(82);
+                FindAnyObjectByType<NumberAnimator>().AnimateTo(82);
                 heart.gameObject.SetActive(false);
                 TurnOffAlarm();
                 StopAllCoroutines();
@@ -73,21 +76,27 @@ public class HeartrateDisplay : MonoBehaviour
                 break;
             case 3: // this int relates to 107 bpm
                 Debug.Log("Heartrate 107 bpm");
-                FindObjectOfType<NumberAnimator>().AnimateTo(107);
+                FindAnyObjectByType<NumberAnimator>().AnimateTo(107);
                 heart.gameObject.SetActive(false);
                 TurnOffAlarm();
                 StopAllCoroutines();
                 StartCoroutine(Flash(rate));
-                StartCoroutine(FlashYellow());
+                if (currentScene != replaySceneName)
+                {
+                    StartCoroutine(FlashYellow());
+                }
                 break;
             case 4:// this int relates to 121 bpm
                 Debug.Log("Heartrate 121 bpm");
-                FindObjectOfType<NumberAnimator>().AnimateTo(121);
+                FindAnyObjectByType<NumberAnimator>().AnimateTo(121);
                 heart.gameObject.SetActive(false);
                 TurnOffAlarm();
                 StopAllCoroutines();
                 StartCoroutine(Flash(rate));
-                StartCoroutine(FlashRed());
+                if (currentScene != replaySceneName)
+                {
+                    StartCoroutine(FlashRed());
+                }
                 break;
 
         }
