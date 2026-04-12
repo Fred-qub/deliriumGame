@@ -3,6 +3,8 @@ using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
+using static Unity.VisualScripting.Member;
 
 public class SceneReplayer : MonoBehaviour
 {
@@ -23,6 +25,9 @@ public class SceneReplayer : MonoBehaviour
     [Header("The Actions Mapping")]
     public List<ReplayAction> actionLibrary;
 
+    public AudioSource radioReal;
+    public AudioSource radioHallucinate;
+
     // -------------------------------------------------------------------------
     // Events
     // -------------------------------------------------------------------------
@@ -35,6 +40,7 @@ public class SceneReplayer : MonoBehaviour
 
     private void Start()
     {
+
         if (ReplayDialogue.Instance != null)
             ReplayDialogue.Instance.OnOpeningLineComplete += StartReplay;
         else
@@ -95,7 +101,10 @@ public class SceneReplayer : MonoBehaviour
         if (DialogueManager.Instance != null)
             yield return new WaitUntil(() => !DialogueManager.Instance.IsDialogueActive());
 
-        yield return new WaitForSeconds(5.5f);
+        yield return new WaitUntil(() => radioReal.isPlaying == false && radioHallucinate.isPlaying == false); //ensures radio broadcast finishes before moving
+                                                                                                               // to tips scene
+
+        yield return new WaitForSeconds(2f); // adds an extra 2 seconds after audio stops so player can read subtitles if present
 
         Debug.Log("Loading tips scene.");
         
@@ -107,5 +116,11 @@ public class SceneReplayer : MonoBehaviour
         string c2 = choicesOnly.Count > 1 ? choicesOnly[1] : "";
         TipsSceneManager.SaveChoices(c1, c2);
         SceneManager.LoadScene(nextSceneName);
+    }
+
+    IEnumerator WaitForSound(AudioSource source)
+    {
+        yield return new WaitUntil(() => source.isPlaying == false); // or WaitWhile(source.isPlaying == true);
+                                                                     // Do something after audio finishes playing
     }
 }
