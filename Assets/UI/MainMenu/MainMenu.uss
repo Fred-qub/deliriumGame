@@ -140,6 +140,20 @@
     margin-bottom: 0;
 }
 
+.mystery-body {
+    font-size: 13px;
+    color: rgb(230, 126, 0);
+    -unity-font-style: italic;
+    white-space: normal;
+    -unity-text-align: upper-left;
+    max-width: 390px;
+    margin-top: 26px;
+    padding-top: 22px;
+    border-top-width: 1px;
+    border-top-color: rgb(74, 155, 142);
+    opacity: 0.9;
+}
+
 /* ── Stakes strip ────────────────────────────────────────────── */
 .stakes {
     flex-direction: row;
