@@ -205,17 +205,17 @@
                     <!-- Content warnings — combined phobia section -->
                     <ui:VisualElement class="options-row options-row-col">
                         <ui:Label class="options-row-title" text="Content warnings" />
-                        <ui:Label class="options-row-desc"  text="Toggle sensitive content options for rat and snake imagery" />
+                        <ui:Label class="options-row-desc"  text="Toggle sensitive content options" />
                         <ui:VisualElement class="options-phobia-rows">
                             <ui:VisualElement class="options-row options-phobia-row">
                                 <ui:VisualElement class="options-row-text">
-                                    <ui:Label class="options-row-title" text="Rats" />
+                                    <ui:Label class="options-row-title" text="Musophobia mode - toggle on to remove rodents" />
                                 </ui:VisualElement>
                                 <ui:Toggle name="toggle-musophobia" class="options-toggle" />
                             </ui:VisualElement>
                             <ui:VisualElement class="options-row options-phobia-row">
                                 <ui:VisualElement class="options-row-text">
-                                    <ui:Label class="options-row-title" text="Snakes" />
+                                    <ui:Label class="options-row-title" text="Ophidiophobia mode - toggle on to remove serpents" />
                                 </ui:VisualElement>
                                 <ui:Toggle name="toggle-ophidiophobia" class="options-toggle" />
                             </ui:VisualElement>
