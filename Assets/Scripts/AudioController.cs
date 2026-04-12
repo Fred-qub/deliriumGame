@@ -22,6 +22,7 @@ public class AudioController : MonoBehaviour
     [SerializeField] private AudioSource heart121;
     [SerializeField] private AudioSource monitor121;
     [SerializeField] private AudioSource alarm;
+    public bool isHallucinating;
 
 
     [Header("Ghost Audio")]
@@ -84,7 +85,7 @@ public class AudioController : MonoBehaviour
     private void RadioRoute()
     {
         List<string> history = InteractionMaster.Instance.interactionHistory; // checks what is in the interaction history
-        bool isHallucinating = false; // initially patient is not hallucinating
+        isHallucinating = false; // initially patient is not hallucinating
         for (int i=0; i< history.Count; i++) 
         {
             if (history[i] == "Lights" || history[i] == "Sedative") //if the interation history contains lights or sedative, the patient will hallucinate, so play this radio broadcast
