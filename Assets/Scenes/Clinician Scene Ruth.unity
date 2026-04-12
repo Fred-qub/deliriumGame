@@ -17886,7 +17886,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 3
-  camera: {fileID: 711297362}
+  camera2: {fileID: 711297362}
 --- !u!54 &2084625465
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -18240,7 +18240,6 @@ MonoBehaviour:
   clearSound: {fileID: 0}
   arthurSound: {fileID: 0}
   typewriterSound: {fileID: 8300000, guid: 770546ef4dc4f484196730f82be21cd5, type: 3}
-  typewriterVolume: 0.2
   minDisplayDuration: 2
   wordsPerMinute: 200
   typewriterSpeed: 20
