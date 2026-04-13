@@ -2,7 +2,7 @@
 - Project name: deliriumGame
 - Unity version: Unity 6000.1.15f1
 - Active game object:
-  - Name: ZoomManager
+  - Name: Trolley
   - Tag: Untagged
-  - Layer: Default
+  - Layer: Zoomable
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

@@ -3,6 +3,9 @@ using Cinemachine;
 
 public class CameraZoom : MonoBehaviour
 {
+
+    // Allows zooming into patient monitor on mouseover...have added collider to monitor and placed it on a zoomable objects layer.
+
     [Header("Cinemachine Settings")]
     public CinemachineVirtualCamera virtualCamera; // Assign in Inspector
     public float zoomedFOV = 30f;                   // Field of View when zoomed in
