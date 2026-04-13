@@ -1932,7 +1932,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  interactionLink: {fileID: 0}
+  interactionLink: {fileID: 39635733}
 --- !u!1 &134679297
 GameObject:
   m_ObjectHideFlags: 0
@@ -17167,7 +17167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 3
-  camera: {fileID: 711297362}
+  camera2: {fileID: 0}
 --- !u!54 &2084625465
 Rigidbody:
   m_ObjectHideFlags: 0
