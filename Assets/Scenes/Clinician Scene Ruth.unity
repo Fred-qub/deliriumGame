@@ -264,8 +264,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.63622475, y: 0.23893562, z: 0.6128535}
+  m_Center: {x: -4.712451, y: 0.013803322, z: -0.40695488}
 --- !u!1001 &8491853
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -755,7 +755,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 51084969}
-  m_Layer: 0
+  - component: {fileID: 51084970}
+  m_Layer: 3
   m_Name: Trolley
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -781,6 +782,27 @@ Transform:
   - {fileID: 1809828215}
   m_Father: {fileID: 945433620}
   m_LocalEulerAnglesHint: {x: 0, y: 50.514, z: 0}
+--- !u!65 &51084970
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 51084968}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.7939181, y: 0.14761162, z: 0.5504607}
+  m_Center: {x: -1.3901557, y: 0.5085573, z: 0.65138304}
 --- !u!1001 &51451037
 PrefabInstance:
   m_ObjectHideFlags: 0
