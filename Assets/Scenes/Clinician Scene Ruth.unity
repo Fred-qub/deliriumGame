@@ -17677,10 +17677,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   virtualCamera: {fileID: 1018192896}
-  zoomedFOV: 30
-  normalFOV: 60
+  zoomedFOV: 8
+  normalFOV: 80
   zoomSpeed: 5
-  rayDistance: 100
+  rayDistance: 2
   interactableLayers:
     serializedVersion: 2
     m_Bits: 8
