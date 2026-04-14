@@ -35,4 +35,11 @@ public class DoctorAnimationStateController : MonoBehaviour
     {
         animator.SetTrigger("InteractTrigger");
     }
+
+    public void setInteractType(int type)
+    {
+        if (type < 0 | type >= 4) return;
+        
+        animator.SetInteger("InteractType", type);
+    }
 }
