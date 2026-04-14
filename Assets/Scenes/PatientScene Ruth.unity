@@ -5303,7 +5303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destinationMarker: {fileID: 1359286422}
-  stayDuration: 4.33
+  stayDuration: 5
   moveSpeed: 5
   doctorAnimationStateController: {fileID: 638130172}
 --- !u!114 &638130174
@@ -5319,7 +5319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destinationMarker: {fileID: 1359286423}
-  stayDuration: 4.33
+  stayDuration: 3
   moveSpeed: 5
   doctorAnimationStateController: {fileID: 638130172}
 --- !u!114 &638130175
@@ -5351,7 +5351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destinationMarker: {fileID: 1359286425}
-  stayDuration: 4.33
+  stayDuration: 5
   moveSpeed: 5
   doctorAnimationStateController: {fileID: 638130172}
 --- !u!114 &638130177
@@ -5367,7 +5367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destinationMarker: {fileID: 1359286426}
-  stayDuration: 4.33
+  stayDuration: 8
   moveSpeed: 5
   doctorAnimationStateController: {fileID: 638130172}
 --- !u!95 &638130178
