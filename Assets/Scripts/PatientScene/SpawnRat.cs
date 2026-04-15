@@ -3,13 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class SpawnRat : MonoBehaviour
 {
-
-    //This script is used to spawn rat or darkling hallucinations
-
     public GameObject ratPrefab;
     public GameObject darklingPrefab;
 
-    [Header("HallucinationDialogue")] // What Arthur says in each scene for rats and for the darklings (rat alternative)
+    [Header("HallucinationDialogue")] 
     [TextArea] public string arthurClinicianDialogue = "Help! There's rats everywhere!";
     [TextArea] public string arthurClinicianDialogueMusophobia = "Help! Those things with glowing eyes are everywhere!";
 
@@ -25,9 +22,10 @@ public class SpawnRat : MonoBehaviour
     
     private string replaySceneName = "PatientScene Ruth";
 
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (PlayerPrefs.HasKey("Musophobia")) //Check playerprefs for the musophobia key; if it is there, use the setting (0 or 1) to indicate musophobia mode off or on, otherwise assume off
+        if (PlayerPrefs.HasKey("Musophobia"))
         {
             Musophobia = PlayerPrefs.GetInt("Musophobia");
         }
@@ -36,68 +34,74 @@ public class SpawnRat : MonoBehaviour
 
     public void TriggerHallucinationDialogue()
     {
-        string currentScene = SceneManager.GetActiveScene().name; // check scene name
+        string currentScene = SceneManager.GetActiveScene().name;
 
-        if (currentScene != replaySceneName) // If the scene is not the replay
+        if (currentScene != replaySceneName)
         {
             //Clinician Scene
 
             switch (Musophobia)
             { 
-                case 0: // musophobia mode is off, i.e. rats are spawning
-                    DialogueManager.Instance.ShowArthurLine(arthurClinicianDialogue); // pass this line to the Dialogue manager for display
+                case 0:
+                    DialogueManager.Instance.ShowArthurLine(arthurClinicianDialogue);
                     break;
 
-                case 1: // musophobia mode is on, i.e. darklings are spawning         
-                     DialogueManager.Instance.ShowArthurLine(arthurClinicianDialogueMusophobia); // pass this line to the Dialogue manager for display
-                    break;
+                case 1:
+            
+                     DialogueManager.Instance.ShowArthurLine(arthurClinicianDialogueMusophobia);
+                     break;
             }
         }
         
-        if (currentScene == replaySceneName) // if the scene is the replay
+        if (currentScene == replaySceneName)
         {
             //Replay Scene
 
             switch (Musophobia)          
             {
-                case 0: // musophobia mode is off, i.e. rats are spawning
-                    DialogueManager.Instance.ShowMonologue(arthurReplayMonologue); // pass this line to the Dialogue manager for display
+                case 0:
+                    DialogueManager.Instance.ShowArthurLine(arthurReplayMonologue);
                     break;
 
-                case 1:  // musophobia mode is on, i.e. darklings are spawning 
-                    DialogueManager.Instance.ShowMonologue(arthurReplayMonologueMusophobia); // pass this line to the Dialogue manager for display
+                case 1:
+                    DialogueManager.Instance.ShowArthurLine(arthurReplayMonologueMusophobia);
                     break;
 
             }
         }
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
     public void SpawnRats() 
     {
-        Vector3 spawnPos = new(spawnPosX, spawnPosY, Random.Range(-spawnRangeZ, spawnRangeZ)); // rats spawn at fixed x & y position, but a range on z, so will spawn across the wall arthur is looking at
-        Instantiate(ratPrefab, spawnPos, ratPrefab.transform.rotation); // instantiate rats in the correct rotation
+        Vector3 spawnPos = new(spawnPosX, spawnPosY, Random.Range(-spawnRangeZ, spawnRangeZ));
+        Instantiate(ratPrefab, spawnPos, ratPrefab.transform.rotation);
         
     }
 
     public void SpawnDarklings()
     {
-        Vector3 spawnPos = new(spawnPosX, spawnPosY, Random.Range(-spawnRangeZ, spawnRangeZ)); // darklings spawn at fixed x & y position, but a range on z, so will spawn across the wall arthur is looking at
-        Instantiate(darklingPrefab, spawnPos, darklingPrefab.transform.rotation);  // instantiate darklings in the correct rotation
+        Vector3 spawnPos = new(spawnPosX, spawnPosY, Random.Range(-spawnRangeZ, spawnRangeZ));
+        Instantiate(darklingPrefab, spawnPos, darklingPrefab.transform.rotation);
     }
 
     public void StartSpawn()
     {
-        if (SceneManager.GetActiveScene().name == replaySceneName) // if the scene is the replay, run this code.  Necessary to ensure spawn does not occur during clinician scene,
-                                                                   // because this script is being used there to run the dialogue
+        if (SceneManager.GetActiveScene().name == replaySceneName)
         {
             switch (Musophobia)
             {
-                case 0:  // musophobia mode is off, i.e. rats are spawning
-                    InvokeRepeating("SpawnRats", StartDelay, SpawnInterval); // spawn rats at intervals following a set delay
+                case 0:
+                    InvokeRepeating("SpawnRats", StartDelay, SpawnInterval);
                     break;
 
-                case 1: // musophobia mode is on, i.e. darklings are spawning 
-                    InvokeRepeating("SpawnDarklings", StartDelay, SpawnInterval); // spawn darklings at intervals following a set delay
+                case 1:
+                    InvokeRepeating("SpawnDarklings", StartDelay, SpawnInterval);
                     break;
 
             }     

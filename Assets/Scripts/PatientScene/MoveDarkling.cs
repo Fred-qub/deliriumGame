@@ -2,19 +2,26 @@ using UnityEngine;
 
 public class MoveDarkling : MonoBehaviour
 {
- // This script is attached to the darkling hallucinations and controls their movement through the room
-
     private float xLimit = -5.0f; // beyond this darklings are destroyed
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+
+    }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.forward * Time.deltaTime); // move darkling forwawrd
+        transform.Translate(Vector3.forward * Time.deltaTime);
 
-        if (transform.position.x < xLimit) // if darkling passes the set limit on the x-axis
+        if (transform.position.x < xLimit)
         {
-            Destroy(gameObject); // destroy it
+            Destroy(gameObject);
 
         }
+
+
+
     }
 }

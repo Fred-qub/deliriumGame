@@ -22,6 +22,10 @@
             <!-- ── LEFT COLUMN: identity + emotional hook ── -->
             <ui:VisualElement name="col-left" class="col-left">
 
+                <ui:Label name="eyebrow"
+                    class="eyebrow"
+                    text="A clinical training simulation" />
+
                 <ui:Label name="hook-quote"
                     class="hook-quote"
                     text="&quot;He keeps saying there&apos;s a strange man in the room.&quot;" />
@@ -36,9 +40,29 @@
                     class="hook-body"
                     text="An elderly patient is saying things that don&apos;t add up. He&apos;s frightened and not making sense. He may not be able to tell you what&apos;s wrong — but the truth is there, if you know how to look for it." />
 
-                <ui:Label name="mystery-body"
-                    class="mystery-body"
-                    text="Something just isn&apos;t right with the patient. The staff have noticed. His family have noticed, too. But no one has been able to say what — or why. Can you help Arthur before it&apos;s too late?" />
+                <!-- Stakes strip -->
+                <ui:VisualElement name="stakes" class="stakes">
+
+                    <ui:VisualElement class="stake">
+                        <ui:Label class="stake-num"   text="1 in 8" />
+                        <ui:Label class="stake-label" text="hospital patients are affected" />
+                    </ui:VisualElement>
+
+                    <ui:VisualElement class="stake-divider" />
+
+                    <ui:VisualElement class="stake">
+                        <ui:Label class="stake-num"   text="10×" />
+                        <ui:Label class="stake-label" text="higher mortality if missed" />
+                    </ui:VisualElement>
+
+                    <ui:VisualElement class="stake-divider" />
+
+                    <ui:VisualElement class="stake">
+                        <ui:Label class="stake-num"   text="70%" />
+                        <ui:Label class="stake-label" text="of cases are preventable" />
+                    </ui:VisualElement>
+
+                </ui:VisualElement>
 
                 <!-- Patient identity pill -->
                 <ui:VisualElement name="patient-pill" class="patient-pill">
@@ -141,6 +165,11 @@
         </ui:VisualElement>
         <!-- /screen -->
 
+        <!-- Bottom citation -->
+        <ui:Label name="citation"
+            class="citation"
+            text="Delirium: prevention, diagnosis and management" />
+
         <!-- About modal (hidden by default) -->
         <ui:VisualElement name="modal-overlay" class="modal-overlay">
 
@@ -154,7 +183,7 @@
                 </ui:VisualElement>
 
                 <ui:Label class="modal-body"
-                    text="Misperception is an interactive simulation designed to support healthcare professionals in understanding how patients experience a ward environment — and how clinical decisions shape that experience.&#10;&#10;Complete both perspectives to unlock evidence-based learning tips and guidance.&#10;&#10;This simulation is for educational purposes only and does not constitute clinical advice." />
+                    text="Misperception is an interactive clinical training simulation designed to support healthcare professionals in recognising and responding to acute confusional states in elderly patients.&#10;&#10;Complete the clinician and patient perspective scenarios to unlock evidence-based learning tips and clinical guidance.&#10;&#10;This simulation is for educational purposes only and does not constitute clinical advice." />
 
                 <ui:VisualElement class="modal-footer">
                     <ui:Button name="modal-ok" class="btn btn-primary modal-ok-btn">
@@ -181,86 +210,18 @@
                     <ui:Button name="options-modal-close" class="modal-close" text="✕" />
                 </ui:VisualElement>
 
-                <ui:ScrollView name="options-scroll-body" class="options-scroll-body"
-                               vertical-scroller-visibility="Auto"
-                               horizontal-scroller-visibility="Hidden">
-
                 <!-- ── Accessibility section ── -->
                 <ui:VisualElement class="options-section">
 
                     <ui:Label class="options-section-label" text="ACCESSIBILITY" />
 
-                    <!-- Colour Blindness Accommodation selector -->
-                    <ui:VisualElement class="options-row options-row-col">
-                        <ui:Label class="options-row-title" text="Colour blindness accommodation" />
-                        <ui:Label class="options-row-desc"  text="Alters important visual elements to assist individuals with colour vision deficiency" />
-                        <ui:VisualElement class="options-btn-group">
-                            <ui:Button name="outline-btn-standard"     class="options-btn" text="STANDARD" />
-                            <ui:Button name="outline-btn-protanopia"   class="options-btn" text="PROTANOPIA" />
-                            <ui:Button name="outline-btn-deuteranopia" class="options-btn" text="DEUTERANOPIA" />
-                            <ui:Button name="outline-btn-tritanopia"   class="options-btn" text="TRITANOPIA" />
-                        </ui:VisualElement>
-                    </ui:VisualElement>
-
-                    <!-- Content warnings — combined phobia section -->
-                    <ui:VisualElement class="options-row options-row-col">
-                        <ui:Label class="options-row-title" text="Content warnings" />
-                        <ui:VisualElement class="options-phobia-rows">
-                            <ui:VisualElement class="options-row options-phobia-row">
-                                <ui:VisualElement class="options-row-text">
-                                    <ui:Label class="options-row-title" text="Musophobia mode" />
-                                    <ui:Label class="options-row-desc"  text="Toggle on to remove rodents" />
-                                </ui:VisualElement>
-                                <ui:Toggle name="toggle-musophobia" class="options-toggle" />
-                            </ui:VisualElement>
-                            <ui:VisualElement class="options-row options-phobia-row">
-                                <ui:VisualElement class="options-row-text">
-                                    <ui:Label class="options-row-title" text="Ophidiophobia mode" />
-                                    <ui:Label class="options-row-desc"  text="Toggle on to remove serpents" />
-                                </ui:VisualElement>
-                                <ui:Toggle name="toggle-ophidiophobia" class="options-toggle" />
-                            </ui:VisualElement>
-                        </ui:VisualElement>
-                    </ui:VisualElement>
-
-                    <!-- Additional Subtitles toggle -->
+                    <!-- Musophobia toggle -->
                     <ui:VisualElement class="options-row">
                         <ui:VisualElement class="options-row-text">
-                            <ui:Label class="options-row-title" text="Additional subtitles" />
-                            <ui:Label class="options-row-desc"  text="Displays subtitles for some audio events" />
+                            <ui:Label class="options-row-title" text="Musophobia mode" />
+                            <ui:Label class="options-row-desc"  text="Replaces rat imagery with abstract symbols" />
                         </ui:VisualElement>
-                        <ui:Toggle name="toggle-subtitles" class="options-toggle" />
-                    </ui:VisualElement>
-
-                </ui:VisualElement>
-
-                <!-- ── Controls section ── -->
-                <ui:VisualElement class="options-section">
-
-                    <ui:Label class="options-section-label" text="CONTROLS" />
-
-                    <!-- Crosshair size selector -->
-                    <ui:VisualElement class="options-row options-row-col">
-                        <ui:Label class="options-row-title" text="Crosshair size" />
-                        <ui:Label class="options-row-desc"  text="Sets the size of the crosshair" />
-                        <ui:VisualElement class="options-btn-group">
-                            <ui:Button name="crosshair-btn-small"  class="options-btn" text="SMALL" />
-                            <ui:Button name="crosshair-btn-medium" class="options-btn" text="MEDIUM" />
-                            <ui:Button name="crosshair-btn-large"  class="options-btn" text="LARGE" />
-                        </ui:VisualElement>
-                    </ui:VisualElement>
-
-                    <!-- Crosshair colour selector -->
-                    <ui:VisualElement class="options-row options-row-col">
-                        <ui:Label class="options-row-title" text="Crosshair colour" />
-                        <ui:Label class="options-row-desc"  text="Sets the colour of the crosshair" />
-                        <ui:VisualElement class="options-btn-group">
-                            <ui:Button name="crosshairColour-btn-white"  class="options-btn" text="WHITE" />
-                            <ui:Button name="crosshairColour-btn-red"    class="options-btn" text="RED" />
-                            <ui:Button name="crosshairColour-btn-blue"   class="options-btn" text="BLUE" />
-                            <ui:Button name="crosshairColour-btn-yellow" class="options-btn" text="YELLOW" />
-                            <ui:Button name="crosshairColour-btn-orange" class="options-btn" text="ORANGE" />
-                        </ui:VisualElement>
+                        <ui:Toggle name="toggle-musophobia" class="options-toggle" />
                     </ui:VisualElement>
 
                 </ui:VisualElement>
@@ -274,17 +235,15 @@
                     <ui:VisualElement class="options-row options-row-col">
                         <ui:Label class="options-row-title" text="Time of day" />
                         <ui:Label class="options-row-desc"  text="Sets the ward lighting and atmosphere" />
-                        <ui:VisualElement class="options-btn-group">
-                            <ui:Button name="tod-btn-morning"   class="options-btn" text="9 AM" />
-                            <ui:Button name="tod-btn-afternoon" class="options-btn" text="4 PM" />
-                            <ui:Button name="tod-btn-night"     class="options-btn" text="11 PM" />
-                            <ui:Button name="tod-btn-actual"    class="options-btn" text="Actual time" />
+                        <ui:VisualElement class="tod-group">
+                            <ui:Button name="tod-btn-morning"  class="tod-btn" text="9 AM" />
+                            <ui:Button name="tod-btn-afternoon" class="tod-btn" text="4 PM" />
+                            <ui:Button name="tod-btn-night"    class="tod-btn" text="11 PM" />
+                            <ui:Button name="tod-btn-actual"   class="tod-btn" text="Actual time" />
                         </ui:VisualElement>
                     </ui:VisualElement>
 
                 </ui:VisualElement>
-
-                </ui:ScrollView>
 
                 <ui:VisualElement class="modal-footer">
                     <ui:Button name="options-modal-ok" class="btn btn-primary modal-ok-btn">

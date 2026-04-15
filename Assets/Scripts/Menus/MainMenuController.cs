@@ -1,5 +1,4 @@
 using System.Collections;
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -13,27 +12,14 @@ using UnityEngine.UIElements;
 ///   - SceneManager.LoadScene() used for scene transitions
 ///   - No legacy uGUI / onClick() Inspector wiring
 /// 
-/// OPTIONS MODAL — three sections:
-///
-///   ACCESSIBILITY
-///   - Content warnings: Musophobia (key "Musophobia") and Ophidiophobia
-///     (key "Ophidiophobia") toggles, both int 0/1 in PlayerPrefs.
-///   - Additional subtitles: key "Subtitles" (int 0/1).
-///   - Colour blindness accommodation: key "OutlineScheme" (int 0/1/2/3).
-///
-///   CONTROLS
-///   - Crosshair size: key "CrosshairSize" (int 0/1/2 = small/medium/large).
-///   - Crosshair colour: key "CrosshairColour" (int 0/1/2/3/4 = white/red/blue/yellow/orange)
-///
-///   SIMULATION
-///   - Time of day: key "TimeOfDay" (int minutes-since-midnight).
+/// OPTIONS MODAL:
+///   - Musophobia toggle: reads/writes PlayerPrefs key "Musophobia" (int 0/1).
+///     NOTE: MusophobiaMode.cs uses UnityEngine.UI (uGUI) and must NOT be attached
+///     to any GameObject in the MainMenu scene. This controller handles the logic.
+///   - Time of day: reads/writes PlayerPrefs key "TimeOfDay" (int minutes-since-midnight).
 ///     Values: 540 = 9 AM, 960 = 4 PM, 1380 = 11 PM, 0 = actual system time.
-///
-///   All selector button groups share the USS class "options-btn" with a
-///   "selected" modifier applied by ApplySelection() helpers.
-///
-///   NOTE: MusophobiaMode.cs and TimeOfDaySelect.cs use UnityEngine.UI (uGUI)
-///   and must NOT be attached to any GameObject in the MainMenu scene.
+///     NOTE: TimeOfDaySelect.cs uses UnityEngine.UI (uGUI) and must NOT be attached
+///     to any GameObject in the MainMenu scene. This controller handles the logic.
 /// 
 /// SETUP:
 ///   1. Attach this script to the UIManager GameObject in the MainMenu scene.
@@ -84,40 +70,6 @@ public class MainMenuController : MonoBehaviour
     // Musophobia
     private Toggle        _toggleMusophobia;
 
-    // Ophidiophobia
-    private Toggle        _toggleOphidiophobia;
-
-    // Radio Subtitles
-    private Toggle        _toggleSubtitles;
-
-    // Crosshair Size selector buttons
-    private Button _crosshairSmall; // 0
-    private Button _crosshairMedium; // 1 
-    private Button _crosshairLarge;  // 2
-
-    // Tracks which crosshair size button is currently selected so we can swap the class
-    private Button _crosshairSelected;
-
-    // Crosshair Colour selector buttons
-    private Button _crosshairColourWhite; //0
-    private Button _crosshairColourRed; //1
-    private Button _crosshairColourBlue; //2
-    private Button _crosshairColourYellow; //3
-    private Button _crosshairColourOrange; //4
-
-    // Tracks which crosshair colour button is currently selected so we can swap the class
-    private Button _crosshairColourSelected;
-
-    // Outline Scheme selector buttons
-    private Button _outlineStandard;
-    private Button _outlineProtanopia;
-    private Button _outlineDeuteranopia;
-    private Button _outlineTritanopia;
-
-    // Tracks which outline selector button is currently selected so we can swap the class
-    private Button _outlineSelected;
-
-
     // Time-of-day selector buttons
     private Button        _todMorning;    // 540  = 9 AM
     private Button        _todAfternoon;  // 960  = 4 PM
@@ -157,20 +109,6 @@ public class MainMenuController : MonoBehaviour
         _btnOptionsClose    = _root.Q<Button>("options-modal-close");
         _btnOptionsOk       = _root.Q<Button>("options-modal-ok");
         _toggleMusophobia   = _root.Q<Toggle>("toggle-musophobia");
-        _toggleOphidiophobia = _root.Q<Toggle>("toggle-ophidiophobia");
-        _toggleSubtitles = _root.Q<Toggle>("toggle-subtitles");
-        _crosshairSmall = _root.Q<Button>("crosshair-btn-small");
-        _crosshairMedium = _root.Q<Button>("crosshair-btn-medium");
-        _crosshairLarge = _root.Q<Button>("crosshair-btn-large");
-        _crosshairColourWhite = _root.Q<Button>("crosshairColour-btn-white");
-        _crosshairColourRed = _root.Q<Button>("crosshairColour-btn-red");
-        _crosshairColourBlue = _root.Q<Button>("crosshairColour-btn-blue");
-        _crosshairColourYellow = _root.Q<Button>("crosshairColour-btn-yellow");
-        _crosshairColourOrange = _root.Q<Button>("crosshairColour-btn-orange");
-        _outlineStandard = _root.Q<Button>("outline-btn-standard");
-        _outlineProtanopia = _root.Q<Button>("outline-btn-protanopia");
-        _outlineDeuteranopia = _root.Q<Button>("outline-btn-deuteranopia");
-        _outlineTritanopia = _root.Q<Button>("outline-btn-tritanopia");
         _todMorning         = _root.Q<Button>("tod-btn-morning");
         _todAfternoon       = _root.Q<Button>("tod-btn-afternoon");
         _todNight           = _root.Q<Button>("tod-btn-night");
@@ -186,30 +124,9 @@ public class MainMenuController : MonoBehaviour
         _todNight.clicked     += () => SelectTimeOfDay(_todNight,    1380);
         _todActual.clicked    += () => SelectTimeOfDay(_todActual,      0);
 
-        _crosshairSmall.clicked += () => SelectCrosshairSize(_crosshairSmall, 0);
-        _crosshairMedium.clicked += () => SelectCrosshairSize(_crosshairMedium, 1);
-        _crosshairLarge.clicked += () => SelectCrosshairSize(_crosshairLarge, 2);
-
-        _crosshairColourWhite.clicked += () => SelectCrosshairColour(_crosshairColourWhite, 0);
-        _crosshairColourRed.clicked += () => SelectCrosshairColour(_crosshairColourRed, 1);
-        _crosshairColourBlue.clicked += () => SelectCrosshairColour(_crosshairColourBlue, 2);
-        _crosshairColourYellow.clicked += () => SelectCrosshairColour(_crosshairColourYellow, 3);
-        _crosshairColourOrange.clicked += () => SelectCrosshairColour(_crosshairColourOrange, 4);
-        
-        _outlineStandard.clicked += () => SelectOutlineScheme(_outlineStandard, 0);
-        _outlineProtanopia.clicked += () => SelectOutlineScheme(_outlineProtanopia, 1);
-        _outlineDeuteranopia.clicked += () => SelectOutlineScheme(_outlineDeuteranopia, 2);
-        _outlineTritanopia.clicked += () => SelectOutlineScheme(_outlineTritanopia, 3);
-
-
         // ── Restore saved prefs ───────────────────────────────────────────────
         LoadMusophobiaPref();
-        LoadOphidiophobiaPref();
-        LoadSubtitlesPref();
         LoadTimeOfDayPref();
-        LoadCrosshairSizePref();
-        LoadCrosshairColourPref();
-        LoadOutlineScheme();
 
         // ── Cursor ───────────────────────────────────────────────────────────
         UnityEngine.Cursor.visible   = true;
@@ -233,7 +150,6 @@ public class MainMenuController : MonoBehaviour
 
         // Time-of-day buttons — lambdas registered above are anonymous, so we
         // just let them go when the VisualElement tree is destroyed with the scene.
-        // All selector buttons share the USS "options-btn" + "selected" pattern.
     }
 
     private void Update()
@@ -291,10 +207,9 @@ public class MainMenuController : MonoBehaviour
 
     private void CloseOptionsModal()
     {
-        // Persist musophobia & ophidiophobia immediately (toggle fires onValueChanged, but save
+        // Persist musophobia immediately (toggle fires onValueChanged, but save
         // again here for belt-and-braces consistency with TimeOfDay pattern).
         PlayerPrefs.SetInt("Musophobia", _toggleMusophobia.value ? 1 : 0);
-        PlayerPrefs.SetInt("Ophidiophobia", _toggleOphidiophobia.value ? 1 : 0);
         PlayerPrefs.Save();
         _optionsModalOverlay.RemoveFromClassList("visible");
     }
@@ -321,163 +236,6 @@ public class MainMenuController : MonoBehaviour
     private void OnMusophobiaChanged(ChangeEvent<bool> evt)
     {
         PlayerPrefs.SetInt("Musophobia", evt.newValue ? 1 : 0);
-    }
-
-    // -------------------------------------------------------------------------
-    // Ophidiophobia
-    // -------------------------------------------------------------------------
-
-    private void LoadOphidiophobiaPref()
-    {
-        bool isOn = PlayerPrefs.GetInt("Ophidiophobia", 0) == 1;
-        _toggleOphidiophobia.value = isOn;
-        // Wire value-change so it saves immediately if the user toggles without
-        // explicitly pressing "Save & close".
-        _toggleOphidiophobia.RegisterValueChangedCallback(OnOphidiophobiaChanged);
-    }
-
-    private void OnOphidiophobiaChanged(ChangeEvent<bool> evt)
-    {
-        PlayerPrefs.SetInt("Ophidiophobia", evt.newValue ? 1 : 0);
-    }
-
-    // -------------------------------------------------------------------------
-    // Radio Subtitles
-    // -------------------------------------------------------------------------
-
-    private void LoadSubtitlesPref()
-    {
-        bool isOn = PlayerPrefs.GetInt("Subtitles", 0) == 1;
-        _toggleSubtitles.value = isOn;
-        // Wire value-change so it saves immediately if the user toggles without
-        // explicitly pressing "Save & close".
-        _toggleSubtitles.RegisterValueChangedCallback(OnSubtitlesChanged);
-    }
-
-    private void OnSubtitlesChanged(ChangeEvent<bool> evt)
-    {
-        PlayerPrefs.SetInt("Subtitles", evt.newValue ? 1 : 0);
-    }
-
-    // -------------------------------------------------------------------------
-    // Crosshair Size
-    // -------------------------------------------------------------------------
-
-    private void LoadCrosshairSizePref()
-    {
-        // Default to small if the key has never been set
-        int saved = PlayerPrefs.GetInt("CrosshairSize", 0);
-        Button toSelect = saved switch
-        {         
-            1 => _crosshairMedium,
-            2 => _crosshairLarge,
-            _ => _crosshairSmall, // 0 & anything unexpected
-
-        };
-        ApplyCrosshairSelection(toSelect);
-    }
-
-    private void SelectCrosshairSize(Button btn, int value)
-    {
-        PlayerPrefs.SetInt("CrosshairSize", value);
-        ApplyCrosshairSelection(btn);
-    }
-
-    /// <summary>
-    /// Moves the "selected" USS class to <paramref name="btn"/>.
-    /// Safe to call when _CrosshairSelected is null (first load).
-    /// </summary>
-    private void ApplyCrosshairSelection(Button btn)
-    {
-        if (_crosshairSelected != null)
-            _crosshairSelected.RemoveFromClassList("selected");
-
-        _crosshairSelected = btn;
-
-        if (_crosshairSelected != null)
-            _crosshairSelected.AddToClassList("selected");
-    }
-
-
-    // -------------------------------------------------------------------------
-    // Crosshair Colour
-    // -------------------------------------------------------------------------
-
-    private void LoadCrosshairColourPref()
-    {
-        // Default to white if the key has never been set
-        int saved = PlayerPrefs.GetInt("CrosshairColour", 0);
-        Button toSelect = saved switch
-        {
-            1 => _crosshairColourRed,
-            2 => _crosshairColourBlue,
-            3 => _crosshairColourYellow,
-            4 => _crosshairColourOrange,
-            0 => _crosshairColourWhite,
-            _ => _crosshairColourWhite,
-        };
-        ApplyCrosshairColourSelection(toSelect);
-    }
-
-    private void SelectCrosshairColour(Button btn, int value)
-    {
-        PlayerPrefs.SetInt("CrosshairColour", value);
-        ApplyCrosshairColourSelection(btn);
-    }
-
-    /// <summary>
-    /// Moves the "selected" USS class to <paramref name="btn"/>.
-    /// Safe to call when _CrosshairSelected is null (first load).
-    /// </summary>
-    private void ApplyCrosshairColourSelection(Button btn)
-    {
-        if (_crosshairColourSelected != null)
-            _crosshairColourSelected.RemoveFromClassList("selected");
-
-        _crosshairColourSelected = btn;
-
-        if (_crosshairColourSelected != null)
-            _crosshairColourSelected.AddToClassList("selected");
-    }
-
-    // -------------------------------------------------------------------------
-    // Outline Scheme
-    // -------------------------------------------------------------------------
-
-    private void LoadOutlineScheme()
-    {
-        // Default to standard if the key has never been set
-        int saved = PlayerPrefs.GetInt("OutlineScheme", 0);
-        Button toSelect = saved switch
-        {
-            0 => _outlineStandard,
-            1 => _outlineProtanopia,
-            2 => _outlineDeuteranopia,
-            3 => _outlineTritanopia,
-            _ => _outlineStandard,
-        };
-        ApplyOutlineColourScheme(toSelect);
-    }
-
-    private void SelectOutlineScheme(Button btn, int value)
-    {
-        PlayerPrefs.SetInt("OutlineScheme", value);
-        ApplyOutlineColourScheme(btn);
-    }
-
-    /// <summary>
-    /// Moves the "selected" USS class to <paramref name="btn"/>.
-    /// Safe to call when _OutlineSelected is null (first load).
-    /// </summary>
-    private void ApplyOutlineColourScheme(Button btn)
-    {
-        if (_outlineSelected != null)
-            _outlineSelected.RemoveFromClassList("selected");
-
-        _outlineSelected = btn;
-
-        if (_outlineSelected != null)
-            _outlineSelected.AddToClassList("selected");
     }
 
     // -------------------------------------------------------------------------
@@ -518,8 +276,6 @@ public class MainMenuController : MonoBehaviour
         if (_todSelected != null)
             _todSelected.AddToClassList("selected");
     }
-
-
 
     // -------------------------------------------------------------------------
     // Scene transition

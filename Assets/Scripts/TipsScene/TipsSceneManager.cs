@@ -42,20 +42,12 @@ public class TipsSceneManager : MonoBehaviour
     // Tip Data — all five interactions
     // -------------------------------------------------------------------------
 
-    /// <summary>
-    /// Three-state outcome for a tip card.
-    /// Positive  → green bar + "Positive" tag
-    /// Neutral   → cyan bar  + "Neutral"  tag
-    /// Caution   → amber bar + "Caution"  tag
-    /// </summary>
-    private enum TipOutcome { Positive, Neutral, Caution }
-
     private struct TipData
     {
-        public string     actionName;
-        public string     displayTitle;
-        public string     body;
-        public TipOutcome outcome;
+        public string actionName;
+        public string displayTitle;
+        public string body;
+        public bool isPositive;
     }
 
     private readonly TipData[] allTips = new TipData[]
@@ -64,31 +56,31 @@ public class TipsSceneManager : MonoBehaviour
             actionName   = "HearingAid",
             displayTitle = "Hearing Aid Fitted",
             body         = "Restoring sensory aids is one of the most effective non-pharmacological interventions for delirium. Disorientation is significantly worsened by untreated hearing loss — fitting Arthur's hearing aids immediately improved his ability to process and respond to his environment.",
-            outcome      = TipOutcome.Positive
+            isPositive   = true
         },
         new TipData {
             actionName   = "Coat",
             displayTitle = "Removed Coat",
             body         = "Unfamiliar objects are a leading trigger for delirium-induced hallucination. Removing misidentified items is a highly effective non-pharmacological intervention — it directly reduces environmental confusion and helps anchor the patient to a safe, recognisable space without any clinical risk.",
-            outcome      = TipOutcome.Positive
+            isPositive   = true
         },
         new TipData {
             actionName   = "Sedative",
             displayTitle = "Sedative Administered",
             body         = "Sedatives can suppress delirium symptoms short-term but often worsen overall prognosis. In older adults, benzodiazepines and antipsychotics increase fall risk, prolong delirium duration, and can trigger respiratory complications. Non-pharmacological approaches should always be exhausted first.",
-            outcome      = TipOutcome.Caution
+            isPositive   = false
         },
         new TipData {
             actionName   = "Verbal",
             displayTitle = "Spoke to Patient",
-            body         = "It is always recommended to speak with the patient as early as possible during your interaction. However, someone experiencing delirium is likely to be symptomatic and have hallucinations, so your interaction might be ineffective. At this point you can explore the possibility of taking more immediate action.",
-            outcome      = TipOutcome.Neutral
+            body         = "Verbal engagement is valuable, but directive language often increases agitation in delirious patients. Reorientation works best through calm, open questions that acknowledge distress rather than correct it. Always pair communication with sensory checks — is the patient wearing their hearing aids and glasses?",
+            isPositive   = false
         },
         new TipData {
             actionName   = "Lights",
             displayTitle = "Lights Switched On",
             body         = "Lighting aids orientation, but sudden brightness can be distressing or painful for vulnerable patients. Always check the patient's case history before adjusting the environment — gradual changes and natural light are preferable to harsh overhead fluorescents.",
-            outcome      = TipOutcome.Caution
+            isPositive   = false
         }
     };
 
@@ -127,7 +119,6 @@ public class TipsSceneManager : MonoBehaviour
 
         SetScoreBar(root, isOptimal);
         BuildTipCards(root, choice1, choice2);
-        SetNotesBanner(root);
         SetInsightSection(root, isOptimal);
         WireButtons(root);
     }
@@ -181,6 +172,7 @@ public class TipsSceneManager : MonoBehaviour
     // Web Address
     // -------------------------------------------------------------------------
 
+
     [SerializeField] private string websiteURL = "https://www.nice.org.uk/Guidance/CG103";
 
     /// <summary>
@@ -217,33 +209,11 @@ public class TipsSceneManager : MonoBehaviour
 
         TipData data = match.Value;
 
-        // ── Resolve USS class names from outcome ──────────────────────────────
-        string barClass, tagClass, tagText;
-        switch (data.outcome)
-        {
-            case TipOutcome.Positive:
-                barClass = "tip-bar-good";
-                tagClass = "tip-tag-good";
-                tagText  = "Positive";
-                break;
-            case TipOutcome.Neutral:
-                barClass = "tip-bar-neutral";
-                tagClass = "tip-tag-neutral";
-                tagText  = "Neutral";
-                break;
-            default: // Caution
-                barClass = "tip-bar-warn";
-                tagClass = "tip-tag-warn";
-                tagText  = "Caution";
-                break;
-        }
-
-        // ── Build card ────────────────────────────────────────────────────────
         var card = new VisualElement();
         card.AddToClassList("tip-card");
 
         var bar = new VisualElement();
-        bar.AddToClassList(barClass);
+        bar.AddToClassList(data.isPositive ? "tip-bar-good" : "tip-bar-warn");
         card.Add(bar);
 
         var content = new VisualElement();
@@ -255,8 +225,8 @@ public class TipsSceneManager : MonoBehaviour
         var title = new Label(data.displayTitle);
         title.AddToClassList("tip-title");
 
-        var tag = new Label(tagText);
-        tag.AddToClassList(tagClass);
+        var tag = new Label(data.isPositive ? "Positive" : "Caution");
+        tag.AddToClassList(data.isPositive ? "tip-tag-good" : "tip-tag-warn");
 
         headerRow.Add(title);
         headerRow.Add(tag);
@@ -268,39 +238,6 @@ public class TipsSceneManager : MonoBehaviour
         content.Add(body);
         card.Add(content);
         container.Add(card);
-    }
-
-    private void SetNotesBanner(VisualElement root)
-    {
-        bool viewed = InteractionMaster.Instance != null
-                   && InteractionMaster.Instance.patientNotesViewed;
-
-        var banner   = root.Q<VisualElement>("notes-banner");
-        var icon     = root.Q<Label>("notes-banner-icon");
-        var text     = root.Q<Label>("notes-banner-text");
-
-        if (viewed)
-        {
-            banner.RemoveFromClassList("notes-banner-advisory");
-            banner.AddToClassList("notes-banner-positive");
-            icon.text = "✓";
-            icon.RemoveFromClassList("notes-banner-icon-advisory");
-            icon.AddToClassList("notes-banner-icon");
-            text.text = "You checked the patient notes — well done!";
-            text.RemoveFromClassList("notes-banner-text-advisory");
-            text.AddToClassList("notes-banner-text");
-        }
-        else
-        {
-            banner.RemoveFromClassList("notes-banner-positive");
-            banner.AddToClassList("notes-banner-advisory");
-            icon.text = "→";
-            icon.RemoveFromClassList("notes-banner-icon");
-            icon.AddToClassList("notes-banner-icon-advisory");
-            text.text = "You should always check the patient notes before making a decision.";
-            text.RemoveFromClassList("notes-banner-text");
-            text.AddToClassList("notes-banner-text-advisory");
-        }
     }
 
     private void SetInsightSection(VisualElement root, bool isOptimal)

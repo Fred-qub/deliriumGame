@@ -2,19 +2,26 @@ using UnityEngine;
 
 public class MoveRat : MonoBehaviour
 {
-    // THis script is attached to the rat gameobjects (hallucinations) & controls their movement through the scene
-
     private float xLimit = -5.0f; // beyond this rats are destroyed
 
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.right * Time.deltaTime); // move rats through the scene from sink area toward arthur in the bed
+        transform.Translate(Vector3.right * Time.deltaTime);
 
-        if (transform.position.x < xLimit) // if the rat passes the set limit on the x-axis
+        if (transform.position.x < xLimit) 
         { 
-            Destroy(gameObject); // destroy it
+            Destroy(gameObject);
         
         }
+
+
 
     }
 }

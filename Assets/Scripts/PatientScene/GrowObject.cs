@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class GrowObject : MonoBehaviour
 {
-    // This script is used in the patient scene to have the hallucinated snake & man-eating plant grow from nothing to the actual gameobject size, rather than simply appear
     [Tooltip("Target scale when fully grown")]
     public Vector3 targetScale = Vector3.one;
 
@@ -25,7 +24,7 @@ public class GrowObject : MonoBehaviour
     {
         float elapsedTime = 0f;
 
-        while (elapsedTime < growDuration) // while elapsed time is less than the grow time, run this code
+        while (elapsedTime < growDuration)
         {
             // Calculate progress (0 to 1)
             float t = elapsedTime / growDuration;

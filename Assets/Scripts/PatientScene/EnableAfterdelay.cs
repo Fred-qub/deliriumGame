@@ -2,9 +2,6 @@ using UnityEngine;
 
 public class EnableAfterdelay : MonoBehaviour
 {
-    // This script is used in the playback scene to ensure that the objects the doctor interacts with do not turn off/on until the doctor model actually reaches the correct location.
-
-
     public GameObject poisonOnTrolley;
     public GameObject poisonInHand;
     public GameObject lights;
@@ -19,7 +16,7 @@ public class EnableAfterdelay : MonoBehaviour
 
     public void Poison()
     {
-        StartCoroutine(PoisonSequence()); 
+        StartCoroutine(PoisonSequence());
     }
 
     public void Lights()
@@ -37,35 +34,35 @@ public class EnableAfterdelay : MonoBehaviour
         StartCoroutine(CoatSequence());
     }
 
-    private System.Collections.IEnumerator PoisonSequence()  // causes poison to disppaear from trolley, appear in doctor's hand, then disappear again
+    private System.Collections.IEnumerator PoisonSequence()
     {
-        yield return new WaitForSeconds(delayPoison); // delays anything happening til doctor reaches the poison. 
-        poisonInHand.SetActive(true); // makes poison object attached to doctor active
-        poisonOnTrolley.SetActive(false); // makes poison object on trolley inactive
-        yield return new WaitForSeconds(delayPoison); // delay
-        poisonInHand.SetActive(false); //sets poison in hand inactive again
+        yield return new WaitForSeconds(delayPoison);
+        poisonInHand.SetActive(true);
+        poisonOnTrolley.SetActive(false);
+        yield return new WaitForSeconds(delayPoison);
+        poisonInHand.SetActive(false);
     }
 
-    private System.Collections.IEnumerator LightSequence() // delays lights turnning on til doctor reaches switch
+    private System.Collections.IEnumerator LightSequence()
     {
-        yield return new WaitForSeconds(delayLights); // delay til doctor is next to switch
-        lights.SetActive(true); // switches overhead lights on
+        yield return new WaitForSeconds(delayLights);
+        lights.SetActive(true);
     }
 
-    private System.Collections.IEnumerator HearingAidSequence() // causes hearing aid to disppaear from locker, appear in doctor's hand, then disappear again
+    private System.Collections.IEnumerator HearingAidSequence()
     {
-        yield return new WaitForSeconds(delayHearingAid); // delays anything happening til doctor reaches the locker
-        hearingAidHand.SetActive(true); //makes hearing aid attached to doctor active
-        hearingAidTrolley.SetActive(false); // makes hearing aid object on locker inactive
-        yield return new WaitForSeconds(delayHearingAid); //delay
-        hearingAidHand.SetActive(false); //sets hearing aid in hand inactive again
+        yield return new WaitForSeconds(delayHearingAid);
+        hearingAidHand.SetActive(true);
+        hearingAidTrolley.SetActive(false);
+        yield return new WaitForSeconds(delayHearingAid);
+        hearingAidHand.SetActive(false);
     }
 
-    private System.Collections.IEnumerator CoatSequence() // delays coat sequence til doctor reaches the coatrack
+    private System.Collections.IEnumerator CoatSequence()
     {
-        yield return new WaitForSeconds(delayCoat); //delay til doctor gets there
-        coatHangerEmpty.SetActive(true); // sets the empty coat hanger object active
-        coatOnChair.SetActive(true); // sets the pile of clothes on the chair active
+        yield return new WaitForSeconds(delayCoat);
+        coatHangerEmpty.SetActive(true);
+        coatOnChair.SetActive(true);
 
     }
 }
