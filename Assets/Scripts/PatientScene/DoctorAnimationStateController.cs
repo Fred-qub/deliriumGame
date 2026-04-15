@@ -24,12 +24,22 @@ public class DoctorAnimationStateController : MonoBehaviour
     public void startWalking()
     {
         animator.SetBool("IsWalking", true);
-        //Debug.Log("the doctor is walking");
     }
     
     public void stopWalking()
     {
         animator.SetBool("IsWalking", false);
-        Debug.Log("the doctor has stopped walking");
+    }
+
+    public void triggerInteract()
+    {
+        animator.SetTrigger("InteractTrigger");
+    }
+
+    public void setInteractType(int type)
+    {
+        if (type < 0 | type >= 4) return;
+        
+        animator.SetInteger("InteractType", type);
     }
 }
