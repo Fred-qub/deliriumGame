@@ -50,33 +50,33 @@ public class HeartrateDisplay : MonoBehaviour
 
         switch (rate)
         {
-            case 0: // this int relates to 52 bpm
-                Debug.Log("Heartrate 52 bpm");
-                FindAnyObjectByType<NumberAnimator>().AnimateTo(52); //find the number animator in the scene & pass the desired heartrate value to it
+            case 0: // this int relates to 50 bpm
+                Debug.Log("Heartrate 50 bpm");
+                FindAnyObjectByType<NumberAnimator>().AnimateTo(50); //find the number animator in the scene & pass the desired heartrate value to it
                 heart.gameObject.SetActive(false); // turn off the heart sprite
                 TurnOffAlarm(); // turn off the red & yellow alarm images
                 StopAllCoroutines(); // stop the alarm images flashing
                 StartCoroutine(Flash(rate)); // start the heart image flashing - pass the rate to the coroutine
                 break;
-            case 1: // this int relates to 71 bpm
-                Debug.Log("Heartrate 71 bpm");
-                FindAnyObjectByType<NumberAnimator>().AnimateTo(71);
+            case 1: // this int relates to 65 bpm
+                Debug.Log("Heartrate 65 bpm");
+                FindAnyObjectByType<NumberAnimator>().AnimateTo(65);
                 heart.gameObject.SetActive(false);
                 TurnOffAlarm();
                 StopAllCoroutines();
                 StartCoroutine(Flash(rate));
                 break;
-            case 2: // this int relates to 82 bpm
-                Debug.Log("Heartrate 82 bpm");
-                FindAnyObjectByType<NumberAnimator>().AnimateTo(82);
+            case 2: // this int relates to 80 bpm
+                Debug.Log("Heartrate 80 bpm");
+                FindAnyObjectByType<NumberAnimator>().AnimateTo(80);
                 heart.gameObject.SetActive(false);
                 TurnOffAlarm();
                 StopAllCoroutines();
                 StartCoroutine(Flash(rate));
                 break;
-            case 3: // this int relates to 107 bpm
-                Debug.Log("Heartrate 107 bpm");
-                FindAnyObjectByType<NumberAnimator>().AnimateTo(107);
+            case 3: // this int relates to 110 bpm
+                Debug.Log("Heartrate 110 bpm");
+                FindAnyObjectByType<NumberAnimator>().AnimateTo(110);
                 heart.gameObject.SetActive(false);
                 TurnOffAlarm();
                 StopAllCoroutines();
@@ -86,9 +86,9 @@ public class HeartrateDisplay : MonoBehaviour
                     StartCoroutine(FlashYellow());
                 }
                 break;
-            case 4:// this int relates to 121 bpm
-                Debug.Log("Heartrate 121 bpm");
-                FindAnyObjectByType<NumberAnimator>().AnimateTo(121);
+            case 4:// this int relates to 140 bpm
+                Debug.Log("Heartrate 140 bpm");
+                FindAnyObjectByType<NumberAnimator>().AnimateTo(140);
                 heart.gameObject.SetActive(false);
                 TurnOffAlarm();
                 StopAllCoroutines();
@@ -106,8 +106,8 @@ public class HeartrateDisplay : MonoBehaviour
     {
         switch (rate)
         {
-            case 0: //this int relates to 52bpm
-                beatInterval = 60 / 52f; // calculate time between flashes, based on heart rate
+            case 0: //this int relates to 50bpm
+                beatInterval = 60 / 50f; // calculate time between flashes, based on heart rate
                 while (true) // while the heart rate remains the same
                 {
                     heart.gameObject.SetActive(true); // turn heart sprite on
@@ -115,8 +115,8 @@ public class HeartrateDisplay : MonoBehaviour
                     heart.gameObject.SetActive(false); // turn heart sprite off
                     yield return new WaitForSeconds(beatInterval - flashDuration); // calculate & wait for appropriate time
                 }
-            case 1: //this int relates to 71bpm
-                beatInterval = 60 / 71f;
+            case 1: //this int relates to 65bpm
+                beatInterval = 60 / 65f;
                 while (true)
                 {
                     heart.gameObject.SetActive(true);
@@ -124,8 +124,8 @@ public class HeartrateDisplay : MonoBehaviour
                     heart.gameObject.SetActive(false);
                     yield return new WaitForSeconds(beatInterval - flashDuration);
                 }
-            case 2: //this int relates to 82 bpm
-                beatInterval = 60 / 82f;
+            case 2: //this int relates to 80 bpm
+                beatInterval = 60 / 80f;
                 while (true)
                 {
                     heart.gameObject.SetActive(true);
@@ -133,8 +133,8 @@ public class HeartrateDisplay : MonoBehaviour
                     heart.gameObject.SetActive(false);
                     yield return new WaitForSeconds(beatInterval - flashDuration); ;
                 }
-            case 3: //this int relates to 107 bpm
-                beatInterval = 60 / 107f;
+            case 3: //this int relates to 110 bpm
+                beatInterval = 60 / 110f;
                 while (true)
                 {
                     heart.gameObject.SetActive(true);
@@ -142,8 +142,8 @@ public class HeartrateDisplay : MonoBehaviour
                     heart.gameObject.SetActive(false);
                     yield return new WaitForSeconds(beatInterval - flashDuration); ;
                 }
-            case 4: //this int relates to 121 bpm
-                beatInterval = 60 / 121f;
+            case 4: //this int relates to 140 bpm
+                beatInterval = 60 / 140f;
                 while (true)
                 {
                     heart.gameObject.SetActive(true);
