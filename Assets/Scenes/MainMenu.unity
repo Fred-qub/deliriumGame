@@ -305,7 +305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9cfc703838640a4aadc6b8ed015ae4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clinicianSceneName: Clinician Scene Ruth
+  clinicianSceneName: TransitionClinician
   fadeOutDuration: 0.4
   dotPulseSpeed: 1.4
 --- !u!1 &1492568114

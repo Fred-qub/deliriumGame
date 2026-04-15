@@ -3,6 +3,8 @@ using UnityEditor;
 
 public class AlignForwardAxis : EditorWindow
 {
+    // This script was added to assist with figuring out the angles for the patient's head to turn to track the player
+
     private GameObject targetObject;
     private Vector3 desiredDirection = Vector3.forward; // Default to world +Z
     private GameObject lookAtTarget;

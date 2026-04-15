@@ -140,6 +140,20 @@
     margin-bottom: 0;
 }
 
+.mystery-body {
+    font-size: 13px;
+    color: rgb(230, 126, 0);
+    -unity-font-style: italic;
+    white-space: normal;
+    -unity-text-align: upper-left;
+    max-width: 390px;
+    margin-top: 26px;
+    padding-top: 22px;
+    border-top-width: 1px;
+    border-top-color: rgb(74, 155, 142);
+    opacity: 0.9;
+}
+
 /* ── Stakes strip ────────────────────────────────────────────── */
 .stakes {
     flex-direction: row;
@@ -489,7 +503,7 @@
 }
 
 .modal-card {
-    width: 460px;
+    width: 540px;
     background-color: rgb(10, 20, 36);
     border-width: 1px;
     border-color: rgb(26, 55, 50);
@@ -549,11 +563,17 @@
     margin-bottom: 0;
 }
 
+/* ── Options scroll body ─────────────────────────────────────── */
+.options-scroll-body {
+    max-height: 460px;
+    flex: 1;
+}
+
 /* ── Options modal: sections ─────────────────────────────────── */
 
 .options-section {
     flex-direction: column;
-    padding: 14px 22px 10px 22px;
+    padding: 8px 22px 6px 22px;
     border-bottom-width: 1px;
     border-bottom-color: rgb(20, 44, 40);
 }
@@ -567,7 +587,7 @@
     color: rgb(61, 90, 96);
     letter-spacing: 2px;
     -unity-text-align: upper-left;
-    margin-bottom: 10px;
+    margin-bottom: 4px;
 }
 
 /* ── Options rows ────────────────────────────────────────────── */
@@ -577,14 +597,14 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding-top: 7px;
-    padding-bottom: 7px;
+    padding-top: 4px;
+    padding-bottom: 4px;
 }
 
-/* Stacked variant: title+desc on top, control below (for tod group) */
+/* Stacked variant: title+desc on top, control below */
 .options-row-col {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
 }
 
 .options-row-text {
@@ -664,18 +684,24 @@
     display: none;
 }
 
-/* ── Time-of-day button group ────────────────────────────────── */
+/* ── Options selector button group ──────────────────────────
+   Single shared class replaces the previous crosshair-btn,
+   crosshairColour-btn, outline-btn, and tod-btn families.
+   All selector groups use options-btn-group + options-btn.
+   ─────────────────────────────────────────────────────────── */
 
-.tod-group {
+.options-btn-group {
     flex-direction: row;
-    margin-top: 10px;
-    margin-bottom: 4px;
+    margin-top: 6px;
+    margin-bottom: 2px;
+    flex-wrap: wrap;
 }
 
-.tod-btn {
+.options-btn {
     height: 32px;
     padding: 0 12px;
     margin-right: 6px;
+    margin-bottom: 6px;
     border-radius: 3px;
     font-size: 11px;
     background-color: rgb(12, 26, 24);
@@ -685,19 +711,36 @@
     -unity-text-align: middle-center;
 }
 
-.tod-btn:hover {
+.options-btn:hover {
     background-color: rgb(18, 40, 36);
     border-color: rgb(74, 155, 142);
     color: rgb(237, 242, 240);
 }
 
-/* Selected state — applied by MainMenuController.cs via AddToClassList */
-.tod-btn.selected {
+.options-btn.selected {
     background-color: rgb(74, 155, 142);
     border-color: rgb(58, 128, 112);
     color: rgb(255, 255, 255);
 }
 
-.tod-btn.selected:hover {
+.options-btn.selected:hover {
     background-color: rgb(82, 176, 160);
+}
+
+/* ── Content warnings toggle row ────────────────────────────
+   Rats and Snakes use standard options-row pattern.
+   No additional classes needed.
+   ─────────────────────────────────────────────────────────── */
+
+/* Wrapper for the two nested phobia toggle rows */
+.options-phobia-rows {
+    flex-direction: column;
+    margin-top: 4px;
+    align-self: stretch;
+}
+
+/* Each phobia row — inherits options-row layout but tighter */
+.options-phobia-row {
+    padding-top: 3px;
+    padding-bottom: 3px;
 }
