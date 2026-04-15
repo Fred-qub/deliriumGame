@@ -3698,7 +3698,7 @@ GameObject:
   - component: {fileID: 460749422}
   - component: {fileID: 460749421}
   m_Layer: 0
-  m_Name: heart rate 71
+  m_Name: heart rate 65
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6975,7 +6975,7 @@ GameObject:
   - component: {fileID: 902867376}
   - component: {fileID: 902867375}
   m_Layer: 0
-  m_Name: heart rate 120
+  m_Name: heart rate 140
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9803,7 +9803,7 @@ PrefabInstance:
     - target: {fileID: -199690879491782497, guid: 5675352df31e6f34f87c5662a0dac9c9,
         type: 3}
       propertyPath: m_Name
-      value: heart rate 52
+      value: heart rate 50
       objectReference: {fileID: 0}
     - target: {fileID: -199690879491782497, guid: 5675352df31e6f34f87c5662a0dac9c9,
         type: 3}
@@ -9899,11 +9899,11 @@ MonoBehaviour:
   redAlarmLamp: {fileID: 1438812389}
   yellowAlarmLamp: {fileID: 1665535576}
   greenAlarmLamp: {fileID: 632137571}
-  normalScreen52: {fileID: 1157241785}
-  normalScreen71: {fileID: 460749419}
-  normalScreen82: {fileID: 1979171951}
-  normalScreen107: {fileID: 1664780844}
-  alarmScreen121: {fileID: 902867373}
+  normalScreen50: {fileID: 1157241785}
+  normalScreen65: {fileID: 460749419}
+  normalScreen80: {fileID: 1979171951}
+  normalScreen110: {fileID: 1664780844}
+  alarmScreen140: {fileID: 902867373}
   flashDuration: 0.1
   beatInterval: 0
 --- !u!1 &1157725058
@@ -13809,7 +13809,7 @@ GameObject:
   - component: {fileID: 1664780847}
   - component: {fileID: 1664780846}
   m_Layer: 0
-  m_Name: heart rate 107
+  m_Name: heart rate 110
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
