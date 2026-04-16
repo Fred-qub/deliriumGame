@@ -10,11 +10,11 @@ public class Alarm : MonoBehaviour
     public GameObject redAlarmLamp;
     public GameObject yellowAlarmLamp;
     public GameObject greenAlarmLamp;
-    public GameObject normalScreen50;
-    public GameObject normalScreen65;
-    public GameObject normalScreen80;
-    public GameObject normalScreen110;
-    public GameObject alarmScreen140;
+    public GameObject normalScreen52;
+    public GameObject normalScreen71;
+    public GameObject normalScreen82;
+    public GameObject normalScreen107;
+    public GameObject alarmScreen121;
     public float flashDuration = 0.1f;
     public float beatInterval;
 
@@ -53,8 +53,8 @@ public class Alarm : MonoBehaviour
     {
         switch (heartbeat) // switches with the heartbeat; light is synced to the beat the way a real monitor would be
         {
-            case 0: //this int relates to a heart rate of 50bpm
-                beatInterval = 60 / 50f; // time between beats
+            case 0: //this int relates to a heart rate of 52bpm
+                beatInterval = 60 / 52f; // time between beats
                 while (true) // run this code until the heartrate changes
                 {
                     greenAlarmLamp.gameObject.SetActive(true); // turn green lamp on
@@ -62,8 +62,8 @@ public class Alarm : MonoBehaviour
                     greenAlarmLamp.gameObject.SetActive(false); // turn green lamp off
                     yield return new WaitForSeconds(beatInterval - flashDuration); // wait til it is time for the next flash
                 }
-            case 1: //this int relates to a heart rate of 65bpm
-                beatInterval = 60 / 65f;
+            case 1: //this int relates to a heart rate of 71bpm
+                beatInterval = 60 / 71f;
                 while (true)
                 {
                     greenAlarmLamp.gameObject.SetActive(true);
@@ -71,8 +71,8 @@ public class Alarm : MonoBehaviour
                     greenAlarmLamp.gameObject.SetActive(false);
                     yield return new WaitForSeconds(beatInterval - flashDuration);
                 }
-            case 2: //this int relates to a heart rate of 80 bpm
-                beatInterval = 60 / 80f;
+            case 2: //this int relates to a heart rate of 82 bpm
+                beatInterval = 60 / 82f;
                 while (true)
                 {
                     greenAlarmLamp.gameObject.SetActive(true);
@@ -91,45 +91,45 @@ public class Alarm : MonoBehaviour
         {
             switch (heartbeat) // switches with the heartbeat
             {
-                case 0: // this int relates to a heart rate of 50 bpm
+                case 0: // this int relates to a heart rate of 52 bpm
                     RemoveScreens(); //turn all monitor screen gameobjects off
-                    normalScreen50.gameObject.SetActive(true); // turn the 50bpm screen on the patient monitor
-                    Debug.Log("screen 50 bpm");
+                    normalScreen52.gameObject.SetActive(true); // turn the 52bpm screen on the patient monitor
+                    Debug.Log("screen 52 bpm");
                     StopAllCoroutines(); // stop light flash routines, 
                     TurnOffLights(); // ensure all alarm lamps off
-                    StartCoroutine(FlashGreen(heartbeat)); // start the green lamp flashing at the correct rate of 50 bpm
+                    StartCoroutine(FlashGreen(heartbeat)); // start the green lamp flashing at the correct rate of 52 bpm
                     break;
-                case 1: // this int relates to a heart rate of 65 bpm
+                case 1: // this int relates to a heart rate of 71 bpm
                     RemoveScreens();
-                    normalScreen65.gameObject.SetActive(true); // turn the 65 bpm screen on
-                    Debug.Log("screen 65 bpm");
+                    normalScreen71.gameObject.SetActive(true); // turn the 71 bpm screen on
+                    Debug.Log("screen 71 bpm");
                     StopAllCoroutines();
                     TurnOffLights();
-                    StartCoroutine(FlashGreen(heartbeat)); // start the green lamp flashing at the correct rate of 65 bpm
+                    StartCoroutine(FlashGreen(heartbeat)); // start the green lamp flashing at the correct rate of 71 bpm
                     break;
-                case 2: // this int relates to a heart rate of 80 bpm
+                case 2: // this int relates to a heart rate of 82 bpm
                     RemoveScreens();
-                    normalScreen80.gameObject.SetActive(true); // turn the 80 bpm screen on
-                    Debug.Log("screen 80 bpm");
+                    normalScreen82.gameObject.SetActive(true); // turn the 81 bpm screen on
+                    Debug.Log("screen 82 bpm");
                     StopAllCoroutines();
                     TurnOffLights();
-                    StartCoroutine(FlashGreen(heartbeat)); // start the green lamp flashing at the correct rate of 80 bpm
+                    StartCoroutine(FlashGreen(heartbeat)); // start the green lamp flashing at the correct rate of 82 bpm
                     break;
-                case 3: // this int relates to a heart rate of 110 bpm
+                case 3: // this int relates to a heart rate of 107 bpm
                     RemoveScreens();
-                    normalScreen110.gameObject.SetActive(true); // turn the 110 bpm screen on
+                    normalScreen107.gameObject.SetActive(true); // turn the 107 bpm screen on
                     StopAllCoroutines();
                     TurnOffLights();
                     StartCoroutine(FlashYellow()); // start the yellow alarm lamp flashing
-                    Debug.Log("screen 110 bpm");
+                    Debug.Log("screen 107 bpm");
                     break;
-                case 4:// this int relates to a heart rate of 140 bpm
+                case 4:// this int relates to a heart rate of 121 bpm
                     RemoveScreens();
-                    alarmScreen140.gameObject.SetActive(true); // turn the 140 bpm screen on
+                    alarmScreen121.gameObject.SetActive(true); // turn the 121 bpm screen on
                     StopAllCoroutines();
                     TurnOffLights();
                     StartCoroutine(FlashRed()); // start the red alarm lamp flashing
-                    Debug.Log("screen 140 bpm");
+                    Debug.Log("screen 121 bpm");
                     break;
 
             }
@@ -139,29 +139,29 @@ public class Alarm : MonoBehaviour
 
     private void RemoveScreens() // turn off whatever screen is on the monitor
     {
-        if (normalScreen50) 
+        if (normalScreen52) 
         {
-            normalScreen50.gameObject.SetActive(false);
+            normalScreen52.gameObject.SetActive(false);
         }
 
-        if (normalScreen65)
+        if (normalScreen71)
         {
-            normalScreen65.gameObject.SetActive(false);
+            normalScreen71.gameObject.SetActive(false);
         }
 
-        if (normalScreen80)
+        if (normalScreen82)
         {
-            normalScreen80.gameObject.SetActive(false);
+            normalScreen82.gameObject.SetActive(false);
         }
 
-        if (normalScreen110)
+        if (normalScreen107)
         {
-            normalScreen110.gameObject.SetActive(false);
+            normalScreen107.gameObject.SetActive(false);
         }
 
-        if (alarmScreen140)
+        if (alarmScreen121)
         {
-            alarmScreen140.gameObject.SetActive(false);
+            alarmScreen121.gameObject.SetActive(false);
         }
 
   

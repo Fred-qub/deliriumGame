@@ -7,7 +7,7 @@ public class HeartBeat : MonoBehaviour
 {
     // This script changes patient heartrate depending on player actions, and broadcasts it so other scrcipts can pick it up
 
-    [SerializeField] private int heartbeat = 2; // sets int for starting rate, equivalent to 80 bpm
+    [SerializeField] private int heartbeat = 2; // sets int for starting rate, equivalent to 82 bpm
     public int Heartbeat => heartbeat;
 
     public delegate void HeartRateChanged(int heartbeat); 
@@ -20,8 +20,8 @@ public class HeartBeat : MonoBehaviour
 
   
     // Min and max limits for int
-    private int minValue = 0; // 50 bpm
-    private int maxValue = 4; // 140 bpm
+    private int minValue = 0; // 52 bpm
+    private int maxValue = 4; // 121 bpm
 
     void Start()
     {

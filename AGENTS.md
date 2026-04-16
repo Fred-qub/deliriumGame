@@ -2,7 +2,7 @@
 - Project name: deliriumGame
 - Unity version: Unity 6000.1.15f1
 - Active game object:
-  - Name: Heartbeat
-  - Tag: Untagged
-  - Layer: UI
+  - Name: rivotril
+  - Tag: Interactable
+  - Layer: Zoomable
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

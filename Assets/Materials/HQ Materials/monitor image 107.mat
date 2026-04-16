@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: monitor image 140 alarm
+  m_Name: monitor image 107
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -40,7 +40,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 01e02c9ea20294045af8a6c689e6f14b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 93c03b6af733cbb4a8db661d37306c2e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0.01, y: 0}
     - _BumpMap:
@@ -60,11 +60,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
-        m_Texture: {fileID: 2800000, guid: 01e02c9ea20294045af8a6c689e6f14b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 93c03b6af733cbb4a8db661d37306c2e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 01e02c9ea20294045af8a6c689e6f14b, type: 3}
+        m_Texture: {fileID: 2800000, guid: 93c03b6af733cbb4a8db661d37306c2e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0.01, y: 0}
     - _MetallicGlossMap:
