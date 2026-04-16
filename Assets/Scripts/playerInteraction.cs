@@ -7,7 +7,7 @@ public class playerInteraction : MonoBehaviour
     //what the player is trying to interact with
     interactableObject target;
 
-    public Camera camera;
+    public Camera camera2;
     
     void Update()
     {
@@ -41,10 +41,17 @@ public class playerInteraction : MonoBehaviour
 
     void CheckInteraction()
     {
-        //draws a raycast from the camera
+        //checks if dialogue is active and hides the prompt
+        if (DialogueManager.Instance != null && DialogueManager.Instance.IsDialogueActive())
+        {
+            clearTarget();
+            return;
+        }
+        
+        //draws a raycast from the camera2
         RaycastHit hit;
-        Ray ray = new Ray(camera.transform.position, camera.transform.forward);
-        Debug.DrawRay(camera.transform.position, camera.transform.forward, Color.red);
+        Ray ray = new Ray(camera2.transform.position, camera2.transform.forward);
+        Debug.DrawRay(camera2.transform.position, camera2.transform.forward, Color.red);
         
         //if the ray hits something within range and the collider it hits is an interactable
         if (Physics.Raycast(ray, out hit, range) && hit.collider.CompareTag("Interactable"))

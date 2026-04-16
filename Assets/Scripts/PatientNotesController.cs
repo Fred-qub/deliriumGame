@@ -63,7 +63,16 @@ public class PatientNotesController : MonoBehaviour
         UnityEngine.Cursor.visible   = false;
     }
 
-    public void OpenNotes()  => gameObject.SetActive(true);
+    public void OpenNotes()
+    {
+        // Record that the player viewed the notes — read later by TipsSceneManager.
+        // Safe to call multiple times; the flag is idempotent once true.
+        if (InteractionMaster.Instance != null)
+            InteractionMaster.Instance.patientNotesViewed = true;
+
+        gameObject.SetActive(true);
+    }
+
     public void CloseNotes() => gameObject.SetActive(false);
 
     // ── Dynamic field population ─────────────────────────────────────────────

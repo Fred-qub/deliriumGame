@@ -29,6 +29,10 @@ public class InteractionMaster : MonoBehaviour
     // Reset in ResetState() so each playthrough starts clean.
     [HideInInspector] public bool hallucinationLineShown = false;
 
+    // Tracks whether the player opened the patient notes at any point
+    // during the clinician scene. Read by TipsSceneManager on the Tips screen.
+    [HideInInspector] public bool patientNotesViewed = false;
+
     private void Awake()
     {
         if (Instance == null)
@@ -136,6 +140,7 @@ public class InteractionMaster : MonoBehaviour
         failureCount = 0;
         neutralCount = 0;
         hallucinationLineShown = false;
+        patientNotesViewed = false;
         Debug.Log("[InteractionMaster] ResetState called — history and scores cleared.");
     }
 
