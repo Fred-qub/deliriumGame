@@ -3,6 +3,9 @@ using Cinemachine;
 
 public class CameraZoom : MonoBehaviour
 {
+
+    // This script allows the zoom on right mouse click
+
     [Header("Cinemachine Settings")]
     public CinemachineVirtualCamera virtualCamera; // Assign in Inspector
     public float zoomedFOV = 30f;                   // Field of View when zoomed in
@@ -15,14 +18,25 @@ public class CameraZoom : MonoBehaviour
         bool isZoomingIn = Input.GetMouseButton(1);
 
         // Smoothly adjust FOV
-        float targetFOV = isZoomingIn ? zoomedFOV : normalFOV;
 
-        var lensSettings = virtualCamera.m_Lens;
-        lensSettings.FieldOfView = Mathf.Lerp(
+        float targetFOV;
+
+        if (isZoomingIn)
+        {
+            targetFOV = zoomedFOV;
+        }
+        else
+        {
+            targetFOV = normalFOV;
+        }
+
+
+        var lensSettings = virtualCamera.m_Lens; // copies camera lens settings
+        lensSettings.FieldOfView = Mathf.Lerp( // changes lens settings - moves current field of view towards the target field of view
             lensSettings.FieldOfView,
             targetFOV,
-            Time.deltaTime * zoomSpeed
+            Time.deltaTime * zoomSpeed // zoom speed is not dependent on frame rate
         );
-        virtualCamera.m_Lens = lensSettings;
+        virtualCamera.m_Lens = lensSettings; // lens settings need to be written back to the camera
     }
 }
