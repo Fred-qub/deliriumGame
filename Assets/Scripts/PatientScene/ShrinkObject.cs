@@ -37,7 +37,10 @@ public class ShrinkObject : MonoBehaviour
     private IEnumerator ShrinkOverTime()
     {
         Vector3 startScale = transform.localScale;
-        float elapsed = 0f;
+        if (!gameObject.CompareTag("Newspaper")) yield return new WaitForSeconds(1f); // if tag is not newspaper, then delay (to ensure doctor has
+                                                                                       // reached correct location for coat animation)
+        float elapsed = 0f; 
+
 
         while (elapsed < shrinkDuration) // while the time is less than the shrink duration time, run this code
         {

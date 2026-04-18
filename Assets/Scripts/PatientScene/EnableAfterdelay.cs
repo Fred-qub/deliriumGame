@@ -12,10 +12,12 @@ public class EnableAfterdelay : MonoBehaviour
     public GameObject hearingAidHand;
     public GameObject coatHangerEmpty;
     public GameObject coatOnChair;
-    public float delayPoison = 1f;
+    public float delayPoison1 = 1f;
+    public float delayPoison2 = 4f;
     public float delayLights = 1f;
     public float delayHearingAid = 1f;
-    public float delayCoat = 1f;
+    public float delayCoat1 = 1.5f;
+    public float delayCoat2 = 1f;
 
     public void Poison()
     {
@@ -39,10 +41,10 @@ public class EnableAfterdelay : MonoBehaviour
 
     private System.Collections.IEnumerator PoisonSequence()  // causes poison to disppaear from trolley, appear in doctor's hand, then disappear again
     {
-        yield return new WaitForSeconds(delayPoison); // delays anything happening til doctor reaches the poison. 
+        yield return new WaitForSeconds(delayPoison1); // delays anything happening til doctor reaches the poison. 
         poisonInHand.SetActive(true); // makes poison object attached to doctor active
         poisonOnTrolley.SetActive(false); // makes poison object on trolley inactive
-        yield return new WaitForSeconds(delayPoison); // delay
+        yield return new WaitForSeconds(delayPoison2); // delay
         poisonInHand.SetActive(false); //sets poison in hand inactive again
     }
 
@@ -63,8 +65,9 @@ public class EnableAfterdelay : MonoBehaviour
 
     private System.Collections.IEnumerator CoatSequence() // delays coat sequence til doctor reaches the coatrack
     {
-        yield return new WaitForSeconds(delayCoat); //delay til doctor gets there
+        yield return new WaitForSeconds(delayCoat1); //delay til doctor gets there
         coatHangerEmpty.SetActive(true); // sets the empty coat hanger object active
+        yield return new WaitForSeconds(delayCoat2);
         coatOnChair.SetActive(true); // sets the pile of clothes on the chair active
 
     }
