@@ -8,8 +8,8 @@ public class CameraZoom : MonoBehaviour
 
     [Header("Cinemachine Settings")]
     public CinemachineVirtualCamera virtualCamera; // Assign in Inspector
-    public float zoomedFOV = 30f;                   // Field of View when zoomed in
-    public float normalFOV = 60f;                   // Default Field of View
+    public float zoomedFOV = 8f;                   // Field of View when zoomed in
+    public float normalFOV = 80f;                   // Default Field of View
     public float zoomSpeed = 5f;                    // How fast the zoom happens
 
     void Update()
