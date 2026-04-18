@@ -217,7 +217,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6733014}
-  - component: {fileID: 6733015}
   m_Layer: 3
   m_Name: Locker
   m_TagString: Untagged
@@ -245,27 +244,6 @@ Transform:
   - {fileID: 1680807633}
   m_Father: {fileID: 945433620}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &6733015
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6733013}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 1
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.50588894, y: 0.3344111, z: 0.6128535}
-  m_Center: {x: -4.777619, y: -0.03393443, z: -0.40695488}
 --- !u!1001 &8491853
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -755,7 +733,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 51084969}
-  - component: {fileID: 51084970}
   m_Layer: 3
   m_Name: Trolley
   m_TagString: Untagged
@@ -782,27 +759,6 @@ Transform:
   - {fileID: 1809828215}
   m_Father: {fileID: 945433620}
   m_LocalEulerAnglesHint: {x: 0, y: 50.514, z: 0}
---- !u!65 &51084970
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 51084968}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.7939182, y: 0.16383833, z: 0.5504607}
-  m_Center: {x: -1.3901548, y: 0.50044394, z: 0.65138406}
 --- !u!1001 &51451037
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10013,10 +9969,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1157241787}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5675352df31e6f34f87c5662a0dac9c9,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1157241791}
   m_SourcePrefab: {fileID: 100100000, guid: 5675352df31e6f34f87c5662a0dac9c9, type: 3}
 --- !u!4 &1157241783 stripped
 Transform:
@@ -10064,27 +10016,6 @@ MonoBehaviour:
   alarmScreen121: {fileID: 902867373}
   flashDuration: 0.1
   beatInterval: 0
---- !u!65 &1157241791
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1157241786}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.15, y: 0.15, z: 0.15}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1157725058
 GameObject:
   m_ObjectHideFlags: 0
@@ -17984,10 +17915,6 @@ MonoBehaviour:
   zoomedFOV: 8
   normalFOV: 80
   zoomSpeed: 5
-  rayDistance: 2
-  interactableLayers:
-    serializedVersion: 2
-    m_Bits: 8
 --- !u!1 &2077285921
 GameObject:
   m_ObjectHideFlags: 0
