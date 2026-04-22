@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
@@ -109,6 +110,16 @@ public class TipsSceneManager : MonoBehaviour
         "such as a clock or calendar — are visible.";
 
     // -------------------------------------------------------------------------
+    // Diagnosis panel answer copy
+    // -------------------------------------------------------------------------
+
+    // Shown beneath the diagnosis question after a short delay.
+    // Remove the diagnosis-answer element from the UXML if you want
+    // the question to stay rhetorical with no explicit answer.
+    private const string DIAGNOSIS_ANSWER_OPTIMAL    = "Yes — your interventions reflect a clear understanding of the condition.";
+    private const string DIAGNOSIS_ANSWER_SUBOPTIMAL = "Partially — review the clinical insight below for key learning points.";
+
+    // -------------------------------------------------------------------------
     // Unity Lifecycle
     // -------------------------------------------------------------------------
 
@@ -130,6 +141,7 @@ public class TipsSceneManager : MonoBehaviour
         SetNotesBanner(root);
         SetInsightSection(root, isOptimal);
         WireButtons(root);
+        AnimateDiagnosisPanel(root, isOptimal);
     }
 
     // -------------------------------------------------------------------------
@@ -351,6 +363,82 @@ public class TipsSceneManager : MonoBehaviour
         playAgain.clicked  += OnPlayAgain;
         guidelines.clicked += ViewFullGuidelines;
     }
+
+    // -------------------------------------------------------------------------
+    // Diagnosis Panel Animation
+    // -------------------------------------------------------------------------
+
+    /// <summary>
+    /// Fades the diagnosis question in on load, then starts a slow opacity pulse
+    /// to draw the eye without being distracting.  After the question is fully
+    /// visible, fades in the answer label.
+    ///
+    /// Timeline:
+    ///   0 ms       — question invisible (opacity 0)
+    ///   400 ms     — begin 800 ms fade-in to opacity 1.0
+    ///   1400 ms    — question fully visible; begin answer fade-in
+    ///   1400+ ms   — begin repeating pulse: 1.0 → 0.65 → 1.0 every 2 s
+    /// </summary>
+    private void AnimateDiagnosisPanel(VisualElement root, bool isOptimal)
+    {
+        var question = root.Q<Label>("diagnosis-question");
+        var answer   = root.Q<Label>("diagnosis-answer");
+
+        if (question == null) return;
+
+        // ── Set up inline transitions ────────────────────────────────────────
+        var transitionDuration = new StyleList<TimeValue>(
+            new List<TimeValue> { new TimeValue(800, TimeUnit.Millisecond) });
+        var transitionProp = new StyleList<StylePropertyName>(
+            new List<StylePropertyName> { new StylePropertyName("opacity") });
+
+        question.style.transitionDuration = transitionDuration;
+        question.style.transitionProperty = transitionProp;
+        question.style.opacity = 0f;
+
+        // ── Step 1: fade question in after 400 ms ────────────────────────────
+        question.schedule.Execute(() =>
+        {
+            question.style.opacity = 1f;
+        }).StartingIn(400);
+
+        // ── Step 2: once question is visible, start answer + pulse ───────────
+        question.schedule.Execute(() =>
+        {
+            // Reveal answer label
+            if (answer != null)
+            {
+                answer.style.transitionDuration = new StyleList<TimeValue>(
+                    new List<TimeValue> { new TimeValue(600, TimeUnit.Millisecond) });
+                answer.style.transitionProperty = new StyleList<StylePropertyName>(
+                    new List<StylePropertyName> { new StylePropertyName("opacity") });
+
+                answer.text = isOptimal ? DIAGNOSIS_ANSWER_OPTIMAL : DIAGNOSIS_ANSWER_SUBOPTIMAL;
+
+                // Swap to coloured class before fading in
+                answer.RemoveFromClassList("diagnosis-answer");
+                answer.RemoveFromClassList("diagnosis-answer-positive");
+                answer.RemoveFromClassList("diagnosis-answer-partial");
+                answer.AddToClassList(isOptimal ? "diagnosis-answer-positive" : "diagnosis-answer-partial");
+
+                answer.style.opacity = 0f; // ensure starts invisible
+                answer.schedule.Execute(() => { answer.style.opacity = 1f; }).StartingIn(50);
+            }
+
+            // Begin gentle pulse on the question to keep drawing the eye
+            bool dim = true;
+            question.schedule.Execute(() =>
+            {
+                question.style.opacity = dim ? 0.65f : 1f;
+                dim = !dim;
+            }).Every(2000);
+
+        }).StartingIn(1400);
+    }
+
+    // -------------------------------------------------------------------------
+    // Button Handlers
+    // -------------------------------------------------------------------------
 
     private void OnPlayAgain()
     {

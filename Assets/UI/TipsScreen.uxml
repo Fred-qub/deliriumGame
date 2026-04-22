@@ -9,17 +9,33 @@
         <ui:VisualElement name="sticky-region" class="sticky-region">
             <ui:VisualElement name="sticky-inner" class="sticky-inner">
 
+                <!-- Header is now a row: left = existing content, right = diagnosis reveal -->
                 <ui:VisualElement name="header" class="header">
-                    <ui:VisualElement name="header-meta" class="header-meta">
-                        <ui:Label name="nhs-badge" class="nhs-badge" text="DELIRIUM SIMULATOR" />
-                        <ui:Label name="session-id" class="session-id" text="SESSION // General Medical Ward" />
+
+                    <!-- LEFT: existing title/meta block (unchanged internals) -->
+                    <ui:VisualElement class="header-left">
+                        <ui:VisualElement name="header-meta" class="header-meta">
+                            <ui:Label name="nhs-badge" class="nhs-badge" text="DELIRIUM SIMULATOR" />
+                            <ui:Label name="session-id" class="session-id" text="SESSION // General Medical Ward" />
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-direction: row;">
+                            <ui:Label class="header-title" text="Session " />
+                            <ui:Label class="header-title-accent" text="Review" />
+                        </ui:VisualElement>
+                        <ui:Label name="header-sub" class="header-sub"
+                                  text="Arthur — 70 years old, eye infection, Day 2" />
                     </ui:VisualElement>
-                    <ui:VisualElement style="flex-direction: row;">
-                        <ui:Label class="header-title" text="Session " />
-                        <ui:Label class="header-title-accent" text="Review" />
+
+                    <!-- RIGHT: delirium reveal panel — named elements are set/animated by C# -->
+                    <ui:VisualElement name="diagnosis-panel" class="diagnosis-panel">
+                        <ui:Label class="diagnosis-eyebrow" text="CLINICAL DIAGNOSIS" />
+                        <ui:Label name="diagnosis-question" class="diagnosis-question"
+                                  text="Did you correctly diagnose that Arthur was suffering a delirium episode?" />
+                        <!-- Optional answer: C# populates and reveals this after the question fades in.
+                             Remove the element (or leave text empty) if you want the question to stay rhetorical. -->
+                        <ui:Label name="diagnosis-answer" class="diagnosis-answer" text="" />
                     </ui:VisualElement>
-                    <ui:Label name="header-sub" class="header-sub"
-                              text="Arthur — 70 years old, eye infection, Day 2" />
+
                 </ui:VisualElement>
 
                 <ui:VisualElement name="score-bar" class="score-bar">
@@ -73,6 +89,9 @@
                     <ui:Button name="btn-play-again"  class="btn-primary"   text="Play Again →" />
                     <ui:Button name="btn-guidelines"  class="btn-secondary" text="View NICE Guidelines" />
                 </ui:VisualElement>
+
+                <!-- Delirium stats section label — added per feedback -->
+                <ui:Label class="stats-section-label" text="DELIRIUM STATS" />
 
                 <!-- Delirium stats bar -->
                 <ui:VisualElement name="stats-bar" class="stats-bar">
