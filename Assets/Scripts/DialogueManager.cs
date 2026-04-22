@@ -533,7 +533,7 @@ public class DialogueManager : MonoBehaviour
             if (arthurPortrait != null) portraitImage.sprite = arthurPortrait;
         }
 
-        dialogueText.fontStyle = FontStyles.Italic;
+        dialogueText.fontStyle = FontStyles.Normal;
         dialogueText.text = line;
     }
 

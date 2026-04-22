@@ -13783,36 +13783,58 @@ PrefabInstance:
     - target: {fileID: 4224466730367405167, guid: de2b1cd7757611c4fbfb741282ba355b,
         type: 3}
       propertyPath: openingLine
-      value: I don't know who you are. What do you want? Why are you standing there
-        saying nothing?
+      value: "Are you gonna help me or just stand there saying nothing? Let\u2019s
+        get this bastard in the corner before he kills me!"
       objectReference: {fileID: 0}
     - target: {fileID: 4224466730367405167, guid: de2b1cd7757611c4fbfb741282ba355b,
         type: 3}
       propertyPath: doctorAppearanceLine
-      value: Who just came in?  Their face looks distorted to me...not human.  I'm
-        frightened.
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4224466730367405167, guid: de2b1cd7757611c4fbfb741282ba355b,
         type: 3}
       propertyPath: entries.Array.data[0].doctorLine
-      value: Relax, Artie.  There's nobody in the corner.  You're safe. I'm your
-        doctor, and I'm here to help.
+      value: "Relax there, Artie. Nobody\u2019s in the corner. Now, I\u2019m your
+        doctor and I can help, if you let me."
+      objectReference: {fileID: 0}
+    - target: {fileID: 4224466730367405167, guid: de2b1cd7757611c4fbfb741282ba355b,
+        type: 3}
+      propertyPath: entries.Array.data[4].doctorLine
+      value: Let's get you your hearing aids, Artie.
       objectReference: {fileID: 0}
     - target: {fileID: 4224466730367405167, guid: de2b1cd7757611c4fbfb741282ba355b,
         type: 3}
       propertyPath: entries.Array.data[0].arthurMonologue
-      value: Get away from me, whatever you are!  Stop mumbling!  Leave me alone!
+      value: "What the bleedin\u2019 heck are you saying? Quit mumbling!"
       objectReference: {fileID: 0}
     - target: {fileID: 4224466730367405167, guid: de2b1cd7757611c4fbfb741282ba355b,
         type: 3}
       propertyPath: entries.Array.data[1].arthurMonologue
-      value: Stop!  They're trying to poison me! Someone help me...please.
+      value: "Get that shite away from me! You think I\u2019m gonna let you poison
+        me!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4224466730367405167, guid: de2b1cd7757611c4fbfb741282ba355b,
+        type: 3}
+      propertyPath: entries.Array.data[2].arthurMonologue
+      value: "Jesus, my eyes! I can\u2019t see a bloody thing!"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4224466730367405167, guid: de2b1cd7757611c4fbfb741282ba355b,
+        type: 3}
+      propertyPath: entries.Array.data[3].arthurMonologue
+      value: "Where did it go? That thing\u2019s been watching me flat out! And now
+        \u2026 was it ever really there\u2026? What\u2019s happening to me?"
       objectReference: {fileID: 0}
     - target: {fileID: 4224466730367405167, guid: de2b1cd7757611c4fbfb741282ba355b,
         type: 3}
       propertyPath: entries.Array.data[4].arthurMonologue
-      value: That's clearer now, but I'm scared.  I don't know what's real.  You
-        say you're a doctor...but you don't even look human to me.
+      value: "No harm to ye, but you look weird. Are you sure you\u2019re a real
+        doc?"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4224466730367405167, guid: de2b1cd7757611c4fbfb741282ba355b,
+        type: 3}
+      propertyPath: entries.Array.data[4].doctorLineAfter
+      value: "Now, isn\u2019t that much better? We can both hear each other\u2026
+        So, let\u2019s talk."
       objectReference: {fileID: 0}
     - target: {fileID: 4224466730367405167, guid: de2b1cd7757611c4fbfb741282ba355b,
         type: 3}

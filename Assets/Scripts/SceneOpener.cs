@@ -22,8 +22,8 @@ public class SceneOpener : MonoBehaviour
         yield return new WaitForSeconds(delayBeforeDialogue);
 
         DialogueManager.Instance.ShowArthurLine(
-            "I don't know who you are. What do you want? " +
-            "Why are you standing there saying nothing?"
+            "Are you gonna help me or just stand there saying nothing? " +
+            "Let's get this bastard in the corner before he kills me!"
         );
     }
 }

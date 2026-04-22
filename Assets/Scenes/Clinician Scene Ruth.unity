@@ -619,14 +619,12 @@ MonoBehaviour:
   requiredObjectName: 
   blockerObjectName: HearingAid
   triggersHallucinationOnFail: 0
-  doctorLine: Relax, Artie.  There's nobody in the corner.  You're safe. I'm your
-    doctor, and I'm here to help.
-  arthurLine: 'I can''t understand what you''re saying.  You''re with him. You''re
-    one of them!  '
-  replayDoctorLine: "Relax, ok? There's nobody in the corner\u2026 Can't you see
-    I'm your doctor, and I'm here to help?"
-  arthurMonologue: Get away from me, whatever you are!  Stop mumbling!  Leave me
-    alone
+  doctorLine: "Relax there, Artie. Nobody\u2019s in the corner. Now, I\u2019m your
+    doctor and I can help, if you let me."
+  arthurLine: "What the bleedin\u2019 heck are you saying? Quit mumbling!"
+  replayDoctorLine: "Relax there, Artie. Nobody\u2019s in the corner. Now, I\u2019m
+    your doctor and I can help, if you let me."
+  arthurMonologue: "What the bleedin\u2019 heck are you saying? Quit mumbling! "
   isHearingAidInteraction: 0
   doctorLineAfter: 
   replayDoctorLineAfter: 
@@ -5270,9 +5268,9 @@ MonoBehaviour:
   blockerObjectName: 
   triggersHallucinationOnFail: 1
   doctorLine: 
-  arthurLine: You're hurting me. Please, stop.
+  arthurLine: "Jesus, my eyes! I can\u2019t see a bloody thing!"
   replayDoctorLine: 
-  arthurMonologue: I can't see anything. They've blinded me!
+  arthurMonologue: "Jesus, my eyes! I can\u2019t see a bloody thing!"
   isHearingAidInteraction: 0
   doctorLineAfter: 
   replayDoctorLineAfter: 
@@ -9814,10 +9812,11 @@ MonoBehaviour:
   blockerObjectName: 
   triggersHallucinationOnFail: 0
   doctorLine: 
-  arthurLine: "I thought someone was there. He'd been watching me all night\u2026
-    What's happening to me, doctor?"
+  arthurLine: "Where did it go? That thing\u2019s been watching me flat out! And
+    now \u2026 was it ever really there\u2026? What\u2019s happening to me?"
   replayDoctorLine: 
-  arthurMonologue: There was no one there at all. What's happening to me?
+  arthurMonologue: "Where did it go? That thing\u2019s been watching me flat out!
+    And now \u2026 was it ever really there\u2026? What\u2019s happening to me?"
   isHearingAidInteraction: 0
   doctorLineAfter: 
   replayDoctorLineAfter: 
@@ -10789,16 +10788,17 @@ MonoBehaviour:
   requiredObjectName: 
   blockerObjectName: 
   triggersHallucinationOnFail: 0
-  doctorLine: Let's use your hearing aids, Arthur.
-  arthurLine: That's clearer now, but I'm scared, doctor. I don't know what's real.
-  replayDoctorLine: Let's use your hearing aids, Arthur.
-  arthurMonologue: That's clearer now, but I'm scared.  I don't know what's real. 
-    You say you're  a doctor...but you don't even look human to me.
+  doctorLine: Let's get you your hearing aids, Artie.
+  arthurLine: "No harm to ye, but you look weird. Are you sure you\u2019re a real
+    doc?"
+  replayDoctorLine: Let's get you your hearing aids, Artie.
+  arthurMonologue: "No harm to ye, but you look weird. Are you sure you\u2019re a
+    real doc?"
   isHearingAidInteraction: 1
-  doctorLineAfter: Hi Arthur, I'm your doctor. Can you hear me ok now? I'm here to
-    help.
-  replayDoctorLineAfter: Hi Arthur, I'm your doctor. Can you hear me ok now? I'm
-    here to help.
+  doctorLineAfter: "Now, isn\u2019t that much better? We can both hear each other\u2026
+    So, let\u2019s talk."
+  replayDoctorLineAfter: "Now, isn\u2019t that much better? We can both hear each
+    other\u2026 So, let\u2019s talk."
 --- !u!1001 &1273870078
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13810,10 +13810,11 @@ MonoBehaviour:
   blockerObjectName: 
   triggersHallucinationOnFail: 1
   doctorLine: 
-  arthurLine: "I don\u2019t know you.  You\u2019re trying to poison me!  Somebody
-    help!"
+  arthurLine: "Get that shite away from me! You think I\u2019m gonna let you poison
+    me!"
   replayDoctorLine: 
-  arthurMonologue: Stop!  They're trying to poison me! Someone help me...please.
+  arthurMonologue: "Get that shite away from me! You think I\u2019m gonna let you
+    poison me!"
   isHearingAidInteraction: 0
   doctorLineAfter: 
   replayDoctorLineAfter: 
