@@ -6083,6 +6083,9 @@ MonoBehaviour:
   zoomedFOV: 8
   normalFOV: 80
   zoomSpeed: 5
+  scrollZoomSpeed: 20
+  minFOV: 3
+  maxFOV: 90
 --- !u!1001 &794598478
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6981,7 +6984,7 @@ PrefabInstance:
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
       propertyPath: actionLibrary.Array.data[0].onTrigger.m_PersistentCalls.m_Calls.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
@@ -7197,7 +7200,7 @@ PrefabInstance:
         type: 3}
       propertyPath: actionLibrary.Array.data[0].onTrigger.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 393842003}
+      objectReference: {fileID: 1552612445}
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
       propertyPath: actionLibrary.Array.data[0].onTrigger.m_PersistentCalls.m_Calls.Array.data[3].m_Target
@@ -7496,7 +7499,7 @@ PrefabInstance:
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
       propertyPath: actionLibrary.Array.data[0].onTrigger.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: AddOne
+      value: ExecuteReplay
       objectReference: {fileID: 0}
     - target: {fileID: 641000656009932659, guid: 8c0c127ccc75e9a428a7205574f47181,
         type: 3}
