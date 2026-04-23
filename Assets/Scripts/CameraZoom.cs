@@ -39,9 +39,9 @@ public class CameraZoom : MonoBehaviour
             targetFOV = isZoomed ? zoomedFOV : normalFOV;
         }
 
-        // ? Mouse wheel zoom
+        // ? Mouse wheel zoom (scroll whell only works if right click has been pressed)
         float scroll = Input.GetAxis("Mouse ScrollWheel");
-        if (Mathf.Abs(scroll) > 0.01f)
+        if (isZoomed && Mathf.Abs(scroll) > 0.01f)
         {
             targetFOV -= scroll * scrollZoomSpeed;
             targetFOV = Mathf.Clamp(targetFOV, minFOV, maxFOV);
