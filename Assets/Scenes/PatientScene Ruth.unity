@@ -893,6 +893,7 @@ MonoBehaviour:
   doctorLine: "Relax, ok? There's nobody in the corner\u2026 Can't you see I'm your
     doctor, and I'm here to help?"
   arthurLine: You're with him. You're one of them!
+  arthurLineAlt: 
   replayDoctorLine: "Relax, ok? There's nobody in the corner\u2026 Can't you see
     I'm your doctor, and I'm here to help?"
   arthurMonologue: Get away from me. Leave me alone!
@@ -5473,6 +5474,7 @@ MonoBehaviour:
   triggersHallucinationOnFail: 1
   doctorLine: 
   arthurLine: You're hurting me. Please, stop.
+  arthurLineAlt: 
   replayDoctorLine: 
   arthurMonologue: I can't see anything. They've blinded me!
   isHearingAidInteraction: 0
@@ -9728,6 +9730,7 @@ MonoBehaviour:
   doctorLine: 
   arthurLine: "I thought someone was there. He'd been watching me all night\u2026
     What's happening to me, doctor?"
+  arthurLineAlt: 
   replayDoctorLine: 
   arthurMonologue: There was no one there at all. What's happening to me?
   isHearingAidInteraction: 0
@@ -11000,6 +11003,7 @@ MonoBehaviour:
   triggersHallucinationOnFail: 1
   doctorLine: Let's use your hearing aids, Arthur.
   arthurLine: That's clearer now, but I'm scared, doctor. I don't know what's real.
+  arthurLineAlt: 
   replayDoctorLine: Let's use your hearing aids, Arthur.
   arthurMonologue: That's clearer now, but I'm scared, doctor. I don't know what's
     real.
@@ -13772,8 +13776,7 @@ PrefabInstance:
     - target: {fileID: 4224466730367405167, guid: de2b1cd7757611c4fbfb741282ba355b,
         type: 3}
       propertyPath: openingLine
-      value: "Are you gonna help me or just stand there saying nothing? Let\u2019s
-        get this bastard in the corner before he kills me!"
+      value: No more visitors! No harm to ye, but your face is freaking me out.
       objectReference: {fileID: 0}
     - target: {fileID: 4224466730367405167, guid: de2b1cd7757611c4fbfb741282ba355b,
         type: 3}
@@ -13799,13 +13802,13 @@ PrefabInstance:
     - target: {fileID: 4224466730367405167, guid: de2b1cd7757611c4fbfb741282ba355b,
         type: 3}
       propertyPath: entries.Array.data[1].arthurMonologue
-      value: "Get that shite away from me! You think I\u2019m gonna let you poison
+      value: "Get that muck away from me! You think I\u2019m gonna let you poison
         me!"
       objectReference: {fileID: 0}
     - target: {fileID: 4224466730367405167, guid: de2b1cd7757611c4fbfb741282ba355b,
         type: 3}
       propertyPath: entries.Array.data[2].arthurMonologue
-      value: "Jesus, my eyes! I can\u2019t see a bloody thing!"
+      value: "Ahh, my eyes! I can\u2019t see a bloody thing!"
       objectReference: {fileID: 0}
     - target: {fileID: 4224466730367405167, guid: de2b1cd7757611c4fbfb741282ba355b,
         type: 3}
@@ -13816,14 +13819,20 @@ PrefabInstance:
     - target: {fileID: 4224466730367405167, guid: de2b1cd7757611c4fbfb741282ba355b,
         type: 3}
       propertyPath: entries.Array.data[4].arthurMonologue
-      value: "No harm to ye, but you look weird. Are you sure you\u2019re a real
-        doc?"
+      value: That's better. Now, are you gonna help me or just stand there saying
+        nothing? Let's get this fella in the corner before he kills me!
       objectReference: {fileID: 0}
     - target: {fileID: 4224466730367405167, guid: de2b1cd7757611c4fbfb741282ba355b,
         type: 3}
       propertyPath: entries.Array.data[4].doctorLineAfter
       value: "Now, isn\u2019t that much better? We can both hear each other\u2026
         So, let\u2019s talk."
+      objectReference: {fileID: 0}
+    - target: {fileID: 4224466730367405167, guid: de2b1cd7757611c4fbfb741282ba355b,
+        type: 3}
+      propertyPath: entries.Array.data[4].arthurMonologueAlt
+      value: That's better. I'm sorry I've been so difficult, I just can't make sense
+        of what's happening to me.
       objectReference: {fileID: 0}
     - target: {fileID: 4224466730367405167, guid: de2b1cd7757611c4fbfb741282ba355b,
         type: 3}
@@ -14711,6 +14720,7 @@ MonoBehaviour:
   triggersHallucinationOnFail: 1
   doctorLine: 
   arthurLine: "I don\u2019t know you. Don't dare touch me!"
+  arthurLineAlt: 
   replayDoctorLine: 
   arthurMonologue: "Stop! You\u2019re trying to poison me!"
   isHearingAidInteraction: 0
