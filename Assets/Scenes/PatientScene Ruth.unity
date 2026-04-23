@@ -6080,7 +6080,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   virtualCamera: {fileID: 1018192896}
-  zoomedFOV: 8
+  zoomedFOV: 20
   normalFOV: 80
   zoomSpeed: 5
   scrollZoomSpeed: 20
