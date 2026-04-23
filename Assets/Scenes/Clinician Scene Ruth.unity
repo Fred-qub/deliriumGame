@@ -13192,9 +13192,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   virtualCamera: {fileID: 1018192896}
-  zoomedFOV: 8
+  zoomedFOV: 20
   normalFOV: 80
   zoomSpeed: 5
+  scrollZoomSpeed: 20
+  minFOV: 3
+  maxFOV: 90
 --- !u!1001 &1598736442
 PrefabInstance:
   m_ObjectHideFlags: 0
