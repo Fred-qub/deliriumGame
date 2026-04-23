@@ -40,6 +40,9 @@ public class DemoInteractable : MonoBehaviour
 
     [Tooltip("What Arthur says in response to this interaction.")]
     [TextArea] public string arthurLine;
+    
+    [Tooltip("Arthur's response if the coat has been removed.")]
+    [TextArea] public string arthurLineAlt;
 
     [Header("Dialogue - Patient POV Replay")]
     [Tooltip("Optional. Only fill in if the doctor speaks in this interaction (Speak and Hearing Aid interactions only).")]
@@ -118,12 +121,20 @@ public class DemoInteractable : MonoBehaviour
         // Trigger main dialogue — unchanged from before
         // -------------------------------------------------------------------------
 
+        var arthurDialogue = arthurLine;
+        
         if (isHearingAidInteraction)
         {
+            
+            if (InteractionMaster.Instance.interactionHistory.Contains("Coat"))
+            {
+                arthurDialogue = arthurLineAlt;
+            }
+            
             DialogueManager.Instance.ShowHearingAidSequence(
                 doctorLine,
                 doctorLineAfter,
-                arthurLine,
+                arthurDialogue,
                 OnHearingAidAnimationTrigger
             );
         }
@@ -134,31 +145,6 @@ public class DemoInteractable : MonoBehaviour
         else
         {
             DialogueManager.Instance.ShowArthurLine(arthurLine);
-        }
-    }
-
-    // -------------------------------------------------------------------------
-    // Patient POV replay — unchanged from before
-    // -------------------------------------------------------------------------
-
-    public void ExecuteReplay()
-    {
-        if (isHearingAidInteraction)
-        {
-            DialogueManager.Instance.ShowHearingAidReplaySequence(
-                replayDoctorLine,
-                replayDoctorLineAfter,
-                arthurMonologue,
-                OnHearingAidAnimationTrigger
-            );
-        }
-        else if (!string.IsNullOrEmpty(replayDoctorLine))
-        {
-            DialogueManager.Instance.ShowDoctorThenArthur(replayDoctorLine, arthurMonologue);
-        }
-        else
-        {
-            DialogueManager.Instance.ShowMonologue(arthurMonologue);
         }
     }
 

@@ -22,8 +22,8 @@ public class SceneOpener : MonoBehaviour
         yield return new WaitForSeconds(delayBeforeDialogue);
 
         DialogueManager.Instance.ShowArthurLine(
-            "Are you gonna help me or just stand there saying nothing? " +
-            "Let's get this bastard in the corner before he kills me!"
+            "No more visitors! " +
+            "No harm to ye, but your face is freaking me out."
         );
     }
 }

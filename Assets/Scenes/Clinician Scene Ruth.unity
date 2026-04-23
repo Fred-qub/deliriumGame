@@ -622,6 +622,7 @@ MonoBehaviour:
   doctorLine: "Relax there, Artie. Nobody\u2019s in the corner. Now, I\u2019m your
     doctor and I can help, if you let me."
   arthurLine: "What the bleedin\u2019 heck are you saying? Quit mumbling!"
+  arthurLineAlt: 
   replayDoctorLine: "Relax there, Artie. Nobody\u2019s in the corner. Now, I\u2019m
     your doctor and I can help, if you let me."
   arthurMonologue: "What the bleedin\u2019 heck are you saying? Quit mumbling! "
@@ -5268,9 +5269,10 @@ MonoBehaviour:
   blockerObjectName: 
   triggersHallucinationOnFail: 1
   doctorLine: 
-  arthurLine: "Jesus, my eyes! I can\u2019t see a bloody thing!"
+  arthurLine: "Ahh, my eyes! I can\u2019t see a bloody thing!"
+  arthurLineAlt: 
   replayDoctorLine: 
-  arthurMonologue: "Jesus, my eyes! I can\u2019t see a bloody thing!"
+  arthurMonologue: "Ahh, my eyes! I can\u2019t see a bloody thing!"
   isHearingAidInteraction: 0
   doctorLineAfter: 
   replayDoctorLineAfter: 
@@ -9814,6 +9816,7 @@ MonoBehaviour:
   doctorLine: 
   arthurLine: "Where did it go? That thing\u2019s been watching me flat out! And
     now \u2026 was it ever really there\u2026? What\u2019s happening to me?"
+  arthurLineAlt: 
   replayDoctorLine: 
   arthurMonologue: "Where did it go? That thing\u2019s been watching me flat out!
     And now \u2026 was it ever really there\u2026? What\u2019s happening to me?"
@@ -10789,11 +10792,12 @@ MonoBehaviour:
   blockerObjectName: 
   triggersHallucinationOnFail: 0
   doctorLine: Let's get you your hearing aids, Artie.
-  arthurLine: "No harm to ye, but you look weird. Are you sure you\u2019re a real
-    doc?"
+  arthurLine: That's better. Now, are you gonna help me or just stand there saying
+    nothing? Let's get this fella in the corner before he kills me!
+  arthurLineAlt: That's better. I'm sorry I've been so difficult, I just can't make
+    sense of what's happening to me.
   replayDoctorLine: Let's get you your hearing aids, Artie.
-  arthurMonologue: "No harm to ye, but you look weird. Are you sure you\u2019re a
-    real doc?"
+  arthurMonologue: aiydgfhadkuj
   isHearingAidInteraction: 1
   doctorLineAfter: "Now, isn\u2019t that much better? We can both hear each other\u2026
     So, let\u2019s talk."
@@ -13813,10 +13817,11 @@ MonoBehaviour:
   blockerObjectName: 
   triggersHallucinationOnFail: 1
   doctorLine: 
-  arthurLine: "Get that shite away from me! You think I\u2019m gonna let you poison
+  arthurLine: "Get that muck away from me! You think I\u2019m gonna let you poison
     me!"
+  arthurLineAlt: 
   replayDoctorLine: 
-  arthurMonologue: "Get that shite away from me! You think I\u2019m gonna let you
+  arthurMonologue: "Get that muck away from me! You think I\u2019m gonna let you
     poison me!"
   isHearingAidInteraction: 0
   doctorLineAfter: 

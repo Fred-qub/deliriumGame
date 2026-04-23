@@ -32,6 +32,9 @@ public class ReplayDialogue : MonoBehaviour
 
         [Tooltip("Arthur's internal monologue response.")]
         [TextArea] public string arthurMonologue;
+        
+        [Tooltip("Arthur's response if the coat has been removed.")]
+        [TextArea] public string arthurMonologueAlt;
 
         [Header("Hearing Aid Only")]
         [Tooltip("Check this only for the Hearing Aid interaction.")]
@@ -95,14 +98,20 @@ public class ReplayDialogue : MonoBehaviour
             Debug.LogWarning($"[ReplayDialogue] No entry found for action: {actionName}");
             return;
         }
-
+        
         if (entry.isHearingAidInteraction)
         {
+            var arthurMonologue = entry.arthurMonologue;
+            if (InteractionMaster.Instance.interactionHistory.IndexOf("Coat") == 0)
+            {
+                arthurMonologue = entry.arthurMonologueAlt;
+            }
+            
             // Hearing Aid: garbled doctor line → animation → clear doctor line → Arthur monologue
             DialogueManager.Instance.ShowHearingAidReplaySequence(
                 entry.doctorLine,
                 entry.doctorLineAfter,
-                entry.arthurMonologue,
+                arthurMonologue,
                 OnHearingAidAnimationTrigger
             );
         }
