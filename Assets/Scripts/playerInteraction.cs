@@ -17,7 +17,8 @@ public class playerInteraction : MonoBehaviour
         //make sure you're not looking at nothing
         if (Input.GetKeyDown(KeyCode.E) && target != null)
         {
-            int totalChoices = InteractionMaster.Instance.successCount + InteractionMaster.Instance.failureCount;
+            int totalChoices = InteractionMaster.Instance.successCount + InteractionMaster.Instance.failureCount +
+                               InteractionMaster.Instance.neutralCount;
             if (totalChoices >= InteractionMaster.Instance.maxInteractions)
             {
                 return;
@@ -72,8 +73,9 @@ public class playerInteraction : MonoBehaviour
     {
         target = interactable;
         DemoInteractable obj = interactable.interactionLink;
-        
-        int totalChoices = InteractionMaster.Instance.successCount + InteractionMaster.Instance.failureCount;
+
+        int totalChoices = InteractionMaster.Instance.successCount + InteractionMaster.Instance.failureCount +
+                           InteractionMaster.Instance.neutralCount;
 
         if (totalChoices >= InteractionMaster.Instance.maxInteractions)
         {
