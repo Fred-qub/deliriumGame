@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class AudioController : MonoBehaviour
 {
@@ -17,18 +18,18 @@ public class AudioController : MonoBehaviour
     public AudioSource radioHallucination;
     
     [Header ("Heartbeats")]
-    [SerializeField] private AudioSource heart52;
-    [SerializeField] private AudioSource heart71;
-    [SerializeField] private AudioSource heart82;
-    [SerializeField] private AudioSource heart107;
-    [SerializeField] private AudioSource heart121;
+    [SerializeField] private AudioSource heartLowest;
+    [SerializeField] private AudioSource heartLow;
+    [SerializeField] private AudioSource heartMiddle;
+    [SerializeField] private AudioSource heartHigh;
+    [SerializeField] private AudioSource heartHighest;
     
     [Header ("Heart Rate Monitor")]
-    [SerializeField] private AudioSource monitor52;
-    [SerializeField] private AudioSource monitor71;
-    [SerializeField] private AudioSource monitor82;
-    [SerializeField] private AudioSource monitor107;
-    [SerializeField] private AudioSource monitor121;
+    [SerializeField] private AudioSource monitorLowest;
+    [SerializeField] private AudioSource monitorLow;
+    [SerializeField] private AudioSource monitorMiddle;
+    [SerializeField] private AudioSource monitorHigh;
+    [SerializeField] private AudioSource monitorHighest;
     [SerializeField] private AudioSource alarm;
     
     public bool isHallucinating;
@@ -131,30 +132,30 @@ public class AudioController : MonoBehaviour
 
         switch (heartbeat)
         {
-            case 0: // this int relates to 52 bpm
+            case 0: // this int relates to 50 bpm
                StopAllHeartbeats(); // stop heart sounds
-               heart52.Play(); //play correct file for this rate
-                Debug.Log("Heartrate 52 bpm");
+               heartLowest.Play(); //play correct file for this rate
+                Debug.Log("Heartrate: 50 bpm");
                 break;
-            case 1: // this int relates to 71 bpm
+            case 1: // this int relates to 65 bpm
                 StopAllHeartbeats();
-              heart71.Play();
-                Debug.Log("Heartrate 71 bpm");
+              heartLow.Play();
+                Debug.Log("Heartrate: 65 bpm");
                 break;
-            case 2: // this int relates to 82 bpm
+            case 2: // this int relates to 80 bpm
                 StopAllHeartbeats();
-              heart82.Play();
-                Debug.Log("Heartrate 82 bpm");
+              heartMiddle.Play();
+                Debug.Log("Heartrate: 80 bpm");
                 break;
-            case 3: // this int relates to 107 bpm
+            case 3: // this int relates to 110 bpm
                 StopAllHeartbeats();
-              heart107.Play();
-                Debug.Log("Heartrate 107 bpm");
+              heartHigh.Play();
+                Debug.Log("Heartrate: 110 bpm");
                 break;
-            case 4:// this int relates to 121 bpm
+            case 4:// this int relates to 140 bpm
                 StopAllHeartbeats();
-             heart121.Play();
-                Debug.Log("Heartrate 121 bpm");
+             heartHighest.Play();
+                Debug.Log("Heartrate: 140 bpm");
                 break;
 
         }
@@ -162,11 +163,11 @@ public class AudioController : MonoBehaviour
 
     private void StopAllHeartbeats() // stops all heartbeat sounds and alarm sounds
     {
-        heart52.Stop();
-        heart71.Stop();
-        heart82.Stop();
-        heart107.Stop();
-        heart121.Stop();
+        heartLowest.Stop();
+        heartLow.Stop();
+        heartMiddle.Stop();
+        heartHigh.Stop();
+        heartHighest.Stop();
     }
 
     private void MonitorSpeed(int heartbeat)  // this is for playing the monitor beeps during the clinician scene
@@ -174,31 +175,31 @@ public class AudioController : MonoBehaviour
 
         switch (heartbeat)
         {
-            case 0: // this int relates to 52 bpm
+            case 0: // this int relates to 50 bpm
                 StopAllMonitors(); // stop monitor sounds
-                monitor52.Play(); //play correct file for this heart rate
-                Debug.Log("Heartrate 52 bpm");
+                monitorLowest.Play(); //play correct file for this heart rate
+                Debug.Log("Heartrate: 50 bpm");
                 break;
-            case 1: // this int relates to 71 bpm
+            case 1: // this int relates to 65 bpm
                 StopAllMonitors();
-                monitor71.Play();
-                Debug.Log("Heartrate 71 bpm");
+                monitorLow.Play();
+                Debug.Log("Heartrate: 65 bpm");
                 break;
-            case 2: // this int relates to 82 bpm
+            case 2: // this int relates to 80 bpm
                 StopAllMonitors();
-                monitor82.Play();
-                Debug.Log("Heartrate 82 bpm");
+                monitorMiddle.Play();
+                Debug.Log("Heartrate: 80 bpm");
                 break;
-            case 3: // this int relates to 107 bpm
+            case 3: // this int relates to 110 bpm
                 StopAllMonitors();
-                monitor107.Play();
-                Debug.Log("Heartrate 107 bpm");
+                monitorHigh.Play();
+                Debug.Log("Heartrate: 1107 bpm");
                 break;
-            case 4:// this int relates to 121 bpm
+            case 4:// this int relates to 140 bpm
                 StopAllMonitors();
-                monitor121.Play();
+                monitorHighest.Play();
                 alarm.Play();
-                Debug.Log("Heartrate 121 bpm");
+                Debug.Log("Heartrate: 140 bpm");
                 break;
 
         }
@@ -206,11 +207,11 @@ public class AudioController : MonoBehaviour
     
     private void StopAllMonitors() // stops all heart monitor sounds and alarm sounds
     {
-        monitor52.Stop();
-        monitor71.Stop();
-        monitor82.Stop();
-        monitor107.Stop();
-        monitor121.Stop();
+        monitorLowest.Stop();
+        monitorLow.Stop();
+        monitorMiddle.Stop();
+        monitorHigh.Stop();
+        monitorHighest.Stop();
         alarm.Stop();
     }
 }
