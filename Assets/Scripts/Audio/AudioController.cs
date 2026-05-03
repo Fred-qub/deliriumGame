@@ -193,7 +193,7 @@ public class AudioController : MonoBehaviour
             case 3: // this int relates to 110 bpm
                 StopAllMonitors();
                 monitorHigh.Play();
-                Debug.Log("Heartrate: 1107 bpm");
+                Debug.Log("Heartrate: 110 bpm");
                 break;
             case 4:// this int relates to 140 bpm
                 StopAllMonitors();
