@@ -2,13 +2,13 @@
 - Project name: deliriumGame
 - Unity version: Unity 6000.1.15f1
 - Active scene:
-  - Name: Clinician Scene Ruth
+  - Name: PatientScene Ruth
   - Tags:
     - Untagged, Respawn, Finish, EditorOnly, MainCamera, Player, GameController, Interactable, Newspaper
   - Layers:
     - Default, TransparentFX, Ignore Raycast, Water, UI
 - Active game object:
-  - Name: Main Camera
+  - Name: AudioController
   - Tag: Untagged
   - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
