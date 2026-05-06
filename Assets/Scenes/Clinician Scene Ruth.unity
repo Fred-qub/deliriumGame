@@ -486,14 +486,14 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 509ccd7a0cb2d28498d8e1a0145d14c5, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.05
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0.3
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
@@ -530,7 +530,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.232
+      value: 0.761
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -4617,7 +4617,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 649644930}
   m_LocalRotation: {x: -0.5, y: 0.5, z: -0.5, w: -0.5}
-  m_LocalPosition: {x: 0, y: 0, z: -0.291}
+  m_LocalPosition: {x: 0, y: 0, z: -0.297}
   m_LocalScale: {x: 0.0041608, y: 0.0065012495, z: 0.01581104}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -4625,7 +4625,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 90, y: 270, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0072, y: -0.236}
+  m_AnchoredPosition: {x: -0.0074, y: 0.681}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &649644932
@@ -5003,7 +5003,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 90, y: 270, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.007, y: 0.204}
+  m_AnchoredPosition: {x: -0.007, y: 1.14}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!64 &682643939
@@ -5317,8 +5317,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 0
-  m_RequiresOpaqueTextureOption: 0
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
   m_CameraType: 0
   m_Cameras: []
   m_RendererIndex: -1
@@ -5328,7 +5328,7 @@ MonoBehaviour:
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
-  m_Antialiasing: 2
+  m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -5400,8 +5400,8 @@ Camera:
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
-  m_HDR: 0
-  m_AllowMSAA: 0
+  m_HDR: 1
+  m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
@@ -5468,14 +5468,14 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 68c1e8c5a0ec8bb4da16b029ece1b286, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.05
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0.3
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
@@ -5512,7 +5512,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.232
+      value: 0.761
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -6388,7 +6388,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.74
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -8419,14 +8419,14 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 62617f3dcf033044180cd99c02b9ebd8, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.05
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0.3
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
@@ -8463,7 +8463,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.232
+      value: 0.761
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -14342,14 +14342,14 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: c3f466a004a2e4e428a024d7abc8e8c4, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.05
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0.3
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
@@ -14386,7 +14386,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.232
+      value: 0.761
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -15756,7 +15756,7 @@ PrefabInstance:
     - target: {fileID: 2626791346282926631, guid: caeb1e102101fb943bbe691055b3f3e6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.93
+      value: 0.006
       objectReference: {fileID: 0}
     - target: {fileID: 2626791346282926631, guid: caeb1e102101fb943bbe691055b3f3e6,
         type: 3}
@@ -17086,14 +17086,14 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: b8bd54ad685234d46867fc97da2d2db3, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.05
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0.3
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
@@ -17130,7 +17130,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.232
+      value: 0.761
       inSlope: 0
       outSlope: 0
       tangentMode: 0
