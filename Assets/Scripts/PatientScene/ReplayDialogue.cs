@@ -136,7 +136,6 @@ public class ReplayDialogue : MonoBehaviour
         yield return new WaitForSeconds(openingDelay);
         DialogueManager.Instance.ShowMonologue(openingLine);
         yield return new WaitForSeconds(8f);
-        DialogueManager.Instance.ShowMonologue(doctorAppearanceLine);
         yield return new WaitUntil(() => !DialogueManager.Instance.IsDialogueActive());
         OnOpeningLineComplete?.Invoke();
     }
