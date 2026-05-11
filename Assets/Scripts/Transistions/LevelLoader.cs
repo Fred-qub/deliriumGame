@@ -20,15 +20,20 @@ public class LevelLoader : MonoBehaviour
 
     public int subtitles;
     private AudioSource audioSource;
+    bool isLoadingNextLevel = false;
 
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)) // player presses E key to continue laoading sequence
+
+        if (!isLoadingNextLevel && Input.GetKeyDown(KeyCode.E)) // if level is not already loading and  player presses E key to continue laoading sequence
         {
+            isLoadingNextLevel = true;
             LoadNextLevel();
         }
+
+       
     }
 
     public void LoadNextLevel()
